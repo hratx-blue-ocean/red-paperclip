@@ -1,3 +1,7 @@
+.DS_Store
+.eslintrc.js
+config.js
+
 # Logs
 logs
 *.log

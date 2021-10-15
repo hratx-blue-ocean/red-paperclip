@@ -18,4 +18,5 @@ module.exports = {
     'no-console': 'warn',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
+  ignorePatterns: ['client/dist/*/*.js'],
 };

@@ -1,5 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './Components/Feed.App';
+import { ItemsProvider } from './Components/ItemsContext';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <ItemsProvider>
+    <App />
+  </ItemsProvider>,
+  document.getElementById('root')
+);

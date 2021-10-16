@@ -12,6 +12,7 @@ const items = {
   itemValue: 'number',
   watchCount: 'number',
   reports: 'number',
+  createdAt: 'timestamp',
 };
 
 // Messages
@@ -33,11 +34,19 @@ const users = {
   photoURL: 'URL string',
   createdAt: 'date',
   availableItems: 'array of item IDs',
-  tradeHistory: 'array of item IDs',
+  tradeHistory: 'subdoc->star',
   watchedItems: 'array of item IDs',
   userZIP: 'number',
   userPhone: 'string',
   userEmail: 'string',
+};
+
+const star = {
+  itemid: 'string',
+  note: 'string',
+  tradedBy: 'string',
+  location: 'thing',
+  tradedDate: 'dateStamp',
 };
 
 // Mod tools
@@ -55,4 +64,4 @@ const admin = {
 // hash, whatever
 
 const testFunc = () => {};
-testFunc(items, messages, users, admin);
+testFunc(items, messages, users, admin, star);

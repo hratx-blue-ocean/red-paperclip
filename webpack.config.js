@@ -1,12 +1,7 @@
 module.exports = {
-  entry: {
-    feed: './client/src/Feed.Index.js',
-    profile: './client/src/Profile.Index.js',
-    admin: './client/src/Admin.Index.js',
-    chat: './client/src/Chat.Index.js',
-  },
+  entry: './client/src/index.js',
   output: {
-    filename: '[name]/bundle.js',
+    filename: 'bundle.js',
     path: `${__dirname}/client/dist`,
   },
   module: {

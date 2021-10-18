@@ -10,7 +10,7 @@ import Profile from './Profile/Profile';
 function App() {
   return (
     <main>
-      <Container maxWidth="xl" className="main">
+      <Container className="main">
         <Header />
         <Container className="app">
           <Router>

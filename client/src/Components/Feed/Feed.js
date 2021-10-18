@@ -39,9 +39,7 @@ const Feed = () => {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Container maxWidth="xl">
-          <List
-            style={{ maxHeight: '100vh', maxWidth: '100%', overflow: 'auto' }}
-          >
+          <List style={{ overflow: 'auto' }}>
             <Grid container spacing={6}>
               <Grid item xs={4}>
                 <ItemCard />

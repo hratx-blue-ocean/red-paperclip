@@ -1,14 +1,14 @@
-const express = require('express');
-const cors = require('cors');
+const app = require('express')();
+const functions = require('../firebase/functions/node_modules/firebase-functions');
+// const auth = require('../util/auth');
+// const {} = require('./APIs/users');
+const { getAllItems, getTest } = require('../firebase/functions/APIs/items');
 
-const app = express();
-const PORT = 4040;
+app.get('/items', getAllItems);
+app.get('/test', getTest);
 
-app.use(express.static('client/dist'));
-app.use(express.json());
-app.use(cors());
+const api = functions.https.onRequest(app);
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = {
+  api,
+};

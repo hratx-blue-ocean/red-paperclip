@@ -1,9 +1,19 @@
-const functions = require("firebase-functions");
+const app = require('express')();
+const functions = require('firebase-functions');
+// const auth = require('../util/auth');
+// const {} = require('./APIs/users');
+const { item, user, message, admin } = require('./APIs');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// TODO: getAllItems
+// needs to only retrieve 30 items at a time
+// additional requests should query the next page of items
+app.get('/getAllItems', item.getAllItems);
+
+// TODO: getItem
+// app.get('/getItem', getItem);
+
+const api = functions.https.onRequest(app);
+
+module.exports = {
+  api,
+};

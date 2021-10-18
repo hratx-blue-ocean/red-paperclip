@@ -8,5 +8,6 @@ npm run watch
 
 To launch local or deploy
 cd firebase
+run: firebase login
 to launch locally : firebase serve
 to deploy : firebase deploy

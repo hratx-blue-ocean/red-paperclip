@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     textAlign: 'flex-start',
     color: theme.palette.text.secondary,
   },
@@ -55,10 +55,10 @@ export default function ItemCard() {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Grid container>
-          <Card sx={{ width: 450, height: 420, backgroundColor: '#494D53' }}>
+          <Card sx={{ backgroundColor: '#494D53' }}>
             <CardMedia
               component="img"
-              height="200"
+              height="45%"
               image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
               style={{ objectFit: 'cover' }}
               alt="Axe Set"
@@ -130,7 +130,7 @@ export default function ItemCard() {
                   <Button
                     color="primary"
                     variant="contained"
-                    style={{ height: '40px' }}
+                    // style={{ height: '40px' }}
                   >
                     Offer Trade
                   </Button>
@@ -139,7 +139,7 @@ export default function ItemCard() {
                   <Button
                     color="primary"
                     variant="contained"
-                    style={{ height: '40px' }}
+                    // style={{ height: '40px' }}
                   >
                     Report Item
                   </Button>

@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     textAlign: 'flex-start',
     color: theme.palette.text.secondary,
   },
@@ -38,58 +38,56 @@ const Feed = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-        <Container maxWidth="xl">
-          <List style={{ overflow: 'auto' }}>
-            <Grid container spacing={6}>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid item xs={4}>
-                <ItemCard />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                container
-                style={{ justifyContent: 'center', marginBottom: '30px' }}
-              >
-                <Button variant="contained" spacing={1} color="secondary">
-                  Show More
-                </Button>
-              </Grid>
+        <List style={{ overflow: 'auto' }}>
+          <Grid container justifyContent="space-between" spacing={6}>
+            <Grid item xs={4}>
+              <ItemCard />
             </Grid>
-          </List>
-        </Container>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid item xs={4}>
+              <ItemCard />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              container
+              style={{ justifyContent: 'center', marginBottom: '30px' }}
+            >
+              <Button variant="contained" spacing={1} color="secondary">
+                Show More
+              </Button>
+            </Grid>
+          </Grid>
+        </List>
       </div>
     </ThemeProvider>
   );

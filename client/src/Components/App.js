@@ -10,24 +10,22 @@ function App() {
   return (
     <main>
       <Header />
-      <app>
-        <Router>
-          <Switch>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/chat">
-              <Chat />
-            </Route>
-            <Route path="/admin">
-              <Admin />
-            </Route>
-            <Route path="/">
-              <Feed />
-            </Route>
-          </Switch>
-        </Router>
-      </app>
+      <Router>
+        <Switch>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/chat">
+            <Chat />
+          </Route>
+          <Route path="/admin">
+            <Admin />
+          </Route>
+          <Route path="/">
+            <Feed />
+          </Route>
+        </Switch>
+      </Router>
     </main>
   );
 }

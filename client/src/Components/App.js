@@ -9,24 +9,25 @@ import Profile from './Profile/Profile';
 function App() {
   return (
     <main>
-      <h1>Welcome to Red Paperclip!</h1>
       <Header />
-      <Router>
-        <Switch>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/chat">
-            <Chat />
-          </Route>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/">
-            <Feed />
-          </Route>
-        </Switch>
-      </Router>
+      <app>
+        <Router>
+          <Switch>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/chat">
+              <Chat />
+            </Route>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+            <Route path="/">
+              <Feed />
+            </Route>
+          </Switch>
+        </Router>
+      </app>
     </main>
   );
 }

@@ -58,7 +58,7 @@ const Hamburger = (props) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem label={auth ? 'Logout' : 'Login'}>
+          <MenuItem label={auth ? 'SignOut' : 'SignIn'}>
             <SignInForm
               auth={auth}
               handleAuthChange={handleAuthChange}

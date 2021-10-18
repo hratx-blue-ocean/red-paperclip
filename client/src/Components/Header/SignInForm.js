@@ -25,7 +25,7 @@ const style = {
 };
 
 export default function SignInForm(props) {
-  const { auth, handleAuthChange } = props;
+  const { auth, handleAuthChange, setAnchorEl } = props;
   const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState({
     password: '',
@@ -54,6 +54,7 @@ export default function SignInForm(props) {
     event.preventDefault();
     handleAuthChange(true);
     setOpen(false);
+    setAnchorEl(null);
   };
 
   return (

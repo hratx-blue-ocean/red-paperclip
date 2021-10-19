@@ -1,19 +1,15 @@
 const app = require('express')();
 const functions = require('firebase-functions');
-// const auth = require('../util/auth');
-// const {} = require('./APIs/users');
+const auth = require('../util/auth');
 const { item, user, message, admin } = require('./APIs');
 
-// TODO: getAllItems
-// needs to only retrieve 30 items at a time
-// additional requests should query the next page of items
 app.get('/getAllItems', item.getAllItems);
-
-// TODO: getItem
-// app.get('/getItem', getItem);
 
 // USERS
 app.post('/login', user.login);
+app.post('/signup', user.signUp);
+app.post('/user/image', auth, user.uploadProfilePhoto);
+app.get('/user', auth, getUserDetail);
 
 const api = functions.https.onRequest(app);
 

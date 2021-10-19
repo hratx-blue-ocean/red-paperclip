@@ -57,7 +57,7 @@ const Header = () => {
         style={{ backgroundColor: '#161513', color: 'white' }}
       >
         <Toolbar>
-          <AttachFileIcon />
+          <AttachFileIcon color="paperClip" />
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Red Paperclip <CompareArrowsIcon />{' '}
             {`${colorsArr[random1]} ${itemsArr[random2]}`}

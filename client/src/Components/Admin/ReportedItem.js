@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
 import ItemCard from '../Feed/ItemCard';
 
 const useStyles = makeStyles(() => ({
@@ -26,7 +27,6 @@ const useStyles = makeStyles(() => ({
 
 const ReportedItem = () => {
   const classes = useStyles();
-  const itemDetails = {};
 
   return (
     <Grid container>
@@ -39,7 +39,7 @@ const ReportedItem = () => {
           variant="outlined"
           className={classes.hover2}
         >
-          Remove Message
+          Delete Item
         </Button>
       </Grid>
       <Grid item xs={4} justifyContent="center">
@@ -48,7 +48,7 @@ const ReportedItem = () => {
           variant="outlined"
           className={classes.hover2}
         >
-          Remove Message
+          Dismiss Report
         </Button>
       </Grid>
       <Grid item xs={4} justifyContent="center">
@@ -57,7 +57,7 @@ const ReportedItem = () => {
           variant="outlined"
           className={classes.hover2}
         >
-          Remove Message
+          Ban User
         </Button>
       </Grid>
     </Grid>

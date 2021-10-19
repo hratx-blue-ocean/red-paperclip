@@ -27,6 +27,7 @@ const style = {
   background: '#000000e5',
   border: '4px solid white',
   boxShadow: 75,
+  borderRadius: '15px',
 };
 
 const useStyles = makeStyles(() => ({
@@ -321,7 +322,14 @@ export default function ItemCard() {
       </Modal>
 
       <Grid container>
-        <Card style={{ backgroundColor: '#494D53' }}>
+        <Card
+          style={{
+            backgroundColor: '#494D53',
+            border: '1px solid',
+            borderColor: '#FFF',
+            borderRadius: '15px',
+          }}
+        >
           <CardMedia
             component="img"
             height="45%"

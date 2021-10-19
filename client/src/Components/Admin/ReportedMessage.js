@@ -40,6 +40,7 @@ const ReportedMessage = ({ user, message }) => {
         backgroundColor: '#494D53',
         border: '1px solid',
         borderColor: '#FFF',
+        borderRadius: '15px',
       }}
     >
       <Grid container spacing={3} alignItems="center">

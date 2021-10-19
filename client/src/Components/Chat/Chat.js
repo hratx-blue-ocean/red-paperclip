@@ -11,7 +11,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
+import Button from '@mui/material/Button';
+import Icon from '@mui/material/Icon';
+import MdPhone from '@mui/icons-material/Phone';
+import Chip from '@mui/material/Chip';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { spacing } from '@mui/system';
 
+
+import Jason from './img/Jason.jpg';
 
 export default function BasicList() {
   return (
@@ -26,7 +34,7 @@ export default function BasicList() {
                     <ListItemButton component="a" href="/{username}">
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>JW</Avatar>
+                          <Avatar alt="Jesson W" src={Jason} />
                         </ListItemAvatar>
                         <ListItemText
                           primary="Jesson W"
@@ -116,12 +124,13 @@ export default function BasicList() {
                     <ListItemButton component="a" href="/{username}">
                       <ListItem>
                         <ListItemAvatar>
-                          <Avatar>JW</Avatar>
+                          <Avatar alt="Jesson W" src={Jason} />
                         </ListItemAvatar>
                         <ListItemText
                           primary="Jesson W"
                           secondary="Trusted User"
                         />
+                        <Chip icon={<MdPhone />} label="Call me" />
                       </ListItem>
                     </ListItemButton>
                   </ListItem>
@@ -138,6 +147,17 @@ export default function BasicList() {
                     bgcolor: 'background.paper',
                   }}
                 >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      p: 1,
+                      m: 1,
+                      bgcolor: 'background.paper',
+                    }}
+                  >
+                  <DeleteIcon />
+                  </Box>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>JW</Avatar>

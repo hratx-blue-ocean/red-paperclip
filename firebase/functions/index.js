@@ -11,6 +11,10 @@ app.get('/getAllItems', item.getAllItems);
 
 // TODO: getItem
 // app.get('/getItem', getItem);
+app.get('/getItem', item.getItem);
+app.get('/editItem', item.editItem);
+app.get('/addItem', item.addNewItem);
+app.get('/reportItem', item.reportItem);
 
 const api = functions.https.onRequest(app);
 

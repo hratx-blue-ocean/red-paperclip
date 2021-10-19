@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -36,6 +36,17 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard() {
   const classes = useStyles();
+
+  const [starFill, setStarFill] = React.useState(false);
+
+  const handleWatch = () => {
+    setStarFill(true);
+  };
+
+  const handleUnwatch = () => {
+    setStarFill(false);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -63,9 +74,19 @@ export default function ItemCard() {
               </Typography>
             </Grid>
             <Grid container item xs={2} justifyContent="center">
-              <IconButton aria-label="settings">
-                <StarIcon />
-              </IconButton>
+              {!starFill && (
+                <IconButton onClick={handleWatch}>
+                  <StarIcon className={classes.hover1} />
+                </IconButton>
+              )}
+              {starFill && (
+                <IconButton onClick={handleUnwatch}>
+                  <StarIcon
+                    className={classes.hover1}
+                    style={{ color: '#F0CC71' }}
+                  />
+                </IconButton>
+              )}
             </Grid>
           </Grid>
           <CardHeader
@@ -89,7 +110,7 @@ export default function ItemCard() {
               item
               xs={12}
               justifyContent="center"
-              style={{ marginBottom: '14px' }}
+              style={{ marginBottom: '20px'}}
             >
               <Typography
                 variant="body2"
@@ -103,6 +124,7 @@ export default function ItemCard() {
                   component="button"
                   underline="none"
                   display="inline"
+                  color="cardButton"
                 >
                   Read more
                 </Link>
@@ -112,7 +134,7 @@ export default function ItemCard() {
               <Grid container item xs={6} justifyContent="center">
                 <Button
                   color="cardButton"
-                  variant="contained"
+                  variant="outlined"
                   className={classes.hover2}
                 >
                   Offer Trade
@@ -121,7 +143,7 @@ export default function ItemCard() {
               <Grid container item xs={6} justifyContent="space-evenly">
                 <Button
                   color="cardButton"
-                  variant="contained"
+                  variant="outlined"
                   className={classes.hover2}
                 >
                   Report Item

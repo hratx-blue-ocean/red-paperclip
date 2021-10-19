@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container } from '@mui/material';
+import SortBar from './Feed/SortBar';
 import Header from './Header/Header';
 import Feed from './Feed/Feed';
 import Admin from './Admin/Admin';
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <Header />
+      <SortBar />
       <main>
         <Container className="main">
           <Container className="app">

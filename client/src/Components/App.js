@@ -9,29 +9,31 @@ import Profile from './Profile/Profile';
 
 function App() {
   return (
-    <main>
-      <Container className="main">
-        <Header />
-        <Container className="app">
-          <Router>
-            <Switch>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              <Route path="/chat">
-                <Chat />
-              </Route>
-              <Route path="/admin">
-                <Admin />
-              </Route>
-              <Route path="/">
-                <Feed />
-              </Route>
-            </Switch>
-          </Router>
+    <>
+      <Header />
+      <div>
+        <Container className="main">
+          <Container className="app">
+            <Router>
+              <Switch>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/chat">
+                  <Chat />
+                </Route>
+                <Route path="/admin">
+                  <Admin />
+                </Route>
+                <Route path="/">
+                  <Feed />
+                </Route>
+              </Switch>
+            </Router>
+          </Container>
         </Container>
-      </Container>
-    </main>
+      </div>
+    </>
   );
 }
 

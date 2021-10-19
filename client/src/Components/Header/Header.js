@@ -1,15 +1,27 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { makeStyles } from '@mui/styles';
 import Hamburger from './Hamburger';
+import { ItemsContext } from '../ItemsContext';
+
+const useStyles = makeStyles({
+  header: {
+    backgroundColor: '#161513',
+    color: 'black',
+    boxShadow: '0px 0px 0px 0px',
+  },
+});
 
 const Header = () => {
   const [auth, setAuth] = React.useState(false);
+  const { isLoggedIn, isAdmin } = useContext(ItemsContext);
+  const classes = useStyles();
 
   const colorsArr = [
     'Brown',
@@ -40,24 +52,21 @@ const Header = () => {
 
   return (
     <div className="header">
-      <AppBar position="absolute">
+      <AppBar
+        position="fixed"
+        style={{ backgroundColor: '#161513', color: 'white' }}
+      >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <AttachFileIcon /> Red Paperclip <CompareArrowsIcon />{' '}
+          <AttachFileIcon />
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            Red Paperclip <CompareArrowsIcon />{' '}
             {`${colorsArr[random1]} ${itemsArr[random2]}`}
           </Typography>
           {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <AccountCircleIcon />
-              </IconButton>
-            </div>
+            <>
+              <AccountCircleIcon />
+              <Typography variant="h6">Welcome, user!</Typography>
+            </>
           )}
           <Hamburger auth={auth} setAuth={setAuth} />
         </Toolbar>

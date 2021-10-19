@@ -1,8 +1,18 @@
 const { db } = require('../../../util/admin');
 
 const getAllItems = (req, res) => {
+  const start = req.query.page * 30 || 0;
+  const category = req.query.category || 'null';
+  let comparison = '!==';
+  if (category) {
+    comparison = '===';
+  }
   db.collection('items')
+    .where('active', '===', true)
     .orderBy('createdAt', 'desc')
+    .where('itemCategory', comparison, category)
+    .limit(30)
+    .offset(start)
     .get()
     .then((data) => {
       const items = [];
@@ -18,7 +28,7 @@ const getAllItems = (req, res) => {
           watchCount: doc.data().watchCount,
           reports: doc.data().reports,
           // eslint-disable-next-line no-underscore-dangle
-          createdAt: doc.data().createdAt._seconds,
+          createdAt: doc.data().createdAt,
         });
       });
       return res.json(items);

@@ -11,29 +11,21 @@ import Profile from './Profile/Profile';
 function App() {
   return (
     <>
-      <Header />
       <SortBar />
       <main>
-        <Container className="main">
-          <Container className="app">
-            <Router>
+        <Router>
+          <Container className="main">
+            <Header />
+            <Container className="app">
               <Switch>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/chat">
-                  <Chat />
-                </Route>
-                <Route path="/admin">
-                  <Admin />
-                </Route>
-                <Route path="/">
-                  <Feed />
-                </Route>
+                <Route path="/profile" exact component={Profile} />
+                <Route path="/chat" exact component={Chat} />
+                <Route path="/admin" exact component={Admin} />
+                <Route path="/" exact component={Feed} />
               </Switch>
-            </Router>
+            </Container>
           </Container>
-        </Container>
+        </Router>
       </main>
     </>
   );

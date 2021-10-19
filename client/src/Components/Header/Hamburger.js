@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
@@ -8,13 +9,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ForumIcon from '@mui/icons-material/Forum';
-import Settings from '@mui/icons-material/Settings';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Logout from '@mui/icons-material/Logout';
 import SignInForm from './SignInForm';
 
 const Hamburger = (props) => {
   const { auth, setAuth } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const handleAuthChange = (bool) => {
     setAuth(bool);
@@ -34,6 +36,36 @@ const Hamburger = (props) => {
     setAnchorEl(null);
   };
 
+  const history = useHistory();
+
+  const handleHomeClick = () => {
+    console.log('home clicked!');
+    history.push('/');
+    setOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleMyProfileClick = () => {
+    console.log('my profile clicked!');
+    history.push('/profile');
+    setOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleChatsClick = () => {
+    console.log('chats clicked!');
+    history.push('/chat');
+    setOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleAdminClick = () => {
+    console.log('chats clicked!');
+    history.push('/chat');
+    setOpen(false);
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <IconButton
@@ -42,6 +74,7 @@ const Hamburger = (props) => {
         color="inherit"
         aria-label="menu"
         sx={{ mr: 2 }}
+        onClick={handleMenu}
       >
         <Menu
           id="menu-appbar"
@@ -58,7 +91,7 @@ const Hamburger = (props) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem label={auth ? 'SignOut' : 'SignIn'}>
+          <MenuItem label={auth ? 'LogOut' : 'LogIn'}>
             <SignInForm
               auth={auth}
               handleAuthChange={handleAuthChange}
@@ -67,30 +100,30 @@ const Hamburger = (props) => {
           </MenuItem>
           {auth && (
             <>
-              <MenuItem>
+              <MenuItem onClick={handleHomeClick}>
                 <ListItemIcon>
                   <HomeIcon fontSize="small" />
                 </ListItemIcon>
                 Home
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={handleMyProfileClick}>
                 <ListItemIcon>
                   <AccountCircleIcon fontSize="small" />
                 </ListItemIcon>
                 My Profile
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={handleChatsClick}>
                 <ListItemIcon>
                   <ForumIcon fontSize="small" />
                 </ListItemIcon>
                 My Chats
               </MenuItem>
               <Divider />
-              <MenuItem>
+              <MenuItem onClick={handleAdminClick}>
                 <ListItemIcon>
-                  <Settings fontSize="small" />
+                  <AdminPanelSettingsIcon fontSize="small" />
                 </ListItemIcon>
-                Settings
+                Admin
               </MenuItem>
               <MenuItem onClick={handleSignOut}>
                 <ListItemIcon>
@@ -101,7 +134,7 @@ const Hamburger = (props) => {
             </>
           )}
         </Menu>
-        <MenuIcon onClick={handleMenu} />
+        <MenuIcon />
       </IconButton>
     </>
   );

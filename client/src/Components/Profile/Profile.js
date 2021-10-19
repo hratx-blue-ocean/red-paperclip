@@ -2,9 +2,10 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
+import EditProfileButton from './EditProfileButton';
 
 const Profile = () => {
   const userName = 'Jeffrey';
@@ -24,7 +25,7 @@ const Profile = () => {
               alt="Mr. Dahmer"
             />
           </Card>
-          <Button>Edit Profile</Button>
+          <EditProfileButton userName={userName} userPFP={userPFP} />
         </Card>
       </Grid>
       <Grid item xs={7}>

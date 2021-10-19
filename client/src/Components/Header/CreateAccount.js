@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -19,13 +19,12 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 450,
   bgcolor: '#494D53',
-  border: '2px solid white',
-  borderRadius: '15px',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-export default function SignInForm(props) {
+export default function CreateAccountForm(props) {
   const { auth, handleAuthChange, setAnchorEl } = props;
   const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState({
@@ -51,13 +50,7 @@ export default function SignInForm(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSignIn = (event) => {
-    event.preventDefault();
-    handleAuthChange(true);
-    setOpen(false);
-    setAnchorEl(null);
-  };
-  const handleCreateAcct = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     handleAuthChange(true);
     setOpen(false);
@@ -66,36 +59,27 @@ export default function SignInForm(props) {
 
   return (
     <div>
-      {!auth && (
-        <Button
-          onClick={handleOpen}
-          style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-        >
-          Sign In
-        </Button>
-      )}
+      <Button onClick={handleOpen}>Sign In</Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-sign-in"
-        aria-describedby="modal-sign-in-text-box"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Sign in with your username and password below:
           </Typography>
-
-          <FormControl sx={{ m: 1, width: '25ch' }}>
-            <InputLabel htmlFor="outlined-username">Username</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-username"
-              type="text"
-              onChange={handleChange('username')}
-              label="Username"
-            />
-          </FormControl>
-
-          <FormControl>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            yes?
+          </Typography>
+          <TextField
+            required
+            id="outlined-required"
+            label="Username"
+            defaultValue="Username"
+          />
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
@@ -104,7 +88,6 @@ export default function SignInForm(props) {
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
               onChange={handleChange('password')}
-              style={{ color: '#F0CC71' }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -120,34 +103,7 @@ export default function SignInForm(props) {
               label="Password"
             />
           </FormControl>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Dont have an account?
-          </Typography>
-          <Grid
-            container
-            spacing={2}
-            justifyContent="space-evenly"
-            alignItems="center"
-          >
-            <Grid item xs={6}>
-              <Button
-                onClick={handleSignIn}
-                variant="contained"
-                style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-              >
-                Sign In
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                onClick={handleCreateAcct}
-                variant="contained"
-                style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-              >
-                Create an Account
-              </Button>
-            </Grid>
-          </Grid>
+          <Button onClick={handleSubmit}>Sign In</Button>
         </Box>
       </Modal>
     </div>

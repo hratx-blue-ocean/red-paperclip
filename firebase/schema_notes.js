@@ -12,7 +12,7 @@ const items = {
   itemValue: 'number',
   watchCount: 'number',
   reports: 'number',
-  createdAt: 'timestamp',
+  createdAt: 'timestamp', // number of seconds -> epoch
 };
 
 // Messages
@@ -34,14 +34,14 @@ const users = {
   photoURL: 'URL string',
   createdAt: 'date',
   availableItems: 'array of item IDs',
-  tradeHistory: 'subdoc->star',
+  tradeHistory: 'subdoc->traded',
   watchedItems: 'array of item IDs',
   userZIP: 'number',
   userPhone: 'string',
   userEmail: 'string',
 };
 
-const star = {
+const traded = {
   itemid: 'string',
   note: 'string',
   tradedBy: 'string',
@@ -64,4 +64,4 @@ const admin = {
 // hash, whatever
 
 const testFunc = () => {};
-testFunc(items, messages, users, admin, star);
+testFunc(items, messages, users, admin, traded);

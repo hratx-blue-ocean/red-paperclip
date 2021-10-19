@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 
 const EditProfileButton = (props) => {
   const [formOpen, setFormOpen] = useState(false);
-  const { userName, userPFP } = props;
+  const { userPFP } = props;
 
   const handleClick = () => {
     setFormOpen(true);
@@ -21,7 +21,11 @@ const EditProfileButton = (props) => {
 
   return (
     <>
-      <Button variant="contained" onClick={handleClick}>
+      <Button
+        style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
+        variant="contained"
+        onClick={handleClick}
+      >
         Edit Profile
       </Button>
       <Modal
@@ -29,11 +33,30 @@ const EditProfileButton = (props) => {
         onClose={handleClose}
         aria-labelledby="editProfileForm"
         aria-describedby="editProfileForm"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         <Box>
-          <Typography>Edit Your Profile</Typography>
-          <Card sx={{ width: 400, height: 600, backgroundColor: '#494D53' }}>
-            <Card sx={{ width: 200, height: 200, backgroundColor: '#494D53' }}>
+          <Card
+            sx={{
+              width: 400,
+              height: 500,
+              backgroundColor: '#494D53',
+            }}
+          >
+            <Card
+              sx={{
+                width: 200,
+                height: 200,
+                backgroundColor: '#494D53',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: 2,
+              }}
+            >
               <CardMedia
                 component="img"
                 height="200"
@@ -42,13 +65,40 @@ const EditProfileButton = (props) => {
                 alt="Mr. Dahmer"
               />
             </Card>
-            <TextField id="editName" label="Name" variant="filled" />
-            <br />
-            <TextField id="editName" label="ZIP Code" variant="filled" />
-            <br />
-            <Button variant="contained">Update Profile</Button>
-            <br />
-            <Button variant="contained">Delete Profile</Button>
+            <TextField
+              style={{
+                margin: '0 auto',
+                display: 'flex',
+                width: 200,
+                marginTop: 20,
+              }}
+              id="editName"
+              label="Name"
+              variant="filled"
+            />
+            <TextField
+              style={{
+                margin: '0 auto',
+                display: 'flex',
+                width: 200,
+                marginTop: 20,
+              }}
+              id="editName"
+              label="ZIP Code"
+              variant="filled"
+            />
+            <Button
+              style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
+              variant="contained"
+            >
+              Update Profile
+            </Button>
+            <Button
+              style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
+              variant="contained"
+            >
+              Delete Profile
+            </Button>
           </Card>
         </Box>
       </Modal>

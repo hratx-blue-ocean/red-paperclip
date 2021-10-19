@@ -15,6 +15,9 @@ const theme = createTheme({
     cardButton: {
       main: '#161513',
     },
+    sortButton: {
+      main: '#2C2C2C',
+    },
   },
 });
 

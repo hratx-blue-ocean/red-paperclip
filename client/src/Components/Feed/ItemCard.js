@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
@@ -36,6 +37,17 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard() {
   const classes = useStyles();
+
+  const [starFill, setStarFill] = React.useState(false);
+
+  const handleWatch = () => {
+    setStarFill(true);
+  };
+
+  const handleUnwatch = () => {
+    setStarFill(false);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -63,9 +75,19 @@ export default function ItemCard() {
               </Typography>
             </Grid>
             <Grid container item xs={2} justifyContent="center">
-              <IconButton aria-label="settings">
-                <StarIcon />
-              </IconButton>
+              {!starFill && (
+                <IconButton onClick={handleWatch}>
+                  <StarIcon className={classes.hover1} />
+                </IconButton>
+              )}
+              {starFill && (
+                <IconButton onClick={handleUnwatch}>
+                  <StarIcon
+                    className={classes.hover1}
+                    style={{ color: '#F0CC71' }}
+                  />
+                </IconButton>
+              )}
             </Grid>
           </Grid>
           <CardHeader

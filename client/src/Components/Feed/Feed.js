@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import List from '@mui/material/List';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 import { makeStyles } from '@mui/styles';
 import ItemCard from './ItemCard';
 
@@ -12,6 +12,12 @@ const useStyles = makeStyles(() => ({
   bold: {
     fontWeight: 800,
   },
+  hover2: {
+    color: '#ffffff',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
 }));
 
 const Feed = () => {
@@ -19,56 +25,83 @@ const Feed = () => {
 
   return (
     <div className={classes.root}>
-      <List style={{ overflow: 'auto' }}>
-        <Grid container justifyContent="space-between" spacing={6}>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid item xs={4}>
-            <ItemCard />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            container
-            style={{ justifyContent: 'center', marginBottom: '30px' }}
-          >
-            <Button variant="contained" spacing={1} color="textYellow">
-              Show More
-            </Button>
-          </Grid>
+      <Grid
+        container
+        item
+        xs={12}
+        justifyContent="space-around"
+        style={{ marginTop: '15px', marginBottom: '15px', color: '#161513' }}
+      >
+        <Button
+          color="sortButton"
+          variant="contained"
+          className={classes.hover2}
+        >
+          Item Name
+        </Button>
+        <Button
+          color="sortButton"
+          variant="contained"
+          className={classes.hover2}
+        >
+          Category
+        </Button>
+        <Button
+          color="sortButton"
+          variant="contained"
+          className={classes.hover2}
+        >
+          Suprise Me!
+        </Button>
+      </Grid>
+      <Grid container spacing={6}>
+        <Grid item xs={4}>
+          <ItemCard />
         </Grid>
-      </List>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid item xs={4}>
+          <ItemCard />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          container
+          style={{ justifyContent: 'center', marginBottom: '30px' }}
+        >
+          <Button variant="contained" spacing={1} color="textYellow">
+            Show More
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 };

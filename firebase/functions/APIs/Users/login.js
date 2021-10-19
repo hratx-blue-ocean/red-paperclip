@@ -1,5 +1,6 @@
 const firebase = require('firebase/app');
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+require('dotenv').config();
 const firebaseConfig = require('../../../util/firebaseConfig');
 const { validateLoginData } = require('../../../util/validators');
 

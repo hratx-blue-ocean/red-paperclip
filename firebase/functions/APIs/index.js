@@ -3,6 +3,7 @@ const getAllItems = require('./Items/getAllItems');
 
 // Users
 const login = require('./Users/login');
+const signUp = require('./Users/signUp');
 
 const item = {
   getAllItems,
@@ -10,6 +11,7 @@ const item = {
 
 const user = {
   login,
+  signUp,
 };
 
 const message = {};

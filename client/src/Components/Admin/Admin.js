@@ -9,16 +9,16 @@ import ReportedMessagesFeed from './ReportedMessagesFeed';
 import { ItemsContext } from '../ItemsContext';
 
 const Admin = () => {
-  const { isAdminState } = useContext(ItemsContext);
-  const [isAdmin] = isAdminState;
+  // const { isAdminState } = useContext(ItemsContext);
+  // const [isAdmin] = isAdminState;
   const [value, setValue] = useState(0);
-
+  const isAdmin = true;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
     <>
-      {isAdmin ? (
+      {!isAdmin ? (
         <Typography>You don't have access to this page</Typography>
       ) : (
         <>

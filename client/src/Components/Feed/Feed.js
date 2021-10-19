@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 import ItemCard from './ItemCard';
+import SortBar from './SortBar';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -18,6 +19,7 @@ const Feed = () => {
 
   return (
     <div className={classes.root}>
+      <SortBar />
       <Grid
         container
         spacing={6}

@@ -13,14 +13,22 @@ export const ItemsProvider = (props) => {
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [modalSignInOpen, setSignInModalOpen] = useState(false);
+  const [modalCreateAcctOpen, setModalCreateAcctOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   return (
     <ItemsContext.Provider
       value={{
         // Add global state here
-        displayItems: [displayItems, setDisplayItems],
-        isLoggedIn: [isLoggedIn, setIsLoggedIn],
-        isAdmin: [isAdmin, setIsAdmin],
+        displayItemsState: [displayItems, setDisplayItems],
+        isLoggedInState: [isLoggedIn, setIsLoggedIn],
+        isAdminState: [isAdmin, setIsAdmin],
+        modalSignInState: [modalSignInOpen, setSignInModalOpen],
+        modalCreateAcctState: [modalCreateAcctOpen, setModalCreateAcctOpen],
+        anchorElState: [anchorEl, setAnchorEl],
+        menuOpenState: [menuOpen, setMenuOpen],
       }}
     >
       {props.children}

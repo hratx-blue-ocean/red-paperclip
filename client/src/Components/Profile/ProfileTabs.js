@@ -50,7 +50,7 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 889,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
@@ -63,7 +63,7 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 889,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
@@ -76,7 +76,7 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 889,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,

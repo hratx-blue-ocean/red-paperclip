@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
-import ItemCard from '../Feed/ItemCard';
+import ProfileActiveItem from './ProfileActiveItem';
 
 const Profile = () => {
   const userName = 'Jeffrey';
@@ -56,18 +56,10 @@ const Profile = () => {
               marginTop: 5,
             }}
           >
-            <Typography variant="h4" textAlign="center">
+            <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
             </Typography>
-            <Grid
-              container
-              spacing={6}
-              style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
-            >
-              <Grid item xs={12}>
-                <ItemCard />
-              </Grid>
-            </Grid>
+            <ProfileActiveItem />
           </Card>
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>

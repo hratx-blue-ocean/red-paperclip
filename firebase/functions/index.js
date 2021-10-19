@@ -6,6 +6,7 @@ app.use(express.json());
 // const auth = require('../util/auth');
 // const {} = require('./APIs/users');
 const { item, user, message, admin } = require('./APIs');
+// require('dotenv').config();
 
 // TODO: getAllItems
 // needs to only retrieve 30 items at a time
@@ -18,6 +19,9 @@ app.get('/getItem', item.getItem);
 app.get('/editItem', item.editItem);
 app.post('/addItem', item.addNewItem);
 app.get('/reportItem', item.reportItem);
+
+// USERS
+app.post('/login', user.login);
 
 const api = functions.https.onRequest(app);
 

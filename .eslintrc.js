@@ -15,9 +15,10 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
     'react/prop-types': 'off',
-    'no-console': 'warn',
+    'no-console': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'no-unused-vars': 'warn',
+    'consistent-return': 'off',
   },
   ignorePatterns: ['client/dist/*/*.js'],
 };

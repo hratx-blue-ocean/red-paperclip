@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -59,26 +58,53 @@ export default function CreateAccountForm(props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Sign In</Button>
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        style={{ backgroundColor: '#161513', color: '#F0CC71' }}
+      >
+        Create an Account
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="menu button"
+        aria-describedby="click to expand menu"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Sign in with your username and password below:
+            Create a new account:
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            yes?
-          </Typography>
-          <TextField
-            required
-            id="outlined-required"
-            label="Username"
-            defaultValue="Username"
-          />
+
+          <FormControl sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-first-name">first name</InputLabel>
+            <OutlinedInput
+              id="first-name"
+              type="text"
+              onChange={handleChange('firstName')}
+              label="first-name"
+            />
+          </FormControl>
+          <FormControl sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-last-name">last name</InputLabel>
+            <OutlinedInput
+              id="last-name"
+              type="text"
+              onChange={handleChange('lastName')}
+              label="last-name"
+            />
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-email">email</InputLabel>
+            <OutlinedInput
+              id="email"
+              type="email"
+              onChange={handleChange('email')}
+              label="email"
+            />
+          </FormControl>
+
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Password
@@ -103,7 +129,12 @@ export default function CreateAccountForm(props) {
               label="Password"
             />
           </FormControl>
-          <Button onClick={handleSubmit}>Sign In</Button>
+          <Button
+            onClick={handleSubmit}
+            style={{ backgroundColor: '#161513', color: '#F0CC71' }}
+          >
+            Create Account
+          </Button>
         </Box>
       </Modal>
     </div>

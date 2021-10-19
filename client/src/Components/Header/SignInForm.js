@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CreateAccountForm from './CreateAccountForm';
 
 const style = {
   position: 'absolute',
@@ -65,7 +66,7 @@ export default function SignInForm(props) {
   };
 
   return (
-    <div>
+    <>
       {!auth && (
         <Button
           onClick={handleOpen}
@@ -82,20 +83,19 @@ export default function SignInForm(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Sign in with your username and password below:
+            Sign in with your email and password below:
           </Typography>
-
-          <FormControl sx={{ m: 1, width: '25ch' }}>
-            <InputLabel htmlFor="outlined-username">Username</InputLabel>
+          <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-email">email</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-username"
+              id="outlined-email"
               type="text"
-              onChange={handleChange('username')}
-              label="Username"
+              onChange={handleChange('email')}
+              label="email"
             />
           </FormControl>
 
-          <FormControl>
+          <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
@@ -120,12 +120,10 @@ export default function SignInForm(props) {
               label="Password"
             />
           </FormControl>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Dont have an account?
-          </Typography>
+          <Typography align="center">Dont have an account?</Typography>
           <Grid
             container
-            spacing={2}
+            direction="row"
             justifyContent="space-evenly"
             alignItems="center"
           >
@@ -139,17 +137,11 @@ export default function SignInForm(props) {
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button
-                onClick={handleCreateAcct}
-                variant="contained"
-                style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-              >
-                Create an Account
-              </Button>
+              <CreateAccountForm />
             </Grid>
           </Grid>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

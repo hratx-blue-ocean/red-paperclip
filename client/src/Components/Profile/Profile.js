@@ -27,7 +27,7 @@ const Profile = () => {
           <Button>Edit Profile</Button>
         </Card>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={7}>
         <ProfileTabs />
       </Grid>
     </Grid>

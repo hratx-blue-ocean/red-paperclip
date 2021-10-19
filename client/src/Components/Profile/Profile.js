@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 // import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-// import ProfileTabs from './ProfileTabs';
+import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
 
 const Profile = () => {

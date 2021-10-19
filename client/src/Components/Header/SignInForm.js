@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -12,6 +12,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CreateAccountForm from './CreateAccountForm';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -26,9 +27,13 @@ const style = {
   p: 4,
 };
 
-export default function SignInForm(props) {
-  const { auth, handleAuthChange, setAnchorEl } = props;
-  const [open, setOpen] = React.useState(false);
+export default function SignInForm() {
+  const { isLoggedInState, anchorElState, modalSignInState } =
+    useContext(ItemsContext);
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [modalSignInOpen, setSignInModalOpen] = modalSignInState;
+  const [setAnchorEl] = anchorElState;
+
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
@@ -49,35 +54,34 @@ export default function SignInForm(props) {
     event.preventDefault();
   };
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleModalOpen = () => {
+    setSignInModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setSignInModalOpen(false);
+    setAnchorEl(null);
+  };
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    handleAuthChange(true);
-    setOpen(false);
-    setAnchorEl(null);
-  };
-  const handleCreateAcct = (event) => {
-    event.preventDefault();
-    handleAuthChange(true);
-    setOpen(false);
-    setAnchorEl(null);
+    setIsLoggedIn(true);
+    handleModalClose();
   };
 
   return (
     <>
-      {!auth && (
+      {!isLoggedIn && (
         <Button
-          onClick={handleOpen}
+          onClick={handleModalOpen}
           style={{ backgroundColor: '#161513', color: '#F0CC71' }}
         >
           Sign In
         </Button>
       )}
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={modalSignInOpen}
+        onClose={handleModalClose}
         aria-labelledby="modal-sign-in"
         aria-describedby="modal-sign-in-text-box"
       >
@@ -129,6 +133,7 @@ export default function SignInForm(props) {
           >
             <Grid item xs={6}>
               <Button
+                type="submit"
                 onClick={handleSignIn}
                 variant="contained"
                 style={{ backgroundColor: '#161513', color: '#F0CC71' }}

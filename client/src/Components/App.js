@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Header />
-      <div>
+      <main>
         <Container className="main">
           <Container className="app">
             <Router>
@@ -32,7 +32,7 @@ function App() {
             </Router>
           </Container>
         </Container>
-      </div>
+      </main>
     </>
   );
 }

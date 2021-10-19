@@ -29,7 +29,7 @@ const Profile = () => {
         </Card>
       </Grid>
       <Grid item xs={7}>
-        {/* <ProfileTabs /> */}
+        <ProfileTabs />
       </Grid>
     </Grid>
   );

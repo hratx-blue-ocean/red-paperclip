@@ -68,7 +68,7 @@ const Header = () => {
               <Typography variant="h6">Welcome, user!</Typography>
             </>
           )}
-          <Hamburger auth={auth} setAuth={setAuth} />
+          <Hamburger auth={auth} setAuth={setAuth}  />
         </Toolbar>
       </AppBar>
     </div>

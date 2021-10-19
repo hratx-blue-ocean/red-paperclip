@@ -20,7 +20,7 @@ const EditProfileButton = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Button variant="contained" onClick={handleClick}>
         Edit Profile
       </Button>
@@ -52,7 +52,7 @@ const EditProfileButton = (props) => {
           </Card>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 };
 

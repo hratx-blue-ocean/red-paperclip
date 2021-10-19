@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
@@ -111,7 +110,7 @@ export default function ItemCard() {
               item
               xs={12}
               justifyContent="center"
-              style={{ marginBottom: '14px' }}
+              style={{ marginBottom: '20px'}}
             >
               <Typography
                 variant="body2"
@@ -125,6 +124,7 @@ export default function ItemCard() {
                   component="button"
                   underline="none"
                   display="inline"
+                  color="cardButton"
                 >
                   Read more
                 </Link>
@@ -134,7 +134,7 @@ export default function ItemCard() {
               <Grid container item xs={6} justifyContent="center">
                 <Button
                   color="cardButton"
-                  variant="contained"
+                  variant="outlined"
                   className={classes.hover2}
                 >
                   Offer Trade
@@ -143,7 +143,7 @@ export default function ItemCard() {
               <Grid container item xs={6} justifyContent="space-evenly">
                 <Button
                   color="cardButton"
-                  variant="contained"
+                  variant="outlined"
                   className={classes.hover2}
                 >
                   Report Item

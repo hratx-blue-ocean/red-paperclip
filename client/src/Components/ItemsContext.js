@@ -12,6 +12,7 @@ export const ItemsProvider = (props) => {
 
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <ItemsContext.Provider
@@ -19,6 +20,7 @@ export const ItemsProvider = (props) => {
         // Add global state here
         displayItems: [displayItems, setDisplayItems],
         isLoggedIn: [isLoggedIn, setIsLoggedIn],
+        isAdmin: [isAdmin, setIsAdmin],
       }}
     >
       {props.children}

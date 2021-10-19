@@ -1,8 +1,8 @@
-const express = require('express');
+const app = require('express')();
 const functions = require('firebase-functions');
 
-const app = express();
-app.use(express.json());
+// const app = express();
+// app.use(express.json());
 // const auth = require('../util/auth');
 // const {} = require('./APIs/users');
 const { item, user, message, admin } = require('./APIs');

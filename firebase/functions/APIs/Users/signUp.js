@@ -1,5 +1,6 @@
 const firebase = require('firebase/app');
 const { getAuth, createUserWithEmailAndPassword } = require('firebase/auth');
+require('dotenv').config();
 const firebaseConfig = require('../../../util/firebaseConfig');
 const { db } = require('../../../util/admin');
 const { validateSignUpData } = require('../../../util/validators');

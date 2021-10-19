@@ -3,7 +3,6 @@ const functions = require('firebase-functions');
 // const auth = require('../util/auth');
 // const {} = require('./APIs/users');
 const { item, user, message, admin } = require('./APIs');
-// require('dotenv').config();
 
 // TODO: getAllItems
 // needs to only retrieve 30 items at a time

@@ -9,7 +9,7 @@ app.get('/getAllItems', item.getAllItems);
 app.post('/login', user.login);
 app.post('/signup', user.signUp);
 app.post('/user/image', auth, user.uploadProfilePhoto);
-app.get('/user', auth, getUserDetail);
+app.get('/user', auth, user.getUserDetail);
 
 const api = functions.https.onRequest(app);
 

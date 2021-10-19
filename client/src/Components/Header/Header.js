@@ -2,26 +2,15 @@ import React, { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import { makeStyles } from '@mui/styles';
 import Hamburger from './Hamburger';
 import { ItemsContext } from '../ItemsContext';
 
-const useStyles = makeStyles({
-  header: {
-    backgroundColor: '#161513',
-    color: 'black',
-    boxShadow: '0px 0px 0px 0px',
-  },
-});
-
 const Header = () => {
-  const [auth, setAuth] = React.useState(false);
-  const { isLoggedIn, isAdmin } = useContext(ItemsContext);
-  const classes = useStyles();
+  const { isLoggedInState } = useContext(ItemsContext);
+  const [isLoggedIn] = isLoggedInState;
 
   const colorsArr = [
     'Brown',
@@ -62,13 +51,13 @@ const Header = () => {
             Red Paperclip <CompareArrowsIcon />{' '}
             {`${colorsArr[random1]} ${itemsArr[random2]}`}
           </Typography>
-          {auth && (
+          {isLoggedIn && (
             <>
               <AccountCircleIcon />
               <Typography variant="h6">Welcome, user!</Typography>
             </>
           )}
-          <Hamburger auth={auth} setAuth={setAuth}  />
+          <Hamburger />
         </Toolbar>
       </AppBar>
     </div>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,58 +11,76 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ForumIcon from '@mui/icons-material/Forum';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Logout from '@mui/icons-material/Logout';
+import { ItemsContext } from '../ItemsContext';
 import SignInForm from './SignInForm';
 
-const Hamburger = (props) => {
-  const { auth, setAuth } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+const Hamburger = () => {
+  const {
+    isLoggedInState,
+    anchorElState,
+    menuOpenState,
+    modalSignInState,
+    modalCreateAcctState,
+  } = useContext(ItemsContext);
+  const [menuOpen, setMenuOpen] = menuOpenState;
+  const [setSignInModalOpen] = modalSignInState;
+  const [modalCreateAcctOpen, setModalCreateAcctOpen] = modalCreateAcctState;
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [anchorEl, setAnchorEl] = anchorElState;
 
+  // updating Auth status for conditional rendering
   const handleAuthChange = (bool) => {
-    setAuth(bool);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
+    setIsLoggedIn(bool);
+    setMenuOpen(false);
     setAnchorEl(null);
+  };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSignInModalOpen(false);
+    setModalCreateAcctOpen(false);
+    setMenuOpen(false);
   };
 
   const handleSignOut = (event) => {
     event.preventDefault();
     handleAuthChange(false);
+    setMenuOpen(false);
     setAnchorEl(null);
   };
 
+  // React Router Navigation
   const history = useHistory();
 
   const handleHomeClick = () => {
-    console.log('home clicked!');
     history.push('/');
-    setOpen(false);
+    setMenuOpen(false);
+    setSignInModalOpen(false);
     setAnchorEl(null);
   };
 
   const handleMyProfileClick = () => {
-    console.log('my profile clicked!');
     history.push('/profile');
-    setOpen(false);
+    setMenuOpen(false);
+    setSignInModalOpen(false);
     setAnchorEl(null);
   };
 
   const handleChatsClick = () => {
-    console.log('chats clicked!');
     history.push('/chat');
-    setOpen(false);
+    setMenuOpen(false);
+    setSignInModalOpen(false);
     setAnchorEl(null);
   };
 
   const handleAdminClick = () => {
-    console.log('chats clicked!');
-    history.push('/chat');
-    setOpen(false);
+    history.push('/admin');
+    setMenuOpen(false);
     setAnchorEl(null);
   };
 
@@ -74,7 +92,7 @@ const Hamburger = (props) => {
         color="inherit"
         aria-label="menu"
         sx={{ mr: 2 }}
-        onClick={handleMenu}
+        onClick={handleMenuOpen}
       >
         <Menu
           id="menu-appbar"
@@ -88,17 +106,13 @@ const Hamburger = (props) => {
             vertical: 'top',
             horizontal: 'right',
           }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+          open={menuOpen}
+          onClose={handleMenuClose}
         >
-          <MenuItem label={auth ? 'LogOut' : 'LogIn'}>
-            <SignInForm
-              auth={auth}
-              handleAuthChange={handleAuthChange}
-              setAnchorEl={setAnchorEl}
-            />
+          <MenuItem label={isLoggedIn ? 'LogOut' : 'LogIn'}>
+            <SignInForm />
           </MenuItem>
-          {auth && (
+          {isLoggedIn && (
             <>
               <MenuItem onClick={handleHomeClick}>
                 <ListItemIcon>

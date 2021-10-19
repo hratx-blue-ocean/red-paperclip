@@ -28,17 +28,15 @@ const messages = {
 // Documents: Individual users
 const users = {
   uid: 'string',
-  userFirstName: 'string',
-  userLastName: 'string',
-  userNickname: 'string',
+  firstName: 'string',
+  lastName: 'string',
   photoURL: 'URL string',
   createdAt: 'date',
   availableItems: 'array of item IDs',
   tradeHistory: 'subdoc->traded',
   watchedItems: 'array of item IDs',
-  userZIP: 'number',
-  userPhone: 'string',
-  userEmail: 'string',
+  zip: 'number',
+  email: 'string',
 };
 
 const traded = {
@@ -57,11 +55,6 @@ const admin = {
   reportFeedback: 'string',
   itemID: 'message or item ID',
 };
-
-// Auth:
-// userPW
-// PWsalt
-// hash, whatever
 
 const testFunc = () => {};
 testFunc(items, messages, users, admin, traded);

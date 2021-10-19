@@ -1,4 +1,6 @@
-const firebaseConfig = {
+// require('dotenv').config();
+
+module.exports = {
   apiKey: process.env.apiKey,
   authDomain: process.env.authDomain,
   projectId: process.env.projectId,
@@ -8,4 +10,4 @@ const firebaseConfig = {
   measurementId: process.env.measurementId,
 };
 
-export default firebaseConfig;
+// module.exports = firebaseConfig;

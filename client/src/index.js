@@ -6,6 +6,9 @@ import { ItemsProvider } from './Components/ItemsContext';
 
 const theme = createTheme({
   palette: {
+    textWhite: {
+      main: '#FFFFFF',
+    },
     cardColor: {
       main: '#494D53',
     },
@@ -14,6 +17,9 @@ const theme = createTheme({
     },
     cardButton: {
       main: '#161513',
+    },
+    sortButton: {
+      main: '#2C2C2C',
     },
   },
 });

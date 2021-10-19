@@ -3,12 +3,12 @@ const { db } = require('../../../util/admin');
 const getAllItems = (req, res) => {
   const start = req.query.page * 30 || 0;
   const category = req.query.category || 'null';
-  let comparison = '!==';
+  let comparison = '!=';
   if (category) {
-    comparison = '===';
+    comparison = '==';
   }
   db.collection('items')
-    .where('active', '===', true)
+    .where('active', '==', true)
     .orderBy('createdAt', 'desc')
     .where('itemCategory', comparison, category)
     .limit(30)

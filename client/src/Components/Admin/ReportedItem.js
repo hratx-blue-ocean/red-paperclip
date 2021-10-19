@@ -8,8 +8,7 @@ const ReportedItem = () => {
 
   return (
     <Grid container>
-      <Typography>Test Item</Typography>
-      {/* <ItemCard /> */}
+      <ItemCard />
     </Grid>
   );
 };

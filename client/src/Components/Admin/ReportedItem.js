@@ -29,33 +29,39 @@ const ReportedItem = () => {
   const classes = useStyles();
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <ItemCard />
       </Grid>
       <Grid item xs={4} justifyContent="center">
         <Button
-          color="cardButton"
+          size="small"
+          color="inherit"
           variant="outlined"
           className={classes.hover2}
+          sx={{ height: 60 }}
         >
           Delete Item
         </Button>
       </Grid>
       <Grid item xs={4} justifyContent="center">
         <Button
-          color="cardButton"
+          size="small"
+          color="inherit"
           variant="outlined"
           className={classes.hover2}
+          sx={{ height: 60 }}
         >
           Dismiss Report
         </Button>
       </Grid>
       <Grid item xs={4} justifyContent="center">
         <Button
-          color="cardButton"
+          size="small"
+          color="inherit"
           variant="outlined"
           className={classes.hover2}
+          sx={{ height: 60 }}
         >
           Ban User
         </Button>

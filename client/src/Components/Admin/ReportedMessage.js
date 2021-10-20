@@ -55,7 +55,7 @@ const ReportedMessage = ({ user, message }) => {
             title={user}
             subheader="6 hours ago"
             style={{
-              color: '#b70007',
+              color: '#FFF',
             }}
           />
         </Grid>
@@ -84,25 +84,13 @@ const ReportedMessage = ({ user, message }) => {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          <Button
-            color="cardButton"
-            variant="outlined"
-            className={classes.hover2}
-          >
+          <Button color="inherit" variant="outlined" className={classes.hover2}>
             Delete Message
           </Button>
-          <Button
-            color="cardButton"
-            variant="outlined"
-            className={classes.hover2}
-          >
+          <Button color="inherit" variant="outlined" className={classes.hover2}>
             Dismiss Report
           </Button>
-          <Button
-            color="cardButton"
-            variant="outlined"
-            className={classes.hover2}
-          >
+          <Button color="inherit" variant="outlined" className={classes.hover2}>
             Ban User
           </Button>
         </Grid>

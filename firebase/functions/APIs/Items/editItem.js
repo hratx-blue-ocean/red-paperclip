@@ -1,6 +1,6 @@
 const { db } = require('../../../util/admin');
 
-const getItem = (req, res) => {
+const editItem = (req, res) => {
   const field = {};
   if (req.body.title) {
     field.itemName = req.body.title;
@@ -21,4 +21,4 @@ const getItem = (req, res) => {
     .catch((err) => res.status(500).json({ error: err.code }));
 };
 
-module.exports = getItem;
+module.exports = editItem;

@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
 import ItemCard from '../Feed/ItemCard';
+import AddItem from './AddItem';
 
 const Profile = () => {
   const userName = 'Jeffrey';
@@ -48,7 +49,7 @@ const Profile = () => {
             </Card>
             <EditProfileButton userName={userName} userPFP={userPFP} />
           </Card>
-          <Card
+          {/* <Card
             sx={{
               width: 450,
               height: 550,
@@ -69,6 +70,35 @@ const Profile = () => {
               </Grid>
             </Grid>
           </Card>
+ */}
+
+          <Card
+            sx={{
+              width: 450,
+              // height: 550,
+              backgroundColor: '#494D53',
+              marginTop: 3,
+            }}
+          >
+            <Typography
+              variant="h4"
+              textAlign="center"
+              style={{ marginTop: '35px', fontWeight: 800 }}
+            >
+              Add Item
+            </Typography>
+
+            <Grid
+              container
+              spacing={6}
+              style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
+            >
+              <Grid item xs={12}>
+                <AddItem />
+              </Grid>
+            </Grid>
+          </Card>
+
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

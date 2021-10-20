@@ -53,7 +53,7 @@ export default function SortBar() {
               variant="contained"
               className={classes.hover2}
             >
-              Item Name
+              Item Name || Add Item +
             </Button>
           </Grid>
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>

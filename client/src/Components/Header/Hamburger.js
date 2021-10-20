@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
@@ -8,29 +9,78 @@ import HomeIcon from '@mui/icons-material/Home';
 import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ForumIcon from '@mui/icons-material/Forum';
-import Settings from '@mui/icons-material/Settings';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Logout from '@mui/icons-material/Logout';
+import { ItemsContext } from '../ItemsContext';
 import SignInForm from './SignInForm';
 
-const Hamburger = (props) => {
-  const { auth, setAuth } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Hamburger = () => {
+  const {
+    isLoggedInState,
+    anchorElState,
+    menuOpenState,
+    modalSignInState,
+    modalCreateAcctState,
+  } = useContext(ItemsContext);
+  const [menuOpen, setMenuOpen] = menuOpenState;
+  const [setSignInModalOpen] = modalSignInState;
+  const [modalCreateAcctOpen, setModalCreateAcctOpen] = modalCreateAcctState;
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [anchorEl, setAnchorEl] = anchorElState;
 
+  // updating Auth status for conditional rendering
   const handleAuthChange = (bool) => {
-    setAuth(bool);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
+    setIsLoggedIn(bool);
+    setMenuOpen(false);
     setAnchorEl(null);
+  };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSignInModalOpen(false);
+    setModalCreateAcctOpen(false);
+    setMenuOpen(false);
   };
 
   const handleSignOut = (event) => {
     event.preventDefault();
     handleAuthChange(false);
+    setMenuOpen(false);
+    setAnchorEl(null);
+  };
+
+  // React Router Navigation
+  const history = useHistory();
+
+  const handleHomeClick = () => {
+    history.push('/');
+    setMenuOpen(false);
+    setSignInModalOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleMyProfileClick = () => {
+    history.push('/profile');
+    setMenuOpen(false);
+    setSignInModalOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleChatsClick = () => {
+    history.push('/chat');
+    setMenuOpen(false);
+    setSignInModalOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleAdminClick = () => {
+    history.push('/admin');
+    setMenuOpen(false);
     setAnchorEl(null);
   };
 
@@ -41,7 +91,8 @@ const Hamburger = (props) => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        sx={{ mr: 2 }}
+        sx={{ mr: 38 }}
+        onClick={handleMenuOpen}
       >
         <Menu
           id="menu-appbar"
@@ -55,42 +106,38 @@ const Hamburger = (props) => {
             vertical: 'top',
             horizontal: 'right',
           }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+          open={menuOpen}
+          onClose={handleMenuClose}
         >
-          <MenuItem label={auth ? 'SignOut' : 'SignIn'}>
-            <SignInForm
-              auth={auth}
-              handleAuthChange={handleAuthChange}
-              setAnchorEl={setAnchorEl}
-            />
+          <MenuItem label={isLoggedIn ? 'LogOut' : 'LogIn'}>
+            <SignInForm />
           </MenuItem>
-          {auth && (
+          {isLoggedIn && (
             <>
-              <MenuItem>
+              <MenuItem onClick={handleHomeClick}>
                 <ListItemIcon>
                   <HomeIcon fontSize="small" />
                 </ListItemIcon>
                 Home
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={handleMyProfileClick}>
                 <ListItemIcon>
                   <AccountCircleIcon fontSize="small" />
                 </ListItemIcon>
                 My Profile
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={handleChatsClick}>
                 <ListItemIcon>
                   <ForumIcon fontSize="small" />
                 </ListItemIcon>
                 My Chats
               </MenuItem>
               <Divider />
-              <MenuItem>
+              <MenuItem onClick={handleAdminClick}>
                 <ListItemIcon>
-                  <Settings fontSize="small" />
+                  <AdminPanelSettingsIcon fontSize="small" />
                 </ListItemIcon>
-                Settings
+                Admin
               </MenuItem>
               <MenuItem onClick={handleSignOut}>
                 <ListItemIcon>
@@ -101,7 +148,7 @@ const Hamburger = (props) => {
             </>
           )}
         </Menu>
-        <MenuIcon onClick={handleMenu} />
+        <MenuIcon />
       </IconButton>
     </>
   );

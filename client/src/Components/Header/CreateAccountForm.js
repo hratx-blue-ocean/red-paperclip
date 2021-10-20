@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -11,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import CreateAccountForm from './CreateAccountForm';
 import { ItemsContext } from '../ItemsContext';
 
 const style = {
@@ -21,18 +19,24 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 450,
   bgcolor: '#494D53',
-  border: '2px solid white',
-  borderRadius: '15px',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-export default function SignInForm() {
-  const { isLoggedInState, anchorElState, modalSignInState } =
-    useContext(ItemsContext);
-  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
-  const [modalSignInOpen, setSignInModalOpen] = modalSignInState;
+export default function CreateAccountForm() {
+  const {
+    isLoggedInState,
+    anchorElState,
+    modalCreateAcctState,
+    menuOpenState,
+    modalSignInState,
+  } = useContext(ItemsContext);
+  const [setIsLoggedIn] = isLoggedInState;
+  const [modalCreateAcctOpen, setModalCreateAcctOpen] = modalCreateAcctState;
+  const [setSignInModalOpen] = modalSignInState;
   const [setAnchorEl] = anchorElState;
+  const [setMenuOpen] = menuOpenState;
 
   const [values, setValues] = React.useState({
     password: '',
@@ -55,51 +59,74 @@ export default function SignInForm() {
   };
 
   const handleModalOpen = () => {
-    setSignInModalOpen(true);
+    setModalCreateAcctOpen(true);
+    setSignInModalOpen(false);
+    setMenuOpen(false);
   };
 
-  const handleModalClose = () => {
+  const handleClose = () => {
+    setModalCreateAcctOpen(false);
     setSignInModalOpen(false);
     setAnchorEl(null);
   };
 
-  const handleSignIn = (event) => {
+  const handleCreateAcct = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
-    handleModalClose();
+    setMenuOpen(false);
+    handleClose();
   };
 
   return (
-    <>
-      {!isLoggedIn && (
-        <Button
-          onClick={handleModalOpen}
-          style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-        >
-          Sign In
-        </Button>
-      )}
+    <div>
+      <Button
+        onClick={handleModalOpen}
+        variant="contained"
+        style={{ backgroundColor: '#161513', color: '#F0CC71' }}
+      >
+        Create an Account
+      </Button>
       <Modal
-        open={modalSignInOpen}
-        onClose={handleModalClose}
-        aria-labelledby="modal-sign-in"
-        aria-describedby="modal-sign-in-text-box"
+        open={modalCreateAcctOpen}
+        onClose={handleClose}
+        aria-labelledby="menu button"
+        aria-describedby="click to expand menu"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Sign in with your email and password below:
+            Create a new account:
           </Typography>
-          <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
+
+          <FormControl sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-first-name">first name</InputLabel>
+            <OutlinedInput
+              id="first-name"
+              type="text"
+              onChange={handleChange('firstName')}
+              label="first-name"
+            />
+          </FormControl>
+          <FormControl sx={{ m: 1, width: '25ch' }}>
+            <InputLabel htmlFor="outlined-last-name">last name</InputLabel>
+            <OutlinedInput
+              id="last-name"
+              type="text"
+              onChange={handleChange('lastName')}
+              label="last-name"
+            />
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: '25ch' }}>
             <InputLabel htmlFor="outlined-email">email</InputLabel>
             <OutlinedInput
-              id="outlined-email"
-              type="text"
+              id="email"
+              type="email"
               onChange={handleChange('email')}
               label="email"
             />
           </FormControl>
 
-          <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
@@ -108,7 +135,6 @@ export default function SignInForm() {
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
               onChange={handleChange('password')}
-              style={{ color: '#F0CC71' }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -124,29 +150,15 @@ export default function SignInForm() {
               label="Password"
             />
           </FormControl>
-          <Typography align="center">Dont have an account?</Typography>
-          <Grid
-            container
-            direction="row"
-            justifyContent="space-evenly"
-            alignItems="center"
+          <Button
+            type="submit"
+            onClick={handleCreateAcct}
+            style={{ backgroundColor: '#161513', color: '#F0CC71' }}
           >
-            <Grid item xs={6}>
-              <Button
-                type="submit"
-                onClick={handleSignIn}
-                variant="contained"
-                style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-              >
-                Sign In
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <CreateAccountForm />
-            </Grid>
-          </Grid>
+            Create Your Account
+          </Button>
         </Box>
       </Modal>
-    </>
+    </div>
   );
 }

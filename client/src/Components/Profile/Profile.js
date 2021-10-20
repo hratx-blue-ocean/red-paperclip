@@ -72,10 +72,10 @@ const Profile = () => {
           </Card>
  */}
 
+          {/* HERE'S BLAKES CODE */}
           <Card
             sx={{
               width: 450,
-              // height: 550,
               backgroundColor: '#494D53',
               marginTop: 3,
             }}
@@ -87,18 +87,16 @@ const Profile = () => {
             >
               Add Item
             </Typography>
-
             <Grid
               container
-              spacing={6}
-              style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
+              spacing={1}
+              style={{ justifyContent: 'space-evenly' }}
             >
               <Grid item xs={12}>
                 <AddItem />
               </Grid>
             </Grid>
           </Card>
-
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

@@ -1,4 +1,3 @@
-const { FieldPath } = require('@google-cloud/firestore');
 const { db } = require('../../../util/admin');
 
 const getAllItems = (req, res) => {

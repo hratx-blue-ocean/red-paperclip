@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,17 +8,19 @@ import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
 import ProfileActiveItem from './ProfileActiveItem';
+import { ItemsContext } from '../ItemsContext';
 
 const Profile = () => {
-  const userName = 'Jeffrey';
-  const userPFP = 'https://i.imgur.com/dNZcaDv.png';
+  const { currentUser } = useContext(ItemsContext);
+  const user = currentUser[0];
+  console.log('Current user: ', currentUser);
 
   return (
     <>
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Hello, {userName}!
+            Hello, {user.userFirst}!
           </Typography>
           <Card
             sx={{
@@ -41,12 +43,12 @@ const Profile = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={userPFP}
+                image={user.userPFP}
                 style={{ objectFit: 'cover' }}
                 alt="Mr. Dahmer"
               />
             </Card>
-            <EditProfileButton userName={userName} userPFP={userPFP} />
+            <EditProfileButton />
           </Card>
           <Card
             sx={{

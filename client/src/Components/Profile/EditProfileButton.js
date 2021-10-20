@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
@@ -6,8 +6,12 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
+import { ItemsContext } from '../ItemsContext';
 
 const EditProfileButton = (props) => {
+  const { currentUser } = useContext(ItemsContext);
+  const user = currentUser[0];
+
   const [formOpen, setFormOpen] = useState(false);
   const { userPFP } = props;
 
@@ -60,7 +64,7 @@ const EditProfileButton = (props) => {
               <CardMedia
                 component="img"
                 height="200"
-                image={userPFP}
+                image={user.userPFP}
                 style={{ objectFit: 'cover' }}
                 alt="Mr. Dahmer"
               />

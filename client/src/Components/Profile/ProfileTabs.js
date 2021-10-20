@@ -16,7 +16,7 @@ const ProfileTabs = () => {
     const { children, index } = props;
 
     return (
-      <div
+      <Box
         role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
@@ -27,7 +27,7 @@ const ProfileTabs = () => {
             <Typography>{children}</Typography>
           </Box>
         )}
-      </div>
+      </Box>
     );
   }
 

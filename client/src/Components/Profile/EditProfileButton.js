@@ -13,7 +13,6 @@ const EditProfileButton = (props) => {
   const user = currentUser[0];
 
   const [formOpen, setFormOpen] = useState(false);
-  const { userPFP } = props;
 
   const handleClick = () => {
     setFormOpen(true);

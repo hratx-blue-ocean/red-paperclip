@@ -1,9 +1,11 @@
 const { db } = require('../../../util/admin');
 
-const getAllItems = (req, res) => {
+const getItemsCategory = (req, res) => {
   const quantity = parseInt(req.query.quantity, 10);
+  const { category } = req.query;
   db.collection('items')
     .where('active', '==', true)
+    .where('itemCategory', '==', category)
     .orderBy('createdAt', 'desc')
     .limit(quantity)
     .get()
@@ -31,4 +33,4 @@ const getAllItems = (req, res) => {
     });
 };
 
-module.exports = getAllItems;
+module.exports = getItemsCategory;

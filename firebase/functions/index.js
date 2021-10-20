@@ -19,6 +19,8 @@ app.get('/getItem', item.getItem);
 app.get('/editItem', item.editItem);
 app.post('/addItem', item.addNewItem);
 app.get('/reportItem', item.reportItem);
+app.get('/changeActiveStatus', item.changeActiveStatus);
+app.get('/getItemsByCategory', item.getItemsByCategory);
 
 // USERS
 app.post('/login', user.login);

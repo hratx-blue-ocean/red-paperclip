@@ -11,7 +11,7 @@ import Jason from './img/Jason.jpg';
 
 export default function ChatList() {
   return (
-    <Paper elevation={3}>
+    <Paper elevation={3} style={{ borderRadius: 30 }}>
       <nav aria-label="secondary mailbox folders">
         <List>
           <ListItem disablePadding>
@@ -20,7 +20,7 @@ export default function ChatList() {
                 <ListItemAvatar>
                   <Avatar alt="Jesson W" src={Jason} />
                 </ListItemAvatar>
-                <ListItemText primary="Jesson W" secondary="Jan 7, 2014" />
+                <ListItemText primary="Jesson W" secondary="Oct 27, 2021" />
               </ListItem>
             </ListItemButton>
           </ListItem>
@@ -34,7 +34,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>MS</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Matt S" secondary="July 20, 2014" />
+              <ListItemText primary="Matt S" secondary="Oct 25, 2021" />
             </ListItem>
           </ListItemButton>
           <ListItemButton component="a" href="/{username}">
@@ -42,7 +42,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>BH</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Blake H" secondary="July 20, 2014" />
+              <ListItemText primary="Blake H" secondary="Oct 25, 2021" />
             </ListItem>
           </ListItemButton>
           <ListItemButton component="a" href="/{username}">
@@ -50,7 +50,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>BC</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Bekah C" secondary="July 20, 2014" />
+              <ListItemText primary="Bekah C" secondary="Oct 24, 2021" />
             </ListItem>
           </ListItemButton>
           <ListItemButton component="a" href="/{username}">
@@ -58,7 +58,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>CE</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Cory E" secondary="July 20, 2014" />
+              <ListItemText primary="Cory E" secondary="Oct 20, 2021" />
             </ListItem>
           </ListItemButton>
           <ListItemButton component="a" href="/{username}">
@@ -66,7 +66,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>TM</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Travis M" secondary="July 20, 2014" />
+              <ListItemText primary="Travis M" secondary="Oct 20, 2021" />
             </ListItem>
           </ListItemButton>
 
@@ -75,7 +75,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>WF</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Will F" secondary="July 20, 2014" />
+              <ListItemText primary="Will F" secondary="Oct 20, 2021" />
             </ListItem>
           </ListItemButton>
 
@@ -84,7 +84,7 @@ export default function ChatList() {
               <ListItemAvatar>
                 <Avatar>PX</Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Pingping X" secondary="Jan 9, 2014" />
+              <ListItemText primary="Pingping X" secondary="Sep 29, 2021" />
             </ListItem>
           </ListItemButton>
         </List>

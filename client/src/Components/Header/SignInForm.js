@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
+import Fade from '@mui/material/Fade';
+import Backdrop from '@mui/material/Backdrop';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import IconButton from '@mui/material/IconButton';
@@ -28,11 +30,11 @@ const style = {
 };
 
 export default function SignInForm() {
-  const { isLoggedInState, anchorElState, modalSignInState } =
+  const { isLoggedInState, modalSignInState, menuOpenState } =
     useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [modalSignInOpen, setSignInModalOpen] = modalSignInState;
-  const [setAnchorEl] = anchorElState;
+  const [menuOpen, setMenuOpen] = menuOpenState;
 
   const [values, setValues] = React.useState({
     password: '',
@@ -60,17 +62,16 @@ export default function SignInForm() {
 
   const handleModalClose = () => {
     setSignInModalOpen(false);
-    setAnchorEl(null);
   };
 
   const handleSignIn = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
-    handleModalClose();
+    setMenuOpen(false);
   };
 
   return (
-    <>
+    <div>
       {!isLoggedIn && (
         <Button
           onClick={handleModalOpen}
@@ -84,7 +85,13 @@ export default function SignInForm() {
         onClose={handleModalClose}
         aria-labelledby="modal-sign-in"
         aria-describedby="modal-sign-in-text-box"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
       >
+
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Sign in with your email and password below:
@@ -147,6 +154,6 @@ export default function SignInForm() {
           </Grid>
         </Box>
       </Modal>
-    </>
+    </div>
   );
 }

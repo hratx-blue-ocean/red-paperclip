@@ -32,11 +32,11 @@ export default function CreateAccountForm() {
     menuOpenState,
     modalSignInState,
   } = useContext(ItemsContext);
-  const [setIsLoggedIn] = isLoggedInState;
-  const [modalCreateAcctOpen, setModalCreateAcctOpen] = modalCreateAcctState;
-  const [setSignInModalOpen] = modalSignInState;
-  const [setAnchorEl] = anchorElState;
-  const [setMenuOpen] = menuOpenState;
+  const { setIsLoggedIn } = isLoggedInState;
+  const { modalCreateAcctOpen, setModalCreateAcctOpen } = modalCreateAcctState;
+  const { setSignInModalOpen } = modalSignInState;
+  const { anchorEl, setAnchorEl } = anchorElState;
+  const { setMenuOpen } = menuOpenState;
 
   const [values, setValues] = React.useState({
     password: '',
@@ -73,7 +73,6 @@ export default function CreateAccountForm() {
   const handleCreateAcct = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
-    setMenuOpen(false);
     handleClose();
   };
 

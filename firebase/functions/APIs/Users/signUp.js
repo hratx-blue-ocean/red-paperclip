@@ -54,6 +54,9 @@ const signUp = (req, res) => {
         email: newUser.email,
         createdAt: new Date().toISOString(),
         userId,
+        availableItem: '',
+        watchedItems: {},
+        tradeHistory: [],
       };
       return db.doc(`/users/${newUser.email}`).set(userCredentials);
     })

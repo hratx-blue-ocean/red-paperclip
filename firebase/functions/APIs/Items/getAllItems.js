@@ -1,16 +1,14 @@
+const { FieldPath } = require('@google-cloud/firestore');
 const { db } = require('../../../util/admin');
 
 const getAllItems = (req, res) => {
   const quantity = req.query.quantity || 30;
-  const category = req.query.category || 'null';
-  let comparison = '!=';
-  if (category) {
-    comparison = '==';
-  }
+  const category = req.query.category || 'Food';
+
   db.collection('items')
     .where('active', '==', true)
+    .where('itemCategory', '==', category)
     .orderBy('createdAt', 'desc')
-    .where('itemCategory', comparison, category)
     .limit(quantity)
     .get()
     .then((data) => {

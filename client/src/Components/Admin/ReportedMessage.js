@@ -33,6 +33,15 @@ const useStyles = makeStyles(() => ({
 
 const ReportedMessage = ({ user, message }) => {
   const classes = useStyles();
+  const handleDeleteMessageClick = () => {
+    console.log('Clicked Delete Message');
+  };
+  const handleDismissReportClick = () => {
+    console.log('Clicked Dismiss Report');
+  };
+  const handleBanUserClick = () => {
+    console.log('Clicked Ban User');
+  };
 
   return (
     <Card
@@ -84,13 +93,28 @@ const ReportedMessage = ({ user, message }) => {
           justifyContent="space-evenly"
           alignItems="center"
         >
-          <Button color="inherit" variant="outlined" className={classes.hover2}>
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleDeleteMessageClick}
+          >
             Delete Message
           </Button>
-          <Button color="inherit" variant="outlined" className={classes.hover2}>
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleDismissReportClick}
+          >
             Dismiss Report
           </Button>
-          <Button color="inherit" variant="outlined" className={classes.hover2}>
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleBanUserClick}
+          >
             Ban User
           </Button>
         </Grid>

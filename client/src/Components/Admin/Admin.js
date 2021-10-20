@@ -4,36 +4,13 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import ReportedItemsFeed from './ReportedItemsFeed';
 import ReportedMessagesFeed from './ReportedMessagesFeed';
 import { ItemsContext } from '../ItemsContext';
 
-const useStyles = makeStyles(() => ({
-  tabText: {
-    color: '#FFFFFF',
-  },
-  tabIndicator: {
-    color: '#F0CC71',
-  },
-  hover1: {
-    color: '#666',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
-  hover2: {
-    color: '#FFFFFF',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
-}));
-
 const Admin = () => {
   // const { isAdminState } = useContext(ItemsContext);
   // const [isAdmin] = isAdminState;
-  const classes = useStyles();
 
   const [value, setValue] = useState(0);
   const isAdmin = true;
@@ -43,9 +20,11 @@ const Admin = () => {
   return (
     <>
       {!isAdmin ? (
-        <Typography align="center">
-          You don&apo;t have access to this page
-        </Typography>
+        <Grid container item justifyContent="center">
+          <Typography variant="h3" sx={{ color: 'text.white' }}>
+            You shall not pass!
+          </Typography>
+        </Grid>
       ) : (
         <>
           <Grid container>

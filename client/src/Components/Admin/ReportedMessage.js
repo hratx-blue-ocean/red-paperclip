@@ -33,6 +33,15 @@ const useStyles = makeStyles(() => ({
 
 const ReportedMessage = ({ user, message }) => {
   const classes = useStyles();
+  const handleDeleteMessageClick = () => {
+    console.log('Clicked Delete Message');
+  };
+  const handleDismissReportClick = () => {
+    console.log('Clicked Dismiss Report');
+  };
+  const handleBanUserClick = () => {
+    console.log('Clicked Ban User');
+  };
 
   return (
     <Card
@@ -55,7 +64,7 @@ const ReportedMessage = ({ user, message }) => {
             title={user}
             subheader="6 hours ago"
             style={{
-              color: '#b70007',
+              color: '#FFF',
             }}
           />
         </Grid>
@@ -85,23 +94,26 @@ const ReportedMessage = ({ user, message }) => {
           alignItems="center"
         >
           <Button
-            color="cardButton"
+            color="inherit"
             variant="outlined"
             className={classes.hover2}
+            onClick={handleDeleteMessageClick}
           >
             Delete Message
           </Button>
           <Button
-            color="cardButton"
+            color="inherit"
             variant="outlined"
             className={classes.hover2}
+            onClick={handleDismissReportClick}
           >
             Dismiss Report
           </Button>
           <Button
-            color="cardButton"
+            color="inherit"
             variant="outlined"
             className={classes.hover2}
+            onClick={handleBanUserClick}
           >
             Ban User
           </Button>

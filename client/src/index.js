@@ -6,6 +6,12 @@ import { ItemsProvider } from './Components/ItemsContext';
 
 const theme = createTheme({
   palette: {
+    primary: {
+      main: '#FFFFFF',
+    },
+    secondary: {
+      main: '#F0CC71',
+    },
     cardButton: {
       main: '#161513',
     },
@@ -23,6 +29,10 @@ const theme = createTheme({
     },
     paperClip: {
       main: '#A10000',
+    },
+    text: {
+      white: '#FFFFFF',
+      gold: '#F0CC71',
     },
   },
 });

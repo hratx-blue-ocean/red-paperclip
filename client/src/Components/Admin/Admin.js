@@ -11,6 +11,7 @@ import { ItemsContext } from '../ItemsContext';
 const Admin = () => {
   // const { isAdminState } = useContext(ItemsContext);
   // const [isAdmin] = isAdminState;
+
   const [value, setValue] = useState(0);
   const isAdmin = true;
   const handleChange = (event, newValue) => {
@@ -19,16 +20,34 @@ const Admin = () => {
   return (
     <>
       {!isAdmin ? (
-        <Typography>You don't have access to this page</Typography>
+        <Grid container item justifyContent="center">
+          <Typography variant="h3" sx={{ color: 'text.white' }}>
+            You shall not pass!
+          </Typography>
+        </Grid>
       ) : (
         <>
           <Grid container>
-            <Grid item>
-              <Typography>Admin Portal</Typography>
+            <Grid container item justifyContent="center">
+              <Typography variant="h2" sx={{ color: 'text.white' }}>
+                Admin Portal
+              </Typography>
             </Grid>
           </Grid>
-          <Box sx={{ width: '100%', bgcolor: '#FFF', marginBottom: 5 }}>
-            <Tabs value={value} onChange={handleChange} centered>
+          <Box
+            sx={{
+              width: '100%',
+              bgcolor: 'cardColor.main',
+              marginBottom: 5,
+            }}
+          >
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              centered
+              textColor="primary"
+              indicatorColor="secondary"
+            >
               <Tab label="Reported Items" />
 
               <Tab label="Reported Messages" />

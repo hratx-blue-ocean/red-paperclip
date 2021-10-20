@@ -12,26 +12,13 @@ const ReportedItemsFeed = () => {
   const nothing = {};
 
   return (
-    <div>
-      <Grid container justifyContent="space-between" spacing={6}>
-        {[...Array(10)].map((e, i) => (
-          <Grid item xs={4} key={i}>
-            <ReportedItem />
-          </Grid>
-        ))}
-      </Grid>
-
-      <Grid
-        item
-        xs={12}
-        container
-        style={{ justifyContent: 'center', marginBottom: '30px' }}
-      >
-        <Button variant="contained" spacing={1} color="secondary">
-          Show More
-        </Button>
-      </Grid>
-    </div>
+    <Grid container justifyContent="space-between" spacing={6}>
+      {[...Array(10)].map((e, i) => (
+        <Grid item xs={4} key={i}>
+          <ReportedItem />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

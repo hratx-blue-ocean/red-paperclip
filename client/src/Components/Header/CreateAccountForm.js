@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -23,9 +24,20 @@ const style = {
   p: 4,
 };
 
-export default function CreateAccountForm(props) {
-  const { auth, handleAuthChange, setAnchorEl } = props;
-  const [open, setOpen] = React.useState(false);
+export default function CreateAccountForm() {
+  const {
+    isLoggedInState,
+    anchorElState,
+    modalCreateAcctState,
+    menuOpenState,
+    modalSignInState,
+  } = useContext(ItemsContext);
+  const [setIsLoggedIn] = isLoggedInState;
+  const [modalCreateAcctOpen, setModalCreateAcctOpen] = modalCreateAcctState;
+  const [setSignInModalOpen] = modalSignInState;
+  const [setAnchorEl] = anchorElState;
+  const [setMenuOpen] = menuOpenState;
+
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
@@ -46,27 +58,36 @@ export default function CreateAccountForm(props) {
     event.preventDefault();
   };
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleModalOpen = () => {
+    setModalCreateAcctOpen(true);
+    setSignInModalOpen(false);
+    setMenuOpen(false);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    handleAuthChange(true);
-    setOpen(false);
+  const handleClose = () => {
+    setModalCreateAcctOpen(false);
+    setSignInModalOpen(false);
     setAnchorEl(null);
+  };
+
+  const handleCreateAcct = (event) => {
+    event.preventDefault();
+    setIsLoggedIn(true);
+    setMenuOpen(false);
+    handleClose();
   };
 
   return (
     <div>
       <Button
-        onClick={handleOpen}
+        onClick={handleModalOpen}
         variant="contained"
         style={{ backgroundColor: '#161513', color: '#F0CC71' }}
       >
         Create an Account
       </Button>
       <Modal
-        open={open}
+        open={modalCreateAcctOpen}
         onClose={handleClose}
         aria-labelledby="menu button"
         aria-describedby="click to expand menu"
@@ -130,10 +151,11 @@ export default function CreateAccountForm(props) {
             />
           </FormControl>
           <Button
-            onClick={handleSubmit}
+            type="submit"
+            onClick={handleCreateAcct}
             style={{ backgroundColor: '#161513', color: '#F0CC71' }}
           >
-            Create Account
+            Create Your Account
           </Button>
         </Box>
       </Modal>

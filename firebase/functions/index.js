@@ -5,6 +5,13 @@ const { item, user, message, admin } = require('./APIs');
 
 app.get('/getAllItems', item.getAllItems);
 
+// TODO: getItem
+// app.get('/getItem', getItem);
+app.get('/getItem', item.getItem);
+app.get('/editItem', item.editItem);
+app.post('/addItem', item.addNewItem);
+app.get('/reportItem', item.reportItem);
+
 // USERS
 app.post('/login', user.login);
 app.post('/signup', user.signUp);

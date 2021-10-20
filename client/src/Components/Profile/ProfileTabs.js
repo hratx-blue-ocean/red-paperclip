@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
 
 const ProfileTabs = () => {
   const [value, setValue] = useState(0);
@@ -12,7 +13,7 @@ const ProfileTabs = () => {
   };
 
   function TabPanel(props) {
-    const { children, tabValue, index } = props;
+    const { children, index } = props;
 
     return (
       <div
@@ -46,13 +47,43 @@ const ProfileTabs = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Trade Journey Journal
+        <Card
+          sx={{
+            width: 600,
+            height: 719,
+            backgroundColor: '#494D53',
+            marginLeft: -3,
+            marginTop: -2,
+          }}
+        >
+          Trade Journey Journal
+        </Card>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Trade Journey Map
+        <Card
+          sx={{
+            width: 600,
+            height: 719,
+            backgroundColor: '#494D53',
+            marginLeft: -3,
+            marginTop: -2,
+          }}
+        >
+          Trade Journey Map
+        </Card>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Watched Items
+        <Card
+          sx={{
+            width: 600,
+            height: 719,
+            backgroundColor: '#494D53',
+            marginLeft: -3,
+            marginTop: -2,
+          }}
+        >
+          Watched Items
+        </Card>
       </TabPanel>
     </Box>
   );

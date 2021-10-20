@@ -20,7 +20,7 @@ import { spacing } from '@mui/system';
 import RoomIcon from '@mui/icons-material/Room';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import Stack from '@mui/material/Stack';
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 
 import Jason from './img/Jason.jpg';
 

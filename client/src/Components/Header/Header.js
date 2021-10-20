@@ -53,7 +53,7 @@ const Header = () => {
         <Toolbar>
           <AttachFileIcon
             color="paperClip"
-            onclick={handleLogoClick}
+            onClick={handleLogoClick}
             style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
             sx={{ ml: 35, fontSize: 40 }}
           />

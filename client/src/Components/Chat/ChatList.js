@@ -11,7 +11,7 @@ import Jason from './img/Jason.jpg';
 
 export default function ChatList() {
   return (
-    <Paper elevation={3}>
+    <Paper elevation={3} style={{ borderRadius: 30 }}>
       <nav aria-label="secondary mailbox folders">
         <List>
           <ListItem disablePadding>

@@ -17,7 +17,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 
-
 import Jason from './img/Jason.jpg';
 import book from './img/book.jpeg';
 import artWork from './img/artWork.jpeg';

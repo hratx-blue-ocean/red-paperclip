@@ -36,7 +36,7 @@ export default function SortBar() {
         style={{ backgroundColor: '#494D53', marginTop: '60px' }}
       >
         <Grid container style={{ marginTop: '10px', marginBottom: '10px' }}>
-          <Grid container item xs={4} justifyContent="flex-end">
+          <Grid container item xs={4} style={{ justifyContent: 'flex-end' }}>
             <Typography
               className={classes.bold}
               style={{
@@ -56,7 +56,7 @@ export default function SortBar() {
               Item Name
             </Button>
           </Grid>
-          <Grid container item xs={4} justifyContent="center">
+          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Typography
               className={classes.bold}
               style={{
@@ -76,7 +76,7 @@ export default function SortBar() {
               Category
             </Button>
           </Grid>
-          <Grid container item xs={4} justifyContent="flex-start">
+          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
             <Button
               color="sortButton"
               variant="contained"

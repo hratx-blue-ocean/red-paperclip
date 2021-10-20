@@ -9,9 +9,20 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import Hamburger from './Hamburger';
 import { ItemsContext } from '../ItemsContext';
 
-const Header = () => {
-  const { isLoggedInState } = useContext(ItemsContext);
-  const [isLoggedIn] = isLoggedInState;
+const MenuBar = () => {
+  const { isLoggedInState, menuOpenState } = useContext(ItemsContext);
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
 
   const colorsArr = [
     'Brown',
@@ -75,11 +86,21 @@ const Header = () => {
               <Typography variant="h6">Welcome, user!</Typography>
             </>
           )}
-          <Hamburger />
+
+          <Hamburger
+            onClick={handleModalOpen}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            setAnchorEl={setAnchorEl}
+            anchorEl={anchorEl}
+          />
+
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+export default MenuBar;

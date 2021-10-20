@@ -3,17 +3,19 @@ const { db } = require('../../../util/admin');
 const addNewItem = (req, res) => {
   const newDoc = {
     itemOwner: req.body.user,
+    itemOwnerUID: req.body.ownerUID,
+    itemOwnerPhoto: req.body.profilePhoto,
     itemName: req.body.name,
     itemCategory: req.body.category,
     itemDescription: req.body.description,
     itemLocation: req.body.location,
-    itemPhotos: req.body.photos,
-    itemValue: req.body.value,
+    itemPhoto: req.body.photo,
     createdAt: Date.now(),
-    watchCount: 0,
     reports: 0,
     active: true,
   };
+
+  console.log(newDoc);
 
   db.collection('items')
     .add(newDoc)

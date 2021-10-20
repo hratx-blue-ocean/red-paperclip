@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
 import { ItemsContext } from '../ItemsContext';
 
-const EditProfileButton = (props) => {
+const EditProfileButton = () => {
   const { currentUser } = useContext(ItemsContext);
   const user = currentUser[0];
 

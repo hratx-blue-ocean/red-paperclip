@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import axios from 'axios';
 
-const NewItemForm = (props) => {
+const NewItemForm = () => {
   const [newItem, setNewItem] = useState({
     itemCategory: 'Select Category',
     itemName: '',
@@ -59,8 +59,14 @@ const NewItemForm = (props) => {
   return (
     // eslint-disable-next-line react/no-unescaped-entities
     <>
-      <Typography>Looks like you don't have an item to trade yet!</Typography>
-      <Button variant="outlined" onClick={handleClick}>
+      <Typography textAlign="center">
+        Looks like you don't have an item to trade yet!
+      </Typography>
+      <Button
+        variant="outlined"
+        onClick={handleClick}
+        style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
+      >
         Add an Item!
       </Button>
       <Modal

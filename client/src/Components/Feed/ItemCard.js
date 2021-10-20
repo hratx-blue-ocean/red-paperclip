@@ -39,6 +39,12 @@ const useStyles = makeStyles(() => ({
   bold: {
     fontWeight: 600,
   },
+  hover1: {
+    color: '#161513',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
   hover2: {
     color: '#ffffff',
     '&:hover': {
@@ -49,12 +55,6 @@ const useStyles = makeStyles(() => ({
     color: '#A10000',
     '&:hover': {
       color: '#ffffff',
-    },
-  },
-  hover1: {
-    color: '#161513',
-    '&:hover': {
-      color: '#f0CC71',
     },
   },
 }));

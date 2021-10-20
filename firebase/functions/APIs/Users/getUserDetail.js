@@ -7,7 +7,7 @@ const getUserDetail = (req, res) => {
     .then((doc) => {
       if (doc.exists) {
         userData.userCredentials = doc.data();
-        return res.json(userData);
+        return res.json(userData.userCredentials);
       }
     })
     .catch((err) => {

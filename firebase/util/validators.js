@@ -32,6 +32,8 @@ const validateSignUpData = (data) => {
   if (isEmpty(data.lastName)) errors.lastName = 'Must not be empty';
   if (isEmpty(data.zip)) errors.zip = 'Must not be empty';
   if (isEmpty(data.password)) errors.password = 'Must not be empty';
+  if (data.password.length < 6)
+    errors.password = 'Password must be atleast 6 characters long';
   if (data.password !== data.confirmPassword)
     errors.confirmPassword = 'Passwords must be the same';
 

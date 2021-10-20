@@ -1,15 +1,15 @@
-import * as React from "react";
-import List from "@mui/material/List";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import Avatar from "@mui/material/Avatar";
+import * as React from 'react';
+import List from '@mui/material/List';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
@@ -60,28 +60,40 @@ export default function ChatList() {
                   justifyContent="center"
                   style={{ height: 56 }}
                 >
-
                   <ListItemAvatar>
                     <Avatar alt="Jesson W" src={Jason} />
                   </ListItemAvatar>
                   <ListItemText primary="Jesson W" secondary="Trusted User" />
 
                   <Grid item xs={3}>
-                    <Avatar alt="book" src={book} sx={{ width: 56, height: 56 }} />
+                    <Avatar
+                      alt="book"
+                      src={book}
+                      sx={{ width: 56, height: 56 }}
+                    />
                   </Grid>
 
                   <Grid item xs={3}>
-                    <CompareArrowsIcon className={classes.hover3} style={{ fontSize: 60 }} />
+                    <CompareArrowsIcon
+                      className={classes.hover3}
+                      style={{ fontSize: 60 }}
+                    />
                   </Grid>
 
                   <Grid item xs={3}>
-                    <Avatar alt="artWork" src={artWork} sx={{ width: 56, height: 56 }} />
+                    <Avatar
+                      alt="artWork"
+                      src={artWork}
+                      sx={{ width: 56, height: 56 }}
+                    />
                   </Grid>
                 </Grid>
               </ListItemButton>
             </ListItem>
             <Grid container spacing={0} justifyContent="center">
-              <Button variant="outlined" href="#outlined-buttons">Close Deal!</Button>
+              <Button variant="outlined" href="#outlined-buttons">
+                Close Deal!
+              </Button>
             </Grid>
           </List>
           <Divider />
@@ -149,7 +161,11 @@ export default function ChatList() {
             borderRadius: 30,
           }}
         >
-          <Chip className={classes.hover1} icon={<MdPhone />} label="Audio Chat" />
+          <Chip
+            className={classes.hover1}
+            icon={<MdPhone />}
+            label="Audio Chat"
+          />
 
           <Button variant="contained" color="success">
             Send

@@ -54,8 +54,8 @@ const Header = () => {
           <AttachFileIcon
             color="paperClip"
             onclick={handleLogoClick}
-            style={{ cursor: 'pointer' }}
-            sx={{ ml: 35 }}
+            style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+            sx={{ ml: 35, fontSize: 40 }}
           />
           <Typography
             variant="h5"

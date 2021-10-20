@@ -18,6 +18,8 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 
 import Jason from './img/Jason.jpg';
+import Pingping from './img/Pingping.jpg';
+
 import book from './img/book.jpeg';
 import artWork from './img/artWork.jpeg';
 
@@ -49,7 +51,7 @@ export default function ChatConversation() {
   const classes = useStyles();
 
   return (
-    <Paper elevation={6} style={{ height: 520, borderRadius: 30, padding: 30 }}>
+    <Paper elevation={6} style={{ height: 500, borderRadius: 30, padding: 30 }}>
       <Grid container spacing={2}>
         <Grid container item xs={4} justifyContent="center">
           <Avatar alt="Jesson W" src={Jason} />
@@ -103,13 +105,13 @@ export default function ChatConversation() {
       >
         <ListItem>
           <ListItemAvatar>
-            <Avatar>JW</Avatar>
+            <Avatar alt="Jesson W" src={Jason} />
           </ListItemAvatar>
           <ListItemText primary="Hi, I really like your art work" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
-            <Avatar>JW</Avatar>
+            <Avatar alt="Jesson W" src={Jason} />
           </ListItemAvatar>
           <ListItemText primary="Are you interested to trade with my book? It is an antique from ancient China!" />
         </ListItem>
@@ -126,7 +128,7 @@ export default function ChatConversation() {
             <ListItemText primary="Wow, that's very cool! What year was the book and what it is about?" />
           </Box>
           <ListItemAvatar>
-            <Avatar>M E</Avatar>
+            <Avatar alt="Jesson W" src={Pingping} />
           </ListItemAvatar>
         </ListItem>
       </Box>

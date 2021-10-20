@@ -38,7 +38,7 @@ export default function AddChat() {
   const classes = useStyles();
 
   return (
-    <Paper elevation={6} style={{ height: 200, borderRadius: 30 }}>
+    <Paper elevation={6} style={{ height: 150, borderRadius: 30 }}>
       <Box
         sx={{
           display: 'flex',
@@ -67,7 +67,7 @@ export default function AddChat() {
               id="fullWidth"
               label="Private Chat Room With Jesson"
               multiline
-              rows={3}
+              rows={1}
             />
           </Grid>
         </Grid>

@@ -65,9 +65,9 @@ const Header = () => {
             style={{ cursor: 'pointer' }}
           >
             Red Paperclip&nbsp;
-            <CompareArrowsIcon />
+            {/* <CompareArrowsIcon />
             &nbsp;
-            {`${colorsArr[random1]} ${itemsArr[random2]}`}
+            {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
           </Typography>
           {isLoggedIn && (
             <>

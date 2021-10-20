@@ -17,6 +17,20 @@ export const ItemsProvider = (props) => {
   const [modalCreateAcctOpen, setModalCreateAcctOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentUser, setCurrentUser] = useState({
+    userFirst: 'Jeffrey',
+    userLast: 'Dahmer',
+    userPFP: 'https://i.imgur.com/dNZcaDv.png',
+    userPhone: '(608) 742-9100',
+    userEmail: 'luv2eatU@gmail.com',
+    userAddress1: '2925 Columbia Drive',
+    userAddress2: '#127',
+    userCity: 'Portage',
+    userState: 'WI',
+    userZIP: '53901',
+    activeItem: 'fill me in',
+    prevTrades: 'fill me in, too',
+  });
 
   return (
     <ItemsContext.Provider
@@ -29,6 +43,7 @@ export const ItemsProvider = (props) => {
         modalCreateAcctState: [modalCreateAcctOpen, setModalCreateAcctOpen],
         anchorElState: [anchorEl, setAnchorEl],
         menuOpenState: [menuOpen, setMenuOpen],
+        currentUser: [currentUser, setCurrentUser],
       }}
     >
       {props.children}

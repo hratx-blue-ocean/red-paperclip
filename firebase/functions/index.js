@@ -1,16 +1,19 @@
+const express = require('express');
 const app = require('express')();
 const functions = require('firebase-functions');
 const auth = require('../util/auth');
 const { item, user, message, admin } = require('./APIs');
 
-app.get('/getAllItems', item.getAllItems);
+app.use(express.json());
 
-// TODO: getItem
-// app.get('/getItem', getItem);
+// ITEMS
+app.get('/getAllItems', item.getAllItems);
 app.get('/getItem', item.getItem);
 app.get('/editItem', item.editItem);
-app.post('/addItem', item.addNewItem);
+app.post('/addNewItem', item.addNewItem);
 app.get('/reportItem', item.reportItem);
+app.get('/changeActiveStatus', item.changeActiveStatus);
+app.get('/getItemsByCategory', item.getItemsByCategory);
 
 // USERS
 app.post('/login', user.login);

@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
+import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
@@ -46,32 +47,16 @@ export default function SortBar() {
   };
 
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        style={{ backgroundColor: '#494D53', marginTop: '60px' }}
-      >
-        <Grid container style={{ marginTop: '10px', marginBottom: '10px' }}>
-          <Grid container item xs={4} style={{ justifyContent: 'flex-end' }}>
-            <Typography
-              className={classes.bold}
-              style={{
-                color: '#F0CC71',
-                marginRight: '8px',
-                marginTop: '5px',
-                fontSize: 18,
-              }}
-            >
-              {'ACTIVE ITEM: '}
-            </Typography>
-            <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-            >
-              Item Name || Add Item +
-            </Button>
-          </Grid>
+    <AppBar
+      position="fixed"
+      style={{ backgroundColor: '#494D53', marginTop: '60px' }}
+    >
+      <Container>
+        <Grid
+          container
+          style={{ marginTop: '10px', marginBottom: '10px' }}
+          wrap="nowrap"
+        >
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Typography
               className={classes.bold}
@@ -148,17 +133,37 @@ export default function SortBar() {
               </MenuItem>
             </Menu>
           </Grid>
-          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
+          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Button
               color="sortButton"
               variant="contained"
               className={classes.hover2}
             >
-              Suprise Me!
+              Surprise Me!
+            </Button>
+          </Grid>
+          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
+            <Typography
+              className={classes.bold}
+              style={{
+                color: '#F0CC71',
+                marginRight: '8px',
+                marginTop: '5px',
+                fontSize: 18,
+              }}
+            >
+              {'ACTIVE ITEM: '}
+            </Typography>
+            <Button
+              color="sortButton"
+              variant="contained"
+              className={classes.hover2}
+            >
+              Item Name || Add Item +
             </Button>
           </Grid>
         </Grid>
-      </AppBar>
-    </div>
+      </Container>
+    </AppBar>
   );
 }

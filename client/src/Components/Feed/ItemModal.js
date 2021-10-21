@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { useState } from 'react';
 import Card from '@mui/material/Card';
@@ -20,7 +19,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import ReportModal from './ReportModal';
 import TradeModal from './TradeModal';
-import ItemModal from './ItemModal';
 
 const style = {
   position: 'absolute',
@@ -61,90 +59,34 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ItemCard() {
+export default function ItemModal({
+  handleCardClose,
+  starFill,
+  handleWatch,
+  handleUnwatch,
+  handleTradeOpen,
+  handleReportOpen,
+}) {
   const classes = useStyles();
-  // mouse over image
-
-  // star fill
-  const [starFill, setStarFill] = React.useState(false);
-  const handleWatch = () => {
-    setStarFill(true);
-  };
-  const handleUnwatch = () => {
-    setStarFill(false);
-  };
-  // item modal
-  const [openCard, setCardOpen] = useState(false);
-  const handleCardOpen = () => setCardOpen(true);
-  const handleCardClose = () => setCardOpen(false);
-
-  // report modal
-  const [openReport, setReportOpen] = useState(false);
-  const handleReportOpen = () => setReportOpen(true);
-  const handleReportClose = () => setReportOpen(false);
-  // handle report
-  const [reported, setReported] = useState(false);
-  const handleReport = () => setReported(true);
-
-  // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
-  const handleTradeOpen = () => setTradeOpen(true);
-  const handleTradeClose = () => setTradeOpen(false);
-  // handle trade
-  const [trade, setTrade] = useState(false);
-  const handleTrade = () => setTrade(true);
 
   return (
     <div className={classes.root}>
-      <Modal open={openCard} onClose={handleCardClose}>
-        <Box style={{ overflow: 'auto' }} sx={style}>
-          <ItemModal
-            handleCardClose={handleCardClose}
-            starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
-            handleTradeOpen={handleTradeOpen}
-            handleReportOpen={handleReportOpen}
-          />
-        </Box>
-      </Modal>
-
-      <Modal open={openReport} onClose={handleReportClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <ReportModal
-            handleReportClose={handleReportClose}
-            reported={reported}
-            handleReport={handleReport}
-          />
-        </Box>
-      </Modal>
-
-      <Modal open={opentrade} onClose={handleTradeClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53' }}>
-          <TradeModal
-            handleTradeClose={handleTradeClose}
-            trade={trade}
-            handleTrade={handleTrade}
-          />
-        </Box>
-      </Modal>
-
+      <Grid
+        container
+        style={{ justifyContent: 'flex-end', position: 'absolute' }}
+      >
+        <IconButton onClick={handleCardClose}>
+          <CloseIcon className={classes.hover3} style={{ fontSize: 45 }} />
+        </IconButton>
+      </Grid>
       <Grid container>
-        <Card
-          style={{
-            backgroundColor: '#494D53',
-            border: '1px solid',
-            borderColor: '#FFF',
-            borderRadius: '15px',
-          }}
-        >
+        <Card style={{ backgroundColor: '#494D53' }}>
           <CardMedia
             component="img"
-            height="45%"
+            position="relative"
             image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
             style={{ objectFit: 'cover' }}
             alt="Axe Set"
-            onClick={handleCardOpen}
           />
           <Grid container style={{ marginTop: '6px' }}>
             <Grid
@@ -203,26 +145,34 @@ export default function ItemCard() {
               <Typography
                 variant="body2"
                 color="white"
-                style={{ marginLeft: '10px' }}
+                style={{
+                  marginLeft: '10px',
+                  marginBottom: '20px',
+                }}
                 display="inline"
               >
-                {'These beautiful axes were custom made in the heart of Minnesota' +
-                  '... '}
-                <Link
-                  className={classes.hover1}
-                  component="button"
-                  underline="none"
-                  display="inline"
-                  color="cardButton"
-                  onClick={handleCardOpen}
-                >
-                  Read more
-                </Link>
+                These beautiful axes were custom made in the heart of Minnesota.
+                I need to have more characters so I am typing. I need to have
+                more characters so I am typing. I need to have more characters
+                so I am typing. I need to have more characters so I am typing. I
+                need to have more characters so I am typing. I need to have more
+                characters so I am typing. I need to have more characters so I
+                am typing. I need to have more characters so I am typing. I need
+                to have more characters so I am typing. I need to have more
+                characters so I am typing. I need to have more characters so I
+                am typing. I need to have more characters so I am typing. I need
+                to have more characters so I am typing. I need to have more
+                characters so I am typing. I need to have more characters so I
+                am typing. I need to have more characters so I am typing. I need
+                to have more characters so I am typing. I need to have more
+                characters so I am typing. I need to have more characters so I
+                am typing. I need to have more characters so I am typing.
               </Typography>
             </Grid>
-            <Grid container item xs={12} justifyContent="center">
+            <Grid container item xs={12} justifyContent="center" spacing={3}>
               <Grid container item xs={6} justifyContent="center">
                 <Button
+                  fullWidth
                   color="inherit"
                   variant="outlined"
                   className={classes.hover2}
@@ -233,6 +183,7 @@ export default function ItemCard() {
               </Grid>
               <Grid container item xs={6} justifyContent="space-evenly">
                 <Button
+                  fullWidth
                   color="inherit"
                   variant="outlined"
                   className={classes.hover2}

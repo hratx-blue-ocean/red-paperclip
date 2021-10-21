@@ -58,7 +58,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function TradeModal({ handleTradeClose, trade, handleTrade }) {
+export default function TradeModal({
+  handleTradeClose,
+  trade,
+  handleTrade,
+  item,
+}) {
   const classes = useStyles();
 
   return (
@@ -118,7 +123,7 @@ export default function TradeModal({ handleTradeClose, trade, handleTrade }) {
             <Typography
               style={{ color: '#F0CC71', fontSize: 35, fontWeight: 800 }}
             >
-              This Item
+              {item.itemName}
             </Typography>
           </Grid>
 

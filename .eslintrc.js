@@ -17,7 +17,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-console': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'consistent-return': 'off',
   },
   ignorePatterns: ['client/dist/*/*.js'],

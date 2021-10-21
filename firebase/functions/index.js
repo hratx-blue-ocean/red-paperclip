@@ -1,20 +1,28 @@
+const express = require('express');
 const app = require('express')();
+const cors = require('cors');
 const functions = require('firebase-functions');
-// const auth = require('../util/auth');
-// const {} = require('./APIs/users');
+const auth = require('../util/auth');
 const { item, user, message, admin } = require('./APIs');
-// require('dotenv').config();
 
-// TODO: getAllItems
-// needs to only retrieve 30 items at a time
-// additional requests should query the next page of items
+app.use(express.json());
+app.use(cors());
+
+// ITEMS
 app.get('/getAllItems', item.getAllItems);
-
-// TODO: getItem
-// app.get('/getItem', getItem);
+app.get('/getItem', item.getItem);
+app.get('/editItem', item.editItem);
+app.post('/addNewItem', item.addNewItem);
+app.get('/reportItem', item.reportItem);
+app.get('/changeActiveStatus', item.changeActiveStatus);
+app.get('/getItemsByCategory', item.getItemsByCategory);
 
 // USERS
 app.post('/login', user.login);
+app.post('/signup', user.signUp);
+app.get('/user', auth, user.getUserDetail);
+app.post('/user', auth, user.updateUserDetails);
+app.post('/user/image', auth, user.uploadProfilePhoto);
 
 const api = functions.https.onRequest(app);
 

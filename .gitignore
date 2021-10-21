@@ -5,3 +5,4 @@ client/dist/*.png
 firebase/dist/bundle.js
 firebase/dist/*.png
 
+.DS_Store

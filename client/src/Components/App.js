@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Container } from '@mui/material';
-import SortBar from './Feed/SortBar';
-import Header from './Header/Header';
+import MenuBar from './Header/MenuBar';
 import Feed from './Feed/Feed';
 import Admin from './Admin/Admin';
 import Chat from './Chat/Chat';
@@ -11,11 +10,10 @@ import Profile from './Profile/Profile';
 function App() {
   return (
     <>
-      <SortBar />
       <main>
         <Router>
           <Container className="main">
-            <Header />
+            <MenuBar />
             <Container className="app">
               <Switch>
                 <Route path="/profile" exact component={Profile} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -7,18 +7,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
-import ItemCard from '../Feed/ItemCard';
+import ProfileActiveItem from './ProfileActiveItem';
+import { ItemsContext } from '../ItemsContext';
+import AddItem from './AddItem';
 
 const Profile = () => {
-  const userName = 'Jeffrey';
-  const userPFP = 'https://i.imgur.com/dNZcaDv.png';
+  const { currentUser } = useContext(ItemsContext);
+  const user = currentUser[0];
+  console.log('Current user: ', currentUser);
 
   return (
     <>
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Hello, {userName}!
+            Hello, {user.userFirst}!
           </Typography>
           <Card
             sx={{
@@ -41,12 +44,12 @@ const Profile = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={userPFP}
+                image={user.userPFP}
                 style={{ objectFit: 'cover' }}
                 alt="Mr. Dahmer"
               />
             </Card>
-            <EditProfileButton userName={userName} userPFP={userPFP} />
+            <EditProfileButton />
           </Card>
           <Card
             sx={{
@@ -56,19 +59,41 @@ const Profile = () => {
               marginTop: 5,
             }}
           >
-            <Typography variant="h4" textAlign="center">
+            <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
+            </Typography>
+            <ProfileActiveItem />
+          </Card>
+
+
+
+          <Card
+            sx={{
+              width: 450,
+              backgroundColor: '#494D53',
+              marginTop: 3,
+            }}
+          >
+            <Typography
+              variant="h4"
+              textAlign="center"
+              style={{ marginTop: '35px', fontWeight: 800 }}
+            >
+              Add Item
             </Typography>
             <Grid
               container
-              spacing={6}
-              style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
+              spacing={1}
+              style={{ justifyContent: 'space-evenly' }}
             >
               <Grid item xs={12}>
-                <ItemCard />
+                <AddItem />
               </Grid>
             </Grid>
           </Card>
+
+
+
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

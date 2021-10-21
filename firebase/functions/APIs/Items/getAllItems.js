@@ -1,8 +1,11 @@
 const { db } = require('../../../util/admin');
 
 const getAllItems = (req, res) => {
+  const quantity = parseInt(req.query.quantity, 10);
   db.collection('items')
+    .where('active', '==', true)
     .orderBy('createdAt', 'desc')
+    .limit(quantity)
     .get()
     .then((data) => {
       const items = [];
@@ -10,20 +13,22 @@ const getAllItems = (req, res) => {
         items.push({
           itemName: doc.data().itemName,
           itemOwner: doc.data().itemOwner,
+          itemOwnerUID: doc.data().itemOwnerUID,
+          itemOwnerPhoto: doc.data().itemOwnerPhoto,
           itemCategory: doc.data().itemCategory,
           itemDescription: doc.data().itemDescription,
           itemLocation: doc.data().itemLocation,
-          itemPhotos: doc.data().itemPhotos,
-          itemValue: doc.data().itemValue,
-          watchCount: doc.data().watchCount,
+          itemPhoto: doc.data().itemPhoto,
           reports: doc.data().reports,
-          // eslint-disable-next-line no-underscore-dangle
-          createdAt: doc.data().createdAt._seconds,
+          createdAt: doc.data().createdAt,
         });
       });
       return res.json(items);
     })
-    .catch((err) => res.status(500).json({ error: err.code }));
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err.code });
+    });
 };
 
 module.exports = getAllItems;

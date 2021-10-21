@@ -65,7 +65,7 @@ const CategorySelector = () => {
   };
   const handleClose = (category) => {
     setAnchorEl(null);
-    if (category) setSelectedCategory(category);
+    setSelectedCategory(category);
   };
 
   return (

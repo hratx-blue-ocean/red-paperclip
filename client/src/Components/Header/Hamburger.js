@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
@@ -17,12 +17,13 @@ import AuthModal from './AuthModal';
 import { ItemsContext } from '../ItemsContext';
 
 const Hamburger = () => {
-  const { isLoggedInState } = useContext(ItemsContext);
+  const { isLoggedInState, currentUserState } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [isReturningUser, setIsReturningUser] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [showAuthModal, setShowAuthModal] = React.useState(false);
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isReturningUser, setIsReturningUser] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -129,12 +130,12 @@ const Hamburger = () => {
               My Chats
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleAdminClick}>
+            {currentUser.permissions === "admin" && <MenuItem onClick={handleAdminClick}>
               <ListItemIcon>
                 <AdminPanelSettingsIcon fontSize="small" />
               </ListItemIcon>
               Admin
-            </MenuItem>
+            </MenuItem>}
             <MenuItem onClick={handleSignOut}>
               <ListItemIcon>
                 <Logout fontSize="small" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
@@ -6,8 +6,9 @@ import { styled } from '@mui/material/styles';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Menu from '@mui/material/Menu';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -42,13 +43,46 @@ const AddItem = () => {
     display: 'none',
   });
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [newItem, setNewItem] = useState({
+    itemCategory: 'Select Category',
+    itemName: '',
+    itemDesc: '',
+    itemZIP: '',
+  });
+
+  const [itemFormOpen, setItemFormOpen] = useState(false);
+
+  const noItemPic =
+    'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png';
+
+  const handleClick = () => {
+    setItemFormOpen(true);
   };
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setItemFormOpen(false);
+  };
+
+  const handleChange = (event) => {
+    setNewItem({
+      ...newItem,
+      [event.target.name]: event.target.value,
+    });
+    // console.log(newItem);
+  };
+
+  const handleSubmit = () => {
+    console.log('Sending new item data: ', newItem);
+    axios
+      .post(`/items`, newItem)
+      .then((postResponse) => {
+        console.log('Received post response:');
+        console.log(postResponse);
+      })
+      .catch((err) => {
+        console.log('Error received from post request:');
+        console.log(err);
+      });
   };
 
   return (
@@ -59,7 +93,7 @@ const AddItem = () => {
         padding={1}
         spacing={2}
       >
-        <Grid container item xs={9} style={{ justifyContent: 'center' }}>
+        <Grid container item xs={9} style={{ justifyContent: 'center', marginBottom: '-15px' }}>
           <label htmlFor="contained-button-file">
             <Input
               accept="image/*"
@@ -78,72 +112,79 @@ const AddItem = () => {
             </Button>
           </label>
         </Grid>
-
-        <Grid container item xs={6} style={{ justifyContent: 'center' }}>
-          <Button
+        <Grid container item xs={9} style={{ justifyContent: 'center' }}>
+          <Select
+            name="itemCategory"
             fullWidth
-            color="sortButton"
-            variant="contained"
-            className={classes.hover2}
-            onClick={handleClick}
+            onChange={handleChange}
+            style={{
+              margin: '0 auto',
+              display: 'flex',
+              width: 200,
+              marginTop: 20,
+              backgroundColor: '#2C2C2C',
+            }}
+            className={(classes.menu, classes.hover2)}
+            id="editItemCategory"
+            label="Item category"
+            variant="filled"
+            value={newItem.itemCategory}
           >
-            Select Category *
-          </Button>
-          <Menu
-            className={classes.menu}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Select Category">
+              Select Category
+            </MenuItem>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Electronics & Media">
               Electronics & Media
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Home & Garden">
               Home & Garden
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem
+              style={{ color: '#2C2C2C' }}
+              value="Clothing, Shoe, & Accessories"
+            >
               Clothing, Shoe, & Accessories
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Baby & Kids">
               Baby & Kids
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Vehicles">
               Vehicles
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem
+              style={{ color: '#2C2C2C' }}
+              value="Toys, Games, & Hobbies"
+            >
               Toys, Games, & Hobbies
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Sports & Outdoors">
               Sports & Outdoors
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Collectibles & Art">
               Collectibles & Art
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-              Murder
-            </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Pet Supplies">
               Pet Supplies
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Health & Beauty">
               Health & Beauty
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Wedding">
               Wedding
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Business Equipment">
               Business Equipment
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Tickets">
               Tickets
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Real Estate">
               Real Estate
             </MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+            <MenuItem style={{ color: '#2C2C2C' }} value="Other">
               Other
             </MenuItem>
-          </Menu>
+          </Select>
         </Grid>
 
         <Grid container item xs={9} style={{ justifyContent: 'center' }}>
@@ -158,9 +199,10 @@ const AddItem = () => {
             color="textYellow"
             required
             id="outlined-title"
-            label="Title"
-            name="title"
+            label="Item name"
             type="text"
+            name="itemName"
+            onChange={handleChange}
           />
         </Grid>
 
@@ -177,7 +219,8 @@ const AddItem = () => {
             required
             id="outlined-description"
             label="Description"
-            name="title"
+            name="itemDesc"
+            onChange={handleChange}
             type="text"
             multiline
             rows={4}
@@ -197,20 +240,33 @@ const AddItem = () => {
             required
             id="outlined-zip-code"
             label="Zip Code"
-            name="zip-code"
+            name="itemZIP"
+            onChange={handleChange}
             type="text"
           />
         </Grid>
-
-        <Grid container item xs={6} style={{ justifyContent: 'center' }}>
-          <Button
-            fullWidth
-            color="sortButton"
-            variant="contained"
-            className={classes.hover2}
-          >
-            Add Item
-          </Button>
+        <Grid container item xs={12} style={{ justifyContent: 'space-evenly' }}>
+          <Grid container item xs={4} style={{ justifyContent: 'flex-end' }}>
+            <Button
+              style={{ minWidth: '95%' }}
+              color="sortButton"
+              variant="contained"
+              className={classes.hover2}
+            >
+              Add Item
+            </Button>
+          </Grid>
+          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
+            <Button
+              style={{ minWidth: '95%' }}
+              onClick={handleClose}
+              color="sortButton"
+              variant="contained"
+              className={classes.hover2}
+            >
+              Cancel
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </div>

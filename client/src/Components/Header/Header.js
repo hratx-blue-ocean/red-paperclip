@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Container } from '@mui/material';
+import Grid from '@mui/material/Grid';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,6 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import Hamburger from './Hamburger';
+
 import { ItemsContext } from '../ItemsContext';
 
 const Header = () => {
@@ -51,31 +55,35 @@ const Header = () => {
         style={{ backgroundColor: '#161513', color: 'white' }}
       >
         <Toolbar>
-          <AttachFileIcon
-            color="paperClip"
-            onClick={handleLogoClick}
-            style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
-            sx={{ ml: 35, fontSize: 40 }}
-          />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1 }}
-            onClick={handleLogoClick}
-            style={{ cursor: 'pointer' }}
-          >
-            Red Paperclip&nbsp;
-            {/* <CompareArrowsIcon />
+          <Container>
+            <Grid container wrap="nowrap">
+              <AttachFileIcon
+                color="paperClip"
+                onClick={handleLogoClick}
+                style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+                sx={{ fontSize: 40 }}
+              />
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{ flexGrow: 1 }}
+                onClick={handleLogoClick}
+                style={{ cursor: 'pointer' }}
+              >
+                Red Paperclip&nbsp;
+                {/* <CompareArrowsIcon />
             &nbsp;
             {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
-          </Typography>
-          {isLoggedIn && (
-            <>
-              <AccountCircleIcon />
-              <Typography variant="h6">Welcome, user!</Typography>
-            </>
-          )}
-          <Hamburger />
+              </Typography>
+              {isLoggedIn && (
+                <>
+                  <AccountCircleIcon />
+                  <Typography variant="h6">Welcome, user!</Typography>
+                </>
+              )}
+              <Hamburger />
+            </Grid>
+          </Container>
         </Toolbar>
       </AppBar>
     </div>

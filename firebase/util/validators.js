@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const isEmpty = (string) => {
   if (string.trim() === '') return true;
   return false;
@@ -27,15 +28,14 @@ const validateSignUpData = (data) => {
   } else if (!isEmail(data.email)) {
     errors.email = 'Must be a valid email address';
   }
-
   if (isEmpty(data.firstName)) errors.firstName = 'Must not be empty';
   if (isEmpty(data.lastName)) errors.lastName = 'Must not be empty';
-  if (isEmpty(data.phoneNumber)) errors.phoneNumber = 'Must not be empty';
-  if (isEmpty(data.country)) errors.country = 'Must not be empty';
+  if (isEmpty(data.zip)) errors.zip = 'Must not be empty';
   if (isEmpty(data.password)) errors.password = 'Must not be empty';
+  if (data.password.length < 6)
+    errors.password = 'Password must be atleast 6 characters long';
   if (data.password !== data.confirmPassword)
     errors.confirmPassword = 'Passwords must be the same';
-  if (isEmpty(data.username)) errors.username = 'Must not be empty';
 
   return {
     errors,

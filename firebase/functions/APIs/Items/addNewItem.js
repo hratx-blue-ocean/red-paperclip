@@ -9,8 +9,7 @@ const addNewItem = (req, res) => {
     itemCategory: req.body.category,
     itemDescription: req.body.description,
     itemLocation: req.body.location,
-    itemPhoto: req.body.photo,
-    createdAt: Date.now(),
+    createdAt: new Date().toISOString(),
     reports: 0,
     active: true,
   };

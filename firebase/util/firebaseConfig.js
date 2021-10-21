@@ -1,5 +1,3 @@
-// require('dotenv').config();
-
 module.exports = {
   apiKey: process.env.apiKey,
   authDomain: process.env.authDomain,
@@ -9,5 +7,3 @@ module.exports = {
   appId: process.env.appId,
   measurementId: process.env.measurementId,
 };
-
-// module.exports = firebaseConfig;

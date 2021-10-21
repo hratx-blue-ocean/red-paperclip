@@ -9,23 +9,16 @@ import ReportedMessagesFeed from './ReportedMessagesFeed';
 import { ItemsContext } from '../ItemsContext';
 
 const Admin = () => {
-  // const { isAdminState } = useContext(ItemsContext);
-  // const [isAdmin] = isAdminState;
+  const { currentUserState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
 
   const [value, setValue] = useState(0);
-  const isAdmin = true;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
     <>
-      {!isAdmin ? (
-        <Grid container item justifyContent="center">
-          <Typography variant="h3" sx={{ color: 'text.white' }}>
-            You shall not pass!
-          </Typography>
-        </Grid>
-      ) : (
+      {currentUser.permissions === 'admin' ? (
         <>
           <Grid container>
             <Grid container item justifyContent="center">
@@ -55,6 +48,14 @@ const Admin = () => {
           </Box>
           <Grid container>
             {value === 0 ? <ReportedItemsFeed /> : <ReportedMessagesFeed />}
+          </Grid>
+        </>
+      ) : (
+        <>
+          <Grid container item justifyContent="center">
+            <Typography variant="h3" sx={{ color: 'text.white' }}>
+              You shall not pass!
+            </Typography>
           </Grid>
         </>
       )}

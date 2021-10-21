@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import CategorySelector from './CategorySelector';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -37,14 +38,17 @@ const useStyles = makeStyles(() => ({
 export default function SortBar({ item }) {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const [anchorEl, setAnchorEl] = useState(null);
+  // const open = Boolean(anchorEl);
+  // const [selectedCategory, setSelectedCategory] = useState('Select Category');
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClose = (event) => {
+  //   setAnchorEl(null);
+  //   setSelectedCategory();
+  //   console.log(event);
+  // };
 
   return (
     <AppBar
@@ -54,11 +58,14 @@ export default function SortBar({ item }) {
       <Container>
         <Grid
           container
-          style={{ marginTop: '10px', marginBottom: '10px' }}
+          style={{
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
           wrap="nowrap"
           justifyContent="space-evenly"
         >
-          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
+          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
             <Typography
               className={classes.bold}
               style={{
@@ -68,9 +75,10 @@ export default function SortBar({ item }) {
                 fontSize: 18,
               }}
             >
-              {'SORT BY: '}
+              {'FILTER BY: '}
             </Typography>
-            <Button
+            <CategorySelector />
+            {/* <Button
               color="sortButton"
               variant="contained"
               className={classes.hover2}
@@ -132,7 +140,7 @@ export default function SortBar({ item }) {
               <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
                 Other
               </MenuItem>
-            </Menu>
+            </Menu> */}
           </Grid>
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Button
@@ -140,7 +148,7 @@ export default function SortBar({ item }) {
               variant="contained"
               className={classes.hover2}
             >
-              Surprise Me!
+              <Typography>Surprise Me!</Typography>
             </Button>
           </Grid>
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>
@@ -160,7 +168,7 @@ export default function SortBar({ item }) {
               variant="contained"
               className={classes.hover2}
             >
-              Item Name || Add Item +
+              <Typography>Item Name || Add Item +</Typography>
             </Button>
           </Grid>
         </Grid>

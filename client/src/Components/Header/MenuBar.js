@@ -6,14 +6,16 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Avatar from '@mui/material/Avatar';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import Hamburger from './Hamburger';
 import { ItemsContext } from '../ItemsContext';
 
 const MenuBar = () => {
-  const { isLoggedInState, menuOpenState } = useContext(ItemsContext);
+  const { isLoggedInState, menuOpenState, currentUserState } =
+    useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,7 +68,7 @@ const MenuBar = () => {
     >
       <Toolbar>
         <Container maxWidth="lg">
-          <Grid container wrap="nowrap">
+          <Grid container wrap="nowrap" alignItems="center">
             <AttachFileIcon
               color="paperClip"
               onClick={handleLogoClick}
@@ -87,8 +89,7 @@ const MenuBar = () => {
             </Typography>
             {isLoggedIn && (
               <>
-                <AccountCircleIcon />
-                <Typography variant="h6">Welcome, user!</Typography>
+                <Avatar src={currentUser.imageUrl} />
               </>
             )}
 

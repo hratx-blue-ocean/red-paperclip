@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SortBar() {
+export default function SortBar({ item }) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);

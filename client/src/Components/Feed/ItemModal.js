@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import dateFormat from 'dateformat';
 import { red } from '@mui/material/colors';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
@@ -66,6 +67,7 @@ export default function ItemModal({
   handleUnwatch,
   handleTradeOpen,
   handleReportOpen,
+  item,
 }) {
   const classes = useStyles();
 
@@ -84,9 +86,9 @@ export default function ItemModal({
           <CardMedia
             component="img"
             position="relative"
-            image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
+            image={item.itemPhoto}
             style={{ objectFit: 'cover' }}
-            alt="Axe Set"
+            alt={item.itemName}
           />
           <Grid container style={{ marginTop: '6px' }}>
             <Grid
@@ -100,7 +102,7 @@ export default function ItemModal({
                 variant="h5"
                 style={{ marginLeft: '22px', color: '#F0CC71' }}
               >
-                Rustic Axe Set
+                {item.itemName}
               </Typography>
             </Grid>
             <Grid container item xs={2} justifyContent="center">
@@ -126,8 +128,8 @@ export default function ItemModal({
                 aria-label="user_name"
               />
             }
-            title="Jeffrey Dahmer"
-            subheader="6 hours ago"
+            title={item.itemOwner}
+            subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
             style={{
               marginBottom: '-20px',
               marginTop: '-12px',
@@ -139,34 +141,20 @@ export default function ItemModal({
               container
               item
               xs={12}
-              justifyContent="center"
-              style={{ marginBottom: '20px' }}
+              style={{ marginBottom: '20px', justifyContent: 'flex-start' }}
             >
               <Typography
                 variant="body2"
                 color="white"
                 style={{
                   marginLeft: '10px',
+                  marginRight: '10px',
                   marginBottom: '20px',
+                  justifyContent: 'flex-start',
                 }}
                 display="inline"
               >
-                These beautiful axes were custom made in the heart of Minnesota.
-                I need to have more characters so I am typing. I need to have
-                more characters so I am typing. I need to have more characters
-                so I am typing. I need to have more characters so I am typing. I
-                need to have more characters so I am typing. I need to have more
-                characters so I am typing. I need to have more characters so I
-                am typing. I need to have more characters so I am typing. I need
-                to have more characters so I am typing. I need to have more
-                characters so I am typing. I need to have more characters so I
-                am typing. I need to have more characters so I am typing. I need
-                to have more characters so I am typing. I need to have more
-                characters so I am typing. I need to have more characters so I
-                am typing. I need to have more characters so I am typing. I need
-                to have more characters so I am typing. I need to have more
-                characters so I am typing. I need to have more characters so I
-                am typing. I need to have more characters so I am typing.
+                {item.itemDescription}
               </Typography>
             </Grid>
             <Grid container item xs={12} justifyContent="center" spacing={3}>

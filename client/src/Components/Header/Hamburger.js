@@ -91,7 +91,6 @@ const Hamburger = () => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        sx={{ mr: 38 }}
         onClick={handleMenuOpen}
       >
         <Menu

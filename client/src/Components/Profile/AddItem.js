@@ -3,8 +3,8 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/material/styles';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -41,15 +41,6 @@ const AddItem = () => {
   const Input = styled('input')({
     display: 'none',
   });
-
-  const StyledFormControlLabel = styled((props) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FormControlLabel {...props} />
-  ))(({ theme, checked }) => ({
-    '.MuiFormControlLabel-label': checked && {
-      color: theme.palette.primary.main,
-    },
-  }));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -104,22 +95,54 @@ const AddItem = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Electronics & Media</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Home & Garden</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Clothing, Shoe, & Accessories</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Baby & Kids</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Vehicles</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Toys, Games, & Hobbies</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Sports & Outdoors</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Collectibles & Art</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Murder</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Pet Supplies</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Health & Beauty</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Wedding</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Business Equipment</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Tickets</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Real Estate</MenuItem>
-            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>Other</MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Electronics & Media
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Home & Garden
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Clothing, Shoe, & Accessories
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Baby & Kids
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Vehicles
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Toys, Games, & Hobbies
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Sports & Outdoors
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Collectibles & Art
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Murder
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Pet Supplies
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Health & Beauty
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Wedding
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Business Equipment
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Tickets
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Real Estate
+            </MenuItem>
+            <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
+              Other
+            </MenuItem>
           </Menu>
         </Grid>
 
@@ -138,8 +161,6 @@ const AddItem = () => {
             label="Title"
             name="title"
             type="text"
-          // value={}
-          // onChange={handleFormChange}
           />
         </Grid>
 
@@ -160,8 +181,6 @@ const AddItem = () => {
             type="text"
             multiline
             rows={4}
-          // value={}
-          // onChange={handleFormChange}
           />
         </Grid>
 
@@ -180,8 +199,6 @@ const AddItem = () => {
             label="Zip Code"
             name="zip-code"
             type="text"
-          // value={}
-          // onChange={handleFormChange}
           />
         </Grid>
 

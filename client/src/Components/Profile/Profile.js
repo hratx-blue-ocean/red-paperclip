@@ -49,7 +49,7 @@ const Profile = () => {
             </Card>
             <EditProfileButton userName={userName} userPFP={userPFP} />
           </Card>
-          {/* <Card
+          <Card
             sx={{
               width: 450,
               height: 550,
@@ -70,9 +70,6 @@ const Profile = () => {
               </Grid>
             </Grid>
           </Card>
- */}
-
-          {/* HERE'S BLAKES CODE */}
           <Card
             sx={{
               width: 450,

@@ -12,14 +12,9 @@ import { ItemsContext } from '../ItemsContext';
 import AddItem from './AddItem';
 
 const Profile = () => {
-<<<<<<< HEAD
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
   console.log('Current user: ', currentUser);
-=======
-  const { currentUser } = useContext(ItemsContext);
-  const user = currentUser[0];
-  // console.log('Current user: ', currentUser);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',
@@ -29,7 +24,6 @@ const Profile = () => {
     itemPicture:
       'https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w',
   };
->>>>>>> main
 
   return (
     <>

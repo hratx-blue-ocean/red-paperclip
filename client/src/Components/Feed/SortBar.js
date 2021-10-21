@@ -75,7 +75,7 @@ export default function SortBar() {
                 fontSize: 18,
               }}
             >
-              {'SORT BY: '}
+              {'FILTER BY: '}
             </Typography>
             <CategorySelector />
             {/* <Button

@@ -12,9 +12,9 @@ import { ItemsContext } from '../ItemsContext';
 import AddItem from './AddItem';
 
 const Profile = () => {
-  const { currentUser } = useContext(ItemsContext);
-  const user = currentUser[0];
-  // console.log('Current user: ', currentUser);
+  const { currentUserState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
+  console.log('Current user: ', currentUser);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',
@@ -30,7 +30,7 @@ const Profile = () => {
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Hello, {user.userFirst}!
+            Hello, {currentUser.userFirst}!
           </Typography>
           <Card
             sx={{
@@ -53,7 +53,7 @@ const Profile = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={user.userPFP}
+                image={currentUser.userPFP}
                 style={{ objectFit: 'cover' }}
                 alt="Mr. Dahmer"
               />

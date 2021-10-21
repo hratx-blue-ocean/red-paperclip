@@ -9,8 +9,8 @@ import TextField from '@mui/material/TextField';
 import { ItemsContext } from '../ItemsContext';
 
 const EditProfileButton = () => {
-  const { currentUser } = useContext(ItemsContext);
-  const user = currentUser[0];
+  const { currentUserState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
 
   const [formOpen, setFormOpen] = useState(false);
 
@@ -63,7 +63,7 @@ const EditProfileButton = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={user.userPFP}
+                image={currentUser.userPFP}
                 style={{ objectFit: 'cover' }}
                 alt="Mr. Dahmer"
               />

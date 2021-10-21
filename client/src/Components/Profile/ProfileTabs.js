@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
+import ProfileTabPanel from './ProfileTabPanel';
 
 const ProfileTabs = () => {
   const [value, setValue] = useState(0);
@@ -11,25 +12,6 @@ const ProfileTabs = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  function TabPanel(props) {
-    const { children, index } = props;
-
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -46,7 +28,7 @@ const ProfileTabs = () => {
           <Tab value={2} label="Watched Items" />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <ProfileTabPanel value={value} index={0}>
         <Card
           sx={{
             width: 600,
@@ -58,8 +40,8 @@ const ProfileTabs = () => {
         >
           Trade Journey Journal
         </Card>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </ProfileTabPanel>
+      <ProfileTabPanel value={value} index={1}>
         <Card
           sx={{
             width: 600,
@@ -71,8 +53,8 @@ const ProfileTabs = () => {
         >
           Trade Journey Map
         </Card>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </ProfileTabPanel>
+      <ProfileTabPanel value={value} index={2}>
         <Card
           sx={{
             width: 600,
@@ -84,7 +66,7 @@ const ProfileTabs = () => {
         >
           Watched Items
         </Card>
-      </TabPanel>
+      </ProfileTabPanel>
     </Box>
   );
 };

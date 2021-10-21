@@ -16,6 +16,7 @@ export default function SignInForm({ setShowAuthModal }) {
   const { isLoggedInState } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [values, setValues] = React.useState({
+    email: '',
     password: '',
     showPassword: false,
   });

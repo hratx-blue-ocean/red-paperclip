@@ -18,6 +18,7 @@ export default function CreateAccountForm({ setShowAuthModal }) {
   const [values, setValues] = React.useState({
     firstName: '',
     lastName: '',
+    email: '',
     password: '',
     zipCode: '',
     confirmPassword: '',

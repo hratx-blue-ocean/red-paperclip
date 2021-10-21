@@ -37,6 +37,7 @@ const Hamburger = () => {
   const handleCreateAcctClick = () => {
     setShowAuthModal(true);
     setAnchorEl(null);
+    setMenuOpen(true);
   };
 
   const handleMenuOpen = (event) => {
@@ -50,6 +51,8 @@ const Hamburger = () => {
   const handleSignOut = (event) => {
     event.preventDefault();
     setIsLoggedIn(false);
+    setIsReturningUser(false);
+    setShowAuthModal(false);
     setMenuOpen(false);
     history.push('/');
   };

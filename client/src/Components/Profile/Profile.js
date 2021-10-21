@@ -75,7 +75,7 @@ const Profile = () => {
             <ProfileActiveItem activeItem={testActiveItem} height="50%" />
           </Card>
 
-          <Card
+          {/* <Card
             sx={{
               width: 450,
               backgroundColor: '#494D53',
@@ -98,7 +98,7 @@ const Profile = () => {
                 <AddItem />
               </Grid>
             </Grid>
-          </Card>
+          </Card> */}
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

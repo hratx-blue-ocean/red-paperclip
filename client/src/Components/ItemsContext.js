@@ -31,6 +31,9 @@ export const ItemsProvider = (props) => {
     activeItem: 'fill me in',
     prevTrades: 'fill me in, too',
   });
+  const [apiUrl, setApiUrl] = useState(
+    'http://localhost:5001/red-paperclip-73a89/us-central1/api'
+  );
 
   return (
     <ItemsContext.Provider
@@ -44,6 +47,7 @@ export const ItemsProvider = (props) => {
         anchorElState: [anchorEl, setAnchorEl],
         menuOpenState: [menuOpen, setMenuOpen],
         currentUser: [currentUser, setCurrentUser],
+        apiUrlState: [apiUrl, setApiUrl],
       }}
     >
       {props.children}

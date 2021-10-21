@@ -13,10 +13,6 @@ export const ItemsProvider = (props) => {
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [modalSignInOpen, setSignInModalOpen] = useState(false);
-  const [modalCreateAcctOpen, setModalCreateAcctOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [currentUser, setCurrentUser] = useState({
     userFirst: 'Jeffrey',
     userLast: 'Dahmer',
@@ -31,6 +27,9 @@ export const ItemsProvider = (props) => {
     activeItem: 'fill me in',
     prevTrades: 'fill me in, too',
   });
+  const [apiUrl, setApiUrl] = useState(
+    'http://localhost:5001/red-paperclip-73a89/us-central1/api'
+  );
 
   return (
     <ItemsContext.Provider
@@ -39,11 +38,8 @@ export const ItemsProvider = (props) => {
         displayItemsState: [displayItems, setDisplayItems],
         isLoggedInState: [isLoggedIn, setIsLoggedIn],
         isAdminState: [isAdmin, setIsAdmin],
-        modalSignInState: [modalSignInOpen, setSignInModalOpen],
-        modalCreateAcctState: [modalCreateAcctOpen, setModalCreateAcctOpen],
-        anchorElState: [anchorEl, setAnchorEl],
-        menuOpenState: [menuOpen, setMenuOpen],
         currentUser: [currentUser, setCurrentUser],
+        apiUrlState: [apiUrl, setApiUrl],
       }}
     >
       {props.children}

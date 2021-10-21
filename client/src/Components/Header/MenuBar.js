@@ -57,32 +57,31 @@ const MenuBar = () => {
     history.push('/');
   };
   return (
-    <AppBar
-      position="fixed"
-      className="header"
-      style={{ backgroundColor: '#161513', color: 'white' }}
-    >
-      <Toolbar>
-        <AttachFileIcon
-          color="paperClip"
-          onClick={handleLogoClick}
-          style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
-          sx={{ ml: 35, fontSize: 40 }}
-        />
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ flexGrow: 1 }}
-          onClick={handleLogoClick}
-          style={{ cursor: 'pointer' }}
-        >
-          Red Paperclip&nbsp;
-          {/* <CompareArrowsIcon />
-            &nbsp;
-            {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
-        </Typography>
-        {isLoggedIn && <AccountCircleIcon />}
-
+    <Container maxWidth="lg">
+    <Grid container wrap="nowrap" alignItems="center">
+      <AttachFileIcon
+        color="paperClip"
+        onClick={handleLogoClick}
+        style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+        sx={{ fontSize: 40 }}
+      />
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{ flexGrow: 1 }}
+        onClick={handleLogoClick}
+        style={{ cursor: 'pointer' }}
+      >
+        Red Paperclip&nbsp;
+        <CompareArrowsIcon />
+        &nbsp;
+        {`${colorsArr[random1]} ${itemsArr[random2]}`}
+      </Typography>
+      {isLoggedIn && (
+        <>
+          <AccountCircleIcon />
+        </>
+      )}
         <Hamburger
           onClick={handleModalOpen}
           menuOpen={menuOpen}

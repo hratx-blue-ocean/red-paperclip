@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -13,9 +14,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ItemsContext } from '../ItemsContext';
 
 export default function SignInForm({ setShowAuthModal }) {
-  const { isLoggedInState } = useContext(ItemsContext);
+  const { isLoggedInState, apiUrlState, currentUserState } =
+    useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
-  const [values, setValues] = React.useState({
+  const [apiUrl, setApiUrl] = apiUrlState;
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [values, setValues] = useState({
     email: '',
     password: '',
     showPassword: false,
@@ -36,10 +40,30 @@ export default function SignInForm({ setShowAuthModal }) {
     event.preventDefault();
   };
 
+  const signIn = () => {
+    const params = {
+      email: values.email,
+      password: values.password,
+    };
+
+    Axios.post(`${apiUrl}/login`, params)
+      .then((result) => {
+        Axios.get(`${apiUrl}/user`, {
+          headers: { Authorization: `Bearer ${result.data.token}` },
+        }).then((userData) => {
+          setCurrentUser(userData.data);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleSignIn = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
     setShowAuthModal(false);
+    signIn();
   };
 
   return (

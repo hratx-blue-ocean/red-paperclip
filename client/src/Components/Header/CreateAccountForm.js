@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,14 +14,17 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ItemsContext } from '../ItemsContext';
 
 export default function CreateAccountForm({ setShowAuthModal }) {
-  const { isLoggedInState } = useContext(ItemsContext);
+  const { isLoggedInState, apiUrlState, currentUserState } =
+    useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
-  const [values, setValues] = React.useState({
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [apiUrl, setApiUrl] = apiUrlState;
+  const [values, setValues] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    zipCode: '',
+    zip: '',
     confirmPassword: '',
     showPassword: false,
   });
@@ -40,10 +44,34 @@ export default function CreateAccountForm({ setShowAuthModal }) {
     event.preventDefault();
   };
 
+  const signUp = () => {
+    const params = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      zip: values.zip,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+    };
+
+    Axios.post(`${apiUrl}/signup`, params)
+      .then((result) => {
+        Axios.get(`${apiUrl}/user`, {
+          headers: { Authorization: `Bearer ${result.data.token}` },
+        }).then((userData) => {
+          setCurrentUser(userData);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleCreateAcct = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
     setShowAuthModal(false);
+    signUp();
   };
 
   return (
@@ -134,8 +162,8 @@ export default function CreateAccountForm({ setShowAuthModal }) {
         <OutlinedInput
           id="zip"
           type="text"
-          value={values.zipCode}
-          onChange={handleChange('zipCode')}
+          value={values.zip}
+          onChange={handleChange('zip')}
           label="Zip"
           pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
         />

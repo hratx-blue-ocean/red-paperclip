@@ -81,12 +81,7 @@ const MenuBar = () => {
             &nbsp;
             {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
         </Typography>
-        {isLoggedIn && (
-          <>
-            <AccountCircleIcon />
-            <Typography variant="h6">Welcome, user!</Typography>
-          </>
-        )}
+        {isLoggedIn && <AccountCircleIcon />}
 
         <Hamburger
           onClick={handleModalOpen}

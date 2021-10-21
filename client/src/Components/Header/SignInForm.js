@@ -52,6 +52,7 @@ export default function SignInForm({ setShowAuthModal }) {
           headers: { Authorization: `Bearer ${result.data.token}` },
         }).then((userData) => {
           setCurrentUser(userData.data);
+          setIsLoggedIn(true);
         });
       })
       .catch((err) => {
@@ -61,7 +62,6 @@ export default function SignInForm({ setShowAuthModal }) {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    setIsLoggedIn(true);
     setShowAuthModal(false);
     signIn();
   };

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 // import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import ProfileTabPanel from './ProfileTabPanel';
+import WatchedItems from './WatchedItems';
 
 const ProfileTabs = () => {
   const [value, setValue] = useState(0);
@@ -32,7 +33,7 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 890,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
@@ -45,7 +46,7 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 890,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
@@ -58,13 +59,14 @@ const ProfileTabs = () => {
         <Card
           sx={{
             width: 600,
-            height: 719,
+            height: 890,
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
+            overflow: 'auto',
           }}
         >
-          Watched Items
+          <WatchedItems />
         </Card>
       </ProfileTabPanel>
     </Box>

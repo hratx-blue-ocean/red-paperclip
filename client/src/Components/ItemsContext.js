@@ -14,18 +14,15 @@ export const ItemsProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    userFirst: 'Jeffrey',
-    userLast: 'Dahmer',
-    userPFP: 'https://i.imgur.com/dNZcaDv.png',
-    userPhone: '(608) 742-9100',
-    userEmail: 'luv2eatU@gmail.com',
-    userAddress1: '2925 Columbia Drive',
-    userAddress2: '#127',
-    userCity: 'Portage',
-    userState: 'WI',
-    userZIP: '53901',
-    activeItem: 'fill me in',
-    prevTrades: 'fill me in, too',
+    userFirst: '',
+    userLast: '',
+    userPFP: '',
+    userPhone: '',
+    userEmail: '',
+    userZIP: '',
+    availableItem: '',
+    tradeHistory: [],
+    watchedItems: {},
   });
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
@@ -38,7 +35,7 @@ export const ItemsProvider = (props) => {
         displayItemsState: [displayItems, setDisplayItems],
         isLoggedInState: [isLoggedIn, setIsLoggedIn],
         isAdminState: [isAdmin, setIsAdmin],
-        currentUser: [currentUser, setCurrentUser],
+        currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
       }}
     >

@@ -90,7 +90,6 @@ const Hamburger = () => {
         aria-controls="menu-appbar"
         aria-haspopup="true"
         onClick={handleMenuOpen}
-        sx={{ mr: 38 }}
       >
         <MenuIcon />
       </IconButton>

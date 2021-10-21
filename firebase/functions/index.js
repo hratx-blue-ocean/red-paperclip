@@ -1,10 +1,12 @@
 const express = require('express');
 const app = require('express')();
+const cors = require('cors');
 const functions = require('firebase-functions');
 const auth = require('../util/auth');
 const { item, user, message, admin } = require('./APIs');
 
 app.use(express.json());
+app.use(cors());
 
 // ITEMS
 app.get('/getAllItems', item.getAllItems);

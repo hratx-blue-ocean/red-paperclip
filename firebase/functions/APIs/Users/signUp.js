@@ -1,5 +1,6 @@
 const firebase = require('firebase/app');
 const { getAuth, createUserWithEmailAndPassword } = require('firebase/auth');
+require('dotenv').config();
 const firebaseConfig = require('../../../util/firebaseConfig');
 const { db } = require('../../../util/admin');
 const { validateSignUpData } = require('../../../util/validators');
@@ -10,9 +11,7 @@ const signUp = (req, res) => {
   const newUser = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    username: req.body.username,
     email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
     zip: req.body.zip,
     password: req.body.password,
     confirmPassword: req.body.confirmPassword,
@@ -29,13 +28,11 @@ const signUp = (req, res) => {
   let token;
   let userId;
 
-  db.doc(`/users/${newUser.username}`)
+  db.doc(`/users/${newUser.email}`)
     .get()
     .then((doc) => {
       if (doc.exists) {
-        return res
-          .status(400)
-          .json({ username: 'this username already exists' });
+        return res.status(400).json({ email: 'this email already exists' });
       }
       const auth = getAuth();
       return createUserWithEmailAndPassword(
@@ -53,14 +50,15 @@ const signUp = (req, res) => {
       const userCredentials = {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
-        username: newUser.username,
-        phoneNumber: newUser.phoneNumber,
-        country: newUser.country,
+        zip: newUser.zip,
         email: newUser.email,
         createdAt: new Date().toISOString(),
         userId,
+        availableItem: '',
+        watchedItems: {},
+        tradeHistory: [],
       };
-      return db.doc(`/users/${newUser.username}`).set(userCredentials);
+      return db.doc(`/users/${newUser.email}`).set(userCredentials);
     })
     .then(() => res.status(201).json({ token }))
     .catch((err) => {

@@ -56,6 +56,7 @@ export default function SortBar() {
           container
           style={{ marginTop: '10px', marginBottom: '10px' }}
           wrap="nowrap"
+          justifyContent="space-evenly"
         >
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Typography

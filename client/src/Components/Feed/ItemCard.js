@@ -39,12 +39,6 @@ const useStyles = makeStyles(() => ({
   bold: {
     fontWeight: 600,
   },
-  hover1: {
-    color: '#161513',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
   hover2: {
     color: '#ffffff',
     '&:hover': {
@@ -57,10 +51,18 @@ const useStyles = makeStyles(() => ({
       color: '#ffffff',
     },
   },
+  hover1: {
+    color: '#161513',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
 }));
 
 export default function ItemCard() {
   const classes = useStyles();
+  // mouse over image
+
   // star fill
   const [starFill, setStarFill] = React.useState(false);
   const handleWatch = () => {
@@ -110,6 +112,8 @@ export default function ItemCard() {
                 image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
                 style={{ objectFit: 'cover' }}
                 alt="Axe Set"
+
+
               />
               <Grid container style={{ marginTop: '6px' }}>
                 <Grid
@@ -449,6 +453,7 @@ export default function ItemCard() {
             style={{ objectFit: 'cover' }}
             alt="Axe Set"
             onClick={handleCardOpen}
+
           />
           <Grid container style={{ marginTop: '6px' }}>
             <Grid

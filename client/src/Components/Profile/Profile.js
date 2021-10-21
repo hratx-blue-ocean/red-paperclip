@@ -9,6 +9,7 @@ import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
 import ProfileActiveItem from './ProfileActiveItem';
 import { ItemsContext } from '../ItemsContext';
+import AddItem from './AddItem';
 
 const Profile = () => {
   const { currentUser } = useContext(ItemsContext);
@@ -63,6 +64,36 @@ const Profile = () => {
             </Typography>
             <ProfileActiveItem />
           </Card>
+
+
+
+          <Card
+            sx={{
+              width: 450,
+              backgroundColor: '#494D53',
+              marginTop: 3,
+            }}
+          >
+            <Typography
+              variant="h4"
+              textAlign="center"
+              style={{ marginTop: '35px', fontWeight: 800 }}
+            >
+              Add Item
+            </Typography>
+            <Grid
+              container
+              spacing={1}
+              style={{ justifyContent: 'space-evenly' }}
+            >
+              <Grid item xs={12}>
+                <AddItem />
+              </Grid>
+            </Grid>
+          </Card>
+
+
+
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

@@ -47,7 +47,7 @@ const CategorySelector = () => {
     'Toys, Games, & Hobbies',
     'Sports & Outdoors',
     'Collectibles & Art',
-    'redruM',
+    'Alien Technology',
     'Pet Supplies',
     'Health & Beauty',
     'Wedding',

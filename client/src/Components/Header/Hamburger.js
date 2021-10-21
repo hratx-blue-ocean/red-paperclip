@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import Box from '@mui/material/Box';
 import { useHistory } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -81,7 +81,7 @@ const Hamburger = () => {
   };
 
   return (
-    <div>
+    <Box>
       <IconButton
         size="large"
         edge="start"
@@ -110,7 +110,7 @@ const Hamburger = () => {
         onClose={handleClose}
       >
         {isLoggedIn ? (
-          <div>
+          <Box>
             <MenuItem onClick={handleHomeClick}>
               <ListItemIcon>
                 <HomeIcon fontSize="small" />
@@ -142,12 +142,12 @@ const Hamburger = () => {
               </ListItemIcon>
               Logout
             </MenuItem>
-          </div>
+          </Box>
         ) : (
-          <div>
+          <Box>
             <MenuItem onClick={handleSignInClick}>Sign In</MenuItem>
             <MenuItem onClick={handleCreateAcctClick}>Create Account</MenuItem>
-          </div>
+          </Box>
         )}
       </Menu>
       {showAuthModal && (
@@ -161,7 +161,7 @@ const Hamburger = () => {
           isReturningUser={isReturningUser}
         />
       )}
-    </div>
+    </Box>
   );
 };
 

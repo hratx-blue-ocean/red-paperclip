@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -41,7 +42,7 @@ export default function SignInForm({ setShowAuthModal }) {
   };
 
   return (
-    <div>
+    <Box>
       <Typography id="modal-modal-title" variant="h6" component="h2">
         Sign in with your email and password below:
       </Typography>
@@ -95,6 +96,6 @@ export default function SignInForm({ setShowAuthModal }) {
           </Button>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

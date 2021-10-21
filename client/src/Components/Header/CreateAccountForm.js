@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import FormControl from '@mui/material/FormControl';
@@ -15,7 +16,11 @@ export default function CreateAccountForm({ setShowAuthModal }) {
   const { isLoggedInState } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [values, setValues] = React.useState({
+    firstName: '',
+    lastName: '',
     password: '',
+    zipCode: '',
+    confirmPassword: '',
     showPassword: false,
   });
 
@@ -41,7 +46,7 @@ export default function CreateAccountForm({ setShowAuthModal }) {
   };
 
   return (
-    <div>
+    <Box>
       <Typography id="modal-modal-title" variant="h6" component="h2">
         Create a new account:
       </Typography>
@@ -97,6 +102,44 @@ export default function CreateAccountForm({ setShowAuthModal }) {
           label="Password"
         />
       </FormControl>
+
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">
+          Confirm Password
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
+          value={values.confirmPassword}
+          onChange={handleChange('confirmPassword')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="ConfirmPassword"
+        />
+      </FormControl>
+
+      <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel htmlFor="zip">Zip Code</InputLabel>
+        <OutlinedInput
+          id="zip"
+          type="text"
+          value={values.zipCode}
+          onChange={handleChange('zipCode')}
+          label="Zip"
+          pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
+        />
+      </FormControl>
+
       <Button
         type="submit"
         onClick={handleCreateAcct}
@@ -104,6 +147,6 @@ export default function CreateAccountForm({ setShowAuthModal }) {
       >
         Create Your Account
       </Button>
-    </div>
+    </Box>
   );
 }

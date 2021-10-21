@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -56,50 +57,48 @@ const MenuBar = () => {
     history.push('/');
   };
   return (
-    <div className="header">
-      <AppBar
-        position="fixed"
-        style={{ backgroundColor: '#161513', color: 'white' }}
-      >
-        <Toolbar>
-          <AttachFileIcon
-            color="paperClip"
-            onClick={handleLogoClick}
-            style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
-            sx={{ ml: 35, fontSize: 40 }}
-          />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1 }}
-            onClick={handleLogoClick}
-            style={{ cursor: 'pointer' }}
-          >
-            Red Paperclip&nbsp;
-            {/* <CompareArrowsIcon />
+    <AppBar
+      position="fixed"
+      className="header"
+      style={{ backgroundColor: '#161513', color: 'white' }}
+    >
+      <Toolbar>
+        <AttachFileIcon
+          color="paperClip"
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+          sx={{ ml: 35, fontSize: 40 }}
+        />
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ flexGrow: 1 }}
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer' }}
+        >
+          Red Paperclip&nbsp;
+          {/* <CompareArrowsIcon />
             &nbsp;
             {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
-          </Typography>
-          {isLoggedIn && (
-            <>
-              <AccountCircleIcon />
-              <Typography variant="h6">Welcome, user!</Typography>
-            </>
-          )}
+        </Typography>
+        {isLoggedIn && (
+          <>
+            <AccountCircleIcon />
+            <Typography variant="h6">Welcome, user!</Typography>
+          </>
+        )}
 
-          <Hamburger
-            onClick={handleModalOpen}
-            menuOpen={menuOpen}
-            setMenuOpen={setMenuOpen}
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-            setAnchorEl={setAnchorEl}
-            anchorEl={anchorEl}
-          />
-
-        </Toolbar>
-      </AppBar>
-    </div>
+        <Hamburger
+          onClick={handleModalOpen}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setAnchorEl={setAnchorEl}
+          anchorEl={anchorEl}
+        />
+      </Toolbar>
+    </AppBar>
   );
 };
 

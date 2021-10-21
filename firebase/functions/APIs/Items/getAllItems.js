@@ -11,6 +11,7 @@ const getAllItems = (req, res) => {
       const items = [];
       data.forEach((doc) => {
         items.push({
+          uid: doc.id,
           itemName: doc.data().itemName,
           itemOwner: doc.data().itemOwner,
           itemOwnerUID: doc.data().itemOwnerUID,

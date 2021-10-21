@@ -65,7 +65,7 @@ const MenuBar = () => {
       style={{ backgroundColor: '#161513', color: 'white' }}
     >
       <Toolbar>
-        <Container>
+        <Container maxWidth="lg">
           <Grid container wrap="nowrap">
             <AttachFileIcon
               color="paperClip"
@@ -81,9 +81,9 @@ const MenuBar = () => {
               style={{ cursor: 'pointer' }}
             >
               Red Paperclip&nbsp;
-              {/* <CompareArrowsIcon />
-            &nbsp;
-            {`${colorsArr[random1]} ${itemsArr[random2]}`} */}
+              <CompareArrowsIcon />
+              &nbsp;
+              {`${colorsArr[random1]} ${itemsArr[random2]}`}
             </Typography>
             {isLoggedIn && (
               <>

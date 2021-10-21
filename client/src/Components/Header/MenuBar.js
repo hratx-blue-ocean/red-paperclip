@@ -66,7 +66,7 @@ const MenuBar = () => {
     >
       <Toolbar>
         <Container maxWidth="lg">
-          <Grid container wrap="nowrap">
+          <Grid container wrap="nowrap" alignItems="center">
             <AttachFileIcon
               color="paperClip"
               onClick={handleLogoClick}
@@ -88,7 +88,6 @@ const MenuBar = () => {
             {isLoggedIn && (
               <>
                 <AccountCircleIcon />
-                <Typography variant="h6">Welcome, user!</Typography>
               </>
             )}
 

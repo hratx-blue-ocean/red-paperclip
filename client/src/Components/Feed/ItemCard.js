@@ -149,6 +149,7 @@ export default function ItemCard({ item }) {
               objectFit: 'cover',
               minHeight: '275px',
               maxHeight: '250px',
+              cursor: 'pointer',
             }}
             alt={item.itemName}
             onClick={handleCardOpen}
@@ -210,21 +211,41 @@ export default function ItemCard({ item }) {
               )}
             </Grid>
           </Grid>
-          <CardHeader
-            avatar={
-              <Avatar
-                sx={{ bgcolor: red[500], marginLeft: '8px' }}
-                aria-label="user_name"
-              />
-            }
-            title={item.itemOwner}
-            subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
-            style={{
-              marginBottom: '-20px',
-              marginTop: '-12px',
-              color: '#FFFFFF',
-            }}
-          />
+          {item.itemOwnerPhoto && (
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500], marginLeft: '8px' }}
+                  src={item.itemOwnerPhoto}
+                  alt={item.itemOwner}
+                />
+              }
+              title={item.itemOwner}
+              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              style={{
+                marginBottom: '-20px',
+                marginTop: '-12px',
+                color: '#FFFFFF',
+              }}
+            />
+          )}
+          {!item.itemOwnerPhoto && (
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500], marginLeft: '8px' }}
+                  alt={item.itemOwner}
+                />
+              }
+              title={item.itemOwner}
+              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              style={{
+                marginBottom: '-20px',
+                marginTop: '-12px',
+                color: '#FFFFFF',
+              }}
+            />
+          )}
           <CardContent>
             {item.itemDescription.length > 60 && (
               <Grid

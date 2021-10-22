@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 // import Button from '@mui/material/Button';
 // import Box from '@mui/material/Box';
+import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
 import EditProfileButton from './EditProfileButton';
@@ -14,7 +15,24 @@ import AddItem from './AddItem';
 const Profile = () => {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
+  // const [activeItem, setActiveItem] = useState({});
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
+  const { activeItemState } = useContext(ItemsContext);
+  const [activeItem, setActiveItem] = activeItemState;
   // console.log('Current user: ', currentUser);
+  // console.log('Item string: ', currentUser.availableItem);
+
+  const getActiveItem = (itemString) => {
+    axios
+      .get(`${apiUrl}/getItem?uid=${itemString}`)
+      .then((item) => setActiveItem(item.data))
+      .catch((error) => console.log('Error retrieving active item: ', error));
+  };
+
+  useEffect(() => {
+    getActiveItem(currentUser.availableItem);
+  }, [currentUser]);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',
@@ -30,7 +48,7 @@ const Profile = () => {
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Hello, {currentUser.userFirst}!
+            Howdy, {currentUser.firstName}! Your item is {activeItem.itemName}.
           </Typography>
           <Card
             sx={{
@@ -53,7 +71,7 @@ const Profile = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={currentUser.userPFP}
+                image={currentUser.imageUrl}
                 style={{ objectFit: 'cover' }}
                 alt="Profile picture"
               />
@@ -72,7 +90,7 @@ const Profile = () => {
             <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
             </Typography>
-            <ProfileActiveItem activeItem={testActiveItem} height="50%" />
+            <ProfileActiveItem activeItem={activeItem} height="50%" />
           </Card>
 
           {/* <Card

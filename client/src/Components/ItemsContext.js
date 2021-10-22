@@ -24,6 +24,19 @@ export const ItemsProvider = (props) => {
     tradeHistory: [],
     watchedItems: {},
   });
+  const [activeItem, setActiveItem] = useState({
+    createdAt: '',
+    itemOwner: '',
+    active: false,
+    itemOwnerPhoto: '',
+    report: 0,
+    itemDescription: '',
+    itemOwnerUID: '',
+    itemCategory: '',
+    itemPhoto: '',
+    itemName: '',
+    itemLocation: '',
+  });
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
@@ -37,6 +50,7 @@ export const ItemsProvider = (props) => {
         isAdminState: [isAdmin, setIsAdmin],
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
+        activeItemState: [activeItem, setActiveItem],
       }}
     >
       {props.children}

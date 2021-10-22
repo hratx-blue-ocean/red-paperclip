@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const ItemsContext = createContext();
 
@@ -13,24 +14,44 @@ export const ItemsProvider = (props) => {
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [modalSignInOpen, setSignInModalOpen] = useState(false);
-  const [modalCreateAcctOpen, setModalCreateAcctOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [currentUser, setCurrentUser] = useState({
-    userFirst: 'Jeffrey',
-    userLast: 'Dahmer',
-    userPFP: 'https://i.imgur.com/dNZcaDv.png',
-    userPhone: '(608) 742-9100',
-    userEmail: 'luv2eatU@gmail.com',
-    userAddress1: '2925 Columbia Drive',
-    userAddress2: '#127',
-    userCity: 'Portage',
-    userState: 'WI',
-    userZIP: '53901',
-    activeItem: 'fill me in',
-    prevTrades: 'fill me in, too',
+    userFirst: '',
+    userLast: '',
+    userPFP: '',
+    userPhone: '',
+    userEmail: '',
+    userZIP: '',
+    availableItem: '',
+    tradeHistory: [],
+    watchedItems: {},
   });
+  const [activeItem, setActiveItem] = useState({
+    createdAt: '',
+    itemOwner: '',
+    active: false,
+    itemOwnerPhoto: '',
+    report: 0,
+    itemDescription: '',
+    itemOwnerUID: '',
+    itemCategory: '',
+    itemPhoto: '',
+    itemName: '',
+    itemLocation: '',
+  });
+  const [apiUrl, setApiUrl] = useState(
+    'http://localhost:5001/red-paperclip-73a89/us-central1/api'
+  );
+
+  const getActiveItem = (itemString) => {
+    axios
+      .get(`${apiUrl}/getItem?uid=${itemString}`)
+      .then((item) => setActiveItem(item.data))
+      .catch((error) => console.log('Error retrieving active item: ', error));
+  };
+
+  useEffect(() => {
+    getActiveItem(currentUser.availableItem);
+  }, [currentUser]);
 
   return (
     <ItemsContext.Provider
@@ -39,11 +60,9 @@ export const ItemsProvider = (props) => {
         displayItemsState: [displayItems, setDisplayItems],
         isLoggedInState: [isLoggedIn, setIsLoggedIn],
         isAdminState: [isAdmin, setIsAdmin],
-        modalSignInState: [modalSignInOpen, setSignInModalOpen],
-        modalCreateAcctState: [modalCreateAcctOpen, setModalCreateAcctOpen],
-        anchorElState: [anchorEl, setAnchorEl],
-        menuOpenState: [menuOpen, setMenuOpen],
-        currentUser: [currentUser, setCurrentUser],
+        currentUserState: [currentUser, setCurrentUser],
+        apiUrlState: [apiUrl, setApiUrl],
+        activeItemState: [activeItem, setActiveItem],
       }}
     >
       {props.children}

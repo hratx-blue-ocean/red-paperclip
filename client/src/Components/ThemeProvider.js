@@ -10,13 +10,35 @@ export const ThemeProvider = (props) => {
   // set the value equal to the needed state, e.g.:
   // const { isLoggedIn } = useContext(ItemsContext);
 
-  const [colorPalete, setColorPalete] = useState({
+  const [colorPalette, setColorPalette] = useState({
     palette: {
       primary: {
-        main: '#2C2C2C',
+        main: '#FFFFFF',
       },
       secondary: {
-        main: '#f0CC71',
+        main: '#F0CC71',
+      },
+      cardButton: {
+        main: '#161513',
+      },
+      cardColor: {
+        main: '#494D53',
+      },
+      textWhite: {
+        main: '#FFFFFF',
+      },
+      textYellow: {
+        main: '#F0CC71',
+      },
+      sortButton: {
+        main: '#2C2C2C',
+      },
+      paperClip: {
+        main: '#A10000',
+      },
+      text: {
+        white: '#FFFFFF',
+        gold: '#F0CC71',
       },
     },
   });
@@ -25,7 +47,7 @@ export const ThemeProvider = (props) => {
     <Theme.Provider
       value={{
         // Add global state here
-        colorPalete: [colorPalete, setColorPalete],
+        colorPalette: [colorPalette, setColorPalette],
       }}
     >
       {props.children}

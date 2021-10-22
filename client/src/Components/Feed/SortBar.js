@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
+import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import CategorySelector from './CategorySelector';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -33,26 +35,60 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SortBar() {
+export default function SortBar({
+  itemsLength,
+  setSelection,
+  handleSuprise,
+  getAllItems,
+  setSorted,
+}) {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        style={{ backgroundColor: '#494D53', marginTop: '60px' }}
-      >
-        <Grid container style={{ marginTop: '10px', marginBottom: '10px' }}>
-          <Grid container item xs={4} style={{ justifyContent: 'flex-end' }}>
+    <AppBar
+      position="fixed"
+      style={{ backgroundColor: '#494D53', marginTop: '60px' }}
+    >
+      <Container>
+        <Grid
+          container
+          style={{
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
+          wrap="nowrap"
+          justifyContent="space-evenly"
+        >
+          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
+            <Typography
+              className={classes.bold}
+              style={{
+                color: '#F0CC71',
+                marginRight: '8px',
+                marginTop: '5px',
+                fontSize: 18,
+              }}
+            >
+              {'FILTER BY: '}
+            </Typography>
+            <CategorySelector
+              setSelection={setSelection}
+              getAllItems={getAllItems}
+              itemsLength={itemsLength}
+              setSorted={setSorted}
+            />
+          </Grid>
+          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
+            <Button
+              color="sortButton"
+              variant="contained"
+              className={classes.hover2}
+              onClick={handleSuprise}
+            >
+              <Typography>Surprise Me!</Typography>
+            </Button>
+          </Grid>
+          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Typography
               className={classes.bold}
               style={{
@@ -69,96 +105,11 @@ export default function SortBar() {
               variant="contained"
               className={classes.hover2}
             >
-              Item Name || Add Item +
-            </Button>
-          </Grid>
-          <Grid container item xs={4} style={{ justifyContent: 'center' }}>
-            <Typography
-              className={classes.bold}
-              style={{
-                color: '#F0CC71',
-                marginRight: '8px',
-                marginTop: '5px',
-                fontSize: 18,
-              }}
-            >
-              {'SORT BY: '}
-            </Typography>
-            <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-              onClick={handleClick}
-            >
-              Category
-            </Button>
-            <Menu
-              className={classes.menu}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Electronics & Media
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Home & Garden
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Clothing, Shoe, & Accessories
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Baby & Kids
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Vehicles
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Toys, Games, & Hobbies
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Sports & Outdoors
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Collectibles & Art
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Murder
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Pet Supplies
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Health & Beauty
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Wedding
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Business Equipment
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Tickets
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Real Estate
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Other
-              </MenuItem>
-            </Menu>
-          </Grid>
-          <Grid container item xs={4} style={{ justifyContent: 'flex-start' }}>
-            <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-            >
-              Suprise Me!
+              <Typography>Item Name || Add Item +</Typography>
             </Button>
           </Grid>
         </Grid>
-      </AppBar>
-    </div>
+      </Container>
+    </AppBar>
   );
 }

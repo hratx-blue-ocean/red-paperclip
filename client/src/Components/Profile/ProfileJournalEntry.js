@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -19,9 +19,8 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import ReportModal from '../Feed/ReportModal';
-import TradeModal from '../Feed/TradeModal';
 import ItemModal from '../Feed/ItemModal';
+import JournalModal from './JournalModal';
 
 const style = {
   position: 'absolute',
@@ -62,7 +61,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ItemCard(props) {
+export default function ProfileJournalEntry(props) {
   const classes = useStyles();
   // mouse over image
 
@@ -76,36 +75,20 @@ export default function ItemCard(props) {
   };
   // item modal
   const [openCard, setCardOpen] = useState(false);
+  const [openJournal, setJournalOpen] = useState(false);
+
   const handleCardOpen = () => setCardOpen(true);
   const handleCardClose = () => setCardOpen(false);
 
-  // report modal
-  const [openReport, setReportOpen] = useState(false);
-  const handleReportOpen = () => setReportOpen(true);
-  const handleReportClose = () => setReportOpen(false);
-  // handle report
-  const [reported, setReported] = useState(false);
-  const handleReport = () => setReported(true);
+  const handleJournalOpen = () => setJournalOpen(true);
+  const handleJournalClose = () => setJournalOpen(false);
+  const handleRelistOpen = () => alert("Don't touch that.");
 
-  // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
-  const handleTradeOpen = () => setTradeOpen(true);
-  const handleTradeClose = () => setTradeOpen(false);
-  // handle trade
-  const [trade, setTrade] = useState(false);
-  const handleTrade = () => setTrade(true);
-
-  const { itemName, itemDescription, itemOwner, itemPhoto } = props.activeItem;
-  const [itemBlurb, setItemBlurb] = useState('');
-
-  useEffect(() => {
-    if (itemDescription) {
-      setItemBlurb(itemDescription.slice(0, 60));
-    }
-  }, [props.activeItem]);
+  const { itemName, itemDesc, itemOwner, itemPicture } =
+    props.activeItem.journalItem;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} key={props.index}>
       <Modal open={openCard} onClose={handleCardClose}>
         <Box style={{ overflow: 'auto' }} sx={style}>
           <ItemModal
@@ -113,29 +96,15 @@ export default function ItemCard(props) {
             starFill={starFill}
             handleWatch={handleWatch}
             handleUnwatch={handleUnwatch}
-            handleTradeOpen={handleTradeOpen}
-            handleReportOpen={handleReportOpen}
-            item={props.activeItem}
           />
         </Box>
       </Modal>
 
-      <Modal open={openReport} onClose={handleReportClose}>
+      <Modal open={openJournal} onClose={handleJournalClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <ReportModal
-            handleReportClose={handleReportClose}
-            reported={reported}
-            handleReport={handleReport}
-          />
-        </Box>
-      </Modal>
-
-      <Modal open={opentrade} onClose={handleTradeClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53' }}>
-          <TradeModal
-            handleTradeClose={handleTradeClose}
-            trade={trade}
-            handleTrade={handleTrade}
+          <JournalModal
+            handleJournalClose={handleJournalClose}
+            journalText={props.activeItem.journalText}
           />
         </Box>
       </Modal>
@@ -153,7 +122,7 @@ export default function ItemCard(props) {
           <CardMedia
             component="img"
             height={props.height}
-            image={itemPhoto}
+            image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
             style={{ objectFit: 'cover' }}
             alt="Axe Set"
             onClick={handleCardOpen}
@@ -196,7 +165,7 @@ export default function ItemCard(props) {
                 aria-label="user_name"
               />
             }
-            title={itemOwner}
+            title="Jeffrey Dahmer"
             subheader="6 hours ago"
             style={{
               marginBottom: '-20px',
@@ -218,7 +187,8 @@ export default function ItemCard(props) {
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >
-                {itemBlurb} ...
+                {'These beautiful axes were custom made in the heart of Minnesota' +
+                  '... '}
                 <Link
                   className={classes.hover1}
                   component="button"
@@ -232,24 +202,36 @@ export default function ItemCard(props) {
               </Typography>
             </Grid>
             <Grid container item xs={12} justifyContent="center">
-              <Grid container item xs={6} justifyContent="center">
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  className={classes.hover2}
-                  onClick={handleTradeOpen}
+              {props.activeItem.journalText.length <= 0 && (
+                <Grid container item xs={6} justifyContent="center">
+                  <Button
+                    color="inherit"
+                    variant="outlined"
+                    className={classes.hover2}
+                    onClick={handleJournalOpen}
+                  >
+                    Add Journal Entry For Item
+                  </Button>
+                </Grid>
+              )}
+              {props.activeItem.journalText.length > 0 && (
+                <Typography
+                  variant="body2"
+                  color="white"
+                  style={{ marginLeft: '10px', marginBottom: '10px' }}
+                  display="inline"
                 >
-                  Offer Trade
-                </Button>
-              </Grid>
+                  Journal Entry: {props.activeItem.journalText}
+                </Typography>
+              )}
               <Grid container item xs={6} justifyContent="space-evenly">
                 <Button
                   color="inherit"
                   variant="outlined"
                   className={classes.hover2}
-                  onClick={handleReportOpen}
+                  onClick={handleRelistOpen}
                 >
-                  Report Item
+                  Re-List Item
                 </Button>
               </Grid>
             </Grid>

@@ -14,7 +14,7 @@ import AddItem from './AddItem';
 const Profile = () => {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  console.log('Current user: ', currentUser);
+  // console.log('Current user: ', currentUser);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',
@@ -55,7 +55,7 @@ const Profile = () => {
                 height="200"
                 image={currentUser.userPFP}
                 style={{ objectFit: 'cover' }}
-                alt="Mr. Dahmer"
+                alt="Profile picture"
               />
             </Card>
             <EditProfileButton />

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import axios from 'axios';
 import ItemCard from './ItemCard';
@@ -100,7 +101,16 @@ const Feed = () => {
       setShowMore(more);
     }
   };
-
+  if (!items.length) {
+    return (
+      <Typography
+        variant="h2"
+        style={{ justifyContent: 'center', color: '#F0CC71' }}
+      >
+        Loading Feed...
+      </Typography>
+    );
+  }
   return (
     <div className={classes.root}>
       <SortBar
@@ -114,9 +124,9 @@ const Feed = () => {
         spacing={6}
         style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
       >
-        {items.map((item) => (
+        {items.map((item, i) => (
           <Grid item xs={4}>
-            <ItemCard item={item} />
+            <ItemCard item={item} key={i} />
           </Grid>
         ))}
         {itemsLength < 6 && (

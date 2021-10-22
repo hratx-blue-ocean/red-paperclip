@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -17,49 +17,51 @@ const MenuBar = () => {
     useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
-
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
     setMenuOpen(true);
   };
-
-  const colorsArr = [
-    'Brown',
-    'Black',
-    'Purple',
-    'Blue',
-    'Green',
-    'Yellow',
-    'Orange',
-    'Red',
-    'White',
-  ];
-
-  const itemsArr = [
-    'Spatula',
-    'Lamp',
-    'Mirror',
-    'Chair',
-    'Sofa',
-    'House',
-    'Pen',
-    'Ball',
-    'Desk',
-  ];
-
-  const random1 = Math.floor(Math.random() * 9);
-  const random2 = Math.floor(Math.random() * 9);
-
+  const randomItem = () => {
+    const colorsArr = [
+      'Brown',
+      'Black',
+      'Purple',
+      'Blue',
+      'Green',
+      'Yellow',
+      'Orange',
+      'Red',
+      'White',
+    ];
+    const itemsArr = [
+      'Spatula',
+      'Lamp',
+      'Mirror',
+      'Chair',
+      'Sofa',
+      'House',
+      'Pen',
+      'Ball',
+      'Desk',
+    ];
+    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${
+      itemsArr[Math.floor(Math.random() * itemsArr.length)]
+    }`;
+  };
+  const [randomItemText, setRandomItemText] = useState(randomItem());
   const history = useHistory();
   const handleLogoClick = () => {
     history.push('/');
   };
+  const handleCompareArrowsClick = () => {
+    setRandomItemText(randomItem());
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -68,39 +70,49 @@ const MenuBar = () => {
     >
       <Toolbar>
         <Container maxWidth="lg">
-          <Grid container wrap="nowrap" alignItems="center">
-            <AttachFileIcon
-              color="paperClip"
-              onClick={handleLogoClick}
-              style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
-              sx={{ fontSize: 40 }}
-            />
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{ flexGrow: 1 }}
-              onClick={handleLogoClick}
-              style={{ cursor: 'pointer' }}
-            >
-              Red Paperclip&nbsp;
-              <CompareArrowsIcon />
-              &nbsp;
-              {`${colorsArr[random1]} ${itemsArr[random2]}`}
-            </Typography>
-            {isLoggedIn && (
-              <>
-                <Avatar src={currentUser.imageUrl} sx={{ margin: 2 }} />
-              </>
-            )}
-            <Hamburger
-              onClick={handleModalOpen}
-              menuOpen={menuOpen}
-              setMenuOpen={setMenuOpen}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              setAnchorEl={setAnchorEl}
-              anchorEl={anchorEl}
-            />
+          <Grid container wrap="nowrap">
+            <Grid container item wrap="nowrap" alignItems="center">
+              <AttachFileIcon
+                color="paperClip"
+                onClick={handleLogoClick}
+                style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+                sx={{ fontSize: 40 }}
+              />
+              <Typography
+                variant="h5"
+                onClick={handleLogoClick}
+                style={{ cursor: 'pointer' }}
+              >
+                Red Paperclip&nbsp;
+              </Typography>
+              <Typography
+                variant="h5"
+                onClick={handleCompareArrowsClick}
+                style={{ cursor: 'pointer' }}
+              >
+                <CompareArrowsIcon />
+              </Typography>
+              <Typography variant="h5">
+                &nbsp;
+                {randomItemText}
+              </Typography>
+              {isLoggedIn && (
+                <>
+                  <Avatar src={currentUser.imageUrl} />
+                </>
+              )}
+            </Grid>
+            <Grid item align="right">
+              <Hamburger
+                onClick={handleModalOpen}
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setAnchorEl={setAnchorEl}
+                anchorEl={anchorEl}
+              />
+            </Grid>
           </Grid>
         </Container>
       </Toolbar>

@@ -93,16 +93,6 @@ const Feed = () => {
       setShowMore(more);
     }
   };
-  if (!items.length) {
-    return (
-      <Typography
-        variant="h2"
-        style={{ justifyContent: 'center', color: '#F0CC71' }}
-      >
-        Loading Feed...
-      </Typography>
-    );
-  }
   return (
     <div className={classes.root}>
       <SortBar

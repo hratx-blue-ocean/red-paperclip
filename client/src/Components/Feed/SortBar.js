@@ -47,7 +47,10 @@ export default function SortBar({
 
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  console.log(currentUser);
+  console.log('currentUser: ', currentUser);
+  const { activeItemState } = useContext(ItemsContext);
+  const [activeItem, setActiveItem] = activeItemState;
+  console.log('activeItem: ', activeItem);
 
   return (
     <AppBar
@@ -111,7 +114,7 @@ export default function SortBar({
                 variant="contained"
                 className={classes.hover2}
               >
-                <Typography>{currentUser.availableItem.itemName}</Typography>
+                <Typography>{activeItem.itemName}</Typography>
               </Button>
             )}
             {!currentUser.availableItem && (

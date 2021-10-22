@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CategorySelector = () => {
+const CategorySelector = ({ setSelection, getAllItems, itemsLength }) => {
   const classes = useStyles();
 
   const categories = [
@@ -63,9 +63,18 @@ const CategorySelector = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = (category) => {
-    setAnchorEl(null);
-    setSelectedCategory(category);
+    if (category !== 'All') {
+      setAnchorEl(null);
+      setSelectedCategory(category);
+      setSelection(category);
+    } else {
+      getAllItems(6);
+      setAnchorEl(null);
+      setSelectedCategory(category);
+      setSelection('');
+    }
   };
 
   return (

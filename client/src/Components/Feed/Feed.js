@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import axios from 'axios';
 import ItemCard from './ItemCard';
@@ -20,12 +21,15 @@ const useStyles = makeStyles(() => ({
 const Feed = () => {
   const classes = useStyles();
 
-  const [showMore, setShowMore] = useState(6);
+  const [showMore, setShowMore] = useState(3);
   const [selection, setSelection] = useState('');
   const [items, setItems] = useState([]);
+  const [originalItems, setOriginalItems] = useState([]);
 
   const { apiUrlState } = useContext(ItemsContext);
   const [apiUrl, setApiUrl] = apiUrlState;
+
+  const [itemsLength, setItemsLength] = useState(0);
 
   // get request for item array
   const getAllItems = (quantity, category) => {
@@ -34,7 +38,6 @@ const Feed = () => {
         .get(`${apiUrl}/getItemsByCategory`, { params: { quantity, category } })
         .then((resultOfSuccessfulGetRequest) => {
           setItems(resultOfSuccessfulGetRequest.data);
-          // console.log('HERE IS ITEM DATA--> ', resultOfSuccessfulGetRequest.data);
         })
         .catch((err) => {
           console.log(
@@ -47,7 +50,8 @@ const Feed = () => {
         .get(`${apiUrl}/getAllItems`, { params: { quantity } })
         .then((resultOfSuccessfulGetRequest) => {
           setItems(resultOfSuccessfulGetRequest.data);
-          // console.log('HERE IS ITEM DATA--> ', resultOfSuccessfulGetRequest.data);
+          setOriginalItems(resultOfSuccessfulGetRequest.data);
+          setItemsLength(resultOfSuccessfulGetRequest.data.length);
         })
         .catch((err) => {
           console.log(
@@ -60,38 +64,80 @@ const Feed = () => {
 
   useEffect(() => {
     getAllItems(showMore, selection);
-  }, []);
+  }, [selection, showMore]);
 
   // creates a random index
   const getRandomIndex = (array) => {
     const min = 0;
     const max = array.length - 1;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    const result = Math.floor(Math.random() * (max - min + 1) + min);
+    return result;
   };
 
+  const handleSuprise = () => {
+    if (items.length === 1) {
+      const randomValue = getRandomIndex(originalItems);
+      setItems([originalItems[randomValue]]);
+    } else {
+      const randomValue = getRandomIndex(items);
+      setItems([items[randomValue]]);
+    }
+  };
+
+  const handleMore = () => {
+    if (selection) {
+      setSelection('');
+      setShowMore(6);
+    } else {
+      const more = showMore + 3;
+      setShowMore(more);
+    }
+  };
+  if (!items.length) {
+    return (
+      <Typography
+        variant="h2"
+        style={{ justifyContent: 'center', color: '#F0CC71' }}
+      >
+        Loading Feed...
+      </Typography>
+    );
+  }
   return (
     <div className={classes.root}>
-      <SortBar />
+      <SortBar
+        setSelection={setSelection}
+        handleSuprise={handleSuprise}
+        itemsLength={itemsLength}
+        getAllItems={getAllItems}
+      />
       <Grid
         container
         spacing={6}
         style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
       >
-        {items.map((item) => (
+        {items.map((item, i) => (
           <Grid item xs={4}>
-            <ItemCard item={item} key={item.id} />
+            <ItemCard item={item} key={i} />
           </Grid>
         ))}
-        <Grid
-          item
-          xs={12}
-          container
-          style={{ justifyContent: 'center', marginBottom: '10px' }}
-        >
-          <Button variant="contained" spacing={1} color="textYellow">
-            Show More
-          </Button>
-        </Grid>
+        {itemsLength < 6 && (
+          <Grid
+            item
+            xs={12}
+            container
+            style={{ justifyContent: 'center', marginBottom: '10px' }}
+          >
+            <Button
+              variant="contained"
+              spacing={1}
+              color="textYellow"
+              onClick={handleMore}
+            >
+              Show More
+            </Button>
+          </Grid>
+        )}
       </Grid>
     </div>
   );

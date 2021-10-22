@@ -14,7 +14,7 @@ import AddItem from './AddItem';
 const Profile = () => {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  console.log('Current user: ', currentUser);
+  // console.log('Current user: ', currentUser);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',
@@ -55,7 +55,7 @@ const Profile = () => {
                 height="200"
                 image={currentUser.userPFP}
                 style={{ objectFit: 'cover' }}
-                alt="Mr. Dahmer"
+                alt="Profile picture"
               />
             </Card>
             <EditProfileButton />
@@ -75,7 +75,7 @@ const Profile = () => {
             <ProfileActiveItem activeItem={testActiveItem} height="50%" />
           </Card>
 
-          <Card
+          {/* <Card
             sx={{
               width: 450,
               backgroundColor: '#494D53',
@@ -98,7 +98,7 @@ const Profile = () => {
                 <AddItem />
               </Grid>
             </Grid>
-          </Card>
+          </Card> */}
         </Grid>
         <Grid item xs={7} sx={{ marginTop: 1 }}>
           <ProfileTabs />

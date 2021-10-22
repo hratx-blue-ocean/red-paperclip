@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import ProfileTabPanel from './ProfileTabPanel';
 import WatchedItems from './WatchedItems';
+import ProfileJournal from './ProfileJournal';
 
 const ProfileTabs = () => {
   const [value, setValue] = useState(0);
@@ -37,9 +38,10 @@ const ProfileTabs = () => {
             backgroundColor: '#494D53',
             marginLeft: -3,
             marginTop: -2,
+            overflow: 'auto',
           }}
         >
-          Trade Journey Journal
+          <ProfileJournal />
         </Card>
       </ProfileTabPanel>
       <ProfileTabPanel value={value} index={1}>

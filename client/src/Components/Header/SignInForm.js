@@ -81,7 +81,11 @@ export default function SignInForm({ setShowAuthModal }) {
           label="email"
         />
       </FormControl>
-      <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
+      <FormControl
+        margin="normal"
+        sx={{ m: 1, width: '25ch' }}
+        color="formLabel"
+      >
         <InputLabel htmlFor="password">Password</InputLabel>
         <OutlinedInput
           id="password-text-box"
@@ -111,12 +115,7 @@ export default function SignInForm({ setShowAuthModal }) {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <Button
-            type="submit"
-            onClick={handleSignIn}
-            variant="contained"
-            style={{ backgroundColor: '#161513', color: '#F0CC71' }}
-          >
+          <Button type="submit" onClick={handleSignIn} variant="contained">
             Sign In
           </Button>
         </Grid>

@@ -53,8 +53,14 @@ const Admin = () => {
       ) : (
         <>
           <Grid container item justifyContent="center">
-            <Typography variant="h3" sx={{ color: 'text.white' }}>
-              You shall not pass!
+            <Typography
+              variant="h3"
+              align="center"
+              sx={{ color: 'text.white' }}
+            >
+              Wubba Lubba Dub Dub!
+              <br />
+              ACCESS DENIED
             </Typography>
           </Grid>
         </>

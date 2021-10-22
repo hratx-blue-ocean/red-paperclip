@@ -121,21 +121,41 @@ export default function ItemModal({
               )}
             </Grid>
           </Grid>
-          <CardHeader
-            avatar={
-              <Avatar
-                sx={{ bgcolor: red[500], marginLeft: '8px' }}
-                aria-label="user_name"
-              />
-            }
-            title={item.itemOwner}
-            subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
-            style={{
-              marginBottom: '-20px',
-              marginTop: '-12px',
-              color: '#FFFFFF',
-            }}
-          />
+          {item.itemOwnerPhoto && (
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500], marginLeft: '8px' }}
+                  src={item.itemOwnerPhoto}
+                  alt={item.itemOwner}
+                />
+              }
+              title={item.itemOwner}
+              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              style={{
+                marginBottom: '-20px',
+                marginTop: '-12px',
+                color: '#FFFFFF',
+              }}
+            />
+          )}
+          {!item.itemOwnerPhoto && (
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500], marginLeft: '8px' }}
+                  alt={item.itemOwner}
+                />
+              }
+              title={item.itemOwner}
+              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              style={{
+                marginBottom: '-20px',
+                marginTop: '-12px',
+                color: '#FFFFFF',
+              }}
+            />
+          )}
           <CardContent>
             <Grid
               container

@@ -35,20 +35,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SortBar({ item }) {
+export default function SortBar({
+  itemsLength,
+  setSelection,
+  handleSuprise,
+  getAllItems,
+  setSorted,
+}) {
   const classes = useStyles();
-
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
-  // const [selectedCategory, setSelectedCategory] = useState('Select Category');
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleClose = (event) => {
-  //   setAnchorEl(null);
-  //   setSelectedCategory();
-  //   console.log(event);
-  // };
 
   return (
     <AppBar
@@ -77,76 +71,19 @@ export default function SortBar({ item }) {
             >
               {'FILTER BY: '}
             </Typography>
-            <CategorySelector />
-            {/* <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-              onClick={handleClick}
-            >
-              Category
-            </Button>
-            <Menu
-              className={classes.menu}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Electronics & Media
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Home & Garden
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Clothing, Shoe, & Accessories
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Baby & Kids
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Vehicles
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Toys, Games, & Hobbies
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Sports & Outdoors
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Collectibles & Art
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Murder
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Pet Supplies
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Health & Beauty
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Wedding
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Business Equipment
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Tickets
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Real Estate
-              </MenuItem>
-              <MenuItem style={{ color: '#F0CC71' }} onClick={handleClose}>
-                Other
-              </MenuItem>
-            </Menu> */}
+            <CategorySelector
+              setSelection={setSelection}
+              getAllItems={getAllItems}
+              itemsLength={itemsLength}
+              setSorted={setSorted}
+            />
           </Grid>
           <Grid container item xs={4} style={{ justifyContent: 'center' }}>
             <Button
               color="sortButton"
               variant="contained"
               className={classes.hover2}
+              onClick={handleSuprise}
             >
               <Typography>Surprise Me!</Typography>
             </Button>

@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const ItemsContext = createContext();
 
@@ -24,9 +25,33 @@ export const ItemsProvider = (props) => {
     tradeHistory: [],
     watchedItems: {},
   });
+  const [activeItem, setActiveItem] = useState({
+    createdAt: '',
+    itemOwner: '',
+    active: false,
+    itemOwnerPhoto: '',
+    report: 0,
+    itemDescription: '',
+    itemOwnerUID: '',
+    itemCategory: '',
+    itemPhoto: '',
+    itemName: '',
+    itemLocation: '',
+  });
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
+
+  const getActiveItem = (itemString) => {
+    axios
+      .get(`${apiUrl}/getItem?uid=${itemString}`)
+      .then((item) => setActiveItem(item.data))
+      .catch((error) => console.log('Error retrieving active item: ', error));
+  };
+
+  useEffect(() => {
+    getActiveItem(currentUser.availableItem);
+  }, [currentUser]);
 
   return (
     <ItemsContext.Provider
@@ -37,6 +62,7 @@ export const ItemsProvider = (props) => {
         isAdminState: [isAdmin, setIsAdmin],
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
+        activeItemState: [activeItem, setActiveItem],
       }}
     >
       {props.children}

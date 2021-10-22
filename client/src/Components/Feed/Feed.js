@@ -38,10 +38,6 @@ const Feed = () => {
         .get(`${apiUrl}/getItemsByCategory`, { params: { quantity, category } })
         .then((resultOfSuccessfulGetRequest) => {
           setItems(resultOfSuccessfulGetRequest.data);
-          console.log(
-            'HERE IS ITEM BY CAT DATA--> ',
-            resultOfSuccessfulGetRequest.data
-          );
         })
         .catch((err) => {
           console.log(
@@ -56,10 +52,6 @@ const Feed = () => {
           setItems(resultOfSuccessfulGetRequest.data);
           setOriginalItems(resultOfSuccessfulGetRequest.data);
           setItemsLength(resultOfSuccessfulGetRequest.data.length);
-          // console.log(
-          //   'HERE IS ITEM DATA--> ',
-          //   resultOfSuccessfulGetRequest.data
-          // );
         })
         .catch((err) => {
           console.log(

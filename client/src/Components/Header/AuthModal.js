@@ -13,8 +13,15 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
+  borderRadius: 5,
   boxShadow: 24,
   p: 4,
+  formLabel: {
+    color: '#000',
+    '&.Mui-focused': {
+      color: '#000',
+    },
+  },
 };
 
 export default function AuthModal({

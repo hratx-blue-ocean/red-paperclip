@@ -149,6 +149,7 @@ export default function ItemCard({ item }) {
               objectFit: 'cover',
               minHeight: '275px',
               maxHeight: '250px',
+              cursor: 'pointer',
             }}
             alt={item.itemName}
             onClick={handleCardOpen}

@@ -116,9 +116,9 @@ const Feed = () => {
         spacing={6}
         style={{ justifyContent: 'space-evenly', marginTop: '20px' }}
       >
-        {items.map((item, i) => (
-          <Grid item xs={4}>
-            <ItemCard item={item} key={i} />
+        {items.map((item) => (
+          <Grid item xs={4} key={item.uid}>
+            <ItemCard item={item} />
           </Grid>
         ))}
         {itemsLength < 6 && (

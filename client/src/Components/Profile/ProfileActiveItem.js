@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -95,7 +95,14 @@ export default function ItemCard(props) {
   const [trade, setTrade] = useState(false);
   const handleTrade = () => setTrade(true);
 
-  const { itemName, itemDesc, itemOwner, itemPicture } = props.activeItem;
+  const { itemName, itemDescription, itemOwner, itemPhoto } = props.activeItem;
+  const [itemBlurb, setItemBlurb] = useState('');
+
+  useEffect(() => {
+    if (itemDescription) {
+      setItemBlurb(itemDescription.slice(0, 60));
+    }
+  }, [props.activeItem]);
 
   return (
     <div className={classes.root}>
@@ -108,6 +115,7 @@ export default function ItemCard(props) {
             handleUnwatch={handleUnwatch}
             handleTradeOpen={handleTradeOpen}
             handleReportOpen={handleReportOpen}
+            item={props.activeItem}
           />
         </Box>
       </Modal>
@@ -145,7 +153,7 @@ export default function ItemCard(props) {
           <CardMedia
             component="img"
             height={props.height}
-            image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
+            image={itemPhoto}
             style={{ objectFit: 'cover' }}
             alt="Axe Set"
             onClick={handleCardOpen}
@@ -188,7 +196,7 @@ export default function ItemCard(props) {
                 aria-label="user_name"
               />
             }
-            title="Jeffrey Dahmer"
+            title={itemOwner}
             subheader="6 hours ago"
             style={{
               marginBottom: '-20px',
@@ -210,8 +218,7 @@ export default function ItemCard(props) {
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >
-                {'These beautiful axes were custom made in the heart of Minnesota' +
-                  '... '}
+                {itemBlurb} ...
                 <Link
                   className={classes.hover1}
                   component="button"

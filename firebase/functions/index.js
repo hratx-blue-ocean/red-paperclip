@@ -13,7 +13,6 @@ app.get('/getAllItems', item.getAllItems);
 app.get('/getItem', item.getItem);
 app.get('/editItem', item.editItem);
 app.post('/addNewItem', item.addNewItem);
-app.get('/reportItem', item.reportItem);
 app.get('/changeActiveStatus', item.changeActiveStatus);
 app.get('/getItemsByCategory', item.getItemsByCategory);
 
@@ -23,6 +22,10 @@ app.post('/signup', user.signUp);
 app.get('/user', auth, user.getUserDetail);
 app.post('/user', auth, user.updateUserDetails);
 app.post('/user/image', auth, user.uploadProfilePhoto);
+
+// ADMINS
+app.post('/reportItem', admin.reportItem);
+app.get('/getItemReports', admin.getItemReports);
 
 const api = functions.https.onRequest(app);
 

@@ -89,10 +89,9 @@ const MenuBar = () => {
             </Typography>
             {isLoggedIn && (
               <>
-                <Avatar src={currentUser.imageUrl} />
+                <Avatar src={currentUser.imageUrl} sx={{ margin: 2 }} />
               </>
             )}
-
             <Hamburger
               onClick={handleModalOpen}
               menuOpen={menuOpen}

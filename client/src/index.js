@@ -34,6 +34,12 @@ const theme = createTheme({
       white: '#FFFFFF',
       gold: '#F0CC71',
     },
+    formLabel: {
+      color: '#d3d3d3',
+      '&.Mui-focused': {
+        color: '#23A5EB',
+      },
+    },
   },
 });
 

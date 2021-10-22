@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { ItemsContext } from '../ItemsContext';
 import CategorySelector from './CategorySelector';
 
 const useStyles = makeStyles(() => ({
@@ -43,6 +44,10 @@ export default function SortBar({
   setSorted,
 }) {
   const classes = useStyles();
+
+  const { currentUserState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
+  console.log(currentUser);
 
   return (
     <AppBar
@@ -100,13 +105,24 @@ export default function SortBar({
             >
               {'ACTIVE ITEM: '}
             </Typography>
-            <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-            >
-              <Typography>Item Name || Add Item +</Typography>
-            </Button>
+            {currentUser.availableItem && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+              >
+                <Typography>{currentUser.availableItem.itemName}</Typography>
+              </Button>
+            )}
+            {!currentUser.availableItem && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Container>

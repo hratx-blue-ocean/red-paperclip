@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import ReportModal from './ReportModal';
@@ -61,7 +62,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ItemCard() {
+export default function ItemCard({ item }) {
   const classes = useStyles();
   // mouse over image
 
@@ -105,6 +106,7 @@ export default function ItemCard() {
             handleUnwatch={handleUnwatch}
             handleTradeOpen={handleTradeOpen}
             handleReportOpen={handleReportOpen}
+            item={item}
           />
         </Box>
       </Modal>
@@ -115,6 +117,7 @@ export default function ItemCard() {
             handleReportClose={handleReportClose}
             reported={reported}
             handleReport={handleReport}
+            item={item}
           />
         </Box>
       </Modal>
@@ -125,6 +128,7 @@ export default function ItemCard() {
             handleTradeClose={handleTradeClose}
             trade={trade}
             handleTrade={handleTrade}
+            item={item}
           />
         </Box>
       </Modal>
@@ -140,38 +144,67 @@ export default function ItemCard() {
         >
           <CardMedia
             component="img"
-            height="45%"
-            image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
-            style={{ objectFit: 'cover' }}
-            alt="Axe Set"
+            image={item.itemPhoto}
+            style={{
+              objectFit: 'cover',
+              minHeight: '275px',
+              maxHeight: '250px',
+            }}
+            alt={item.itemName}
             onClick={handleCardOpen}
           />
           <Grid container style={{ marginTop: '6px' }}>
+            {item.itemName.length > 18 && (
+              <Grid
+                container
+                item
+                xs={10}
+                style={{ justifyContent: 'flex-start' }}
+                alignItems="baseline"
+              >
+                <Typography
+                  variant="h6"
+                  style={{ marginLeft: '22px', color: '#F0CC71' }}
+                >
+                  {`${item.itemName.slice(0, 19)}... `}
+                </Typography>
+              </Grid>
+            )}
+            {item.itemName.length <= 18 && (
+              <Grid
+                container
+                item
+                xs={10}
+                style={{ justifyContent: 'flex-start' }}
+                alignItems="baseline"
+              >
+                <Typography
+                  variant="h6"
+                  style={{ marginLeft: '22px', color: '#F0CC71' }}
+                >
+                  {item.itemName}
+                </Typography>
+              </Grid>
+            )}
             <Grid
               container
               item
-              xs={10}
-              justifyContent="flex-start"
-              alignItems="baseline"
+              xs={2}
+              style={{ justifyContent: 'flex-start' }}
             >
-              <Typography
-                variant="h5"
-                style={{ marginLeft: '22px', color: '#F0CC71' }}
-              >
-                Rustic Axe Set
-              </Typography>
-            </Grid>
-            <Grid container item xs={2} justifyContent="center">
               {!starFill && (
                 <IconButton onClick={handleWatch}>
-                  <StarIcon className={classes.hover1} />
+                  <StarIcon
+                    className={classes.hover1}
+                    style={{ justifyContent: 'flex-start' }}
+                  />
                 </IconButton>
               )}
               {starFill && (
                 <IconButton onClick={handleUnwatch}>
                   <StarIcon
                     className={classes.hover1}
-                    style={{ color: '#F0CC71' }}
+                    style={{ color: '#F0CC71', justifyContent: 'flex-start' }}
                   />
                 </IconButton>
               )}
@@ -184,8 +217,8 @@ export default function ItemCard() {
                 aria-label="user_name"
               />
             }
-            title="Jeffrey Dahmer"
-            subheader="6 hours ago"
+            title={item.itemOwner}
+            subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
             style={{
               marginBottom: '-20px',
               marginTop: '-12px',
@@ -193,33 +226,53 @@ export default function ItemCard() {
             }}
           />
           <CardContent>
-            <Grid
-              container
-              item
-              xs={12}
-              justifyContent="center"
-              style={{ marginBottom: '20px' }}
-            >
-              <Typography
-                variant="body2"
-                color="white"
-                style={{ marginLeft: '10px' }}
-                display="inline"
+            {item.itemDescription.length > 60 && (
+              <Grid
+                container
+                item
+                xs={12}
+                justifyContent="center"
+                style={{ marginBottom: '20px' }}
               >
-                {'These beautiful axes were custom made in the heart of Minnesota' +
-                  '... '}
-                <Link
-                  className={classes.hover1}
-                  component="button"
-                  underline="none"
+                <Typography
+                  variant="body2"
+                  color="white"
+                  style={{ marginLeft: '10px' }}
                   display="inline"
-                  color="cardButton"
-                  onClick={handleCardOpen}
                 >
-                  Read more
-                </Link>
-              </Typography>
-            </Grid>
+                  {`${item.itemDescription.slice(0, 61)}... `}
+                  <Link
+                    className={classes.hover1}
+                    component="button"
+                    underline="none"
+                    display="inline"
+                    color="cardButton"
+                    onClick={handleCardOpen}
+                  >
+                    Read more
+                  </Link>
+                </Typography>
+              </Grid>
+            )}
+            {item.itemDescription.length <= 60 && (
+              <Grid
+                container
+                item
+                xs={12}
+                justifyContent="center"
+                style={{ marginBottom: '20px' }}
+              >
+                <Typography
+                  variant="body2"
+                  color="white"
+                  style={{ marginLeft: '10px' }}
+                  display="inline"
+                >
+                  {item.itemDescription}
+                </Typography>
+              </Grid>
+            )}
+
             <Grid container item xs={12} justifyContent="center">
               <Grid container item xs={6} justifyContent="center">
                 <Button

@@ -62,6 +62,7 @@ export default function ReportModal({
   handleReportClose,
   reported,
   handleReport,
+  item,
 }) {
   const classes = useStyles();
 

@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ReportedItem = () => {
+const ReportedItem = ({ item }) => {
   const classes = useStyles();
   const handleDeleteItemClick = () => {
     console.log('Clicked Delete Item');
@@ -28,7 +28,7 @@ const ReportedItem = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <ItemCard />
+        <ItemCard item={item} key={item.uid} />
       </Grid>
       <Grid item xs={4} justifyContent="center">
         <Button

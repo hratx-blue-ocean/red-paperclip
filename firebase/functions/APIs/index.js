@@ -4,7 +4,6 @@ const changeActiveStatus = require('./Items/changeActiveStatus');
 const getItem = require('./Items/getItem');
 const addNewItem = require('./Items/addNewItem');
 const editItem = require('./Items/editItem');
-const reportItem = require('./Items/reportItem');
 const getItemsByCategory = require('./Items/getItemsByCategory');
 
 // Users
@@ -14,12 +13,15 @@ const uploadProfilePhoto = require('./Users/uploadProfilePhoto');
 const getUserDetail = require('./Users/getUserDetail');
 const updateUserDetails = require('./Users/updateUserDetails');
 
+// Admin
+const reportItem = require('./Admin/reportItem');
+const getItemReports = require('./Admin/getItemReports');
+
 const item = {
   getAllItems,
   getItem,
   addNewItem,
   editItem,
-  reportItem,
   changeActiveStatus,
   getItemsByCategory,
 };
@@ -34,7 +36,10 @@ const user = {
 
 const message = {};
 
-const admin = {};
+const admin = {
+  reportItem,
+  getItemReports,
+};
 
 module.exports = {
   item,

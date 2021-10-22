@@ -48,7 +48,8 @@ const Profile = () => {
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Howdy, {currentUser.firstName}! Your item is {activeItem.itemName}.
+            Howdy, {currentUser.firstName}! Your item is{' '}
+            {activeItem.active.toString()}.
           </Typography>
           <Card
             sx={{

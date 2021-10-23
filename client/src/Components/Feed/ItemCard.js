@@ -66,9 +66,11 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  const { currentUserState, isLoggedInState } = useContext(ItemsContext);
+  const { currentUserState, isLoggedInState, apiUrlState } =
+    useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
+  const [apiUrl] = apiUrlState;
   // star fill
   const [starFill, setStarFill] = useState(false);
   useEffect(() => {
@@ -76,18 +78,21 @@ export default function ItemCard({ item }) {
       if (currentUser.watchedItems[item.uid]) {
         setStarFill(true);
       }
-      console.log(currentUser.watchedItems);
     }
   });
   const handleWatch = () => {
     if (isLoggedIn) {
       setStarFill(true);
-      // axios
-      //   .put(`${apiUrl}/???`, { params: { userId??? } })
-      //   .then()
-      //   .catch((err) => {
-      //     console.log('FAILED to add item to watchlist --> ', err);
-      //   });
+      axios
+        .put(`${apiUrl}/editWatchList`, {
+          uid: item.uid,
+          email: currentUser.email,
+          type: 'add',
+        })
+        .then()
+        .catch((err) => {
+          console.log('FAILED to add item to watchlist --> ', err);
+        });
     }
     // send put to userId, add itemId to array
   };

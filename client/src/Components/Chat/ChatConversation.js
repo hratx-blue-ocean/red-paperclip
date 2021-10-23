@@ -60,7 +60,10 @@ export default function ChatConversation({
   useEffect(() => {}, [chatsWithJesson]);
 
   return (
-    <Paper elevation={6} style={{ height: 500, borderRadius: 30, padding: 30 }}>
+    <Paper
+      elevation={6}
+      style={{ height: 500, borderRadius: 30, padding: 30, overflow: 'auto' }}
+    >
       <Grid container spacing={2}>
         <Grid container item xs={4} justifyContent="center">
           <Avatar alt="Jesson W" src={Jason} />

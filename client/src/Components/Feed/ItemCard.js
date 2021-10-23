@@ -84,14 +84,20 @@ export default function ItemCard({ item }) {
     if (isLoggedIn) {
       if (starFill) {
         setStarFill(false);
-        // setCurrentUser({...currentUser, watchedItems.delete(item.uid)})
         axios
           .put(`${apiUrl}/editWatchList`, {
             uid: item.uid,
             email: currentUser.email,
             type: 'delete',
           })
-          .then()
+          .then(() => {
+            const { watchedItems } = currentUser;
+            delete watchedItems(item.uid);
+            setCurrentUser({
+              ...currentUser,
+              watchedItems,
+            });
+          })
           .catch((err) => {
             console.log('FAILED to remove item from watchlist --> ', err);
           });
@@ -103,7 +109,14 @@ export default function ItemCard({ item }) {
             email: currentUser.email,
             type: 'add',
           })
-          .then()
+          .then(() => {
+            const { watchedItems } = currentUser;
+            watchedItems[item.uid] = item.uid;
+            setCurrentUser({
+              ...currentUser,
+              watchedItems,
+            });
+          })
           .catch((err) => {
             console.log('FAILED to add item to watchlist --> ', err);
           });

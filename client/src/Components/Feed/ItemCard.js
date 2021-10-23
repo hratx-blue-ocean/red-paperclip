@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -20,10 +19,11 @@ import Box from '@mui/material/Box';
 import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import { ItemsContext } from '../ItemsContext';
+import Axios from 'axios';
 import ReportModal from './ReportModal';
 import TradeModal from './TradeModal';
 import ItemModal from './ItemModal';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -117,8 +117,17 @@ export default function ItemCard({ item }) {
   const handleReportClose = () => setReportOpen(false);
   // handle report
   const [reported, setReported] = useState(false);
-  const handleReport = () => setReported(true);
-
+  const handleReport = (uid) => {
+    Axios({
+      method: 'post',
+      url: `${apiUrl}/reportItem`,
+      params: { uid },
+    })
+      .then(() => setReported(true))
+      .catch((err) => {
+        console.log('FAILED to report item in the firebase server --> ', err);
+      });
+  };
   // trade modal
   const [TradeOpen, setTradeOpen] = useState(false);
   const handleTradeOpen = () => setTradeOpen(true);
@@ -143,16 +152,33 @@ export default function ItemCard({ item }) {
         </Box>
       </Modal>
 
-      <Modal open={openReport} onClose={handleReportClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <ReportModal
-            handleReportClose={handleReportClose}
-            reported={reported}
-            handleReport={handleReport}
-            item={item}
-          />
-        </Box>
-      </Modal>
+      {isLoggedIn && (
+        <Modal open={openReport} onClose={handleReportClose}>
+          <Box
+            sx={style}
+            style={{ backgroundColor: '#494D53', maxWidth: '25%' }}
+          >
+            <ReportModal
+              handleReportClose={handleReportClose}
+              reported={reported}
+              handleReport={handleReport}
+              item={item}
+            />
+          </Box>
+        </Modal>
+      )}
+      {!isLoggedIn && (
+        <Modal open={openReport} onClose={handleReportClose}>
+          <Box sx={style} style={{ backgroundColor: '#494D53' }}>
+            <ReportModal
+              handleReportClose={handleReportClose}
+              reported={reported}
+              handleReport={handleReport}
+              item={item}
+            />
+          </Box>
+        </Modal>
+      )}
 
       <Modal open={TradeOpen} onClose={handleTradeClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53' }}>
@@ -327,7 +353,6 @@ export default function ItemCard({ item }) {
                 </Typography>
               </Grid>
             )}
-
             <Grid container item xs={12} justifyContent="center">
               <Grid container item xs={6} justifyContent="center">
                 <Button

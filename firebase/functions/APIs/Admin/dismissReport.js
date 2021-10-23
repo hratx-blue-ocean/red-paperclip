@@ -1,12 +1,11 @@
 const { db } = require('../../../util/admin');
 
-const reportItem = (req, res) => {
+const dismissReport = (req, res) => {
   db.doc(`admin/items`)
     .get()
     .then(async (snap) => {
       const { reported } = snap.data();
-      reported[req.query.uid] = req.query.uid;
-      console.log(reported)
+      delete reported[req.body.uid];
       db.doc(`admin/items`)
         .update({ reported })
         .then(() => res.end())
@@ -17,4 +16,4 @@ const reportItem = (req, res) => {
     .catch((err) => res.status(500).json({ error: err.code }));
 };
 
-module.exports = reportItem;
+module.exports = dismissReport;

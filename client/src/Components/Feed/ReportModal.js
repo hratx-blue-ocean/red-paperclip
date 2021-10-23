@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -18,6 +18,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -66,6 +67,9 @@ export default function ReportModal({
 }) {
   const classes = useStyles();
 
+  const { isLoggedInState } = useContext(ItemsContext);
+  const [isLoggedIn] = isLoggedInState;
+
   return (
     <div className={classes.root}>
       <Grid container style={{ justifyContent: 'flex-end' }}>
@@ -73,7 +77,7 @@ export default function ReportModal({
           <CloseIcon className={classes.hover3} style={{ fontSize: 45 }} />
         </IconButton>
       </Grid>
-      {!reported && (
+      {isLoggedIn && !reported && (
         <Grid
           container
           style={{ justifyContent: 'center', marginBottom: '40px' }}
@@ -86,7 +90,7 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Offensive Item
             </Button>
@@ -98,7 +102,7 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Hazardous Item
             </Button>
@@ -110,7 +114,7 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Stolen Item
             </Button>
@@ -122,7 +126,7 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Cursed Item
             </Button>
@@ -134,7 +138,7 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Illegal Item
             </Button>
@@ -146,14 +150,14 @@ export default function ReportModal({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleReport}
+              onClick={() => handleReport(item.uid)}
             >
               Other Prohibited Item
             </Button>
           </Grid>
         </Grid>
       )}
-      {reported && (
+      {isLoggedIn && reported && (
         <Grid
           container
           style={{
@@ -169,6 +173,27 @@ export default function ReportModal({
               style={{ color: '#F0CC71', fontSize: 35, fontWeight: 800 }}
             >
               Thank you for your feedback!
+            </Typography>
+          </Grid>
+        </Grid>
+      )}
+      {!isLoggedIn && (
+        <Grid
+          container
+          style={{
+            justifyContent: 'center',
+            marginBottom: '105px',
+            marginTop: '46px',
+            marginLeft: '13px',
+            marginRight: '13px',
+          }}
+          padding={6}
+        >
+          <Grid container item xs={12} justifycontent="center">
+            <Typography
+              style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
+            >
+              Please Sign-In Or Create An Account
             </Typography>
           </Grid>
         </Grid>

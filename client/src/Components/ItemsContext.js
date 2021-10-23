@@ -46,10 +46,12 @@ export const ItemsProvider = (props) => {
   );
 
   const getActiveItem = (itemString) => {
-    axios
-      .get(`${apiUrl}/getItem?uid=${itemString}`)
-      .then((item) => setActiveItem(item.data))
-      .catch((error) => console.log('Error retrieving active item: ', error));
+    if (isLoggedIn) {
+      axios
+        .get(`${apiUrl}/getItem?uid=${itemString}`)
+        .then((item) => setActiveItem(item.data))
+        .catch((error) => console.log('Error retrieving active item: ', error));
+    }
   };
 
   useEffect(() => {

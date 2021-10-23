@@ -19,7 +19,7 @@ import Box from '@mui/material/Box';
 import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import Axios from 'axios';
+import axios from 'axios';
 import ReportModal from './ReportModal';
 import TradeModal from './TradeModal';
 import ItemModal from './ItemModal';
@@ -66,7 +66,8 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  const { currentUserState, isLoggedInState, apiUrlState } = useContext(ItemsContext);
+  const { currentUserState, isLoggedInState, apiUrlState } =
+    useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
@@ -74,10 +75,9 @@ export default function ItemCard({ item }) {
   const [starFill, setStarFill] = useState(false);
   useEffect(() => {
     if (isLoggedIn) {
-      if (currentUser.watchedItems[item.uid]) {
+      if (currentUser.watchedItems.contains(item.uid)) {
         setStarFill(true);
       }
-      console.log(currentUser.watchedItems);
     }
   });
   const handleWatch = () => {
@@ -114,7 +114,7 @@ export default function ItemCard({ item }) {
   // handle report
   const [reported, setReported] = useState(false);
   const handleReport = (uid) => {
-    Axios({
+    axios({
       method: 'post',
       url: `${apiUrl}/reportItem`,
       params: { uid },

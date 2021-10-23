@@ -103,7 +103,7 @@ export default function SignInForm() {
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleInputChange('password')}
-            style={{ color: '#F0CC71' }}
+            style={{ color: '#161513' }}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -120,11 +120,17 @@ export default function SignInForm() {
           />
         </FormControl>
       </Grid>
-      <Grid item align="center">
+      <Grid item xs={6} align="center">
         <Button
+          fullWidth
           type="submit"
           onClick={handleSignIn}
-          style={{ backgroundColor: '#161513', color: '#F0CC71' }}
+          style={{
+            backgroundColor: '#2C2C2C',
+            color: '#F0CC71',
+            marginTop: '6px',
+            justifyContent: 'center',
+          }}
         >
           Sign In
         </Button>

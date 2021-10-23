@@ -75,7 +75,8 @@ export default function ItemCard({ item }) {
   const [starFill, setStarFill] = useState(false);
   useEffect(() => {
     if (isLoggedIn) {
-      if (currentUser.watchedItems.contains(item.uid)) {
+      // this is not here!
+      if (currentUser.watchedItems[item.uid]) {
         setStarFill(true);
       }
     }

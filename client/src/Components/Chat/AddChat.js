@@ -87,40 +87,6 @@ export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
           </form>
         </Grid>
       </Grid>
-      {/* <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 30,
-        }}
-      >
-        <Chip
-          className={classes.hover1}
-          icon={<MdPhone />}
-          label="Audio Chat"
-        />
-
-        <Button variant="contained" color="success" type="submit">
-          Send
-        </Button>
-      </Box>
-      <Box m={2}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              id="fullWidth"
-              label="Private Chat Room With Jesson"
-              multiline
-              rows={1}
-              onChange
-            />
-          </Grid>
-        </Grid>
-      </Box> */}
     </Paper>
   );
 }

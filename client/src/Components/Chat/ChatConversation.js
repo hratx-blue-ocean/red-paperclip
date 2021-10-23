@@ -105,79 +105,21 @@ export default function ChatConversation({
       </Box>
       {chatsWithJesson.map((message) =>
         message[0] === 1 ? (
-          <Box
-            component="span"
-            sx={{
-              display: 'block',
-              p: 1,
-              m: 1,
-              bgcolor: 'background.paper',
-            }}
-          >
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar alt="Jesson W" src={Jason} />
-              </ListItemAvatar>
-              <ListItemText primary={message[2]} />
-            </ListItem>
-          </Box>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar alt="Jesson W" src={Jason} />
+            </ListItemAvatar>
+            <ListItemText primary={message[2]} />
+          </ListItem>
         ) : (
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              p: 1,
-              l: 2,
-              bgcolor: 'background.paper',
-            }}
-          >
-            <ListItem>
-              <ListItemText className={classes.userText} primary={message[2]} />
-              <ListItemAvatar>
-                <Avatar alt="Pingping X" src={Pingping} />
-              </ListItemAvatar>
-            </ListItem>
-          </Box>
+          <ListItem>
+            <ListItemText className={classes.userText} primary={message[2]} />
+            <ListItemAvatar>
+              <Avatar alt="Pingping X" src={Pingping} />
+            </ListItemAvatar>
+          </ListItem>
         )
       )}
-      {/* <Box
-        component="span"
-        sx={{
-          display: 'block',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-        }}
-      >
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar alt="Jesson W" src={Jason} />
-          </ListItemAvatar>
-          <ListItemText primary="Hi, I really like your art work" />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar alt="Jesson W" src={Jason} />
-          </ListItemAvatar>
-          <ListItemText primary="Are you interested to trade with my book? It is an antique from ancient China!" />
-        </ListItem>
-        <ListItem>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              p: 1,
-              l: 2,
-              bgcolor: 'background.paper',
-            }}
-          >
-            <ListItemText primary="Wow, that's very cool! What year was the book and what it is about?" />
-          </Box>
-          <ListItemAvatar>
-            <Avatar alt="Jesson W" src={Pingping} />
-          </ListItemAvatar>
-        </ListItem>
-      </Box> */}
     </Paper>
   );
 }

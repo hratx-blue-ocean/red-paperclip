@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
 
 import AddChat from './AddChat';
 import ChatConversation from './ChatConversation';
@@ -20,10 +21,12 @@ export default function ChatRoom() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <ChatConversation
-          chatsWithJesson={chatsWithJesson}
-          setChatsWithJesson={setChatsWithJesson}
-        />
+        <List style={{ overflow: 'auto' }}>
+          <ChatConversation
+            chatsWithJesson={chatsWithJesson}
+            setChatsWithJesson={setChatsWithJesson}
+          />
+        </List>
       </Grid>
       <Grid item xs={12}>
         <AddChat

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
@@ -14,7 +15,11 @@ const ProfileJournal = (props) => {
   return (
     <>
       {testJournal.map((item, index) => {
-        return <ProfileJournalEntry activeItem={item} index={index} />;
+        return (
+          <Box key={index}>
+            <ProfileJournalEntry activeItem={item} />
+          </Box>
+        );
       })}
     </>
   );

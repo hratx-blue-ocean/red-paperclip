@@ -38,8 +38,17 @@ export const ItemsProvider = (props) => {
     itemName: '',
     itemLocation: '',
   });
+  const [watchedItems, setWatchedItems] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+    console.log('handleMenuOpen clicked!!!');
+  };
 
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
@@ -54,9 +63,20 @@ export const ItemsProvider = (props) => {
     }
   };
 
+  const getWatchedItemsList = (itemsArray) => {
+    axios
+      .get(`${apiUrl}/getItems`, { params: { items: itemsArray } })
+      .then((watchedItemsData) => {
+        setWatchedItems(watchedItemsData.data);
+        console.log('Retrieved watched items data: ', watchedItemsData.data);
+      })
+      .catch((error) => console.log('Error retrieving watched items'));
+  };
+
   useEffect(() => {
     getActiveItem(currentUser.availableItem);
-  }, [currentUser]);
+    getWatchedItemsList(Object.keys(currentUser.watchedItems));
+  }, [isLoggedIn]);
 
   return (
     <ItemsContext.Provider
@@ -68,7 +88,11 @@ export const ItemsProvider = (props) => {
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
         activeItemState: [activeItem, setActiveItem],
+        watchedItemsState: [watchedItems, setWatchedItems],
         showAuthModalState: [showAuthModal, setShowAuthModal],
+        menuOpenState: [menuOpen, setMenuOpen],
+        anchorElState: [anchorEl, setAnchorEl],
+        handleMenuOpen,
       }}
     >
       {props.children}

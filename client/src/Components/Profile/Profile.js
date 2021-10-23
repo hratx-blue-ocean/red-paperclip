@@ -19,7 +19,7 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
-  // console.log('Current user: ', currentUser);
+  console.log('Current user: ', currentUser);
 
   return (
     <>
@@ -68,7 +68,10 @@ const Profile = () => {
             <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
             </Typography>
-            <ProfileActiveItem activeItem={activeItem} height="50%" />
+            {currentUser.availableItem.length > 0 && (
+              <ProfileActiveItem activeItem={activeItem} height="50%" />
+            )}
+            {currentUser.availableItem.length === 0 && <AddItem />}
           </Card>
 
           {/* <Card

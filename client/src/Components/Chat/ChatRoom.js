@@ -18,6 +18,11 @@ export default function ChatRoom() {
   ]);
   const [chatText, setChatText] = useState('');
 
+  // useEffect watch the global currentChatRoom
+  // renders the currentChatRoom
+
+  // need to get both item photos for the trade items
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

@@ -18,6 +18,10 @@ const updateUserDetails = require('./Users/updateUserDetails');
 const reportItem = require('./Admin/reportItem');
 const getItemReports = require('./Admin/getItemReports');
 
+// Messages
+const getChatRoom = require('./Messages/getChatRoom');
+const getAllChatRooms = require('./Messages/getAllChatRooms');
+
 const item = {
   getAllItems,
   getItem,
@@ -36,7 +40,10 @@ const user = {
   updateUserDetails,
 };
 
-const message = {};
+const message = {
+  getChatRoom,
+  getAllChatRooms,
+};
 
 const admin = {
   reportItem,

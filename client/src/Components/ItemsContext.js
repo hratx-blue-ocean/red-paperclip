@@ -24,6 +24,8 @@ export const ItemsProvider = (props) => {
     availableItem: '',
     tradeHistory: [],
     watchedItems: {},
+    chats: [],
+    permissions: '',
   });
   const [activeItem, setActiveItem] = useState({
     createdAt: '',
@@ -39,10 +41,11 @@ export const ItemsProvider = (props) => {
     itemLocation: '',
   });
   const [watchedItems, setWatchedItems] = useState([]);
-
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [allChatRooms, setAllChatRooms] = useState([]);
+  const [currentChatRoom, setCurrentChatRoom] = useState('');
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,9 +76,24 @@ export const ItemsProvider = (props) => {
       .catch((error) => console.log('Error retrieving watched items'));
   };
 
+  const getChatRooms = (usersChatRooms) => {
+    axios
+      .get(`${apiUrl}/getChatRooms`, {
+        params: {
+          chatRooms: usersChatRooms,
+        },
+      })
+      .then((data) => {
+        console.log('test point:', data);
+        setAllChatRooms(data);
+      })
+      .catch((err) => console.log('error getting all chat rooms: ', err));
+  };
+
   useEffect(() => {
     getActiveItem(currentUser.availableItem);
     getWatchedItemsList(Object.keys(currentUser.watchedItems));
+    getChatRooms(currentUser.chatRooms);
   }, [isLoggedIn]);
 
   return (
@@ -93,6 +111,8 @@ export const ItemsProvider = (props) => {
         menuOpenState: [menuOpen, setMenuOpen],
         anchorElState: [anchorEl, setAnchorEl],
         handleMenuOpen,
+        currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
+        allChatRoomsState: [allChatRooms, setAllChatRooms],
       }}
     >
       {props.children}

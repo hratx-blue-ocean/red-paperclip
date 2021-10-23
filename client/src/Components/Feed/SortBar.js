@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
 export default function SortBar({
   itemsLength,
   setSelection,
-  handleSuprise,
+  handleSurprise,
   getAllItems,
   setSorted,
 }) {
@@ -103,7 +103,7 @@ export default function SortBar({
               color="sortButton"
               variant="contained"
               className={classes.hover2}
-              onClick={handleSuprise}
+              onClick={handleSurprise}
             >
               <Typography>Surprise Me!</Typography>
             </Button>

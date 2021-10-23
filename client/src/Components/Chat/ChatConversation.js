@@ -73,7 +73,7 @@ export default function ChatConversation() {
           <Button
             variant="outlined"
             href="#outlined-buttons"
-            sx={{ width: 40, height: 40 }}
+            sx={{ width: 40, height: 40, color: 'black' }}
           >
             Close Deal!
           </Button>

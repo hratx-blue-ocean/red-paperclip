@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 
-import ChatList from './ChatList.js';
-import ChatRoom from './ChatRoom.js';
+import ChatList from './ChatList';
+import ChatRoom from './ChatRoom';
 
 export default function BasicList() {
   return (

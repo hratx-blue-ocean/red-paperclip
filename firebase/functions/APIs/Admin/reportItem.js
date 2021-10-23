@@ -1,11 +1,13 @@
 const { db } = require('../../../util/admin');
 
 const reportItem = (req, res) => {
-  db.doc(`items/${req.query.uid}`)
+  db.doc(`admin/items`)
     .get()
     .then(async (snap) => {
-      db.doc(`items/${snap.id}`)
-        .update({ reports: snap.data().reports + 1 })
+      const { reported } = snap.data();
+      reported[req.query.uid] = req.query.uid;
+      db.doc(`admin/items`)
+        .update({ reported })
         .then(() => res.end())
         .catch((err) => {
           throw err;

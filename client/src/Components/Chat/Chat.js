@@ -7,8 +7,9 @@ import ChatList from './ChatList';
 import ChatRoom from './ChatRoom';
 
 export default function Chat() {
-  const { currentUserState } = useContext(ItemsContext);
+  const { currentUserState, isLoggedInState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
+  const [isLoggedIn] = isLoggedInState;
   // on pageload  use effect
   // 1st request:
   // make an axio get request to (get user details --> chat's array)
@@ -21,7 +22,7 @@ export default function Chat() {
 
   return (
     <>
-      {currentUser.permissions === 'admin' ? (
+      {isLoggedIn ? (
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <ChatList />

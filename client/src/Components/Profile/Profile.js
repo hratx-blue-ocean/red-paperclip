@@ -13,17 +13,17 @@ import { ItemsContext } from '../ItemsContext';
 import AddItem from './AddItem';
 
 const Profile = () => {
-  const { currentUserState } = useContext(ItemsContext);
+  const { currentUserState, isLoggedInState, apiUrlState, activeItemState } =
+    useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  const { apiUrlState } = useContext(ItemsContext);
+  const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
-  const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
   console.log('Current user: ', currentUser);
 
   return (
     <>
-      {currentUser.permissions === 'admin' ? (
+      {isLoggedIn ? (
         <>
           <Grid container spacing={5}>
             <Grid item xs={5}>

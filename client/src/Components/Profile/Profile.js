@@ -20,19 +20,19 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
-  // console.log('Current user: ', currentUser);
+  console.log('Current user: ', currentUser);
   // console.log('Item string: ', currentUser.availableItem);
 
-  const getActiveItem = (itemString) => {
-    axios
-      .get(`${apiUrl}/getItem?uid=${itemString}`)
-      .then((item) => setActiveItem(item.data))
-      .catch((error) => console.log('Error retrieving active item: ', error));
-  };
+  // const getActiveItem = (itemString) => {
+  //   axios
+  //     .get(`${apiUrl}/getItem?uid=${itemString}`)
+  //     .then((item) => setActiveItem(item.data))
+  //     .catch((error) => console.log('Error retrieving active item: ', error));
+  // };
 
-  useEffect(() => {
-    getActiveItem(currentUser.availableItem);
-  }, [currentUser]);
+  // useEffect(() => {
+  //   getActiveItem(currentUser.availableItem);
+  // }, [currentUser]);
 
   const testActiveItem = {
     itemName: 'Rustic Axe Set 1',

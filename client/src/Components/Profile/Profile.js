@@ -26,8 +26,7 @@ const Profile = () => {
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Howdy, {currentUser.firstName}! Your item is{' '}
-            {activeItem.active.toString()}.
+            Hello, {currentUser.firstName}!
           </Typography>
           <Card
             sx={{
@@ -69,7 +68,10 @@ const Profile = () => {
             <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
             </Typography>
-            <ProfileActiveItem activeItem={activeItem} height="50%" />
+            {currentUser.availableItem && (
+              <ProfileActiveItem activeItem={activeItem} height="50%" />
+            )}
+            {!currentUser.availableItem && <AddItem />}
           </Card>
 
           {/* <Card

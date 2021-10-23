@@ -10,18 +10,18 @@ import ProfileTabPanel from './ProfileTabPanel';
 import testFollowedItems from './testFollowedItems';
 import ProfileActiveItem from './ProfileActiveItem';
 import { ItemsContext } from '../ItemsContext';
+import ItemCard from '../Feed/ItemCard';
 
 // eslint-disable-next-line arrow-body-style
 const WatchedItems = (props) => {
   const { watchedItemsState } = useContext(ItemsContext);
   const [watchedItems, setWatchedItems] = watchedItemsState;
-  console.log('Watched items: ', watchedItems);
   return (
     <>
       {watchedItems.map((item, index) => {
         return (
           <Box key={index}>
-            <ProfileActiveItem activeItem={item} height="60%" />
+            <ItemCard item={item} />
           </Box>
         );
       })}

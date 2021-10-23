@@ -17,7 +17,15 @@ import AuthModal from './AuthModal';
 import { ItemsContext } from '../ItemsContext';
 
 const Hamburger = () => {
-  const { isLoggedInState, currentUserState, showAuthModalState, activeItemState, menuOpenState, handleMenuOpen, anchorElState } = useContext(ItemsContext);
+  const {
+    isLoggedInState,
+    currentUserState,
+    showAuthModalState,
+    activeItemState,
+    menuOpenState,
+    handleMenuOpen,
+    anchorElState,
+  } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [currentUser, setCurrentUser] = currentUserState;
@@ -58,6 +66,7 @@ const Hamburger = () => {
     setIsReturningUser(false);
     setShowAuthModal(false);
     setMenuOpen(false);
+    setAnchorEl(null);
     setCurrentUser({
       userFirst: '',
       userLast: '',
@@ -88,6 +97,7 @@ const Hamburger = () => {
   const handleHomeClick = () => {
     history.push('/');
     setMenuOpen(false);
+    setAnchorEl(null);
   };
 
   const handleMyProfileClick = () => {
@@ -157,12 +167,14 @@ const Hamburger = () => {
               My Chats
             </MenuItem>
             <Divider />
-            {currentUser.permissions === "admin" && <MenuItem onClick={handleAdminClick}>
-              <ListItemIcon>
-                <AdminPanelSettingsIcon fontSize="small" />
-              </ListItemIcon>
-              Admin
-            </MenuItem>}
+            {currentUser.permissions === 'admin' && (
+              <MenuItem onClick={handleAdminClick}>
+                <ListItemIcon>
+                  <AdminPanelSettingsIcon fontSize="small" />
+                </ListItemIcon>
+                Admin
+              </MenuItem>
+            )}
             <MenuItem onClick={handleSignOut}>
               <ListItemIcon>
                 <Logout fontSize="small" />

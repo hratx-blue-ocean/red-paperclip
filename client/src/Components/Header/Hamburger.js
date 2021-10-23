@@ -65,6 +65,7 @@ const Hamburger = () => {
     setIsReturningUser(false);
     setShowAuthModal(false);
     setMenuOpen(false);
+    setAnchorEl(null);
     setCurrentUser({
       userFirst: '',
       userLast: '',
@@ -95,6 +96,7 @@ const Hamburger = () => {
   const handleHomeClick = () => {
     history.push('/');
     setMenuOpen(false);
+    setAnchorEl(null);
   };
 
   const handleMyProfileClick = () => {

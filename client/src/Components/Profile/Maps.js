@@ -17,7 +17,7 @@ const zipcodes = require('zipcodes');
 
 const mapContainerStyle = {
   width: '600px',
-  height: '875px',
+  height: '890px',
 };
 
 const centers = [
@@ -48,8 +48,7 @@ const position = { lat: 30.266666, lng: -97.73333 };
 
 const divStyle = {
   background: `white`,
-  border: `1px solid #ccc`,
-  padding: 15,
+  padding: 10,
 };
 
 function Maps() {
@@ -80,7 +79,7 @@ function Maps() {
           <GoogleMap
             id="InfoWindow-example"
             mapContainerStyle={mapContainerStyle}
-            zoom={10}
+            zoom={12}
             center={centers[0].location}
           >
             {currentUser.tradeHistory.map((item) => (
@@ -92,7 +91,7 @@ function Maps() {
                   <Avatar
                     alt={item.itemName}
                     src={item.itemPhoto}
-                    sx={{ width: 56, height: 56 }}
+                    sx={{ width: 50, height: 50 }}
                     variant="rounded"
                   />
                   <Typography>{item.itemName}</Typography>

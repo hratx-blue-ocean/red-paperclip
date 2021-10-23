@@ -19,15 +19,14 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
-  console.log('Current user: ', currentUser);
+  // console.log('Current user: ', currentUser);
 
   return (
     <>
       <Grid container spacing={5}>
         <Grid item xs={5}>
           <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
-            Howdy, {currentUser.firstName}! Your item is{' '}
-            {activeItem.active.toString()}.
+            Hello, {currentUser.firstName}!
           </Typography>
           <Card
             sx={{

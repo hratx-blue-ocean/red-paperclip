@@ -70,6 +70,12 @@ export default function ItemModal({
 }) {
   const classes = useStyles();
 
+  let subheaderString = '';
+
+  if (item.createdAt) {
+    subheaderString = dateFormat(item.createdAt.date, 'mmmm dS, yyyy');
+  }
+
   return (
     <div className={classes.root}>
       <Grid
@@ -133,7 +139,7 @@ export default function ItemModal({
                 />
               }
               title={item.itemOwner}
-              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              subheader={subheaderString}
               style={{
                 marginBottom: '-20px',
                 marginTop: '-12px',
@@ -150,7 +156,7 @@ export default function ItemModal({
                 />
               }
               title={item.itemOwner}
-              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              subheader={subheaderString}
               style={{
                 marginBottom: '-20px',
                 marginTop: '-12px',

@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -65,14 +66,6 @@ export default function ProfileJournalEntry(props) {
   const classes = useStyles();
   // mouse over image
 
-  // star fill
-  const [starFill, setStarFill] = React.useState(false);
-  const handleWatch = () => {
-    setStarFill(true);
-  };
-  const handleUnwatch = () => {
-    setStarFill(false);
-  };
   // item modal
   const [openCard, setCardOpen] = useState(false);
   const [openJournal, setJournalOpen] = useState(false);
@@ -83,19 +76,32 @@ export default function ProfileJournalEntry(props) {
   const handleJournalOpen = () => setJournalOpen(true);
   const handleJournalClose = () => setJournalOpen(false);
 
-  const { itemName, itemDesc, itemOwner, itemPicture } =
-    props.activeItem.journalItem;
+  const [itemBlurb, setItemBlurb] = useState('');
+
+  const { item } = props;
+
+  const {
+    itemName,
+    itemDescription,
+    itemOwner,
+    itemPhoto,
+    JournalLocation,
+    journalText,
+  } = item;
+
+  // const journalDate = item.journalDate._seconds;
+
+  useEffect(() => {
+    if (itemDescription) {
+      setItemBlurb(itemDescription.slice(0, 60));
+    }
+  }, [item]);
 
   return (
     <div className={classes.root}>
       <Modal open={openCard} onClose={handleCardClose}>
         <Box style={{ overflow: 'auto' }} sx={style}>
-          <ItemModal
-            handleCardClose={handleCardClose}
-            starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
-          />
+          <ItemModal handleCardClose={handleCardClose} item={item} />
         </Box>
       </Modal>
 
@@ -103,7 +109,7 @@ export default function ProfileJournalEntry(props) {
         <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
           <JournalModal
             handleJournalClose={handleJournalClose}
-            journalText={props.activeItem.journalText}
+            journalText={item.journalText}
           />
         </Box>
       </Modal>
@@ -121,9 +127,9 @@ export default function ProfileJournalEntry(props) {
           <CardMedia
             component="img"
             height={props.height}
-            image="https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w"
+            image={itemPhoto}
             style={{ objectFit: 'cover' }}
-            alt="Axe Set"
+            alt="Item Photo"
             onClick={handleCardOpen}
           />
           <Grid container style={{ marginTop: '6px' }}>
@@ -141,21 +147,6 @@ export default function ProfileJournalEntry(props) {
                 {itemName}
               </Typography>
             </Grid>
-            <Grid container item xs={2} justifyContent="center">
-              {!starFill && (
-                <IconButton onClick={handleWatch}>
-                  <StarIcon className={classes.hover1} />
-                </IconButton>
-              )}
-              {starFill && (
-                <IconButton onClick={handleUnwatch}>
-                  <StarIcon
-                    className={classes.hover1}
-                    style={{ color: '#F0CC71' }}
-                  />
-                </IconButton>
-              )}
-            </Grid>
           </Grid>
           <CardHeader
             avatar={
@@ -164,7 +155,7 @@ export default function ProfileJournalEntry(props) {
                 aria-label="user_name"
               />
             }
-            title="Jeffrey Dahmer"
+            title={itemOwner}
             subheader="6 hours ago"
             style={{
               marginBottom: '-20px',
@@ -186,8 +177,7 @@ export default function ProfileJournalEntry(props) {
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >
-                {'These beautiful axes were custom made in the heart of Minnesota' +
-                  '... '}
+                {itemBlurb} ...
                 <Link
                   className={classes.hover1}
                   component="button"
@@ -201,7 +191,7 @@ export default function ProfileJournalEntry(props) {
               </Typography>
             </Grid>
             <Grid container item xs={12} justifyContent="center">
-              {props.activeItem.journalText.length <= 0 && (
+              {item.journalText.length <= 0 && (
                 <Grid container item xs={6} justifyContent="center">
                   <Button
                     color="inherit"
@@ -213,14 +203,14 @@ export default function ProfileJournalEntry(props) {
                   </Button>
                 </Grid>
               )}
-              {props.activeItem.journalText.length > 0 && (
+              {item.journalText.length > 0 && (
                 <Typography
                   variant="body2"
                   color="white"
                   style={{ marginLeft: '10px', marginBottom: '10px' }}
                   display="inline"
                 >
-                  Journal Entry: {props.activeItem.journalText}
+                  Journal Entry: {item.journalText}
                 </Typography>
               )}
             </Grid>

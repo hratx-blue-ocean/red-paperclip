@@ -201,11 +201,17 @@ export default function CreateAccountForm() {
           />
         </FormControl>
       </Grid>
-      <Grid item align="center">
+      <Grid item xs={6} align="center">
         <Button
+          fullWidth
           type="submit"
           onClick={handleCreateAcct}
-          style={{ backgroundColor: '#161513', color: '#F0CC71' }}
+          style={{
+            backgroundColor: '#2C2C2C',
+            color: '#F0CC71',
+            marginTop: '6px',
+            justifyContent: 'center',
+          }}
         >
           Create an Account
         </Button>

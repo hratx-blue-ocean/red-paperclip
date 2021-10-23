@@ -65,15 +65,15 @@ const CategorySelector = ({ setSelection, getAllItems, itemsLength }) => {
   };
 
   const handleClose = (category) => {
-    if (category !== 'All') {
-      setAnchorEl(null);
-      setSelectedCategory(category);
-      setSelection(category);
-    } else {
+    if (category === 'All' || category === 'Select Category') {
       getAllItems(6);
       setAnchorEl(null);
       setSelectedCategory(category);
       setSelection('');
+    } else {
+      setAnchorEl(null);
+      setSelectedCategory(category);
+      setSelection(category);
     }
   };
 
@@ -91,7 +91,7 @@ const CategorySelector = ({ setSelection, getAllItems, itemsLength }) => {
         className={classes.menu}
         anchorEl={anchorEl}
         open={open}
-        onClose={() => handleClose('Select Category')}
+        onClose={() => handleClose(selectedCategory)}
       >
         {categories.map((category) => (
           <MenuItem

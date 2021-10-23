@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { useHistory } from 'react-router-dom';
 import { ItemsContext } from '../ItemsContext';
 import CategorySelector from './CategorySelector';
-import AuthModal from '../Header/AuthModal';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -47,19 +46,20 @@ export default function SortBar({
 }) {
   const classes = useStyles();
 
-  const { currentUserState, activeItemState, showAuthModalState } =
-    useContext(ItemsContext);
+  const {
+    currentUserState,
+    activeItemState,
+    menuOpenState,
+    handleMenuOpen,
+    anchorElState,
+  } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
   const [activeItem, setActiveItem] = activeItemState;
-  const [showAuthModal, setShowAuthModal] = showAuthModalState;
+  const [menuOpen, setMenuOpen] = menuOpenState;
 
   const history = useHistory();
   const handleSendToProfile = () => {
     history.push('/profile');
-  };
-
-  const handleCreateAcctClick = () => {
-    setShowAuthModal(true);
   };
 
   return (
@@ -143,7 +143,7 @@ export default function SortBar({
                 color="sortButton"
                 variant="contained"
                 className={classes.hover2}
-                onClick={handleCreateAcctClick}
+                onClick={handleMenuOpen}
               >
                 <Typography>Add Item +</Typography>
               </Button>

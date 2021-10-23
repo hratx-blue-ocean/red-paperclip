@@ -13,10 +13,11 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ItemsContext } from '../ItemsContext';
 
-export default function SignInForm({ setShowAuthModal }) {
-  const { isLoggedInState, apiUrlState, currentUserState } =
+export default function SignInForm() {
+  const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
     useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [currentUser, setCurrentUser] = currentUserState;
   const [values, setValues] = useState({

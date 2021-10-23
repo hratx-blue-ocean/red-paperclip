@@ -49,9 +49,8 @@ const MenuBar = () => {
       'Ball',
       'Desk',
     ];
-    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${
-      itemsArr[Math.floor(Math.random() * itemsArr.length)]
-    }`;
+    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${itemsArr[Math.floor(Math.random() * itemsArr.length)]
+      }`;
   };
   const [randomItemText, setRandomItemText] = useState(randomItem());
   const history = useHistory();

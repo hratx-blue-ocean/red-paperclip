@@ -19,7 +19,7 @@ const Profile = () => {
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [activeItem, setActiveItem] = activeItemState;
-  console.log('Current user: ', currentUser);
+  // console.log('Current user: ', currentUser);
 
   return (
     <>

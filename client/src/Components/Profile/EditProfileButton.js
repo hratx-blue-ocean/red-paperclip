@@ -63,9 +63,9 @@ const EditProfileButton = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={currentUser.userPFP}
+                image={currentUser.imageUrl}
                 style={{ objectFit: 'cover' }}
-                alt="Mr. Dahmer"
+                alt="User photo"
               />
             </Card>
             <TextField

@@ -66,14 +66,6 @@ export default function ProfileJournalEntry(props) {
   const classes = useStyles();
   // mouse over image
 
-  // star fill
-  const [starFill, setStarFill] = React.useState(false);
-  const handleWatch = () => {
-    setStarFill(true);
-  };
-  const handleUnwatch = () => {
-    setStarFill(false);
-  };
   // item modal
   const [openCard, setCardOpen] = useState(false);
   const [openJournal, setJournalOpen] = useState(false);
@@ -109,13 +101,7 @@ export default function ProfileJournalEntry(props) {
     <div className={classes.root}>
       <Modal open={openCard} onClose={handleCardClose}>
         <Box style={{ overflow: 'auto' }} sx={style}>
-          <ItemModal
-            handleCardClose={handleCardClose}
-            starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
-            item={item}
-          />
+          <ItemModal handleCardClose={handleCardClose} item={item} />
         </Box>
       </Modal>
 
@@ -160,21 +146,6 @@ export default function ProfileJournalEntry(props) {
               >
                 {itemName}
               </Typography>
-            </Grid>
-            <Grid container item xs={2} justifyContent="center">
-              {!starFill && (
-                <IconButton onClick={handleWatch}>
-                  <StarIcon className={classes.hover1} />
-                </IconButton>
-              )}
-              {starFill && (
-                <IconButton onClick={handleUnwatch}>
-                  <StarIcon
-                    className={classes.hover1}
-                    style={{ color: '#F0CC71' }}
-                  />
-                </IconButton>
-              )}
             </Grid>
           </Grid>
           <CardHeader

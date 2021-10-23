@@ -26,6 +26,9 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
+  divider: {
+    padding: 20,
+  },
   userText: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -38,9 +41,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   hover3: {
-    color: '#A10000',
+    color: '#6D5D59',
+
     '&:hover': {
-      color: '#ffffff',
+      color: '#A10000',
     },
   },
   hover1: {
@@ -80,20 +84,27 @@ export default function ChatConversation({
           />
         </Grid>
         <Grid item xs={1}>
-          <Avatar alt="artWork" src={artWork} sx={{ width: 56, height: 56 }} />
+          <Avatar
+            alt="artWork"
+            src={
+              'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffineartamerica.com%2Ffeatured%2Fabstract-art-landscape-seascape-bold-colorful-artwork-serenity-by-madart-megan-duncanson.html&psig=AOvVaw1WDeLmXnncPoM7ZUyakfcc&ust=1635045306216000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMDfjMfI3_MCFQAAAAAdAAAAABAF'
+            }
+            sx={{ width: 56, height: 56 }}
+          />
         </Grid>
 
         <Grid container item xs={5} justifyContent="center">
-          <Button
-            variant="outlined"
-            href="#outlined-buttons"
-            sx={{ width: 40, height: 40, color: 'black' }}
-          >
-            Close Deal!
+          <Button variant="contained" sx={{ width: 40, height: 40 }}>
+            Close Deal
+          </Button>
+          <Button variant="contained" sx={{ width: 40, height: 40 }}>
+            Delete Chat
           </Button>
         </Grid>
       </Grid>
-      <Divider />
+      <Grid item xs={12} className={classes.divider}>
+        <Divider />
+      </Grid>
 
       <Box
         sx={{

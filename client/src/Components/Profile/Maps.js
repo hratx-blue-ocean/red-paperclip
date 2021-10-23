@@ -1,48 +1,109 @@
-import React from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useContext, useState, useEffect } from 'react';
+import {
+  GoogleMap,
+  LoadScript,
+  InfoWindow,
+  Marker,
+} from '@react-google-maps/api';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { ItemsContext } from '../ItemsContext';
 
-const containerStyle = {
-  width: '400px',
-  height: '400px',
+const zipcodes = require('zipcodes');
+
+const mapContainerStyle = {
+  width: '600px',
+  height: '875px',
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523,
+const centers = [
+  {
+    name: 'Austin',
+    location: {
+      lat: 30.266666,
+      lng: -97.73333,
+    },
+  },
+  {
+    name: 'Georgetown',
+    location: {
+      lat: 30.633263,
+      lng: -97.677986,
+    },
+  },
+  {
+    name: 'Buda',
+    location: {
+      lat: 30.6333,
+      lng: -97.678,
+    },
+  },
+];
+
+const position = { lat: 30.266666, lng: -97.73333 };
+
+const divStyle = {
+  background: `white`,
+  border: `1px solid #ccc`,
+  padding: 15,
 };
 
-function MyComponent() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyCC5wJDdHBdkKORms0TLd1qCGWB2cr3SGs',
-  });
+function Maps() {
+  const { isLoggedInState, menuOpenState, currentUserState } =
+    useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [selected, setSelected] = useState({});
+  const [currentPosition, setCurrentPosition] = useState({});
 
-  const [userMap, setUserMap] = React.useState(null);
+  const onSelect = (item) => {
+    setSelected(item);
+  };
 
-  const onLoad = React.useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setUserMap(map);
-  }, []);
+  const getCoordinates = (zip) => {
+    const dataObj = zipcodes.lookup(zip);
+    const location = {
+      lat: dataObj.latitude,
+      lng: dataObj.longitude,
+    };
+    return location;
+  };
 
-  const onUnmount = React.useCallback((map) => {
-    setUserMap(null);
-  }, []);
-
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {/* Child components, such as markers, info windows, etc. */}
-      <></>
-    </GoogleMap>
-  ) : (
-    <></>
+  return (
+    <Grid container justifyContent="center">
+      <Grid item align="center">
+        <LoadScript googleMapsApiKey="AIzaSyCC5wJDdHBdkKORms0TLd1qCGWB2cr3SGs">
+          <GoogleMap
+            id="InfoWindow-example"
+            mapContainerStyle={mapContainerStyle}
+            zoom={10}
+            center={centers[0].location}
+          >
+            {currentUser.tradeHistory.map((item) => (
+              <InfoWindow
+                position={getCoordinates(item.journalLocation)}
+                key={item.itemPhoto}
+              >
+                <div style={divStyle}>
+                  <Avatar
+                    alt={item.itemName}
+                    src={item.itemPhoto}
+                    sx={{ width: 56, height: 56 }}
+                    variant="rounded"
+                  />
+                  <Typography>{item.itemName}</Typography>
+                </div>
+              </InfoWindow>
+            ))}
+          </GoogleMap>
+        </LoadScript>
+      </Grid>
+    </Grid>
   );
 }
 
-export default React.memo(MyComponent);
+export default React.memo(Maps);

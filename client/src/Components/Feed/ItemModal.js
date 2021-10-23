@@ -108,14 +108,17 @@ export default function ItemModal({
             <Grid container item xs={2} justifyContent="center">
               {!starFill && (
                 <IconButton onClick={handleWatch}>
-                  <StarIcon className={classes.hover1} />
+                  <StarIcon
+                    className={classes.hover1}
+                    style={{ fontSize: 40 }}
+                  />
                 </IconButton>
               )}
               {starFill && (
                 <IconButton onClick={handleUnwatch}>
                   <StarIcon
                     className={classes.hover1}
-                    style={{ color: '#F0CC71' }}
+                    style={{ color: '#F0CC71', fontSize: 40 }}
                   />
                 </IconButton>
               )}

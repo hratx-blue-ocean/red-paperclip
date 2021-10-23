@@ -41,16 +41,25 @@ export const ItemsProvider = (props) => {
   const [watchedItems, setWatchedItems] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
 
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
 
   const getActiveItem = (itemString) => {
-    axios
-      .get(`${apiUrl}/getItem?uid=${itemString}`)
-      .then((item) => setActiveItem(item.data))
-      .catch((error) => console.log('Error retrieving active item: ', error));
+    if (isLoggedIn) {
+      axios
+        .get(`${apiUrl}/getItem?uid=${itemString}`)
+        .then((item) => setActiveItem(item.data))
+        .catch((error) => console.log('Error retrieving active item: ', error));
+    }
   };
 
   const getWatchedItemsList = (itemsArray) => {
@@ -81,6 +90,9 @@ export const ItemsProvider = (props) => {
         activeItemState: [activeItem, setActiveItem],
         watchedItemsState: [watchedItems, setWatchedItems],
         showAuthModalState: [showAuthModal, setShowAuthModal],
+        menuOpenState: [menuOpen, setMenuOpen],
+        anchorElState: [anchorEl, setAnchorEl],
+        handleMenuOpen,
       }}
     >
       {props.children}

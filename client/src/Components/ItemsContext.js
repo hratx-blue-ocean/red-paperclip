@@ -39,6 +39,9 @@ export const ItemsProvider = (props) => {
     itemLocation: '',
   });
   const [watchedItems, setWatchedItems] = useState([]);
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
@@ -79,6 +82,7 @@ export const ItemsProvider = (props) => {
         apiUrlState: [apiUrl, setApiUrl],
         activeItemState: [activeItem, setActiveItem],
         watchedItemsState: [watchedItems, setWatchedItems],
+        showAuthModalState: [showAuthModal, setShowAuthModal],
       }}
     >
       {props.children}

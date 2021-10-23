@@ -29,11 +29,11 @@ export default function AuthModal({
   menuOpen = false,
   setAnchorEl,
   anchorEl,
-  setShowAuthModal,
   isReturningUser,
 }) {
-  const { isLoggedInState } = useContext(ItemsContext);
+  const { isLoggedInState, showAuthModalState } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
 
   const handleClose = () => {
     setMenuOpen(false);
@@ -52,7 +52,7 @@ export default function AuthModal({
         aria-describedby="modal-modal-description"
       >
         {menuOpen &&
-          (isReturningUser ? (
+          (isReturningUser === true ? (
             <Box sx={style}>
               <SignInForm
                 setMenuOpen={setMenuOpen}
@@ -61,7 +61,6 @@ export default function AuthModal({
                 setAnchorEl={setAnchorEl}
                 anchorEl={anchorEl}
                 handleOpen={handleOpen}
-                setShowAuthModal={setShowAuthModal}
               />
             </Box>
           ) : (
@@ -73,7 +72,6 @@ export default function AuthModal({
                 setAnchorEl={setAnchorEl}
                 anchorEl={anchorEl}
                 handleOpen={handleOpen}
-                setShowAuthModal={setShowAuthModal}
               />
             </Box>
           ))}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -45,8 +46,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ChatConversation() {
+export default function ChatConversation({
+  chatsWithJesson,
+  setChatsWithJesson,
+}) {
   const classes = useStyles();
+
+  useEffect(() => {}, [chatsWithJesson]);
 
   return (
     <Paper elevation={6} style={{ height: 500, borderRadius: 30, padding: 30 }}>
@@ -73,7 +79,7 @@ export default function ChatConversation() {
           <Button
             variant="outlined"
             href="#outlined-buttons"
-            sx={{ width: 40, height: 40 }}
+            sx={{ width: 40, height: 40, color: 'black' }}
           >
             Close Deal!
           </Button>
@@ -92,7 +98,44 @@ export default function ChatConversation() {
       >
         <DeleteIcon className={classes.hover1} />
       </Box>
-      <Box
+      {chatsWithJesson.map((message) =>
+        message[0] === 1 ? (
+          <Box
+            component="span"
+            sx={{
+              display: 'block',
+              p: 1,
+              m: 1,
+              bgcolor: 'background.paper',
+            }}
+          >
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar alt="Jesson W" src={Jason} />
+              </ListItemAvatar>
+              <ListItemText primary={message[2]} />
+            </ListItem>
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              p: 1,
+              l: 2,
+              bgcolor: 'background.paper',
+            }}
+          >
+            <ListItem>
+              <ListItemText primary={message[2]} />
+              <ListItemAvatar>
+                <Avatar alt="Pingping X" src={Pingping} />
+              </ListItemAvatar>
+            </ListItem>
+          </Box>
+        )
+      )}
+      {/* <Box
         component="span"
         sx={{
           display: 'block',
@@ -129,7 +172,7 @@ export default function ChatConversation() {
             <Avatar alt="Jesson W" src={Pingping} />
           </ListItemAvatar>
         </ListItem>
-      </Box>
+      </Box> */}
     </Paper>
   );
 }

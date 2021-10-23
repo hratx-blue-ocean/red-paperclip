@@ -70,7 +70,7 @@ export default function ItemCard({ item }) {
     useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
-  const [apiUrl, setApiUrl] = apiUrlState;
+  const [apiUrl] = apiUrlState;
   // star fill
   const [starFill, setStarFill] = useState(false);
   useEffect(() => {
@@ -79,29 +79,50 @@ export default function ItemCard({ item }) {
         setStarFill(true);
       }
     }
-  });
-  const handleWatch = () => {
+  }, []);
+  const handleStarClick = () => {
     if (isLoggedIn) {
-      setStarFill(true);
-      // axios
-      //   .put(`${apiUrl}/???`, { params: { userId??? } })
-      //   .then()
-      //   .catch((err) => {
-      //     console.log('FAILED to add item to watchlist --> ', err);
-      //   });
+      if (starFill) {
+        setStarFill(false);
+        // setCurrentUser({...currentUser, watchedItems.delete(item.uid)})
+        axios
+          .put(`${apiUrl}/editWatchList`, {
+            uid: item.uid,
+            email: currentUser.email,
+            type: 'delete',
+          })
+          .then()
+          .catch((err) => {
+            console.log('FAILED to remove item from watchlist --> ', err);
+          });
+      } else {
+        setStarFill(true);
+        axios
+          .put(`${apiUrl}/editWatchList`, {
+            uid: item.uid,
+            email: currentUser.email,
+            type: 'add',
+          })
+          .then()
+          .catch((err) => {
+            console.log('FAILED to add item to watchlist --> ', err);
+          });
+      }
     }
-    // send put to userId, add itemId to array
   };
-  const handleUnwatch = () => {
-    setStarFill(false);
-    // axios
-    //   .put(`${apiUrl}/???`, { params: { userId??? } })
-    //   .then()
-    //   .catch((err) => {
-    //     console.log('FAILED to add item to watchlist --> ', err);
-    //   });
-    // send put to userId, remove itemId from array
-  };
+  // const handleStarClick = () => {
+  //   setStarFill(false);
+  //   axios
+  //     .put(`${apiUrl}/editWatchList`, {
+  //       uid: item.uid,
+  //       email: currentUser.email,
+  //       type: 'delete',
+  //     })
+  //     .then()
+  //     .catch((err) => {
+  //       console.log('FAILED to remove item from watchlist --> ', err);
+  //     });
+  // };
   // item modal
   const [openCard, setCardOpen] = useState(false);
   const handleCardOpen = () => setCardOpen(true);
@@ -139,8 +160,7 @@ export default function ItemCard({ item }) {
           <ItemModal
             handleCardClose={handleCardClose}
             starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
+            handleStarClick={handleStarClick}
             handleTradeOpen={handleTradeOpen}
             handleReportOpen={handleReportOpen}
             item={item}
@@ -192,7 +212,7 @@ export default function ItemCard({ item }) {
         style={{ justifyContent: 'flex-start', position: 'absolute' }}
       >
         {!starFill && (
-          <IconButton onClick={handleWatch}>
+          <IconButton onClick={handleStarClick}>
             <StarIcon
               className={classes.hover1}
               style={{ justifyContent: 'flex-start', fontSize: 40 }}
@@ -200,7 +220,7 @@ export default function ItemCard({ item }) {
           </IconButton>
         )}
         {starFill && (
-          <IconButton onClick={handleUnwatch}>
+          <IconButton onClick={handleStarClick}>
             <StarIcon
               className={classes.hover1}
               style={{

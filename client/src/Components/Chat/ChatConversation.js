@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
+  userText: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: 20,
+  },
   hover2: {
     color: '#ffffff',
     '&:hover': {
@@ -127,7 +132,7 @@ export default function ChatConversation({
             }}
           >
             <ListItem>
-              <ListItemText primary={message[2]} />
+              <ListItemText className={classes.userText} primary={message[2]} />
               <ListItemAvatar>
                 <Avatar alt="Pingping X" src={Pingping} />
               </ListItemAvatar>

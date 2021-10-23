@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
+  sendButton: { display: 'flex', justifyContent: 'flex-end' },
   hover2: {
     color: '#ffffff',
     '&:hover': {
@@ -44,23 +45,48 @@ export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
     const newMessage = [2, 1, chatText, Date.now()];
     console.log('from addChat:', chatsWithJesson);
     setChatsWithJesson([...chatsWithJesson, newMessage]);
+    setChatText('');
   }
   return (
     <Paper elevation={6} style={{ height: 150, borderRadius: 30 }}>
-      <form className="addChat" onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          id="fullWidth"
-          label="Private Chat Room With Jesson"
-          multiline
-          rows={1}
-          value={chatText}
-          onInput={(e) => setChatText(e.target.value)}
-        />
-        <Button variant="contained" color="success" type="submit">
-          Send
-        </Button>
-      </form>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <form className="addChat" onSubmit={handleSubmit}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                m: 1,
+                bgcolor: 'background.paper',
+                borderRadius: 30,
+              }}
+            >
+              <Chip
+                className={classes.hover1}
+                icon={<MdPhone />}
+                label="Audio Chat"
+              />
+              <Button
+                className={classes.sendButton}
+                variant="contained"
+                color="success"
+                type="submit"
+              >
+                Send
+              </Button>
+            </Box>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              label="Private Chat Room With Jesson"
+              multiline
+              rows={1}
+              value={chatText}
+              onInput={(e) => setChatText(e.target.value)}
+            />
+          </form>
+        </Grid>
+      </Grid>
       {/* <Box
         sx={{
           display: 'flex',

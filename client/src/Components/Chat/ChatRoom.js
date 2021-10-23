@@ -14,12 +14,6 @@ export default function ChatRoom() {
       'Are you interested to trade with my book? It is an antique from ancient China!',
       1634948687,
     ],
-    [
-      2,
-      1,
-      "Wow, that's very cool! What year was the book and what it is about?",
-      1634948688,
-    ],
   ]);
   const [chatText, setChatText] = useState('');
 

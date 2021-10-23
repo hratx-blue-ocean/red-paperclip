@@ -82,13 +82,12 @@ export default function ProfileJournalEntry(props) {
 
   const handleJournalOpen = () => setJournalOpen(true);
   const handleJournalClose = () => setJournalOpen(false);
-  const handleRelistOpen = () => alert("Don't touch that.");
 
   const { itemName, itemDesc, itemOwner, itemPicture } =
     props.activeItem.journalItem;
 
   return (
-    <div className={classes.root} key={props.index}>
+    <div className={classes.root}>
       <Modal open={openCard} onClose={handleCardClose}>
         <Box style={{ overflow: 'auto' }} sx={style}>
           <ItemModal
@@ -224,16 +223,6 @@ export default function ProfileJournalEntry(props) {
                   Journal Entry: {props.activeItem.journalText}
                 </Typography>
               )}
-              <Grid container item xs={6} justifyContent="space-evenly">
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  className={classes.hover2}
-                  onClick={handleRelistOpen}
-                >
-                  Re-List Item
-                </Button>
-              </Grid>
             </Grid>
           </CardContent>
         </Card>

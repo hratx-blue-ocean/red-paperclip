@@ -14,7 +14,6 @@ const getItems = async (req, res) => {
   await Promise.all(promises).then((values) => {
     itemsArr = values;
   });
-  console.log(res);
   if (res) {
     res.send(itemsArr);
   } else {

@@ -133,6 +133,27 @@ export default function ItemCard({ item }) {
         </Box>
       </Modal>
 
+      <Grid
+        container
+        style={{ justifyContent: 'flex-start', position: 'absolute' }}
+      >
+        {!starFill && (
+          <IconButton onClick={handleWatch}>
+            <StarIcon
+              className={classes.hover1}
+              style={{ justifyContent: 'flex-start', fontSize: 40 }}
+            />
+          </IconButton>
+        )}
+        {starFill && (
+          <IconButton onClick={handleUnwatch}>
+            <StarIcon
+              className={classes.hover1}
+              style={{ color: '#F0CC71', justifyContent: 'flex-start', fontSize: 40 }}
+            />
+          </IconButton>
+        )}
+      </Grid>
       <Grid container>
         <Card
           style={{
@@ -155,11 +176,11 @@ export default function ItemCard({ item }) {
             onClick={handleCardOpen}
           />
           <Grid container style={{ marginTop: '6px' }}>
-            {item.itemName.length > 18 && (
+            {item.itemName.length > 25 && (
               <Grid
                 container
                 item
-                xs={10}
+                xs={12}
                 style={{ justifyContent: 'flex-start' }}
                 alignItems="baseline"
               >
@@ -167,15 +188,15 @@ export default function ItemCard({ item }) {
                   variant="h6"
                   style={{ marginLeft: '22px', color: '#F0CC71' }}
                 >
-                  {`${item.itemName.slice(0, 19)}... `}
+                  {`${item.itemName.slice(0, 26)}... `}
                 </Typography>
               </Grid>
             )}
-            {item.itemName.length <= 18 && (
+            {item.itemName.length <= 25 && (
               <Grid
                 container
                 item
-                xs={10}
+                xs={12}
                 style={{ justifyContent: 'flex-start' }}
                 alignItems="baseline"
               >
@@ -187,29 +208,6 @@ export default function ItemCard({ item }) {
                 </Typography>
               </Grid>
             )}
-            <Grid
-              container
-              item
-              xs={2}
-              style={{ justifyContent: 'flex-start' }}
-            >
-              {!starFill && (
-                <IconButton onClick={handleWatch}>
-                  <StarIcon
-                    className={classes.hover1}
-                    style={{ justifyContent: 'flex-start' }}
-                  />
-                </IconButton>
-              )}
-              {starFill && (
-                <IconButton onClick={handleUnwatch}>
-                  <StarIcon
-                    className={classes.hover1}
-                    style={{ color: '#F0CC71', justifyContent: 'flex-start' }}
-                  />
-                </IconButton>
-              )}
-            </Grid>
           </Grid>
           {item.itemOwnerPhoto && (
             <CardHeader

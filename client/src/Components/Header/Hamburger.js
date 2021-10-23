@@ -17,14 +17,15 @@ import AuthModal from './AuthModal';
 import { ItemsContext } from '../ItemsContext';
 
 const Hamburger = () => {
-  const { isLoggedInState, currentUserState, showAuthModalState, activeItemState } = useContext(ItemsContext);
+  const { isLoggedInState, currentUserState, showAuthModalState, activeItemState, menuOpenState, handleMenuOpen, anchorElState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [currentUser, setCurrentUser] = currentUserState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = menuOpenState;
   const [isReturningUser, setIsReturningUser] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = anchorElState;
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -43,10 +44,10 @@ const Hamburger = () => {
     setMenuOpen(true);
   };
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-    setMenuOpen(true);
-  };
+  // const handleMenuOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  //   setMenuOpen(true);
+  // };
 
   // React Router Navigation
   const history = useHistory();

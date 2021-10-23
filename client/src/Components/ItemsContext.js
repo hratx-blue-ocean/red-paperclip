@@ -38,15 +38,20 @@ export const ItemsProvider = (props) => {
     itemName: '',
     itemLocation: '',
   });
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
 
   const getActiveItem = (itemString) => {
-    axios
-      .get(`${apiUrl}/getItem?uid=${itemString}`)
-      .then((item) => setActiveItem(item.data))
-      .catch((error) => console.log('Error retrieving active item: ', error));
+    if (isLoggedIn) {
+      axios
+        .get(`${apiUrl}/getItem?uid=${itemString}`)
+        .then((item) => setActiveItem(item.data))
+        .catch((error) => console.log('Error retrieving active item: ', error));
+    }
   };
 
   useEffect(() => {
@@ -63,6 +68,7 @@ export const ItemsProvider = (props) => {
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
         activeItemState: [activeItem, setActiveItem],
+        showAuthModalState: [showAuthModal, setShowAuthModal],
       }}
     >
       {props.children}

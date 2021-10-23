@@ -2,6 +2,7 @@
 const getAllItems = require('./Items/getAllItems');
 const changeActiveStatus = require('./Items/changeActiveStatus');
 const getItem = require('./Items/getItem');
+const getItems = require('./Items/getItems');
 const addNewItem = require('./Items/addNewItem');
 const editItem = require('./Items/editItem');
 const getItemsByCategory = require('./Items/getItemsByCategory');
@@ -20,6 +21,7 @@ const getItemReports = require('./Admin/getItemReports');
 const item = {
   getAllItems,
   getItem,
+  getItems,
   addNewItem,
   editItem,
   changeActiveStatus,

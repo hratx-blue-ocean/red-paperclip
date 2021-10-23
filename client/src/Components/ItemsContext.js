@@ -38,6 +38,7 @@ export const ItemsProvider = (props) => {
     itemName: '',
     itemLocation: '',
   });
+  const [watchedItems, setWatchedItems] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,9 +63,20 @@ export const ItemsProvider = (props) => {
     }
   };
 
+  const getWatchedItemsList = (itemsArray) => {
+    axios
+      .get(`${apiUrl}/getItems`, { params: { items: itemsArray } })
+      .then((watchedItemsData) => {
+        setWatchedItems(watchedItemsData.data);
+        console.log('Retrieved watched items data: ', watchedItemsData.data);
+      })
+      .catch((error) => console.log('Error retrieving watched items'));
+  };
+
   useEffect(() => {
     getActiveItem(currentUser.availableItem);
-  }, [currentUser]);
+    getWatchedItemsList(Object.keys(currentUser.watchedItems));
+  }, [isLoggedIn]);
 
   return (
     <ItemsContext.Provider
@@ -76,6 +88,7 @@ export const ItemsProvider = (props) => {
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
         activeItemState: [activeItem, setActiveItem],
+        watchedItemsState: [watchedItems, setWatchedItems],
         showAuthModalState: [showAuthModal, setShowAuthModal],
         menuOpenState: [menuOpen, setMenuOpen],
         anchorElState: [anchorEl, setAnchorEl],

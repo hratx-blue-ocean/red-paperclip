@@ -6,6 +6,7 @@ const reportItem = (req, res) => {
     .then(async (snap) => {
       const { reported } = snap.data();
       reported[req.query.uid] = req.query.uid;
+      console.log(reported)
       db.doc(`admin/items`)
         .update({ reported })
         .then(() => res.end())

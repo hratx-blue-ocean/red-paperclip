@@ -47,7 +47,6 @@ export const ItemsProvider = (props) => {
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
     setMenuOpen(true);
-    console.log('handleMenuOpen clicked!!!');
   };
 
   const [apiUrl, setApiUrl] = useState(

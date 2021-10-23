@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -7,7 +7,10 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useHistory } from 'react-router-dom';
+import { ItemsContext } from '../ItemsContext';
 import CategorySelector from './CategorySelector';
+import AuthModal from '../Header/AuthModal';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,6 +46,21 @@ export default function SortBar({
   setSorted,
 }) {
   const classes = useStyles();
+
+  const { currentUserState, activeItemState, showAuthModalState } =
+    useContext(ItemsContext);
+  const [currentUser] = currentUserState;
+  const [activeItem, setActiveItem] = activeItemState;
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
+
+  const history = useHistory();
+  const handleSendToProfile = () => {
+    history.push('/profile');
+  };
+
+  const handleCreateAcctClick = () => {
+    setShowAuthModal(true);
+  };
 
   return (
     <AppBar
@@ -100,13 +118,36 @@ export default function SortBar({
             >
               {'ACTIVE ITEM: '}
             </Typography>
-            <Button
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-            >
-              <Typography>Item Name || Add Item +</Typography>
-            </Button>
+            {activeItem.itemName && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleSendToProfile}
+              >
+                <Typography>{activeItem.itemName}</Typography>
+              </Button>
+            )}
+            {!currentUser.availableItem && currentUser.email && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleSendToProfile}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
+            {!currentUser.email && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleCreateAcctClick}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Container>

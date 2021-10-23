@@ -47,9 +47,11 @@
 
 # Contributors
 
-### Rebekah Cruz
+## Rebekah Cruz
 
 email here
+
+UI Owner/Software Engineer
 
 <img src="ReadmeImages/RebekahCruz.jpeg" alt="Rebekah Cruz headshot" height="150">
 
@@ -58,18 +60,20 @@ email here
 
 <br>
 
-### Cory Ellerbroek
+## Cory Ellerbroek
 
 cory.ellerbroek@gmail.com
 
- <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" height="150">
+UI Owner/Software Engineer
+
+ <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" height="200">
 
 [![linkedin-shield]][cory-linkedin]
 [![github-shield]][cory-github]
 
 <br>
 
-### William Fink
+## William Fink
 
 email here
 
@@ -84,6 +88,8 @@ email here
 
 travis503@gmail.com
 
+UI Owner/Software Engineer
+
 <img src="ReadmeImages/TravisMorse.jpeg" alt="Travis Morse Headshot" height="150">
 
 [![linkedin-shield]][travis-linkedin]
@@ -91,9 +97,11 @@ travis503@gmail.com
 
 <br>
 
-### Matthew Sewell
+## Matthew Sewell
 
 email here
+
+Architecture Owner/Software Engineer
 
  <img src="ReadmeImages/MatthewSewell.jpeg" alt="Matthew Sewell Headshot" height="150">
 
@@ -102,9 +110,11 @@ email here
 
 <br>
 
-### Pinping Xiao
+## Pinping Xiao
 
 email here
+
+Architecture Owner/Software Engineer
 
  <img src="ReadmeImages/PingpingXiao.jpeg" alt="Pingping Xiao Headshot" height="150">
 

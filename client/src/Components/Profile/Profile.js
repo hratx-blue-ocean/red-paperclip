@@ -19,7 +19,7 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
-  console.log('Current user: ', currentUser);
+  // console.log('Current user: ', currentUser);
 
   return (
     <>

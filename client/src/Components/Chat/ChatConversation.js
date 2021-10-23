@@ -84,8 +84,14 @@ export default function ChatConversation({
     >
       <Grid container spacing={2}>
         <Grid container item xs={4} justifyContent="center">
-          <Avatar alt="Jesson W" src={Jason} />
-          <ListItemText primary="Jesson W" secondary="Trusted User" />
+          <Avatar alt="Jason" src={Jason} />
+          <ListItemText
+            style={{
+              padding: 2,
+            }}
+            primary="Jason"
+            secondary="Trusted User"
+          />
         </Grid>
 
         <Grid item xs={1}>

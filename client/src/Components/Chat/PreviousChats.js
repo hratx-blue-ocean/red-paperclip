@@ -11,7 +11,7 @@ import Blake from './img/Blake.png';
 import Will from './img/Will.png';
 import Travis from './img/Travis.png';
 
-export default function TestingChatList() {
+export default function PreviousChats() {
   return (
     <List
       className="chats"

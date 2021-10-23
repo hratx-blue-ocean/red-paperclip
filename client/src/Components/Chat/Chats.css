@@ -7,6 +7,12 @@
   border-bottom: 1px solid #ffffff;
 }
 
+.chat:hover {
+  background-color: lightyellow;
+  font-weight: bolder;
+  cursor: grab;
+  border-radius: 10% / 50%;
+}
 .chat_details {
   flex: 1;
 }

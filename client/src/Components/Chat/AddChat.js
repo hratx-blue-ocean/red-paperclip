@@ -16,18 +16,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   sendButton: { display: 'flex', justifyContent: 'flex-end' },
-  hover2: {
-    color: '#ffffff',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
-  hover3: {
-    color: '#A10000',
-    '&:hover': {
-      color: '#ffffff',
-    },
-  },
+
   hover1: {
     color: '#161513',
     '&:hover': {
@@ -48,7 +37,7 @@ export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
     setChatText('');
   }
   return (
-    <Paper elevation={6} style={{ height: 150, borderRadius: 30 }}>
+    <Paper elevation={6} style={{ height: 180, borderRadius: 30 }}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <form className="addChat" onSubmit={handleSubmit}>
@@ -80,7 +69,7 @@ export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
               id="fullWidth"
               label="Private Chat Room With Jesson"
               multiline
-              rows={1}
+              rows={2}
               value={chatText}
               onInput={(e) => setChatText(e.target.value)}
             />

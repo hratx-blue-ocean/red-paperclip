@@ -16,7 +16,6 @@ import ItemCard from '../Feed/ItemCard';
 const WatchedItems = (props) => {
   const { watchedItemsState } = useContext(ItemsContext);
   const [watchedItems, setWatchedItems] = watchedItemsState;
-  console.log('Watched items: ', watchedItems);
   return (
     <>
       {watchedItems.map((item, index) => {

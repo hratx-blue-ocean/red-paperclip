@@ -52,7 +52,9 @@ export default function SortBar({
     menuOpenState,
     handleMenuOpen,
     anchorElState,
+    isLoggedInState,
   } = useContext(ItemsContext);
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [currentUser] = currentUserState;
   const [activeItem, setActiveItem] = activeItemState;
   const [menuOpen, setMenuOpen] = menuOpenState;
@@ -118,6 +120,26 @@ export default function SortBar({
             >
               {'ACTIVE ITEM: '}
             </Typography>
+            {!isLoggedIn && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleMenuOpen}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
+            {isLoggedIn && !currentUser.availableItem && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleSendToProfile}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
             {activeItem.itemName && (
               <Button
                 color="sortButton"
@@ -126,26 +148,6 @@ export default function SortBar({
                 onClick={handleSendToProfile}
               >
                 <Typography>{activeItem.itemName}</Typography>
-              </Button>
-            )}
-            {!currentUser.availableItem && currentUser.email && (
-              <Button
-                color="sortButton"
-                variant="contained"
-                className={classes.hover2}
-                onClick={handleSendToProfile}
-              >
-                <Typography>Add Item +</Typography>
-              </Button>
-            )}
-            {!currentUser.email && (
-              <Button
-                color="sortButton"
-                variant="contained"
-                className={classes.hover2}
-                onClick={handleMenuOpen}
-              >
-                <Typography>Add Item +</Typography>
               </Button>
             )}
           </Grid>

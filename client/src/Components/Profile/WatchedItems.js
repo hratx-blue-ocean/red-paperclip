@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable arrow-body-style */
 import React, { useState, useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
@@ -17,8 +18,12 @@ const WatchedItems = (props) => {
   console.log('Watched items: ', watchedItems);
   return (
     <>
-      {testFollowedItems.map((item) => {
-        return <ProfileActiveItem activeItem={item} height="60%" />;
+      {watchedItems.map((item, index) => {
+        return (
+          <Box key={index}>
+            <ProfileActiveItem activeItem={item} height="60%" />
+          </Box>
+        );
       })}
     </>
   );

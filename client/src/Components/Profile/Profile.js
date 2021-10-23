@@ -15,33 +15,11 @@ import AddItem from './AddItem';
 const Profile = () => {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  // const [activeItem, setActiveItem] = useState({});
   const { apiUrlState } = useContext(ItemsContext);
   const [apiUrl, setApiUrl] = apiUrlState;
   const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
   console.log('Current user: ', currentUser);
-  // console.log('Item string: ', currentUser.availableItem);
-
-  // const getActiveItem = (itemString) => {
-  //   axios
-  //     .get(`${apiUrl}/getItem?uid=${itemString}`)
-  //     .then((item) => setActiveItem(item.data))
-  //     .catch((error) => console.log('Error retrieving active item: ', error));
-  // };
-
-  // useEffect(() => {
-  //   getActiveItem(currentUser.availableItem);
-  // }, [currentUser]);
-
-  const testActiveItem = {
-    itemName: 'Rustic Axe Set 1',
-    itemDesc:
-      'These beautiful axes were custom made in the heart of Minnesota. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing. I need to have more characters so I am typing.',
-    itemOwner: 'Jeffrey Dahmer',
-    itemPicture:
-      'https://images.squarespace-cdn.com/content/v1/5acd0a3c8ab722892928be5a/1565878992439-2ER3KM60OHYNPNF2LPP3/8B059829-6D7F-424F-B9A7-4C44C112CFF9.jpg?format=2500w',
-  };
 
   return (
     <>

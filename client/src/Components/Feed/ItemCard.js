@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -66,19 +66,40 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-
-  const { isLoggedInState, apiUrlState } = useContext(ItemsContext);
+  const { currentUserState, isLoggedInState, apiUrlState } = useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
-  // mouse over image
-
   // star fill
-  const [starFill, setStarFill] = React.useState(false);
+  const [starFill, setStarFill] = useState(false);
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (currentUser.watchedItems.contains(item.uid)) {
+        setStarFill(true);
+      }
+    }
+  });
   const handleWatch = () => {
-    setStarFill(true);
+    if (isLoggedIn) {
+      setStarFill(true);
+      // axios
+      //   .put(`${apiUrl}/???`, { params: { userId??? } })
+      //   .then()
+      //   .catch((err) => {
+      //     console.log('FAILED to add item to watchlist --> ', err);
+      //   });
+    }
+    // send put to userId, add itemId to array
   };
   const handleUnwatch = () => {
     setStarFill(false);
+    // axios
+    //   .put(`${apiUrl}/???`, { params: { userId??? } })
+    //   .then()
+    //   .catch((err) => {
+    //     console.log('FAILED to add item to watchlist --> ', err);
+    //   });
+    // send put to userId, remove itemId from array
   };
   // item modal
   const [openCard, setCardOpen] = useState(false);
@@ -103,7 +124,7 @@ export default function ItemCard({ item }) {
       });
   };
   // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
+  const [TradeOpen, setTradeOpen] = useState(false);
   const handleTradeOpen = () => setTradeOpen(true);
   const handleTradeClose = () => setTradeOpen(false);
   // handle trade
@@ -154,7 +175,7 @@ export default function ItemCard({ item }) {
         </Modal>
       )}
 
-      <Modal open={opentrade} onClose={handleTradeClose}>
+      <Modal open={TradeOpen} onClose={handleTradeClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53' }}>
           <TradeModal
             handleTradeClose={handleTradeClose}

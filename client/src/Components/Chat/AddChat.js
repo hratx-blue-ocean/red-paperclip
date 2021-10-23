@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 import { makeStyles } from '@mui/styles';
+import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,12 +35,33 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function AddChat() {
+export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
+  const [chatText, setChatText] = useState('');
   const classes = useStyles();
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newMessage = [2, 1, chatText, Date.now()];
+    console.log('from addChat:', chatsWithJesson);
+    setChatsWithJesson([...chatsWithJesson, newMessage]);
+  }
   return (
     <Paper elevation={6} style={{ height: 150, borderRadius: 30 }}>
-      <Box
+      <form className="addChat" onSubmit={handleSubmit}>
+        <TextField
+          fullWidth
+          id="fullWidth"
+          label="Private Chat Room With Jesson"
+          multiline
+          rows={1}
+          value={chatText}
+          onInput={(e) => setChatText(e.target.value)}
+        />
+        <Button variant="contained" color="success" type="submit">
+          Send
+        </Button>
+      </form>
+      {/* <Box
         sx={{
           display: 'flex',
           justifyContent: 'flex-end',
@@ -55,7 +77,7 @@ export default function AddChat() {
           label="Audio Chat"
         />
 
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" type="submit">
           Send
         </Button>
       </Box>
@@ -68,10 +90,11 @@ export default function AddChat() {
               label="Private Chat Room With Jesson"
               multiline
               rows={1}
+              onChange
             />
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
     </Paper>
   );
 }

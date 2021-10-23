@@ -14,30 +14,8 @@ export const ItemsProvider = (props) => {
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    userFirst: '',
-    userLast: '',
-    userPFP: '',
-    userPhone: '',
-    userEmail: '',
-    userZIP: '',
-    availableItem: '',
-    tradeHistory: [],
-    watchedItems: {},
-  });
-  const [activeItem, setActiveItem] = useState({
-    createdAt: '',
-    itemOwner: '',
-    active: false,
-    itemOwnerPhoto: '',
-    report: 0,
-    itemDescription: '',
-    itemOwnerUID: '',
-    itemCategory: '',
-    itemPhoto: '',
-    itemName: '',
-    itemLocation: '',
-  });
+  const [currentUser, setCurrentUser] = useState({});
+  const [activeItem, setActiveItem] = useState({});
   const [watchedItems, setWatchedItems] = useState([]);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -54,12 +32,10 @@ export const ItemsProvider = (props) => {
   );
 
   const getActiveItem = (itemString) => {
-    if (isLoggedIn) {
-      axios
-        .get(`${apiUrl}/getItem?uid=${itemString}`)
-        .then((item) => setActiveItem(item.data))
-        .catch((error) => console.log('Error retrieving active item: ', error));
-    }
+    axios
+      .get(`${apiUrl}/getItem?uid=${itemString}`)
+      .then((item) => setActiveItem(item.data))
+      .catch((error) => console.log('Error retrieving active item: ', error));
   };
 
   const getWatchedItemsList = (itemsArray) => {
@@ -67,14 +43,15 @@ export const ItemsProvider = (props) => {
       .get(`${apiUrl}/getItems`, { params: { items: itemsArray } })
       .then((watchedItemsData) => {
         setWatchedItems(watchedItemsData.data);
-        console.log('Retrieved watched items data: ', watchedItemsData.data);
       })
       .catch((error) => console.log('Error retrieving watched items'));
   };
 
   useEffect(() => {
-    getActiveItem(currentUser.availableItem);
-    getWatchedItemsList(Object.keys(currentUser.watchedItems));
+    if (isLoggedIn) {
+      getActiveItem(currentUser.availableItem);
+      getWatchedItemsList(Object.keys(currentUser.watchedItems));
+    }
   }, [isLoggedIn]);
 
   return (

@@ -32,7 +32,6 @@ const Hamburger = () => {
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [menuOpen, setMenuOpen] = menuOpenState;
   const [isReturningUser, setIsReturningUser] = useState(false);
-  // const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl, setAnchorEl] = anchorElState;
 
   const handleClose = () => {

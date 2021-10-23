@@ -70,7 +70,12 @@ export default function JournalModal({ handleJournalClose, journalText }) {
 
   return (
     <div className={classes.root}>
-      <Grid container style={{ justifyContent: 'flex-end' }}>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
         <IconButton onClick={handleJournalClose}>
           <CloseIcon className={classes.hover3} style={{ fontSize: 45 }} />
         </IconButton>

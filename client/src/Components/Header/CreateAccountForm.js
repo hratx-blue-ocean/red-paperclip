@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import FormControl from '@mui/material/FormControl';
@@ -11,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { ItemsContext } from '../ItemsContext';
 
 export default function CreateAccountForm() {
@@ -76,14 +78,24 @@ export default function CreateAccountForm() {
   };
 
   return (
-    <Box>
-      <Box>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+    <Grid container justifyContent="center" alignItems="center">
+      <Grid item align="center">
+        <AttachFileIcon
+          color="paperClip"
+          style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+          sx={{ fontSize: 40 }}
+        />
+        <Typography id="modal-title" variant="h6" component="h2">
           Create a new account:
         </Typography>
-
-        <FormControl sx={{ m: 1, width: '25ch' }}>
-          <InputLabel htmlFor="outlined-first-name">first name</InputLabel>
+      </Grid>
+      <Grid item align="center">
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="first-name">first name</InputLabel>
           <OutlinedInput
             id="first-name"
             type="text"
@@ -91,8 +103,12 @@ export default function CreateAccountForm() {
             label="first-name"
           />
         </FormControl>
-        <FormControl sx={{ m: 1, width: '25ch' }}>
-          <InputLabel htmlFor="outlined-last-name">last name</InputLabel>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="last-name">last name</InputLabel>
           <OutlinedInput
             id="last-name"
             type="text"
@@ -101,8 +117,12 @@ export default function CreateAccountForm() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '25ch' }}>
-          <InputLabel htmlFor="outlined-email">email</InputLabel>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="email">email</InputLabel>
           <OutlinedInput
             id="email"
             type="email"
@@ -111,12 +131,14 @@ export default function CreateAccountForm() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="password">password</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"
+            id="password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -136,12 +158,14 @@ export default function CreateAccountForm() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Confirm Password
-          </InputLabel>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="password">confirm password</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"
+            id="confirm-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.confirmPassword}
             onChange={handleChange('confirmPassword')}
@@ -161,27 +185,31 @@ export default function CreateAccountForm() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="zip">Zip Code</InputLabel>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="zipcode">zip code</InputLabel>
           <OutlinedInput
-            id="zip"
+            id="zip-code"
             type="text"
             value={values.zip}
             onChange={handleChange('zip')}
-            label="Zip"
+            label="zip-code"
             pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
           />
         </FormControl>
-      </Box>
-      <Box>
+      </Grid>
+      <Grid item align="center">
         <Button
           type="submit"
           onClick={handleCreateAcct}
           style={{ backgroundColor: '#161513', color: '#F0CC71' }}
         >
-          Create Your Account
+          Create an Account
         </Button>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 }

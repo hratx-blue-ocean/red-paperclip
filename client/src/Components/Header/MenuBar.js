@@ -49,8 +49,9 @@ const MenuBar = () => {
       'Ball',
       'Desk',
     ];
-    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${itemsArr[Math.floor(Math.random() * itemsArr.length)]
-      }`;
+    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${
+      itemsArr[Math.floor(Math.random() * itemsArr.length)]
+    }`;
   };
   const [randomItemText, setRandomItemText] = useState(randomItem());
   const history = useHistory();
@@ -87,8 +88,9 @@ const MenuBar = () => {
                 onClick={handleLogoClick}
                 style={{ cursor: 'pointer' }}
               >
-                Red Paperclip&nbsp;
+                Red Paperclip
               </Typography>
+              &nbsp;
               <Typography
                 variant="h5"
                 onClick={handleCompareArrowsClick}
@@ -96,10 +98,8 @@ const MenuBar = () => {
               >
                 <CompareArrowsIcon />
               </Typography>
-              <Typography variant="h5">
-                &nbsp;
-                {randomItemText}
-              </Typography>
+              &nbsp;
+              <Typography variant="h5">{randomItemText}</Typography>
             </Grid>
             <Grid container justifyContent="flex-end">
               {isLoggedIn && (
@@ -107,6 +107,7 @@ const MenuBar = () => {
                   <Avatar
                     src={currentUser.imageUrl}
                     onClick={handleSendToProfile}
+                    style={{ cursor: 'pointer' }}
                   />
                 </Grid>
               )}

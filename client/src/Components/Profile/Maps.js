@@ -13,7 +13,6 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { ItemsContext } from '../ItemsContext';
 
-const dotEnv = require('dotenv').config();
 const zipcodes = require('zipcodes');
 
 const mapContainerStyle = {
@@ -77,7 +76,7 @@ function Maps() {
   return (
     <Grid container justifyContent="center">
       <Grid item align="center">
-        <LoadScript googleMapsApiKey={dotEnv.mapsAPI}>
+        <LoadScript googleMapsApiKey="AIzaSyCC5wJDdHBdkKORms0TLd1qCGWB2cr3SGs">
           <GoogleMap
             id="InfoWindow-example"
             mapContainerStyle={mapContainerStyle}

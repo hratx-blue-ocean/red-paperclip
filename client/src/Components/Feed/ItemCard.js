@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useContext, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -19,6 +20,7 @@ import Box from '@mui/material/Box';
 import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { ItemsContext } from '../ItemsContext';
 import ReportModal from './ReportModal';
 import TradeModal from './TradeModal';
 import ItemModal from './ItemModal';
@@ -64,15 +66,39 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  // mouse over image
-
+  const { currentUserState, isLoggedInState } = useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [isLoggedIn] = isLoggedInState;
   // star fill
-  const [starFill, setStarFill] = React.useState(false);
+  const [starFill, setStarFill] = useState(false);
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (currentUser.watchedItems.contains(item.uid)) {
+        setStarFill(true);
+      }
+    }
+  });
   const handleWatch = () => {
-    setStarFill(true);
+    if (isLoggedIn) {
+      setStarFill(true);
+      // axios
+      //   .put(`${apiUrl}/???`, { params: { userId??? } })
+      //   .then()
+      //   .catch((err) => {
+      //     console.log('FAILED to add item to watchlist --> ', err);
+      //   });
+    }
+    // send put to userId, add itemId to array
   };
   const handleUnwatch = () => {
     setStarFill(false);
+    // axios
+    //   .put(`${apiUrl}/???`, { params: { userId??? } })
+    //   .then()
+    //   .catch((err) => {
+    //     console.log('FAILED to add item to watchlist --> ', err);
+    //   });
+    // send put to userId, remove itemId from array
   };
   // item modal
   const [openCard, setCardOpen] = useState(false);
@@ -88,7 +114,7 @@ export default function ItemCard({ item }) {
   const handleReport = () => setReported(true);
 
   // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
+  const [TradeOpen, setTradeOpen] = useState(false);
   const handleTradeOpen = () => setTradeOpen(true);
   const handleTradeClose = () => setTradeOpen(false);
   // handle trade
@@ -122,7 +148,7 @@ export default function ItemCard({ item }) {
         </Box>
       </Modal>
 
-      <Modal open={opentrade} onClose={handleTradeClose}>
+      <Modal open={TradeOpen} onClose={handleTradeClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53' }}>
           <TradeModal
             handleTradeClose={handleTradeClose}
@@ -149,7 +175,11 @@ export default function ItemCard({ item }) {
           <IconButton onClick={handleUnwatch}>
             <StarIcon
               className={classes.hover1}
-              style={{ color: '#F0CC71', justifyContent: 'flex-start', fontSize: 40 }}
+              style={{
+                color: '#F0CC71',
+                justifyContent: 'flex-start',
+                fontSize: 40,
+              }}
             />
           </IconButton>
         )}

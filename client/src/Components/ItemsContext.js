@@ -38,19 +38,34 @@ export const ItemsProvider = (props) => {
     itemName: '',
     itemLocation: '',
   });
+  const [watchedItems, setWatchedItems] = useState([]);
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
   );
 
   const getActiveItem = (itemString) => {
+    if (isLoggedIn) {
+      axios
+        .get(`${apiUrl}/getItem?uid=${itemString}`)
+        .then((item) => setActiveItem(item.data))
+        .catch((error) => console.log('Error retrieving active item: ', error));
+    }
+  };
+
+  const getWatchedItemsList = (itemsArray) => {
     axios
-      .get(`${apiUrl}/getItem?uid=${itemString}`)
-      .then((item) => setActiveItem(item.data))
-      .catch((error) => console.log('Error retrieving active item: ', error));
+      .get(`${apiUrl}/getItems`, { items: [itemsArray] })
+      .then((watchedItemsData) => {
+        setWatchedItems(watchedItemsData);
+        console.log('Retrieved watched items data: ', watchedItemsData);
+      })
+      .catch((error) => console.log('Error retrieving watched items'));
   };
 
   useEffect(() => {
+    console.log('Query parameters: ', Object.keys(currentUser.watchedItems));
     getActiveItem(currentUser.availableItem);
+    getWatchedItemsList(Object.keys(currentUser.watchedItems));
   }, [currentUser]);
 
   return (
@@ -63,6 +78,7 @@ export const ItemsProvider = (props) => {
         currentUserState: [currentUser, setCurrentUser],
         apiUrlState: [apiUrl, setApiUrl],
         activeItemState: [activeItem, setActiveItem],
+        watchedItemsState: [watchedItems, setWatchedItems],
       }}
     >
       {props.children}

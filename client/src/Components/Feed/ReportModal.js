@@ -124,6 +124,18 @@ export default function ReportModal({
               className={classes.hover2}
               onClick={handleReport}
             >
+              Cursed Item
+            </Button>
+          </Grid>
+
+          <Grid container item xs={9} justifyContent="space-evenly">
+            <Button
+              fullWidth
+              color="sortButton"
+              variant="contained"
+              className={classes.hover2}
+              onClick={handleReport}
+            >
               Illegal Item
             </Button>
           </Grid>

@@ -49,9 +49,8 @@ const MenuBar = () => {
       'Ball',
       'Desk',
     ];
-    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${
-      itemsArr[Math.floor(Math.random() * itemsArr.length)]
-    }`;
+    return `${colorsArr[Math.floor(Math.random() * colorsArr.length)]} ${itemsArr[Math.floor(Math.random() * itemsArr.length)]
+      }`;
   };
   const [randomItemText, setRandomItemText] = useState(randomItem());
   const history = useHistory();
@@ -96,22 +95,24 @@ const MenuBar = () => {
                 &nbsp;
                 {randomItemText}
               </Typography>
-              {isLoggedIn && (
-                <>
-                  <Avatar src={currentUser.imageUrl} />
-                </>
-              )}
             </Grid>
-            <Grid item align="right">
-              <Hamburger
-                onClick={handleModalOpen}
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                setAnchorEl={setAnchorEl}
-                anchorEl={anchorEl}
-              />
+            <Grid container justifyContent="flex-end">
+              {isLoggedIn && (
+                <Grid item sx={{ pr: 2 }}>
+                  <Avatar src={currentUser.imageUrl} />
+                </Grid>
+              )}
+              <Grid item>
+                <Hamburger
+                  onClick={handleModalOpen}
+                  menuOpen={menuOpen}
+                  setMenuOpen={setMenuOpen}
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setAnchorEl={setAnchorEl}
+                  anchorEl={anchorEl}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Container>

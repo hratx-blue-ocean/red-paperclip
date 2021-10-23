@@ -13,11 +13,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ItemsContext } from '../ItemsContext';
 
-export default function CreateAccountForm({ setShowAuthModal }) {
-  const { isLoggedInState, apiUrlState, currentUserState } =
+export default function CreateAccountForm() {
+  const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
     useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [currentUser, setCurrentUser] = currentUserState;
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [values, setValues] = useState({
     firstName: '',

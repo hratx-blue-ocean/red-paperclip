@@ -7,8 +7,10 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useHistory } from 'react-router-dom';
 import { ItemsContext } from '../ItemsContext';
 import CategorySelector from './CategorySelector';
+import AuthModal from '../Header/AuthModal';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -45,12 +47,20 @@ export default function SortBar({
 }) {
   const classes = useStyles();
 
-  const { currentUserState } = useContext(ItemsContext);
+  const { currentUserState, activeItemState, showAuthModalState } =
+    useContext(ItemsContext);
   const [currentUser] = currentUserState;
-  console.log('currentUser: ', currentUser);
-  const { activeItemState } = useContext(ItemsContext);
   const [activeItem, setActiveItem] = activeItemState;
-  console.log('activeItem: ', activeItem);
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
+
+  const history = useHistory();
+  const handleSendToProfile = () => {
+    history.push('/profile');
+  };
+
+  const handleCreateAcctClick = () => {
+    setShowAuthModal(true);
+  };
 
   return (
     <AppBar
@@ -108,20 +118,32 @@ export default function SortBar({
             >
               {'ACTIVE ITEM: '}
             </Typography>
-            {currentUser.availableItem && (
+            {activeItem.itemName && (
               <Button
                 color="sortButton"
                 variant="contained"
                 className={classes.hover2}
+                onClick={handleSendToProfile}
               >
                 <Typography>{activeItem.itemName}</Typography>
               </Button>
             )}
-            {!currentUser.availableItem && (
+            {!currentUser.availableItem && currentUser.email && (
               <Button
                 color="sortButton"
                 variant="contained"
                 className={classes.hover2}
+                onClick={handleSendToProfile}
+              >
+                <Typography>Add Item +</Typography>
+              </Button>
+            )}
+            {!currentUser.email && (
+              <Button
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                onClick={handleCreateAcctClick}
               >
                 <Typography>Add Item +</Typography>
               </Button>

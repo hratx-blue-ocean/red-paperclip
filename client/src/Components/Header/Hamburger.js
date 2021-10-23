@@ -17,13 +17,14 @@ import AuthModal from './AuthModal';
 import { ItemsContext } from '../ItemsContext';
 
 const Hamburger = () => {
-  const { isLoggedInState, currentUserState } = useContext(ItemsContext);
+  const { isLoggedInState, currentUserState, showAuthModalState, activeItemState } = useContext(ItemsContext);
+  const [activeItem, setActiveItem] = activeItemState;
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [currentUser, setCurrentUser] = currentUserState;
+  const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [menuOpen, setMenuOpen] = useState(false);
   const [isReturningUser, setIsReturningUser] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -36,6 +37,7 @@ const Hamburger = () => {
   };
 
   const handleCreateAcctClick = () => {
+    setIsReturningUser(false);
     setShowAuthModal(true);
     setAnchorEl(null);
     setMenuOpen(true);
@@ -55,6 +57,30 @@ const Hamburger = () => {
     setIsReturningUser(false);
     setShowAuthModal(false);
     setMenuOpen(false);
+    setCurrentUser({
+      userFirst: '',
+      userLast: '',
+      userPFP: '',
+      userPhone: '',
+      userEmail: '',
+      userZIP: '',
+      availableItem: '',
+      tradeHistory: [],
+      watchedItems: {},
+    });
+    setActiveItem({
+      createdAt: '',
+      itemOwner: '',
+      active: false,
+      itemOwnerPhoto: '',
+      report: 0,
+      itemDescription: '',
+      itemOwnerUID: '',
+      itemCategory: '',
+      itemPhoto: '',
+      itemName: '',
+      itemLocation: '',
+    });
     history.push('/');
   };
 
@@ -156,8 +182,6 @@ const Hamburger = () => {
           anchorEl={anchorEl}
           menuOpen={menuOpen}
           handleMenuOpen={handleMenuOpen}
-          showAuthModal={showAuthModal}
-          setShowAuthModal={setShowAuthModal}
           isReturningUser={isReturningUser}
         />
       )}

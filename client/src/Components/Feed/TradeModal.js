@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -18,6 +18,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -66,6 +67,10 @@ export default function TradeModal({
 }) {
   const classes = useStyles();
 
+  const { activeItemState, isLoggedInState } = useContext(ItemsContext);
+  const [isLoggedIn] = isLoggedInState;
+  const [activeItem, setActiveItem] = activeItemState;
+
   return (
     <div className={classes.root}>
       <Grid container style={{ justifyContent: 'flex-end' }}>
@@ -87,16 +92,25 @@ export default function TradeModal({
             xs={5}
             container
             style={{
-              justifyContent: 'flex-start',
+              justifyContent: 'flex-end',
               alignItems: 'center',
               marginBottom: '40px',
             }}
           >
-            <Typography
-              style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
-            >
-              My Item
-            </Typography>
+            {isLoggedIn && (
+              <Typography
+                style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
+              >
+                {activeItem.itemName}
+              </Typography>
+            )}
+            {!isLoggedIn && (
+              <Typography
+                style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
+              >
+                My Item
+              </Typography>
+            )}
           </Grid>
           <Grid
             item
@@ -115,7 +129,7 @@ export default function TradeModal({
             xs={5}
             container
             style={{
-              justifyContent: 'flex-end',
+              justifyContent: 'flex-start',
               alignItems: 'center',
               marginBottom: '40px',
             }}

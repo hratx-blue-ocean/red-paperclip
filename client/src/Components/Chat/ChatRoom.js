@@ -21,9 +21,7 @@ export default function ChatRoom() {
       1634948688,
     ],
   ]);
-  useEffect(() => {
-    setChatsWithJesson(chatsWithJesson);
-  }, [chatsWithJesson]);
+  const [chatText, setChatText] = useState('');
 
   return (
     <Grid container spacing={3}>

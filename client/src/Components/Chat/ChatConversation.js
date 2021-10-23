@@ -52,6 +52,8 @@ export default function ChatConversation({
 }) {
   const classes = useStyles();
 
+  useEffect(() => {}, [chatsWithJesson]);
+
   return (
     <Paper elevation={6} style={{ height: 500, borderRadius: 30, padding: 30 }}>
       <Grid container spacing={2}>

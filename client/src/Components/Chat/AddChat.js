@@ -43,8 +43,7 @@ export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
     event.preventDefault();
     const newMessage = [2, 1, chatText, Date.now()];
     console.log('from addChat:', chatsWithJesson);
-    chatsWithJesson.push(newMessage);
-    setChatsWithJesson(chatsWithJesson);
+    setChatsWithJesson([...chatsWithJesson, newMessage]);
   }
   return (
     <Paper elevation={6} style={{ height: 150, borderRadius: 30 }}>

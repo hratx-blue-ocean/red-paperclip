@@ -62,9 +62,8 @@ const MenuBar = () => {
     setRandomItemText(randomItem());
   };
 
-  const history2 = useHistory();
   const handleSendToProfile = () => {
-    history2.push('/profile');
+    history.push('/profile');
   };
 
   return (

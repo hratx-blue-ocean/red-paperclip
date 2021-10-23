@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import { useHistory } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import LoginIcon from '@mui/icons-material/Login';
 import HomeIcon from '@mui/icons-material/Home';
 
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -183,8 +185,18 @@ const Hamburger = () => {
           </Box>
         ) : (
           <Box>
-            <MenuItem onClick={handleSignInClick}>Sign In</MenuItem>
-            <MenuItem onClick={handleCreateAcctClick}>Create Account</MenuItem>
+            <MenuItem onClick={handleSignInClick}>
+              <ListItemIcon>
+                <LoginIcon fontSize="small" />
+              </ListItemIcon>
+              Sign In
+            </MenuItem>
+            <MenuItem onClick={handleCreateAcctClick}>
+              <ListItemIcon>
+                <PersonAddIcon fontSize="small" />
+              </ListItemIcon>
+              Create Account
+            </MenuItem>
           </Box>
         )}
       </Menu>

@@ -20,12 +20,14 @@ app.get('/getItemsByCategory', item.getItemsByCategory);
 // USERS
 app.post('/login', user.login);
 app.post('/signup', user.signUp);
+app.put('/editWatchList', user.editWatchList);
 app.get('/user', auth, user.getUserDetail);
 app.post('/user', auth, user.updateUserDetails);
 app.post('/user/image', auth, user.uploadProfilePhoto);
 
 // ADMINS
 app.post('/reportItem', admin.reportItem);
+app.put('/dismissReport', admin.dismissReport);
 app.get('/getItemReports', admin.getItemReports);
 
 const api = functions.https.onRequest(app);

@@ -41,6 +41,13 @@ export const ItemsProvider = (props) => {
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+    console.log('handleMenuOpen clicked!!!');
+  };
 
   const [apiUrl, setApiUrl] = useState(
     'http://localhost:5001/red-paperclip-73a89/us-central1/api'
@@ -69,6 +76,8 @@ export const ItemsProvider = (props) => {
         activeItemState: [activeItem, setActiveItem],
         showAuthModalState: [showAuthModal, setShowAuthModal],
         menuOpenState: [menuOpen, setMenuOpen],
+        anchorElState: [anchorEl, setAnchorEl],
+        handleMenuOpen,
       }}
     >
       {props.children}

@@ -46,8 +46,13 @@ export default function SortBar({
 }) {
   const classes = useStyles();
 
-  const { currentUserState, activeItemState, menuOpenState } =
-    useContext(ItemsContext);
+  const {
+    currentUserState,
+    activeItemState,
+    menuOpenState,
+    handleMenuOpen,
+    anchorElState,
+  } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
   const [activeItem, setActiveItem] = activeItemState;
   const [menuOpen, setMenuOpen] = menuOpenState;
@@ -55,10 +60,6 @@ export default function SortBar({
   const history = useHistory();
   const handleSendToProfile = () => {
     history.push('/profile');
-  };
-
-  const handleItemClick = () => {
-    setMenuOpen(true);
   };
 
   return (
@@ -142,7 +143,7 @@ export default function SortBar({
                 color="sortButton"
                 variant="contained"
                 className={classes.hover2}
-                onClick={handleItemClick}
+                onClick={handleMenuOpen}
               >
                 <Typography>Add Item +</Typography>
               </Button>

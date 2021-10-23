@@ -61,6 +61,11 @@ const MenuBar = () => {
     setRandomItemText(randomItem());
   };
 
+  const history2 = useHistory();
+  const handleSendToProfile = () => {
+    history2.push('/profile');
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -99,7 +104,10 @@ const MenuBar = () => {
             <Grid container justifyContent="flex-end">
               {isLoggedIn && (
                 <Grid item sx={{ pr: 2 }}>
-                  <Avatar src={currentUser.imageUrl} />
+                  <Avatar
+                    src={currentUser.imageUrl}
+                    onClick={handleSendToProfile}
+                  />
                 </Grid>
               )}
               <Grid item>

@@ -68,10 +68,10 @@ const Profile = () => {
             <Typography variant="h4" textAlign="center" sx={{ marginTop: 1 }}>
               Active Item
             </Typography>
-            {currentUser.availableItem.length > 0 && (
+            {currentUser.availableItem && (
               <ProfileActiveItem activeItem={activeItem} height="50%" />
             )}
-            {currentUser.availableItem.length === 0 && <AddItem />}
+            {!currentUser.availableItem && <AddItem />}
           </Card>
 
           {/* <Card

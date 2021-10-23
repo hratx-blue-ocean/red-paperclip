@@ -47,29 +47,26 @@ export const ItemsProvider = (props) => {
   );
 
   const getActiveItem = (itemString) => {
-    if (isLoggedIn) {
-      axios
-        .get(`${apiUrl}/getItem?uid=${itemString}`)
-        .then((item) => setActiveItem(item.data))
-        .catch((error) => console.log('Error retrieving active item: ', error));
-    }
+    axios
+      .get(`${apiUrl}/getItem?uid=${itemString}`)
+      .then((item) => setActiveItem(item.data))
+      .catch((error) => console.log('Error retrieving active item: ', error));
   };
 
   const getWatchedItemsList = (itemsArray) => {
     axios
-      .get(`${apiUrl}/getItems`, { items: [itemsArray] })
+      .get(`${apiUrl}/getItems`, { params: { items: itemsArray } })
       .then((watchedItemsData) => {
-        setWatchedItems(watchedItemsData);
-        console.log('Retrieved watched items data: ', watchedItemsData);
+        setWatchedItems(watchedItemsData.data);
+        console.log('Retrieved watched items data: ', watchedItemsData.data);
       })
       .catch((error) => console.log('Error retrieving watched items'));
   };
 
   useEffect(() => {
-    console.log('Query parameters: ', Object.keys(currentUser.watchedItems));
     getActiveItem(currentUser.availableItem);
     getWatchedItemsList(Object.keys(currentUser.watchedItems));
-  }, [currentUser]);
+  }, [isLoggedIn]);
 
   return (
     <ItemsContext.Provider

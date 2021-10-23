@@ -8,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import Jason from './img/Jason.jpg';
+import TestingChatList from './TestingChatList';
 
 export default function ChatList() {
   return (
@@ -18,13 +19,16 @@ export default function ChatList() {
             <ListItemAvatar>
               <Avatar alt="Jesson W" src={Jason} />
             </ListItemAvatar>
-            <ListItemText primary="Jesson W" secondary="Oct 27, 2021" />
+            <ListItemText primary="Jesson W" secondary="2 hours ago" />
           </ListItem>
         </ListItemButton>
       </ListItem>
 
       <Divider />
-      <List>
+
+      <TestingChatList />
+
+      {/* <List>
         <ListItemButton component="a" href="/{username}">
           <ListItem>
             <ListItemAvatar>
@@ -83,7 +87,7 @@ export default function ChatList() {
             <ListItemText primary="Pingping X" secondary="Sep 29, 2021" />
           </ListItem>
         </ListItemButton>
-      </List>
+      </List> */}
     </Paper>
   );
 }

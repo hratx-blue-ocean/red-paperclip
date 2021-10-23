@@ -6,12 +6,12 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-
+import Modal from '@mui/material/Modal';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
@@ -33,6 +33,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'flex-end',
     padding: 20,
+  },
+  modal: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxHeight: '98%',
+    background: 'white',
+    border: '4px solid white',
+    boxShadow: 75,
+    borderRadius: '15px',
   },
   hover2: {
     color: '#ffffff',
@@ -60,6 +71,9 @@ export default function ChatConversation({
   setChatsWithJesson,
 }) {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {}, [chatsWithJesson]);
 
@@ -84,22 +98,71 @@ export default function ChatConversation({
           />
         </Grid>
         <Grid item xs={1}>
-          <Avatar
-            alt="artWork"
-            src={
-              'https://www.google.com/url?sa=i&url=https%3A%2F%2Ffineartamerica.com%2Ffeatured%2Fabstract-art-landscape-seascape-bold-colorful-artwork-serenity-by-madart-megan-duncanson.html&psig=AOvVaw1WDeLmXnncPoM7ZUyakfcc&ust=1635045306216000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMDfjMfI3_MCFQAAAAAdAAAAABAF'
-            }
-            sx={{ width: 56, height: 56 }}
-          />
+          <Avatar alt="artWork" src={artWork} sx={{ width: 56, height: 56 }} />
         </Grid>
 
         <Grid container item xs={5} justifyContent="center">
-          <Button variant="contained" sx={{ width: 40, height: 40 }}>
+          {/* <Button variant="contained" sx={{ width: 40, height: 40 }}>
+            Close Deal
+          </Button> */}
+
+          <Button variant="contained" onClick={handleOpen}>
             Close Deal
           </Button>
-          <Button variant="contained" sx={{ width: 40, height: 40 }}>
-            Delete Chat
-          </Button>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box className={classes.modal}>
+              <Grid
+                container
+                justifyContent="center"
+                style={{ height: 300, borderRadius: 120, padding: 10 }}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  justifyContent="center"
+                  style={{ height: 100, borderRadius: 120, padding: 10 }}
+                >
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    Trade Comformation
+                  </Typography>
+                  <Typography sx={{ mt: 2 }}>
+                    Congratulation! The following trade has been successfully
+                    made and has added to your Trade Journey!
+                  </Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Avatar
+                    alt="book"
+                    src={book}
+                    sx={{ width: 56, height: 56 }}
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <CompareArrowsIcon
+                    className={classes.hover3}
+                    style={{ fontSize: 60 }}
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Avatar
+                    alt="artWork"
+                    src={artWork}
+                    sx={{ width: 56, height: 56 }}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Modal>
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.divider}>

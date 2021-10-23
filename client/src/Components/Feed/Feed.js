@@ -74,7 +74,7 @@ const Feed = () => {
     return result;
   };
 
-  const handleSuprise = () => {
+  const handleSurprise = () => {
     if (items.length === 1) {
       const randomValue = getRandomIndex(originalItems);
       setItems([originalItems[randomValue]]);
@@ -97,7 +97,7 @@ const Feed = () => {
     <div className={classes.root}>
       <SortBar
         setSelection={setSelection}
-        handleSuprise={handleSuprise}
+        handleSurprise={handleSurprise}
         itemsLength={itemsLength}
         getAllItems={getAllItems}
       />

@@ -10,6 +10,7 @@ import ProfileTabPanel from './ProfileTabPanel';
 import testFollowedItems from './testFollowedItems';
 import ProfileActiveItem from './ProfileActiveItem';
 import { ItemsContext } from '../ItemsContext';
+import ItemCard from '../Feed/ItemCard';
 
 // eslint-disable-next-line arrow-body-style
 const WatchedItems = (props) => {
@@ -21,7 +22,7 @@ const WatchedItems = (props) => {
       {watchedItems.map((item, index) => {
         return (
           <Box key={index}>
-            <ProfileActiveItem activeItem={item} height="60%" />
+            <ItemCard item={item} />
           </Box>
         );
       })}

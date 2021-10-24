@@ -75,7 +75,7 @@ export default function ChatConversation({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  useEffect(() => {}, [chatsWithJesson]);
+  useEffect(() => { }, [chatsWithJesson]);
 
   return (
     <Paper

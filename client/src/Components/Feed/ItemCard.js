@@ -347,7 +347,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >
@@ -375,7 +375,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >

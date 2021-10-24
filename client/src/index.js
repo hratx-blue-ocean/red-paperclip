@@ -18,6 +18,15 @@ const theme = createTheme({
     cardColor: {
       main: '#494D53',
     },
+    deleteColor: {
+      main: '#A10000',
+    },
+    dismissColor: {
+      main: '#066F04',
+    },
+    banColor: {
+      main: '#000000',
+    },
     textWhite: {
       main: '#FFFFFF',
     },

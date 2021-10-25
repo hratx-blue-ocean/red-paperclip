@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { ItemsContext } from '../ItemsContext';
 
 export default function SignInForm() {
@@ -68,59 +69,72 @@ export default function SignInForm() {
   };
 
   return (
-    <Box>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        Sign in with your email and password below:
-      </Typography>
-
-      <FormControl margin="normal" sx={{ m: 1, width: '25ch' }}>
-        <InputLabel htmlFor="email">email</InputLabel>
-        <OutlinedInput
-          id="email-text-box"
-          type="text"
-          onChange={handleInputChange('email')}
-          label="email"
+    <Grid container justifyContent="center" alignItems="center">
+      <Grid item align="center">
+        <AttachFileIcon
+          color="paperClip"
+          style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
+          sx={{ fontSize: 40 }}
         />
-      </FormControl>
-      <FormControl
-        margin="normal"
-        sx={{ m: 1, width: '25ch' }}
-        color="formLabel"
-      >
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <OutlinedInput
-          id="password-text-box"
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          onChange={handleInputChange('password')}
-          style={{ color: '#F0CC71' }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleTogglePassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Password"
-        />
-      </FormControl>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-      >
-        <Grid item xs={12}>
-          <Button type="submit" onClick={handleSignIn} variant="contained">
-            Sign In
-          </Button>
-        </Grid>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Sign in with your email and password:
+        </Typography>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="email">email</InputLabel>
+          <OutlinedInput
+            id="email-text-box"
+            type="text"
+            onChange={handleInputChange('email')}
+            label="email"
+          />
+        </FormControl>
+        <FormControl
+          margin="normal"
+          sx={{ m: 1, width: '25ch' }}
+          color="formLabel"
+        >
+          <InputLabel htmlFor="password">password</InputLabel>
+          <OutlinedInput
+            id="password-text-box"
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleInputChange('password')}
+            style={{ color: '#161513' }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleTogglePassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
       </Grid>
-    </Box>
+      <Grid item xs={6} align="center">
+        <Button
+          fullWidth
+          type="submit"
+          onClick={handleSignIn}
+          style={{
+            backgroundColor: '#2C2C2C',
+            color: '#F0CC71',
+            marginTop: '6px',
+            justifyContent: 'center',
+          }}
+        >
+          Sign In
+        </Button>
+      </Grid>
+    </Grid>
   );
 }

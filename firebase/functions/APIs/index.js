@@ -13,9 +13,11 @@ const signUp = require('./Users/signUp');
 const uploadProfilePhoto = require('./Users/uploadProfilePhoto');
 const getUserDetail = require('./Users/getUserDetail');
 const updateUserDetails = require('./Users/updateUserDetails');
+const editWatchList = require('./Users/editWatchList');
 
 // Admin
 const reportItem = require('./Admin/reportItem');
+const dismissReport = require('./Admin/dismissReport');
 const getItemReports = require('./Admin/getItemReports');
 
 // Messages
@@ -38,6 +40,7 @@ const user = {
   uploadProfilePhoto,
   getUserDetail,
   updateUserDetails,
+  editWatchList,
 };
 
 const message = {
@@ -48,6 +51,7 @@ const message = {
 const admin = {
   reportItem,
   getItemReports,
+  dismissReport,
 };
 
 module.exports = {

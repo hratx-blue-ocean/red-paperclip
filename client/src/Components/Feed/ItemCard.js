@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -19,9 +19,11 @@ import Box from '@mui/material/Box';
 import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import axios from 'axios';
 import ReportModal from './ReportModal';
 import TradeModal from './TradeModal';
 import ItemModal from './ItemModal';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -64,16 +66,77 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  // mouse over image
-
+  const { currentUserState, isLoggedInState, apiUrlState } =
+    useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
+  const [isLoggedIn] = isLoggedInState;
+  const [apiUrl] = apiUrlState;
   // star fill
-  const [starFill, setStarFill] = React.useState(false);
-  const handleWatch = () => {
-    setStarFill(true);
+  const [starFill, setStarFill] = useState(false);
+  useEffect(() => {
+    if (isLoggedIn) {
+      // this is not here!
+      if (currentUser.watchedItems[item.uid]) {
+        setStarFill(true);
+      }
+    }
+  }, []);
+  const handleStarClick = () => {
+    if (isLoggedIn) {
+      if (starFill) {
+        setStarFill(false);
+        axios
+          .put(`${apiUrl}/editWatchList`, {
+            uid: item.uid,
+            email: currentUser.email,
+            type: 'delete',
+          })
+          .then(() => {
+            const { watchedItems } = currentUser;
+            delete watchedItems(item.uid);
+            setCurrentUser({
+              ...currentUser,
+              watchedItems,
+            });
+          })
+          .catch((err) => {
+            console.log('FAILED to remove item from watchlist --> ', err);
+          });
+      } else {
+        setStarFill(true);
+        axios
+          .put(`${apiUrl}/editWatchList`, {
+            uid: item.uid,
+            email: currentUser.email,
+            type: 'add',
+          })
+          .then(() => {
+            const { watchedItems } = currentUser;
+            watchedItems[item.uid] = item.uid;
+            setCurrentUser({
+              ...currentUser,
+              watchedItems,
+            });
+          })
+          .catch((err) => {
+            console.log('FAILED to add item to watchlist --> ', err);
+          });
+      }
+    }
   };
-  const handleUnwatch = () => {
-    setStarFill(false);
-  };
+  // const handleStarClick = () => {
+  //   setStarFill(false);
+  //   axios
+  //     .put(`${apiUrl}/editWatchList`, {
+  //       uid: item.uid,
+  //       email: currentUser.email,
+  //       type: 'delete',
+  //     })
+  //     .then()
+  //     .catch((err) => {
+  //       console.log('FAILED to remove item from watchlist --> ', err);
+  //     });
+  // };
   // item modal
   const [openCard, setCardOpen] = useState(false);
   const handleCardOpen = () => setCardOpen(true);
@@ -85,10 +148,19 @@ export default function ItemCard({ item }) {
   const handleReportClose = () => setReportOpen(false);
   // handle report
   const [reported, setReported] = useState(false);
-  const handleReport = () => setReported(true);
-
+  const handleReport = (uid) => {
+    axios({
+      method: 'post',
+      url: `${apiUrl}/reportItem`,
+      params: { uid },
+    })
+      .then(() => setReported(true))
+      .catch((err) => {
+        console.log('FAILED to report item in the firebase server --> ', err);
+      });
+  };
   // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
+  const [TradeOpen, setTradeOpen] = useState(false);
   const handleTradeOpen = () => setTradeOpen(true);
   const handleTradeClose = () => setTradeOpen(false);
   // handle trade
@@ -102,8 +174,7 @@ export default function ItemCard({ item }) {
           <ItemModal
             handleCardClose={handleCardClose}
             starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
+            handleStarClick={handleStarClick}
             handleTradeOpen={handleTradeOpen}
             handleReportOpen={handleReportOpen}
             item={item}
@@ -111,18 +182,35 @@ export default function ItemCard({ item }) {
         </Box>
       </Modal>
 
-      <Modal open={openReport} onClose={handleReportClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <ReportModal
-            handleReportClose={handleReportClose}
-            reported={reported}
-            handleReport={handleReport}
-            item={item}
-          />
-        </Box>
-      </Modal>
+      {isLoggedIn && (
+        <Modal open={openReport} onClose={handleReportClose}>
+          <Box
+            sx={style}
+            style={{ backgroundColor: '#494D53', maxWidth: '25%' }}
+          >
+            <ReportModal
+              handleReportClose={handleReportClose}
+              reported={reported}
+              handleReport={handleReport}
+              item={item}
+            />
+          </Box>
+        </Modal>
+      )}
+      {!isLoggedIn && (
+        <Modal open={openReport} onClose={handleReportClose}>
+          <Box sx={style} style={{ backgroundColor: '#494D53' }}>
+            <ReportModal
+              handleReportClose={handleReportClose}
+              reported={reported}
+              handleReport={handleReport}
+              item={item}
+            />
+          </Box>
+        </Modal>
+      )}
 
-      <Modal open={opentrade} onClose={handleTradeClose}>
+      <Modal open={TradeOpen} onClose={handleTradeClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53' }}>
           <TradeModal
             handleTradeClose={handleTradeClose}
@@ -138,7 +226,7 @@ export default function ItemCard({ item }) {
         style={{ justifyContent: 'flex-start', position: 'absolute' }}
       >
         {!starFill && (
-          <IconButton onClick={handleWatch}>
+          <IconButton onClick={handleStarClick}>
             <StarIcon
               className={classes.hover1}
               style={{ justifyContent: 'flex-start', fontSize: 40 }}
@@ -146,10 +234,14 @@ export default function ItemCard({ item }) {
           </IconButton>
         )}
         {starFill && (
-          <IconButton onClick={handleUnwatch}>
+          <IconButton onClick={handleStarClick}>
             <StarIcon
               className={classes.hover1}
-              style={{ color: '#F0CC71', justifyContent: 'flex-start', fontSize: 40 }}
+              style={{
+                color: '#F0CC71',
+                justifyContent: 'flex-start',
+                fontSize: 40,
+              }}
             />
           </IconButton>
         )}
@@ -255,7 +347,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >
@@ -283,7 +375,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >
@@ -291,7 +383,6 @@ export default function ItemCard({ item }) {
                 </Typography>
               </Grid>
             )}
-
             <Grid container item xs={12} justifyContent="center">
               <Grid container item xs={6} justifyContent="center">
                 <Button

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState, useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
@@ -9,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
+import { ItemsContext } from '../ItemsContext';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -36,18 +39,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AddItem = () => {
+const AddItem = (props) => {
   const classes = useStyles();
+  const { currentUserState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
 
   const Input = styled('input')({
     display: 'none',
   });
 
   const [newItem, setNewItem] = useState({
-    itemCategory: 'Select Category',
-    itemName: '',
-    itemDesc: '',
-    itemZIP: '',
+    // itemCategory: 'Select Category' || currentUser.availableItem.itemCategory,
+    // itemName: '' || currentUser.availableItem.itemName,
+    // itemDesc: '' || currentUser.availableItem.itemDesc,
+    // itemZIP: '' || currentUser.availableItem.itemZIP,
   });
 
   const [itemFormOpen, setItemFormOpen] = useState(false);
@@ -60,6 +65,7 @@ const AddItem = () => {
   };
 
   const handleClose = () => {
+    props.handleEditItemClose();
     setItemFormOpen(false);
   };
 
@@ -68,13 +74,13 @@ const AddItem = () => {
       ...newItem,
       [event.target.name]: event.target.value,
     });
-    // console.log(newItem);
+    console.log(newItem);
   };
 
   const handleSubmit = () => {
     console.log('Sending new item data: ', newItem);
     axios
-      .post(`/items`, newItem)
+      .put(`/editItem`, newItem)
       .then((postResponse) => {
         console.log('Received post response:');
         console.log(postResponse);
@@ -93,7 +99,12 @@ const AddItem = () => {
         padding={1}
         spacing={2}
       >
-        <Grid container item xs={9} style={{ justifyContent: 'center', marginBottom: '-15px' }}>
+        <Grid
+          container
+          item
+          xs={9}
+          style={{ justifyContent: 'center', marginBottom: '-15px' }}
+        >
           <label htmlFor="contained-button-file">
             <Input
               accept="image/*"

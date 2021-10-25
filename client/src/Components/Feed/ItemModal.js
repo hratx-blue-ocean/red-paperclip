@@ -63,13 +63,18 @@ const useStyles = makeStyles(() => ({
 export default function ItemModal({
   handleCardClose,
   starFill,
-  handleWatch,
-  handleUnwatch,
+  handleStarClick,
   handleTradeOpen,
   handleReportOpen,
   item,
 }) {
   const classes = useStyles();
+
+  let subheaderString = '';
+
+  if (item.createdAt) {
+    subheaderString = dateFormat(item.createdAt.date, 'mmmm dS, yyyy');
+  }
 
   return (
     <div className={classes.root}>
@@ -107,7 +112,7 @@ export default function ItemModal({
             </Grid>
             <Grid container item xs={2} justifyContent="center">
               {!starFill && (
-                <IconButton onClick={handleWatch}>
+                <IconButton onClick={handleStarClick}>
                   <StarIcon
                     className={classes.hover1}
                     style={{ fontSize: 40 }}
@@ -115,7 +120,7 @@ export default function ItemModal({
                 </IconButton>
               )}
               {starFill && (
-                <IconButton onClick={handleUnwatch}>
+                <IconButton onClick={handleStarClick}>
                   <StarIcon
                     className={classes.hover1}
                     style={{ color: '#F0CC71', fontSize: 40 }}
@@ -134,7 +139,7 @@ export default function ItemModal({
                 />
               }
               title={item.itemOwner}
-              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              subheader={subheaderString}
               style={{
                 marginBottom: '-20px',
                 marginTop: '-12px',
@@ -151,7 +156,7 @@ export default function ItemModal({
                 />
               }
               title={item.itemOwner}
-              subheader={dateFormat(item.createdAt.date, 'mmmm dS, yyyy')}
+              subheader={subheaderString}
               style={{
                 marginBottom: '-20px',
                 marginTop: '-12px',
@@ -168,7 +173,7 @@ export default function ItemModal({
             >
               <Typography
                 variant="body2"
-                color="white"
+                color="secondary"
                 style={{
                   marginLeft: '10px',
                   marginRight: '10px',

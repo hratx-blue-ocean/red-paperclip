@@ -29,6 +29,12 @@ const useStyles = makeStyles(() => ({
       color: '#f0CC71',
     },
   },
+  button: {
+    // color: '#000000',
+    '&:hover': {
+      color: '#ffffff',
+    },
+  },
 }));
 
 const ReportedMessage = ({ user, message }) => {
@@ -44,82 +50,113 @@ const ReportedMessage = ({ user, message }) => {
   };
 
   return (
-    <Card
-      sx={{
-        backgroundColor: '#494D53',
-        border: '1px solid',
-        borderColor: '#FFF',
-        borderRadius: '15px',
-      }}
-    >
-      <Grid container spacing={3} alignItems="center">
-        <Grid item xs={3}>
-          <CardHeader
-            avatar={
-              <Avatar
-                sx={{ bgcolor: red[500], marginLeft: '8px' }}
-                aria-label="user_name"
-              />
-            }
-            title={user}
-            subheader="6 hours ago"
-            style={{
-              color: '#FFF',
+    <div>
+      <Card
+        sx={{
+          backgroundColor: '#494D53',
+          border: '1px solid',
+          borderColor: '#FFF',
+          borderRadius: '15px',
+        }}
+      >
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={3}>
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500], marginLeft: '8px' }}
+                  aria-label="user_name"
+                />
+              }
+              title={user}
+              subheader="6 hours ago"
+              style={{
+                color: '#FFF',
+              }}
+            />
+          </Grid>
+          <Grid item xs={9}>
+            <Typography
+              variant="body2"
+              color="white"
+              style={{ marginLeft: '10px' }}
+              display="inline"
+            >
+              Reported Message:
+            </Typography>
+            <Typography
+              variant="body2"
+              color="white"
+              style={{ marginLeft: '10px' }}
+              display="inline"
+            >
+              &quot;{message}&quot;
+            </Typography>
+          </Grid>
+        </Grid>
+      </Card>
+      <Grid
+        container
+        style={{ marginTop: '5px', marginBottom: '15px' }}
+        spacing={2}
+        item
+        xs={12}
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Grid item container xs={3} style={{ justifyContent: 'flex-end' }}>
+          <Button
+            // color="inherit"
+            fullWidth
+            variant="outlined"
+            className={classes.button}
+            sx={{
+              height: 60,
+              backgroundColor: '#161513',
+              color: '#066F04',
+              border: '1px solid white',
             }}
-          />
-        </Grid>
-        <Grid item xs={9}>
-          <Typography
-            variant="body2"
-            color="white"
-            style={{ marginLeft: '10px' }}
-            display="inline"
-          >
-            Reported Message:
-          </Typography>
-          <Typography
-            variant="body2"
-            color="white"
-            style={{ marginLeft: '10px' }}
-            display="inline"
-          >
-            &quot;{message}&quot;
-          </Typography>
-        </Grid>
-        <Grid
-          container
-          style={{ margin: '10px' }}
-          spacing={3}
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
-          <Button
-            color="inherit"
-            variant="outlined"
-            className={classes.hover2}
-            onClick={handleDeleteMessageClick}
-          >
-            Delete Message
-          </Button>
-          <Button
-            color="inherit"
-            variant="outlined"
-            className={classes.hover2}
             onClick={handleDismissReportClick}
           >
             Dismiss Report
           </Button>
+        </Grid>
+        <Grid item container xs={3} style={{ justifyContent: 'center' }}>
           <Button
-            color="inherit"
+            // color="inherit"
+            fullWidth
             variant="outlined"
-            className={classes.hover2}
+            className={classes.button}
+            sx={{
+              height: 60,
+              backgroundColor: '#161513',
+              color: '#A10000',
+              border: '1px solid white',
+            }}
+            onClick={handleDeleteMessageClick}
+          >
+            Delete Message
+          </Button>
+        </Grid>
+        <Grid item container xs={3} style={{ justifyContent: 'flex-start' }}>
+          <Button
+            // color="inherit"
+            fullWidth
+            variant="outlined"
+            className={classes.button}
+            sx={{
+              height: 60,
+              backgroundColor: '#161513',
+              color: '#F0CC71',
+              border: '1px solid white',
+            }}
             onClick={handleBanUserClick}
           >
             Ban User
           </Button>
         </Grid>
       </Grid>
-    </Card>
+    </div>
   );
 };
 

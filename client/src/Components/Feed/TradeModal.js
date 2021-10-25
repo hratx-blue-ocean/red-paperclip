@@ -67,9 +67,11 @@ export default function TradeModal({
 }) {
   const classes = useStyles();
 
-  const { activeItemState, isLoggedInState } = useContext(ItemsContext);
+  const { currentUserState, activeItemState, isLoggedInState } =
+    useContext(ItemsContext);
   const [isLoggedIn] = isLoggedInState;
   const [activeItem, setActiveItem] = activeItemState;
+  const [currentUser] = currentUserState;
 
   return (
     <div className={classes.root}>
@@ -78,7 +80,7 @@ export default function TradeModal({
           <CloseIcon className={classes.hover3} style={{ fontSize: 45 }} />
         </IconButton>
       </Grid>
-      {!trade && (
+      {!trade && isLoggedIn && (
         <Grid
           container
           style={{
@@ -92,19 +94,24 @@ export default function TradeModal({
             xs={5}
             container
             style={{
-              justifyContent: 'flex-end',
+              justifyContent: 'flex-start',
               alignItems: 'center',
               marginBottom: '40px',
             }}
           >
-            {isLoggedIn && (
-              <Typography
-                style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
-              >
-                {activeItem.itemName}
-              </Typography>
+            {isLoggedIn && activeItem.itemPhoto && (
+              <Avatar
+                sx={{
+                  border: '4px solid black',
+                  borderRadius: '15px',
+                  width: 100,
+                  height: 100,
+                }}
+                src={activeItem.itemPhoto}
+                variant="square"
+              />
             )}
-            {!isLoggedIn && (
+            {isLoggedIn && !activeItem.itemPhoto && (
               <Typography
                 style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
               >
@@ -122,23 +129,28 @@ export default function TradeModal({
               marginBottom: '40px',
             }}
           >
-            <CompareArrowsIcon style={{ color: '#2C2C2C', fontSize: 100 }} />
+            <CompareArrowsIcon style={{ color: '#FFFFFF', fontSize: 100 }} />
           </Grid>
           <Grid
             item
             xs={5}
             container
             style={{
-              justifyContent: 'flex-start',
+              justifyContent: 'flex-end',
               alignItems: 'center',
               marginBottom: '40px',
             }}
           >
-            <Typography
-              style={{ color: '#F0CC71', fontSize: 35, fontWeight: 800 }}
-            >
-              {item.itemName}
-            </Typography>
+            <Avatar
+              sx={{
+                border: '4px solid black',
+                borderRadius: '15px',
+                width: 100,
+                height: 100,
+              }}
+              src={item.itemPhoto}
+              variant="rounded"
+            />
           </Grid>
 
           <Grid
@@ -159,15 +171,15 @@ export default function TradeModal({
           </Grid>
         </Grid>
       )}
-      {trade && (
+      {trade && isLoggedIn && (
         <Grid
           container
           style={{
             justifyContent: 'center',
-            marginBottom: '102px',
-            marginTop: '42px',
-            marginLeft: '46px',
-            marginRight: '46px',
+            marginBottom: '105px',
+            marginTop: '46px',
+            marginLeft: '13px',
+            marginRight: '13px',
           }}
           padding={6}
         >
@@ -176,6 +188,27 @@ export default function TradeModal({
               style={{ color: '#F0CC71', fontSize: 35, fontWeight: 800 }}
             >
               Your offer has been sent!
+            </Typography>
+          </Grid>
+        </Grid>
+      )}
+      {!isLoggedIn && (
+        <Grid
+          container
+          style={{
+            justifyContent: 'center',
+            marginBottom: '105px',
+            marginTop: '46px',
+            marginLeft: '13px',
+            marginRight: '13px',
+          }}
+          padding={6}
+        >
+          <Grid container item xs={12} justifycontent="center">
+            <Typography
+              style={{ color: '#FFFFFF', fontSize: 35, fontWeight: 800 }}
+            >
+              Please Sign-In Or Create An Account
             </Typography>
           </Grid>
         </Grid>

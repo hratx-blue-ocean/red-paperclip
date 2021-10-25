@@ -22,6 +22,7 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import ReportModal from '../Feed/ReportModal';
 import TradeModal from '../Feed/TradeModal';
 import ItemModal from '../Feed/ItemModal';
+import AddItem from './AddItem';
 
 const style = {
   position: 'absolute',
@@ -66,34 +67,20 @@ export default function ItemCard(props) {
   const classes = useStyles();
   // mouse over image
 
-  // star fill
-  const [starFill, setStarFill] = React.useState(false);
-  const handleWatch = () => {
-    setStarFill(true);
-  };
-  const handleUnwatch = () => {
-    setStarFill(false);
-  };
   // item modal
   const [openCard, setCardOpen] = useState(false);
   const handleCardOpen = () => setCardOpen(true);
   const handleCardClose = () => setCardOpen(false);
 
-  // report modal
-  const [openReport, setReportOpen] = useState(false);
-  const handleReportOpen = () => setReportOpen(true);
-  const handleReportClose = () => setReportOpen(false);
-  // handle report
-  const [reported, setReported] = useState(false);
-  const handleReport = () => setReported(true);
+  // edit item modal
+  const [openEditItem, setEditItem] = useState(false);
+  const handleEditItemOpen = () => setEditItem(true);
+  const handleEditItemClose = () => setEditItem(false);
 
-  // trade modal
-  const [opentrade, setTradeOpen] = useState(false);
-  const handleTradeOpen = () => setTradeOpen(true);
-  const handleTradeClose = () => setTradeOpen(false);
-  // handle trade
-  const [trade, setTrade] = useState(false);
-  const handleTrade = () => setTrade(true);
+  // delete item
+  const handleDeleteItem = () => {
+    console.log('Not deleting this, that sounds like a pain!');
+  };
 
   const { itemName, itemDescription, itemOwner, itemPhoto } = props.activeItem;
   const [itemBlurb, setItemBlurb] = useState('');
@@ -110,36 +97,38 @@ export default function ItemCard(props) {
         <Box style={{ overflow: 'auto' }} sx={style}>
           <ItemModal
             handleCardClose={handleCardClose}
-            starFill={starFill}
-            handleWatch={handleWatch}
-            handleUnwatch={handleUnwatch}
-            handleTradeOpen={handleTradeOpen}
-            handleReportOpen={handleReportOpen}
             item={props.activeItem}
           />
         </Box>
       </Modal>
-
-      <Modal open={openReport} onClose={handleReportClose}>
+      <Modal open={openEditItem} onClose={handleEditItemClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <ReportModal
-            handleReportClose={handleReportClose}
-            reported={reported}
-            handleReport={handleReport}
-          />
+          <AddItem handleEditItemClose={handleEditItemClose} />
         </Box>
       </Modal>
 
-      <Modal open={opentrade} onClose={handleTradeClose}>
-        <Box sx={style} style={{ backgroundColor: '#494D53' }}>
-          <TradeModal
-            handleTradeClose={handleTradeClose}
-            trade={trade}
-            handleTrade={handleTrade}
-          />
-        </Box>
-      </Modal>
-
+      <Grid container xs={12}>
+        <Grid container item xs={6} justifyContent="space-evenly">
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleEditItemOpen}
+          >
+            Change Item
+          </Button>
+        </Grid>{' '}
+        <Grid container item xs={6} justifyContent="space-evenly">
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleDeleteItem}
+          >
+            Delete Item
+          </Button>
+        </Grid>
+      </Grid>
       <Grid container>
         <Card
           style={{
@@ -172,21 +161,6 @@ export default function ItemCard(props) {
               >
                 {itemName}
               </Typography>
-            </Grid>
-            <Grid container item xs={2} justifyContent="center">
-              {!starFill && (
-                <IconButton onClick={handleWatch}>
-                  <StarIcon className={classes.hover1} />
-                </IconButton>
-              )}
-              {starFill && (
-                <IconButton onClick={handleUnwatch}>
-                  <StarIcon
-                    className={classes.hover1}
-                    style={{ color: '#F0CC71' }}
-                  />
-                </IconButton>
-              )}
             </Grid>
           </Grid>
           <CardHeader
@@ -230,28 +204,6 @@ export default function ItemCard(props) {
                   Read more
                 </Link>
               </Typography>
-            </Grid>
-            <Grid container item xs={12} justifyContent="center">
-              <Grid container item xs={6} justifyContent="center">
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  className={classes.hover2}
-                  onClick={handleTradeOpen}
-                >
-                  Offer Trade
-                </Button>
-              </Grid>
-              <Grid container item xs={6} justifyContent="space-evenly">
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  className={classes.hover2}
-                  onClick={handleReportOpen}
-                >
-                  Report Item
-                </Button>
-              </Grid>
             </Grid>
           </CardContent>
         </Card>

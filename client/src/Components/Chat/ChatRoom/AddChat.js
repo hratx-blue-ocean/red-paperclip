@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 import { makeStyles } from '@mui/styles';
-import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,16 +24,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function AddChat({ chatsWithJesson, setChatsWithJesson }) {
+export default function AddChat() {
   const [chatText, setChatText] = useState('');
   const classes = useStyles();
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newMessage = [2, 1, chatText, Date.now()];
-    console.log('from addChat:', chatsWithJesson);
-    setChatsWithJesson([...chatsWithJesson, newMessage]);
-    setChatText('');
+    alert(chatText);
+    // setChatsWithJesson([...chatsWithJesson, newMessage]);
+    // setChatText('');
   }
   return (
     <Paper elevation={6} style={{ height: 180, borderRadius: 30 }}>

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 
@@ -17,6 +16,11 @@ export default function ChatRoom() {
     ],
   ]);
   const [chatText, setChatText] = useState('');
+
+  // useEffect watch the global currentChatRoom
+  // renders the currentChatRoom
+
+  // need to get both item photos for the trade items
 
   return (
     <Grid container spacing={3}>

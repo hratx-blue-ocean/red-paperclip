@@ -20,6 +20,10 @@ const reportItem = require('./Admin/reportItem');
 const dismissReport = require('./Admin/dismissReport');
 const getItemReports = require('./Admin/getItemReports');
 
+// Messages
+const getChatRoom = require('./Messages/getChatRoom');
+const getAllChatRooms = require('./Messages/getAllChatRooms');
+
 const item = {
   getAllItems,
   getItem,
@@ -39,7 +43,10 @@ const user = {
   editWatchList,
 };
 
-const message = {};
+const message = {
+  getChatRoom,
+  getAllChatRooms,
+};
 
 const admin = {
   reportItem,

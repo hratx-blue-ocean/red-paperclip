@@ -30,6 +30,10 @@ app.post('/reportItem', admin.reportItem);
 app.put('/dismissReport', admin.dismissReport);
 app.get('/getItemReports', admin.getItemReports);
 
+// MESSAGES
+app.get('/getChatRoom', message.getChatRoom);
+app.get('/getAllChatRooms', message.getAllChatRooms);
+
 const api = functions.https.onRequest(app);
 
 module.exports = {

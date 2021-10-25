@@ -57,6 +57,7 @@ const signUp = (req, res) => {
         availableItem: '',
         watchedItems: {},
         tradeHistory: [],
+        permissions: '',
       };
       return db.doc(`/users/${newUser.email}`).set(userCredentials);
     })

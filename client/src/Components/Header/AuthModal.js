@@ -55,22 +55,16 @@ export default function AuthModal({
           (isReturningUser === true ? (
             <Box sx={style}>
               <SignInForm
-                setMenuOpen={setMenuOpen}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                setAnchorEl={setAnchorEl}
-                anchorEl={anchorEl}
                 handleOpen={handleOpen}
               />
             </Box>
           ) : (
             <Box sx={style}>
               <CreateAccountForm
-                setMenuOpen={setMenuOpen}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                setAnchorEl={setAnchorEl}
-                anchorEl={anchorEl}
                 handleOpen={handleOpen}
               />
             </Box>

@@ -14,37 +14,8 @@ export const ItemsProvider = (props) => {
   const [displayItems, setDisplayItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-<<<<<<< HEAD
-  const [currentUser, setCurrentUser] = useState({
-    userFirst: '',
-    userLast: '',
-    userPFP: '',
-    userPhone: '',
-    userEmail: '',
-    userZIP: '',
-    availableItem: '',
-    tradeHistory: [],
-    watchedItems: {},
-    chats: [],
-    permissions: '',
-  });
-  const [activeItem, setActiveItem] = useState({
-    createdAt: '',
-    itemOwner: '',
-    active: false,
-    itemOwnerPhoto: '',
-    report: 0,
-    itemDescription: '',
-    itemOwnerUID: '',
-    itemCategory: '',
-    itemPhoto: '',
-    itemName: '',
-    itemLocation: '',
-  });
-=======
   const [currentUser, setCurrentUser] = useState({});
   const [activeItem, setActiveItem] = useState({});
->>>>>>> main
   const [watchedItems, setWatchedItems] = useState([]);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -77,31 +48,33 @@ export const ItemsProvider = (props) => {
       .catch((error) => console.log('Error retrieving watched items'));
   };
 
-  const getChatRooms = (usersChatRooms) => {
+  const getAllChatRooms = (usersChatRooms) => {
     axios
-      .get(`${apiUrl}/getChatRooms`, {
+      .get(`${apiUrl}/getAllChatRooms`, {
         params: {
           chatRooms: usersChatRooms,
         },
       })
       .then((data) => {
-        console.log('test point:', data);
-        setAllChatRooms(data);
+        setAllChatRooms(data.data);
       })
       .catch((err) => console.log('error getting all chat rooms: ', err));
   };
 
+  const getChatRoom = (chatRoomId) => {
+    axios
+      .get(`${apiUrl}/getChatRoom?uid=${chatRoomId}`)
+      .then((chatRoom) => setCurrentChatRoom(chatRoom.data))
+      .catch((err) => console.error('Error retrieving the specific chat room'));
+  };
+
   useEffect(() => {
-<<<<<<< HEAD
-    getActiveItem(currentUser.availableItem);
-    getWatchedItemsList(Object.keys(currentUser.watchedItems));
-    getChatRooms(currentUser.chatRooms);
-=======
     if (isLoggedIn) {
       getActiveItem(currentUser.availableItem);
       getWatchedItemsList(Object.keys(currentUser.watchedItems));
+      getAllChatRooms(currentUser.chatRooms);
+      getChatRoom(currentUser.chatRooms[0]);
     }
->>>>>>> main
   }, [isLoggedIn]);
 
   return (

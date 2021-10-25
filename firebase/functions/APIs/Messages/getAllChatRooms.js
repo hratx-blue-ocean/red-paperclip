@@ -9,10 +9,13 @@ const getAllChatRooms = async (req, res) => {
       .doc(`chats/${chatId}`)
       .get()
       .then((snap) => {
-        console.log(snap.data());
         const chatListData = {
-          buyerName: snap.data().buyer,
-          buyerPhoto: snap.data().buyerPhoto,
+          trader1: snap.data().trader1,
+          trader1Photo: snap.data().trader1Photo,
+          trader2: snap.data().trader2,
+          trader2Photo: snap.data().trader2Photo,
+          trader1ItemPhoto: snap.data().trader1ItemPhoto,
+          trader2ItemPhoto: snap.data().trader2ItemPhoto,
           lastMessage:
             snap.data().messages[snap.data().messages.length - 1].message,
           timestamp:

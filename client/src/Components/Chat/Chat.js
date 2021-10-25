@@ -1,9 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import ChatList from './ChatList';
-import ChatRoom from './ChatRoom';
+import ChatList from './ChatList/ChatList';
+import ChatRoom from './ChatRoom/ChatRoom';
 import { ItemsContext } from '../ItemsContext';
 
 export default function Chat() {

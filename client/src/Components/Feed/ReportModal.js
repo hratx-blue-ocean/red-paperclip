@@ -96,7 +96,7 @@ export default function ReportModal({
             </Button>
           </Grid>
 
-          <Grid container item xs={9} justifyContent="space-evenly">
+          {/* <Grid container item xs={9} justifyContent="space-evenly">
             <Button
               fullWidth
               color="sortButton"
@@ -106,7 +106,7 @@ export default function ReportModal({
             >
               Hazardous Item
             </Button>
-          </Grid>
+          </Grid> */}
 
           <Grid container item xs={9} justifyContent="space-evenly">
             <Button

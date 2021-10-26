@@ -61,13 +61,13 @@ export default function TradeDetails({
   return (
     <>
       <Grid container item xs={4} justifyContent="center">
-        <Avatar alt="trader1Photo" src={trader1Photo} />
-        <ListItemText
-          style={{
-            padding: 2,
-          }}
-          primary={trader1}
+        <Avatar
+          alt="trader2Photo"
+          src={trader2Photo}
+          sx={{ width: 56, height: 56 }}
         />
+
+        <ListItemText primary={trader2} secondary="Trusted User" />
       </Grid>
 
       <Grid item xs={1}>
@@ -90,16 +90,6 @@ export default function TradeDetails({
           alt="trader2ItemPhoto"
           src={trader2ItemPhoto}
           sx={{ width: 56, height: 56 }}
-        />
-      </Grid>
-
-      <Grid container item xs={4} justifyContent="center">
-        <Avatar alt="trader2Photo" src={trader2Photo} />
-        <ListItemText
-          style={{
-            padding: 2,
-          }}
-          primary={trader2}
         />
       </Grid>
     </>

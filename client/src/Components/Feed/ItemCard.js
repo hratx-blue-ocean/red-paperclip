@@ -73,14 +73,7 @@ export default function ItemCard({ item }) {
   const [apiUrl] = apiUrlState;
   // star fill
   const [starFill, setStarFill] = useState(false);
-  useEffect(() => {
-    if (isLoggedIn) {
-      // this is not here!
-      if (currentUser.watchedItems[item.uid]) {
-        setStarFill(true);
-      }
-    }
-  }, []);
+
   const handleStarClick = () => {
     if (isLoggedIn) {
       if (starFill) {
@@ -124,6 +117,16 @@ export default function ItemCard({ item }) {
       }
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // this is not here!
+      if (currentUser.watchedItems[item.uid]) {
+        setStarFill(true);
+      }
+    }
+  }, [handleStarClick]);
+
   // const handleStarClick = () => {
   //   setStarFill(false);
   //   axios

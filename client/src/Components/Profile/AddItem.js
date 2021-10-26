@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-alert */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -106,7 +107,7 @@ const AddItem = (props) => {
       if (props.type === 'edit') {
         console.log('Sending new item data: ', newItem);
         axios
-          .put(`${apiUrl}/editItem`, {
+          .put(`${apiUrl}/editItem?=uid${currentUser.userId}`, {
             UID: currentUser.userId,
             title: 'Dumb horse hospital',
             description: activeItem.itemDescription,
@@ -123,21 +124,24 @@ const AddItem = (props) => {
           });
       } else {
         console.log('Adding an item: ', newItem);
+        // debugger;
         axios
-          .post(`${apiUrl}/addItem`, {
+          .post(`${apiUrl}/addNewItem`, {
             user: `${currentUser.firstName} ${currentUser.lastName}`,
             ownerUID: currentUser.userId,
-            profilePhoto: currentUser.imageUrl,
+            profilePhoto: '',
             name: newItem.itemName,
             category: newItem.itemCategory,
             description: newItem.itemDescription,
             location: newItem.itemZIP,
           })
           .then((postResponse) => {
+            // debugger;
             console.log('Received post response:');
             console.log(postResponse);
           })
           .catch((err) => {
+            // debugger;
             console.log('Error received from post request:');
             console.log(err);
           });

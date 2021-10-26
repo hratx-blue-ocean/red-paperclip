@@ -47,6 +47,7 @@ export const ItemsProvider = (props) => {
       })
       .catch((error) => console.log('Error retrieving watched items'));
   };
+  // need to pass get watched items list down to be updated when starfill click occurs
 
   const getAllChatRooms = (usersChatRooms) => {
     axios

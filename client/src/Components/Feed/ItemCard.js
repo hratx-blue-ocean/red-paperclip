@@ -125,7 +125,7 @@ export default function ItemCard({ item }) {
         setStarFill(true);
       }
     }
-  }, [handleStarClick]);
+  }, []);
 
   // const handleStarClick = () => {
   //   setStarFill(false);

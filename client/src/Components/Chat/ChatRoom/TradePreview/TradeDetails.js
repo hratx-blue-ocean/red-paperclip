@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
+import { ItemsContext } from '../../../ItemsContext';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,13 +50,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const getCoordinates = (zip) => {
-  // const dataObj = zipcodes.lookup(zip);
-  // const location = {
-  //   lat: dataObj.latitude,
-  //   lng: dataObj.longitude,
-  // };
-  // return location;
+const zipcodes = require('zipcodes');
+
+const getCurrentZip = () => {
+  const { currentUserState, currentChatRoomState } = useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
+  return currentUser.zip;
+};
+const getLocation = (zip) => {
+  const dataObj = zipcodes.lookup(zip);
+  let result = '';
+  const location = {
+    city: dataObj.city,
+    state: dataObj.state,
+  };
+
+  result = location.city + ', ' + location.state;
+  return result;
 };
 export default function TradeDetails({
   trader1,
@@ -74,7 +85,10 @@ export default function TradeDetails({
           src={trader2Photo}
           sx={{ width: 56, height: 56 }}
         />
-        <ListItemText primary={trader2} secondary="Zip Code:" />
+        <ListItemText
+          primary={trader2}
+          secondary={getLocation(getCurrentZip())}
+        />
       </Grid>
       <Grid container item xs={4}>
         <Grid item xs={4}>
@@ -114,7 +128,10 @@ export default function TradeDetails({
             justifyContent: 'center',
           }}
         >
-          <ListItemText primary={trader1} secondary="Austin, TX" />
+          <ListItemText
+            primary={trader1}
+            secondary={getLocation(getCurrentZip())}
+          />
         </Grid>
         <Grid item={3}>
           <Avatar

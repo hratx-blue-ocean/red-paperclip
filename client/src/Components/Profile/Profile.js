@@ -81,7 +81,7 @@ const Profile = () => {
                   width: 450,
                   height: 600,
                   // backgroundColor: '#494D53',
-                  marginTop: 5,
+                  // marginTop: 5,
                   marginBottom: 10,
                 }}
               >
@@ -94,7 +94,7 @@ const Profile = () => {
                   Active Item
                 </Typography>
                 {currentUser.availableItem && (
-                  <ProfileActiveItem activeItem={activeItem} height="50%" />
+                  <ProfileActiveItem activeItem={activeItem} height="65%" />
                 )}
                 {!currentUser.availableItem && <AddItem />}
               </Box>

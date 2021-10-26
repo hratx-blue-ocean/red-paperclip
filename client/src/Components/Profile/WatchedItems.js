@@ -17,15 +17,22 @@ const WatchedItems = (props) => {
   const { watchedItemsState } = useContext(ItemsContext);
   const [watchedItems, setWatchedItems] = watchedItemsState;
   return (
-    <>
+    <Box style={{ backgroundColor: '#2C2C2C' }}>
       {watchedItems.map((item, index) => {
         return (
-          <Box key={index}>
+          <Box
+            key={index}
+            sx={{
+              transform: 'translate(5%, 5%)',
+              marginBottom: 3,
+              maxWidth: '500px',
+            }}
+          >
             <ItemCard item={item} />
           </Box>
         );
       })}
-    </>
+    </Box>
   );
 };
 

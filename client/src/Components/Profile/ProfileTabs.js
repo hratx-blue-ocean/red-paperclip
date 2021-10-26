@@ -22,7 +22,7 @@ const ProfileTabs = () => {
         <Tabs
           value={value}
           onChange={handleChange}
-          // textColor="secondary"
+          textColor="secondary"
           // indicatorColor="secondary"
           aria-label="Trade History Tabs"
         >

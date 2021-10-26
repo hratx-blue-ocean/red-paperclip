@@ -26,7 +26,7 @@ const EditProfileButton = () => {
     <>
       <Button
         style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
-        variant="contained"
+        variant="outlined"
         onClick={handleClick}
       >
         Edit Profile

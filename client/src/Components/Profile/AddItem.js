@@ -107,7 +107,7 @@ const AddItem = (props) => {
       if (props.type === 'edit') {
         console.log('Sending new item data: ', newItem);
         axios
-          .put(`${apiUrl}/editItem?=uid${currentUser.userId}`, {
+          .put(`${apiUrl}/editItem`, {
             UID: currentUser.userId,
             title: 'Dumb horse hospital',
             description: activeItem.itemDescription,

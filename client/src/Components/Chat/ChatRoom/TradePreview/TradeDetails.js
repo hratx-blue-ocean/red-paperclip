@@ -49,6 +49,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const getCoordinates = (zip) => {
+  // const dataObj = zipcodes.lookup(zip);
+  // const location = {
+  //   lat: dataObj.latitude,
+  //   lng: dataObj.longitude,
+  // };
+  // return location;
+};
 export default function TradeDetails({
   trader1,
   trader1Photo,
@@ -60,37 +68,66 @@ export default function TradeDetails({
   const classes = useStyles();
   return (
     <>
-      <Grid container item xs={4} justifyContent="center">
+      <Grid container item xs={4} justifyContent="flex-start">
         <Avatar
           alt="trader2Photo"
           src={trader2Photo}
           sx={{ width: 56, height: 56 }}
         />
+        <ListItemText primary={trader2} secondary="Zip Code:" />
+      </Grid>
+      <Grid container item xs={4}>
+        <Grid item xs={4}>
+          <Avatar
+            alt="trader2ItemPhoto"
+            src={trader2ItemPhoto}
+            sx={{ width: 56, height: 56 }}
+          />
+        </Grid>
 
-        <ListItemText primary={trader2} secondary="Trusted User" />
+        <Grid item xs={4}>
+          <CompareArrowsIcon
+            className={classes.hover3}
+            style={{ fontSize: 60 }}
+          />
+        </Grid>
+
+        <Grid item xs={4}>
+          <Avatar
+            alt="trader1ItemPhoto"
+            src={trader1ItemPhoto}
+            sx={{ width: 56, height: 56 }}
+          />
+        </Grid>
       </Grid>
 
-      <Grid item xs={1}>
-        <Avatar
-          alt="trader1ItemPhoto"
-          src={trader1ItemPhoto}
-          sx={{ width: 56, height: 56 }}
-        />
-      </Grid>
-
-      <Grid item xs={1}>
-        <CompareArrowsIcon
-          className={classes.hover3}
-          style={{ fontSize: 60 }}
-        />
-      </Grid>
-
-      <Grid item xs={1}>
-        <Avatar
-          alt="trader2ItemPhoto"
-          src={trader2ItemPhoto}
-          sx={{ width: 56, height: 56 }}
-        />
+      <Grid
+        container
+        item
+        xs={4}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
+        <Grid
+          item={1}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <ListItemText primary={trader1} secondary="Austin, TX" />
+        </Grid>
+        <Grid item={3}>
+          <Avatar
+            alt="trader1Photo"
+            src={trader1Photo}
+            sx={{
+              width: 56,
+              height: 56,
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          />
+        </Grid>
       </Grid>
     </>
   );

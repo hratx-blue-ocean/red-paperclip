@@ -19,7 +19,8 @@ const addNewItem = (req, res) => {
   db.collection('items')
     .add(newDoc)
     .then((docRef) => {
-      db.doc(`user/${req.body.ownerUID}`)
+      console.log(docRef.id);
+      db.doc(`users/${req.body.ownerUID}`)
         .update({ availableItem: docRef.id })
         .then(() => {
           res.end();

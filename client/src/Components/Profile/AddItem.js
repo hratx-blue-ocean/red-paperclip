@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
@@ -41,18 +42,27 @@ const useStyles = makeStyles(() => ({
 
 const AddItem = (props) => {
   const classes = useStyles();
-  const { currentUserState } = useContext(ItemsContext);
+  const { currentUserState, activeItemState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
+  const [activeItem, setActiveItem] = activeItemState;
 
   const Input = styled('input')({
     display: 'none',
   });
 
   const [newItem, setNewItem] = useState({
-    // itemCategory: 'Select Category' || currentUser.availableItem.itemCategory,
-    // itemName: '' || currentUser.availableItem.itemName,
-    // itemDesc: '' || currentUser.availableItem.itemDesc,
-    // itemZIP: '' || currentUser.availableItem.itemZIP,
+    active: activeItem.active || true,
+    itemCategory: activeItem.itemCategory || 'Select Category',
+    itemName: activeItem.itemName || '',
+    itemDescription: activeItem.itemDescription || '',
+    itemLocation: activeItem.itemLocation || '',
+    itemOwner:
+      activeItem.itemOwner ||
+      `${currentUser.firstName} ${currentUser.lastName}`,
+    itemOwnerPhoto: activeItem.itemOwnerPhoto || currentUser.imageUrl,
+    itemOwnerUID: activeItem.itemOwnerUID || currentUser.userId,
+    itemPhoto: activeItem.itemPhoto || '',
+    itemZIP: activeItem.itemZIP || '',
   });
 
   const [itemFormOpen, setItemFormOpen] = useState(false);
@@ -65,7 +75,9 @@ const AddItem = (props) => {
   };
 
   const handleClose = () => {
-    props.handleEditItemClose();
+    if (props.handleEditItemClose) {
+      props.handleEditItemClose();
+    }
     setItemFormOpen(false);
   };
 
@@ -78,18 +90,66 @@ const AddItem = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log('Sending new item data: ', newItem);
-    axios
-      .put(`/editItem`, newItem)
-      .then((postResponse) => {
-        console.log('Received post response:');
-        console.log(postResponse);
-      })
-      .catch((err) => {
-        console.log('Error received from post request:');
-        console.log(err);
-      });
+    // Validate inputs
+    if (newItem.itemCategory === 'Select Category') {
+      alert('Please select a category.');
+    } else if (!newItem.itemName) {
+      alert('Please enter a name for your item.');
+    } else if (!newItem.itemDescription) {
+      alert('Please describe your item.');
+    } else if (!newItem.itemZIP) {
+      alert('Please enter the ZIP code of your item.');
+    } else {
+      // Inputs are valid, send request
+      if (props.type === 'edit') {
+        console.log('Sending new item data: ', newItem);
+        axios
+          .put(`/editItem`, {
+            UID: currentUser.userId,
+            title: 'Dumb horse hospital',
+            // description: '',
+            // category: '',
+            // image: '',
+          })
+          .then((postResponse) => {
+            console.log('Received put response:');
+            console.log(postResponse);
+          })
+          .catch((err) => {
+            console.log('Error received from put request:');
+            console.log(err);
+          });
+      } else {
+        console.log('Adding an item: ', newItem);
+        axios
+          .post(`/addItem`, {
+            user: `${currentUser.firstName} ${currentUser.lastName}`,
+            ownerUID: currentUser.userId,
+            profilePhoto: currentUser.imageUrl,
+            name: newItem.itemName,
+            category: newItem.itemCategory,
+            description: newItem.itemDescription,
+            location: newItem.itemZIP,
+          })
+          .then((postResponse) => {
+            console.log('Received post response:');
+            console.log(postResponse);
+          })
+          .catch((err) => {
+            console.log('Error received from post request:');
+            console.log(err);
+          });
+      }
+      handleClose();
+    }
   };
+
+  // Add item
+  // // {
+  //     user: '',
+  //     profilePhoto: '',
+  //     name: '',
+  // }
 
   return (
     <div className={classes.root}>
@@ -140,6 +200,7 @@ const AddItem = (props) => {
             label="Item category"
             variant="filled"
             value={newItem.itemCategory}
+            defaultValue={newItem.itemCategory}
           >
             <MenuItem style={{ color: '#2C2C2C' }} value="Select Category">
               Select Category
@@ -230,7 +291,7 @@ const AddItem = (props) => {
             required
             id="outlined-description"
             label="Description"
-            name="itemDesc"
+            name="itemDescription"
             onChange={handleChange}
             type="text"
             multiline
@@ -263,6 +324,7 @@ const AddItem = (props) => {
               color="sortButton"
               variant="contained"
               className={classes.hover2}
+              onClick={handleSubmit}
             >
               Add Item
             </Button>

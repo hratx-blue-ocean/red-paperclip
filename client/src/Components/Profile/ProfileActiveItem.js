@@ -103,7 +103,7 @@ export default function ItemCard(props) {
       </Modal>
       <Modal open={openEditItem} onClose={handleEditItemClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <AddItem handleEditItemClose={handleEditItemClose} />
+          <AddItem handleEditItemClose={handleEditItemClose} type="edit" />
         </Box>
       </Modal>
 

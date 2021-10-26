@@ -19,7 +19,8 @@ const Profile = () => {
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [activeItem, setActiveItem] = activeItemState;
-  // console.log('Current user: ', currentUser);
+  console.log('Current user: ', currentUser);
+  console.log('Available item: ', activeItem);
 
   return (
     <>
@@ -77,7 +78,7 @@ const Profile = () => {
                 {currentUser.availableItem && (
                   <ProfileActiveItem activeItem={activeItem} height="50%" />
                 )}
-                {!currentUser.availableItem && <AddItem />}
+                {!currentUser.availableItem && <AddItem type="add" />}
               </Card>
 
               {/* <Card

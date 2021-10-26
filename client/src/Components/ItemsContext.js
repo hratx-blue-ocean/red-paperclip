@@ -64,7 +64,9 @@ export const ItemsProvider = (props) => {
   const getChatRoom = (chatRoomId) => {
     axios
       .get(`${apiUrl}/getChatRoom?uid=${chatRoomId}`)
-      .then((chatRoom) => setCurrentChatRoom(chatRoom.data))
+      .then((chatRoom) => {
+        setCurrentChatRoom(chatRoom.data);
+      })
       .catch((err) => console.error('Error retrieving the specific chat room'));
   };
 
@@ -96,6 +98,7 @@ export const ItemsProvider = (props) => {
         handleMenuOpen,
         currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
         allChatRoomsState: [allChatRooms, setAllChatRooms],
+        getChatRoom,
       }}
     >
       {props.children}

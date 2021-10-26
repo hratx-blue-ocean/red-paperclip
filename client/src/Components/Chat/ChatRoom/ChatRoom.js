@@ -19,10 +19,7 @@ export default function ChatRoom() {
         </List>
       </Grid>
       <Grid item xs={12}>
-        {/* <AddChat
-          chatsWithJesson={chatsWithJesson}
-          setChatsWithJesson={setChatsWithJesson}
-        /> */}
+        <AddChat />
       </Grid>
     </Grid>
   );

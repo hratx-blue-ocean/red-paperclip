@@ -93,9 +93,7 @@ export default function ItemCard({ item }) {
           })
           .then(() => {
             const { watchedItems } = currentUser;
-            console.log('watched items before remove', watchedItems);
             delete watchedItems[item.uid];
-            console.log('watched items after remove', watchedItems);
             setCurrentUser({
               ...currentUser,
               watchedItems,

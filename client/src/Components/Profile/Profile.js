@@ -97,7 +97,19 @@ const Profile = () => {
                 {currentUser.availableItem && (
                   <ProfileActiveItem activeItem={activeItem} height="65%" />
                 )}
-                {!currentUser.availableItem && <AddItem />}
+                {!currentUser.availableItem && (
+                  <>
+                    <Typography
+                      variant="h5"
+                      textAlign="center"
+                      sx={{ marginTop: 1, marginBottom: 2 }}
+                      style={{ color: '#F0CC71' }}
+                    >
+                      Add an item to start trading!
+                    </Typography>
+                    <AddItem />
+                  </>
+                )}
               </Box>
 
               {/* <Card

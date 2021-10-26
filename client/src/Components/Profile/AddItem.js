@@ -165,30 +165,32 @@ const AddItem = (props) => {
         padding={1}
         spacing={2}
       >
-        <Grid
-          container
-          item
-          xs={9}
-          style={{ justifyContent: 'center', marginBottom: '-15px' }}
-        >
-          <label htmlFor="contained-button-file">
-            <Input
-              accept="image/*"
-              id="contained-button-file"
-              multiple
-              type="file"
-            />
-            <Button
-              fullWidth
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-              component="span"
-            >
-              Upload Image
-            </Button>
-          </label>
-        </Grid>
+        {props.type === 'edit' && (
+          <Grid
+            container
+            item
+            xs={9}
+            style={{ justifyContent: 'center', marginBottom: '-15px' }}
+          >
+            <label htmlFor="contained-button-file">
+              <Input
+                accept="image/*"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <Button
+                fullWidth
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                component="span"
+              >
+                Upload Image
+              </Button>
+            </label>
+          </Grid>
+        )}
         <Grid container item xs={9} style={{ justifyContent: 'center' }}>
           <Select
             name="itemCategory"

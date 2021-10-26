@@ -45,6 +45,8 @@ const AddItem = (props) => {
   const { currentUserState, activeItemState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
   const [activeItem, setActiveItem] = activeItemState;
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
 
   const Input = styled('input')({
     display: 'none',
@@ -104,11 +106,11 @@ const AddItem = (props) => {
       if (props.type === 'edit') {
         console.log('Sending new item data: ', newItem);
         axios
-          .put(`/editItem`, {
+          .put(`${apiUrl}/editItem`, {
             UID: currentUser.userId,
             title: 'Dumb horse hospital',
-            // description: '',
-            // category: '',
+            description: activeItem.itemDescription,
+            category: activeItem.itemCategory,
             // image: '',
           })
           .then((postResponse) => {
@@ -122,7 +124,7 @@ const AddItem = (props) => {
       } else {
         console.log('Adding an item: ', newItem);
         axios
-          .post(`/addItem`, {
+          .post(`${apiUrl}/addItem`, {
             user: `${currentUser.firstName} ${currentUser.lastName}`,
             ownerUID: currentUser.userId,
             profilePhoto: currentUser.imageUrl,

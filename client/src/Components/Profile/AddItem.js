@@ -89,7 +89,7 @@ const AddItem = (props) => {
       ...newItem,
       [event.target.name]: event.target.value,
     });
-    console.log(newItem);
+    // console.log(newItem);
   };
 
   const handleSubmit = () => {
@@ -105,15 +105,24 @@ const AddItem = (props) => {
     } else {
       // Inputs are valid, send request
       if (props.type === 'edit') {
-        console.log('Sending new item data: ', newItem);
+        // console.log('Sending edited item data: ', newItem);
+        const itemEdits = {};
+        if (newItem.itemName.length > 0) {
+          itemEdits.title = newItem.itemName;
+        }
+        if (newItem.itemDescription.length > 0) {
+          itemEdits.description = newItem.itemDescription;
+        }
+        if (newItem.itemCategory !== 'Select Category') {
+          itemEdits.category = newItem.category;
+        }
         axios
-          .put(`${apiUrl}/editItem`, {
-            UID: currentUser.userId,
-            title: 'Dumb horse hospital',
-            description: activeItem.itemDescription,
-            category: activeItem.itemCategory,
-            // image: '',
-          })
+          .put(`${apiUrl}/editItem?uid=${currentUser.availableItem}`, itemEdits)
+          // {
+          //   title: newItem.itemName,
+          //   description: newItem.itemDescription,
+          //   category: newItem.itemCategory,
+          // })
           .then((postResponse) => {
             console.log('Received put response:');
             console.log(postResponse);
@@ -123,25 +132,22 @@ const AddItem = (props) => {
             console.log(err);
           });
       } else {
-        console.log('Adding an item: ', newItem);
-        // debugger;
+        // console.log('Adding an item: ', newItem);
         axios
           .post(`${apiUrl}/addNewItem`, {
             user: `${currentUser.firstName} ${currentUser.lastName}`,
-            ownerUID: currentUser.userId,
-            profilePhoto: '',
+            ownerUID: currentUser.email,
+            profilePhoto: currentUser.imageUrl,
             name: newItem.itemName,
             category: newItem.itemCategory,
             description: newItem.itemDescription,
             location: newItem.itemZIP,
           })
           .then((postResponse) => {
-            // debugger;
             console.log('Received post response:');
             console.log(postResponse);
           })
           .catch((err) => {
-            // debugger;
             console.log('Error received from post request:');
             console.log(err);
           });
@@ -185,6 +191,7 @@ const AddItem = (props) => {
                 variant="contained"
                 className={classes.hover2}
                 component="span"
+                // onClick={uploadImage}
               >
                 Upload Image
               </Button>

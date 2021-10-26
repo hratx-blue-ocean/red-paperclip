@@ -75,10 +75,6 @@ export default function ChatConversation() {
     messages,
   } = currentChatRoom;
 
-  console.log('messages: ', messages);
-
-  // useEffect(() => {}, [messages]);
-
   return (
     <Paper
       elevation={6}

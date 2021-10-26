@@ -39,14 +39,19 @@ const Profile = () => {
         <div className={classes.root}>
           <Grid container spacing={5}>
             <Grid item xs={5}>
-              <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
+              <Typography
+                variant="h5"
+                textAlign="center"
+                sx={{ marginTop: 3 }}
+                style={{ color: '#F0CC71' }}
+              >
                 Hello, {currentUser.firstName}!
               </Typography>
-              <Card
+              <Box
                 sx={{
                   width: 450,
                   height: 300,
-                  backgroundColor: '#494D53',
+                  // backgroundColor: '#494D53',
                   marginTop: 1,
                 }}
               >
@@ -58,6 +63,7 @@ const Profile = () => {
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     marginTop: 3,
+                    borderRadius: '150px',
                   }}
                 >
                   <CardMedia
@@ -69,7 +75,7 @@ const Profile = () => {
                   />
                 </Card>
                 <EditProfileButton />
-              </Card>
+              </Box>
               <Box
                 sx={{
                   width: 450,
@@ -82,8 +88,8 @@ const Profile = () => {
                 <Typography
                   variant="h4"
                   textAlign="center"
-                  sx={{ marginTop: 1 }}
-                  style={{ color: 'textYellow' }}
+                  sx={{ marginTop: 1, marginBottom: 2 }}
+                  style={{ color: '#F0CC71' }}
                 >
                   Active Item
                 </Typography>

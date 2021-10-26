@@ -83,8 +83,8 @@ export default function ItemCard({ item }) {
   }, []);
   const handleStarClick = () => {
     if (isLoggedIn) {
+      // if currently on Watchlist
       if (starFill) {
-        setStarFill(false);
         axios
           .put(`${apiUrl}/editWatchList`, {
             uid: item.uid,
@@ -93,17 +93,18 @@ export default function ItemCard({ item }) {
           })
           .then(() => {
             const { watchedItems } = currentUser;
-            delete watchedItems(item.uid);
+            delete watchedItems[item.uid];
             setCurrentUser({
               ...currentUser,
               watchedItems,
             });
+            setStarFill(false);
           })
           .catch((err) => {
             console.log('FAILED to remove item from watchlist --> ', err);
           });
       } else {
-        setStarFill(true);
+        // if not on watchlist
         axios
           .put(`${apiUrl}/editWatchList`, {
             uid: item.uid,
@@ -117,6 +118,7 @@ export default function ItemCard({ item }) {
               ...currentUser,
               watchedItems,
             });
+            setStarFill(true);
           })
           .catch((err) => {
             console.log('FAILED to add item to watchlist --> ', err);

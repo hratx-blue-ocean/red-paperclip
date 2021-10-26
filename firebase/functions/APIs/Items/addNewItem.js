@@ -19,7 +19,14 @@ const addNewItem = (req, res) => {
   db.collection('items')
     .add(newDoc)
     .then((docRef) => {
-      res.send(docRef.id);
+      db.doc(`user/${req.body.ownerUID}`)
+        .update({ availableItem: docRef.id })
+        .then(() => {
+          res.end();
+        })
+        .catch((err) => {
+          throw err;
+        });
     })
     .catch((err) => res.status(500).json({ error: err.code }));
 };

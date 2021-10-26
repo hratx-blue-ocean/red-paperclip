@@ -36,7 +36,7 @@ const ProfileTabs = () => {
           sx={{
             width: 600,
             height: 890,
-            backgroundColor: '#494D53',
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',

@@ -24,14 +24,13 @@ const ProfileJournal = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="100vh"
       direction="column"
-      style={{ backgroundColor: '#2C2C2C' }}
+      style={{ backgroundColor: '#34363b' }}
     >
       {currentUser.tradeHistory &&
         currentUser.tradeHistory.map((item, index) => {
           return (
-            <Box key={index} maxWidth="500px" sx={{ marginBottom: 3 }}>
+            <Box key={index} maxWidth="400px" sx={{ marginBottom: 3 }}>
               <ProfileJournalEntry item={item} />
             </Box>
           );

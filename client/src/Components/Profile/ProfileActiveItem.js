@@ -145,7 +145,11 @@ export default function ItemCard(props) {
             component="img"
             height={props.height}
             image={itemPhoto}
-            style={{ objectFit: 'cover' }}
+            style={{
+              objectFit: 'cover',
+              minHeight: '275px',
+              maxHeight: '250px',
+            }}
             alt="Axe Set"
             onClick={handleCardOpen}
           />

@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import React, { useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Modal from '@mui/material/Modal';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 import { ItemsContext } from '../../ItemsContext';
 import TradePreview from './TradePreview/TradePreview';
-
-import Jason from '../img/Jason.jpg';
-import Pingping from '../img/Pingping.jpg';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -59,18 +60,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ChatConversation({
-  chatsWithJesson,
-  setChatsWithJesson,
-}) {
+export default function ChatConversation() {
   const classes = useStyles();
-
   const { currentUserState, currentChatRoomState } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [currentChatRoom, setCurrentChatRoom] = currentChatRoomState;
-  const trader1 = currentUser.firstName;
-
-  useEffect(() => {}, [chatsWithJesson]);
+  const {
+    trader1,
+    trader1Photo,
+    trader1ItemPhoto,
+    trader2,
+    trader2Photo,
+    trader2ItemPhoto,
+    messages,
+  } = currentChatRoom;
 
   return (
     <Paper
@@ -82,34 +85,32 @@ export default function ChatConversation({
       <Grid item xs={12} className={classes.divider}>
         <Divider />
       </Grid>
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-        }}
-      >
-        <DeleteIcon className={classes.hover1} />
-      </Box>
-      {chatsWithJesson.map((message) =>
-        message[0] === 1 ? (
-          <>
-            <ListItemAvatar>
-              <Avatar alt="Jesson W" src={Jason} />
-            </ListItemAvatar>
-            <ListItemText primary={message[2]} />
-          </>
-        ) : (
-          <>
-            <p className={classes.userText} primary={message[2]} />
-            <ListItemAvatar>
-              <Avatar alt="Pingping X" src={Pingping} />
-            </ListItemAvatar>
-          </>
-        )
+      {messages !== undefined ? (
+        messages.map((messageObj) => {
+          const { userName, userPhoto, message } = messageObj;
+          if (userName === currentUser.firstName) {
+            return (
+              // eslint-disable-next-line no-underscore-dangle
+              <ListItem key={messageObj.timestamp._seconds}>
+                <ListItemText className={classes.userText} primary={message} />
+                <ListItemAvatar>
+                  <Avatar alt={userName} src={userPhoto} />
+                </ListItemAvatar>
+              </ListItem>
+            );
+          }
+          return (
+            // eslint-disable-next-line no-underscore-dangle
+            <ListItem key={messageObj.timestamp._seconds}>
+              <ListItemAvatar>
+                <Avatar alt={userName} src={userPhoto} />
+              </ListItemAvatar>
+              <ListItemText primary={message} />
+            </ListItem>
+          );
+        })
+      ) : (
+        <div />
       )}
     </Paper>
   );

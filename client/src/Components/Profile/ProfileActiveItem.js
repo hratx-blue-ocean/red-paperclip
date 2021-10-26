@@ -114,6 +114,7 @@ export default function ItemCard(props) {
             variant="outlined"
             className={classes.hover2}
             onClick={handleEditItemOpen}
+            sx={{ marginBottom: 2 }}
           >
             Change Item
           </Button>
@@ -124,6 +125,7 @@ export default function ItemCard(props) {
             variant="outlined"
             className={classes.hover2}
             onClick={handleDeleteItem}
+            sx={{ marginBottom: 2 }}
           >
             Delete Item
           </Button>

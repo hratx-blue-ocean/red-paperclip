@@ -12,7 +12,7 @@ app.use(cors());
 app.get('/getAllItems', item.getAllItems);
 app.get('/getItem', item.getItem);
 app.get('/getItems', item.getItems);
-app.get('/editItem', item.editItem);
+app.put('/editItem', item.editItem);
 app.post('/addNewItem', item.addNewItem);
 app.get('/changeActiveStatus', item.changeActiveStatus);
 app.get('/getItemsByCategory', item.getItemsByCategory);

@@ -47,7 +47,6 @@ export const ItemsProvider = (props) => {
       })
       .catch((error) => console.log('Error retrieving watched items'));
   };
-  // need to pass get watched items list down to be updated when starfill click occurs
 
   const getAllChatRooms = (usersChatRooms) => {
     axios
@@ -95,6 +94,7 @@ export const ItemsProvider = (props) => {
         menuOpenState: [menuOpen, setMenuOpen],
         anchorElState: [anchorEl, setAnchorEl],
         handleMenuOpen,
+        getWatchedItemsList,
         currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
         allChatRoomsState: [allChatRooms, setAllChatRooms],
       }}

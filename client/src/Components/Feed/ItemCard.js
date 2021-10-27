@@ -66,8 +66,12 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  const { currentUserState, isLoggedInState, apiUrlState } =
-    useContext(ItemsContext);
+  const {
+    getWatchedItemsList,
+    currentUserState,
+    isLoggedInState,
+    apiUrlState,
+  } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl] = apiUrlState;
@@ -93,6 +97,9 @@ export default function ItemCard({ item }) {
             });
             setStarFill(false);
           })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
+          })
           .catch((err) => {
             console.log('FAILED to remove item from watchlist --> ', err);
           });
@@ -112,6 +119,9 @@ export default function ItemCard({ item }) {
               watchedItems,
             });
             setStarFill(true);
+          })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
           })
           .catch((err) => {
             console.log('FAILED to add item to watchlist --> ', err);

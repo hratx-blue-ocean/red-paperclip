@@ -80,7 +80,7 @@ export const ItemsProvider = (props) => {
         getChatRoom(currentUser.chatRooms[0]);
       }
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentUser]);
 
   return (
     <ItemsContext.Provider

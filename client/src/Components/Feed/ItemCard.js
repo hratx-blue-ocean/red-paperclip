@@ -363,7 +363,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="secondary"
+                  color="white"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >

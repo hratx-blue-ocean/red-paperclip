@@ -26,7 +26,7 @@ const ProfileTabs = () => {
           // indicatorColor="secondary"
           aria-label="Trade History Tabs"
         >
-          <Tab value={0} label="Trade Journey Journal" />
+          <Tab value={0} label="Trade History" />
           <Tab value={1} label="Trade Journey Map" />
           <Tab value={2} label="Watched Items" />
         </Tabs>

@@ -32,6 +32,7 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const [activeItem, setActiveItem] = activeItemState;
   // console.log('Current user: ', currentUser);
+  // console.log('Available item: ', activeItem);
 
   return (
     <>
@@ -96,10 +97,22 @@ const Profile = () => {
                 >
                   Active Item
                 </Typography>
-                {currentUser.availableItem && (
+                {activeItem.active && (
                   <ProfileActiveItem activeItem={activeItem} height="65%" />
                 )}
-                {!currentUser.availableItem && <AddItem />}
+                {!activeItem.active && (
+                  <>
+                    <Typography
+                      variant="h5"
+                      textAlign="center"
+                      sx={{ marginTop: 1, marginBottom: 2 }}
+                      style={{ color: '#F0CC71' }}
+                    >
+                      Add an item to start trading!
+                    </Typography>
+                    <AddItem />
+                  </>
+                )}
               </Box>
 
               {/* <Card

@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -16,6 +16,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 import Modal from '@mui/material/Modal';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
@@ -23,6 +24,7 @@ import ReportModal from '../Feed/ReportModal';
 import TradeModal from '../Feed/TradeModal';
 import ItemModal from '../Feed/ItemModal';
 import AddItem from './AddItem';
+import { ItemsContext } from '../ItemsContext';
 
 const style = {
   position: 'absolute',
@@ -65,7 +67,10 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard(props) {
   const classes = useStyles();
-  // mouse over image
+  const { currentUserState, activeItemState } = useContext(ItemsContext);
+  const [currentUser] = currentUserState;
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
 
   // item modal
   const [openCard, setCardOpen] = useState(false);
@@ -79,7 +84,17 @@ export default function ItemCard(props) {
 
   // delete item
   const handleDeleteItem = () => {
-    console.log('Not deleting this, that sounds like a pain!');
+    console.log('Deleting item...');
+    axios
+      .get(`${apiUrl}/changeActiveStatus?uid=${currentUser.availableItem}`)
+      .then((postResponse) => {
+        console.log('Received put response:');
+        console.log(postResponse);
+      })
+      .catch((err) => {
+        console.log('Error received from put request:');
+        console.log(err);
+      });
   };
 
   const { itemName, itemDescription, itemOwner, itemPhoto } = props.activeItem;
@@ -103,7 +118,7 @@ export default function ItemCard(props) {
       </Modal>
       <Modal open={openEditItem} onClose={handleEditItemClose}>
         <Box sx={style} style={{ backgroundColor: '#494D53', maxWidth: '25%' }}>
-          <AddItem handleEditItemClose={handleEditItemClose} />
+          <AddItem handleEditItemClose={handleEditItemClose} type="edit" />
         </Box>
       </Modal>
 

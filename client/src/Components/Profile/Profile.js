@@ -94,10 +94,10 @@ const Profile = () => {
                 >
                   Active Item
                 </Typography>
-                {currentUser.availableItem.active && (
+                {activeItem.active && (
                   <ProfileActiveItem activeItem={activeItem} height="65%" />
                 )}
-                {!currentUser.availableItem.active && (
+                {!activeItem.active && (
                   <>
                     <Typography
                       variant="h5"

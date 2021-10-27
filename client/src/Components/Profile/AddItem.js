@@ -53,6 +53,9 @@ const AddItem = (props) => {
     display: 'none',
   });
 
+  const noItemPic =
+    'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png';
+
   const [newItem, setNewItem] = useState({
     active: activeItem.active || true,
     itemCategory: activeItem.itemCategory || 'Select Category',
@@ -64,14 +67,11 @@ const AddItem = (props) => {
       `${currentUser.firstName} ${currentUser.lastName}`,
     itemOwnerPhoto: activeItem.itemOwnerPhoto || currentUser.imageUrl,
     itemOwnerUID: activeItem.itemOwnerUID || currentUser.userId,
-    itemPhoto: activeItem.itemPhoto || '',
+    itemPhoto: activeItem.itemPhoto || noItemPic,
     itemZIP: activeItem.itemZIP || '',
   });
 
   const [itemFormOpen, setItemFormOpen] = useState(false);
-
-  const noItemPic =
-    'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png';
 
   const handleClick = () => {
     setItemFormOpen(true);
@@ -89,6 +89,7 @@ const AddItem = (props) => {
       ...newItem,
       [event.target.name]: event.target.value,
     });
+    // console.log(newItem);
   };
 
   const handleSubmit = () => {
@@ -115,6 +116,10 @@ const AddItem = (props) => {
         if (newItem.itemCategory !== 'Select Category') {
           itemEdits.category = newItem.category;
         }
+        if (newItem.itemPhoto !== noItemPic) {
+          itemEdits.image = newItem.itemPhoto;
+        }
+        console.log('Sending item data: ', itemEdits);
         axios
           .put(`${apiUrl}/editItem?uid=${currentUser.availableItem}`, itemEdits)
           // {
@@ -122,10 +127,10 @@ const AddItem = (props) => {
           //   description: newItem.itemDescription,
           //   category: newItem.itemCategory,
           // })
-          .then((postResponse) => {
-            console.log('Received put response:');
-            console.log(postResponse);
-          })
+          // .then((postResponse) => {
+          //   console.log('Received put response:');
+          //   console.log(postResponse);
+          // })
           .catch((err) => {
             console.log('Error received from put request:');
             console.log(err);
@@ -136,16 +141,17 @@ const AddItem = (props) => {
           .post(`${apiUrl}/addNewItem`, {
             user: `${currentUser.firstName} ${currentUser.lastName}`,
             ownerUID: currentUser.email,
-            profilePhoto: currentUser.imageUrl || '',
+            profilePhoto: currentUser.imageUrl || noItemPic,
             name: newItem.itemName,
             category: newItem.itemCategory,
             description: newItem.itemDescription,
             location: newItem.itemZIP,
+            image: newItem.itemPhoto,
           })
-          .then((postResponse) => {
-            console.log('Received post response:');
-            console.log(postResponse);
-          })
+          // .then((postResponse) => {
+          //   console.log('Received post response:');
+          //   console.log(postResponse);
+          // })
           .catch((err) => {
             console.log('Error received from post request:');
             console.log(err);
@@ -163,13 +169,31 @@ const AddItem = (props) => {
         padding={1}
         spacing={2}
       >
-        {props.type === 'edit' && (
-          <Grid
-            container
-            item
-            xs={9}
-            style={{ justifyContent: 'center', marginBottom: '-15px' }}
-          >
+        {/* {props.type === 'edit' && ( */}
+        <Grid
+          container
+          item
+          xs={9}
+          style={{ justifyContent: 'center', marginBottom: '-15px' }}
+        >
+          <TextField
+            InputProps={{
+              className: classes.input,
+            }}
+            InputLabelProps={{
+              className: classes.formLabel,
+            }}
+            style={{ width: '100%', backgroundColor: '#2C2C2C' }}
+            color="textYellow"
+            required
+            id="outlined-title"
+            label="Item photo"
+            type="text"
+            name="itemPhoto"
+            onChange={handleChange}
+          />
+          {/* Old code for image upload:
+
             <label htmlFor="contained-button-file">
               <Input
                 accept="image/*"
@@ -187,9 +211,9 @@ const AddItem = (props) => {
               >
                 Upload Image
               </Button>
-            </label>
-          </Grid>
-        )}
+            </label> */}
+        </Grid>
+        {/* )} */}
         <Grid container item xs={9} style={{ justifyContent: 'center' }}>
           <Select
             name="itemCategory"
@@ -198,14 +222,14 @@ const AddItem = (props) => {
             style={{
               margin: '0 auto',
               display: 'flex',
-              width: 200,
+              width: 325,
               marginTop: 20,
               backgroundColor: '#2C2C2C',
             }}
             className={(classes.menu, classes.hover2)}
             id="editItemCategory"
             label="Item category"
-            variant="filled"
+            variant="outlined"
             value={newItem.itemCategory}
             defaultValue={newItem.itemCategory}
           >

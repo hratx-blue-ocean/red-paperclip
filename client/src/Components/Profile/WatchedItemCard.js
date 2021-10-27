@@ -20,9 +20,9 @@ import dateFormat from 'dateformat';
 import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import axios from 'axios';
-import ReportModal from './ReportModal';
-import TradeModal from './TradeModal';
-import ItemModal from './ItemModal';
+import ReportModal from '../Feed/ReportModal';
+import TradeModal from '../Feed/TradeModal';
+import ItemModal from '../Feed/ItemModal';
 import { ItemsContext } from '../ItemsContext';
 
 const style = {
@@ -261,14 +261,13 @@ export default function ItemCard({ item }) {
           </IconButton>
         )}
       </Grid>
-      <Grid container style={{ justifyContent: 'center' }}>
+      <Grid container>
         <Card
           style={{
             backgroundColor: '#494D53',
             border: '1px solid',
             borderColor: '#FFF',
             borderRadius: '15px',
-            justifyContent: 'center',
           }}
         >
           <CardMedia
@@ -363,7 +362,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >

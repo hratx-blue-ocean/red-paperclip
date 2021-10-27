@@ -80,7 +80,7 @@ export const ItemsProvider = (props) => {
         getChatRoom(currentUser.chatRooms[0]);
       }
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentUser]);
 
   return (
     <ItemsContext.Provider
@@ -97,7 +97,6 @@ export const ItemsProvider = (props) => {
         menuOpenState: [menuOpen, setMenuOpen],
         anchorElState: [anchorEl, setAnchorEl],
         handleMenuOpen,
-        getWatchedItemsList,
         currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
         allChatRoomsState: [allChatRooms, setAllChatRooms],
         getChatRoom,

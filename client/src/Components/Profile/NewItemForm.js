@@ -44,16 +44,16 @@ const NewItemForm = () => {
 
   const handleSubmit = () => {
     console.log('Sending new item data: ', newItem);
-    axios
-      .post(`/items`, newItem)
-      .then((postResponse) => {
-        console.log('Received post response:');
-        console.log(postResponse);
-      })
-      .catch((err) => {
-        console.log('Error received from post request:');
-        console.log(err);
-      });
+    // axios
+    //   .post(`/items`, newItem)
+    //   .then((postResponse) => {
+    //     console.log('Received post response:');
+    //     console.log(postResponse);
+    //   })
+    //   .catch((err) => {
+    //     console.log('Error received from post request:');
+    //     console.log(err);
+    //   });
   };
 
   return (

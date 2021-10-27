@@ -21,11 +21,15 @@
   color: gray;
 }
 
-.chat_timestamp {
+.timestamp {
   color: lightgray;
 }
 
 .chat_image {
   max-width: 100%;
   height: auto;
+}
+
+.trade_Preview {
+  position: fixed;
 }

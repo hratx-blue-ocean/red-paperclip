@@ -15,8 +15,13 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { ItemsContext } from '../ItemsContext';
 
 export default function SignInForm() {
-  const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
-    useContext(ItemsContext);
+  const {
+    isLoggedInState,
+    apiUrlState,
+    currentUserState,
+    showAuthModalState,
+    bearerTokenState,
+  } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
@@ -26,6 +31,7 @@ export default function SignInForm() {
     password: '',
     showPassword: false,
   });
+  const [bearerToken, setBearerToken] = bearerTokenState;
 
   const handleInputChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -50,6 +56,7 @@ export default function SignInForm() {
 
     Axios.post(`${apiUrl}/login`, params)
       .then((result) => {
+        setBearerToken(`${result.data.token}`);
         Axios.get(`${apiUrl}/user`, {
           headers: { Authorization: `Bearer ${result.data.token}` },
         }).then((userData) => {

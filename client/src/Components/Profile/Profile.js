@@ -40,7 +40,7 @@ const Profile = () => {
           <Grid container spacing={5}>
             <Grid item xs={5}>
               <Typography
-                variant="h5"
+                variant="h4"
                 textAlign="center"
                 sx={{ marginTop: 3 }}
                 style={{ color: '#F0CC71' }}
@@ -88,8 +88,11 @@ const Profile = () => {
                 <Typography
                   variant="h4"
                   textAlign="center"
-                  sx={{ marginTop: 1, marginBottom: 2 }}
-                  style={{ color: '#F0CC71' }}
+                  style={{
+                    marginTop: 1,
+                    marginBottom: '25px',
+                    color: '#F0CC71',
+                  }}
                 >
                   Active Item
                 </Typography>

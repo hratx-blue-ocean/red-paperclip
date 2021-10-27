@@ -26,7 +26,7 @@ const ProfileJournal = () => {
       alignItems="center"
       minHeight="100vh"
       direction="column"
-      style={{ backgroundColor: '#2C2C2C' }}
+      style={{ backgroundColor: '#34363b' }}
     >
       {currentUser.tradeHistory &&
         currentUser.tradeHistory.map((item, index) => {

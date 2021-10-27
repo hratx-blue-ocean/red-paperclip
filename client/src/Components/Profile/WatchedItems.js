@@ -17,16 +17,18 @@ import ItemCard from '../Feed/ItemCard';
 const WatchedItems = (props) => {
   const { watchedItemsState } = useContext(ItemsContext);
   const [watchedItems, setWatchedItems] = watchedItemsState;
+  console.log('watchedItems----> ', watchedItems);
   return (
     <Container style={{ backgroundColor: '#34363b', justifyContent: 'center' }}>
       {watchedItems.map((item, index) => (
         <Box
           key={index}
-          justifyContent="center"
-          sx={{
+          style={{
             transform: 'translate(5%, 5%)',
-            marginBottom: 3,
-            maxWidth: '500px',
+            marginBottom: '20px',
+            maxWidth: '325px',
+            justifyContent: 'center',
+            marginLeft: '95px',
           }}
         >
           <ItemCard item={item} />

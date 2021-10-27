@@ -63,6 +63,8 @@ const Feed = () => {
     }
   };
 
+  console.log('items---> ', items);
+
   useEffect(() => {
     getAllItems(showMore, selection);
   }, [selection, showMore, isLoggedIn]);

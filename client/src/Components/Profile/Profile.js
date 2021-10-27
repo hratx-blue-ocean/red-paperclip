@@ -78,12 +78,13 @@ const Profile = () => {
                 <EditProfileButton />
               </Box>
               <Box
-                sx={{
-                  width: 450,
-                  height: 600,
+                style={{
+                  maxWidth: '325px',
+                  // height: 600,
                   // backgroundColor: '#494D53',
-                  // marginTop: 5,
+                  justifyContent: 'center',
                   marginBottom: 10,
+                  marginLeft: '60px',
                 }}
               >
                 <Typography

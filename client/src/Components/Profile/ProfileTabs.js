@@ -67,6 +67,7 @@ const ProfileTabs = () => {
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',
+            justifyContent: 'center',
           }}
         >
           <WatchedItems />

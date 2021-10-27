@@ -58,7 +58,7 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <Grid container item xs={5} justifyContent="center">
+    <Grid container item xs={12} justifyContent="center">
       <Button variant="contained" onClick={handleOpen}>
         Close Deal
       </Button>

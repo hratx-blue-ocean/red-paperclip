@@ -22,6 +22,7 @@ export const ItemsProvider = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [allChatRooms, setAllChatRooms] = useState([]);
   const [currentChatRoom, setCurrentChatRoom] = useState('');
+  const [bearerToken, setBearerToken] = useState('');
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,7 +65,9 @@ export const ItemsProvider = (props) => {
   const getChatRoom = (chatRoomId) => {
     axios
       .get(`${apiUrl}/getChatRoom?uid=${chatRoomId}`)
-      .then((chatRoom) => setCurrentChatRoom(chatRoom.data))
+      .then((chatRoom) => {
+        setCurrentChatRoom(chatRoom.data);
+      })
       .catch((err) => console.error('Error retrieving the specific chat room'));
   };
 
@@ -72,7 +75,7 @@ export const ItemsProvider = (props) => {
     if (isLoggedIn) {
       getActiveItem(currentUser.availableItem);
       getWatchedItemsList(Object.keys(currentUser.watchedItems));
-      if (currentUser.chatRooms.length > 0) {
+      if (currentUser.chatRooms) {
         getAllChatRooms(currentUser.chatRooms);
         getChatRoom(currentUser.chatRooms[0]);
       }
@@ -94,8 +97,11 @@ export const ItemsProvider = (props) => {
         menuOpenState: [menuOpen, setMenuOpen],
         anchorElState: [anchorEl, setAnchorEl],
         handleMenuOpen,
+        getWatchedItemsList,
         currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
         allChatRoomsState: [allChatRooms, setAllChatRooms],
+        getChatRoom,
+        bearerTokenState: [bearerToken, setBearerToken],
       }}
     >
       {props.children}

@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 import Axios from 'axios';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -12,29 +14,50 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import Email from './formFields/Email';
+import Password from './formFields/Password';
 import { ItemsContext } from '../ItemsContext';
 
+const validateSchema = yup.object({
+  password: yup
+    .string('Enter a password of at least 6 characters')
+    .min(6, 'password must be at least 6 characters')
+    .required('password is required'),
+  email: yup
+    .string('Enter your email')
+    .email('invalid email address')
+    .required('email is required'),
+});
+
 export default function SignInForm() {
-  const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
-    useContext(ItemsContext);
+  const {
+    isLoggedInState,
+    apiUrlState,
+    currentUserState,
+    showAuthModalState,
+    bearerTokenState,
+  } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [currentUser, setCurrentUser] = currentUserState;
-  const [values, setValues] = useState({
+  const [userData, setUserData] = useState({
     email: '',
     password: '',
     showPassword: false,
   });
+  const [bearerToken, setBearerToken] = bearerTokenState;
 
+  // updates state for user data on form
   const handleInputChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    setUserData({ ...userData, [prop]: event.target.value });
   };
 
-  const handleTogglePassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+  // toggle password
+  const handleClickShowPassword = () => {
+    setUserData({
+      ...userData,
+      showPassword: !userData.showPassword,
     });
   };
 
@@ -42,18 +65,15 @@ export default function SignInForm() {
     event.preventDefault();
   };
 
-  const signIn = () => {
-    const params = {
-      email: values.email,
-      password: values.password,
-    };
-
-    Axios.post(`${apiUrl}/login`, params)
+  // submits user data to server for auth
+  const signIn = (signInData) => {
+    Axios.post(`${apiUrl}/login`, signInData)
       .then((result) => {
+        setBearerToken(`${result.data.token}`);
         Axios.get(`${apiUrl}/user`, {
           headers: { Authorization: `Bearer ${result.data.token}` },
-        }).then((userData) => {
-          setCurrentUser(userData.data);
+        }).then((userInfo) => {
+          setCurrentUser(userInfo.data);
           setIsLoggedIn(true);
         });
       })
@@ -62,78 +82,74 @@ export default function SignInForm() {
       });
   };
 
-  const handleSignIn = (event) => {
-    event.preventDefault();
+  // close modal and trigger sign in
+  const handleSignIn = (signInData) => {
+    setUserData(signInData);
     setShowAuthModal(false);
-    signIn();
+    signIn(signInData);
   };
 
   return (
     <Grid container justifyContent="center" alignItems="center">
-      <Grid item align="center">
+      <Grid item xs={12} align="center">
         <AttachFileIcon
           color="paperClip"
           style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
           sx={{ fontSize: 40 }}
         />
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Sign in with your email and password:
+        <Typography id="modal-title" variant="h6" component="h2">
+          sign in with your email and password:
         </Typography>
-        <FormControl
-          margin="normal"
-          sx={{ m: 1, width: '25ch' }}
-          color="formLabel"
-        >
-          <InputLabel htmlFor="email">email</InputLabel>
-          <OutlinedInput
-            id="email-text-box"
-            type="text"
-            onChange={handleInputChange('email')}
-            label="email"
-          />
-        </FormControl>
-        <FormControl
-          margin="normal"
-          sx={{ m: 1, width: '25ch' }}
-          color="formLabel"
-        >
-          <InputLabel htmlFor="password">password</InputLabel>
-          <OutlinedInput
-            id="password-text-box"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleInputChange('password')}
-            style={{ color: '#161513' }}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleTogglePassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
       </Grid>
-      <Grid item xs={6} align="center">
-        <Button
-          fullWidth
-          type="submit"
-          onClick={handleSignIn}
-          style={{
-            backgroundColor: '#2C2C2C',
-            color: '#F0CC71',
-            marginTop: '6px',
-            justifyContent: 'center',
+      <br />
+      <Grid item align="center">
+        <Formik
+          validateOnChange
+          initialValues={{ email: '', password: '' }}
+          validationSchema={validateSchema}
+          onSubmit={(data) => {
+            handleSignIn(data);
           }}
         >
-          Sign In
-        </Button>
+          {({ submitForm, touched, values, errors, isSubmitting }) => (
+            <Form>
+              <Grid item xs={12}>
+                <Field
+                  component={Email}
+                  type="email"
+                  name="email"
+                  setUserData={setUserData}
+                />
+              </Grid>
+              <br />
+              <Grid item xs={12}>
+                <Field
+                  component={Password}
+                  type="password"
+                  name="password"
+                  userData={userData}
+                />
+              </Grid>
+              <br />
+              <br />
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  type="submit"
+
+                  style={{
+                    backgroundColor: '#2C2C2C',
+                    color: '#F0CC71',
+                    marginTop: '6px',
+                    justifyContent: 'center',
+                  }}
+                >
+                  Sign In
+                </Button>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
       </Grid>
     </Grid>
   );

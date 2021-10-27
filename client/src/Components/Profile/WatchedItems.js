@@ -4,6 +4,7 @@ import React, { useState, useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -18,30 +19,21 @@ const WatchedItems = (props) => {
   const { watchedItemsState } = useContext(ItemsContext);
   const [watchedItems, setWatchedItems] = watchedItemsState;
   return (
-    <Grid
-      container
-      xs={12}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      direction="column"
-      style={{ backgroundColor: '#34363b' }}
-    >
-      {watchedItems.map((item, index) => {
-        return (
-          <Box
-            key={index}
-            sx={{
-              // transform: 'translate(5%, 5%)',
-              marginBottom: 3,
-              maxWidth: '400px',
-            }}
-          >
-            <ItemCard item={item} />
-          </Box>
-        );
-      })}
-    </Grid>
+    <Container style={{ backgroundColor: '#34363b', justifyContent: 'center' }}>
+      {watchedItems.map((item, index) => (
+        <Box
+          key={index}
+          justifyContent="center"
+          sx={{
+            transform: 'translate(5%, 5%)',
+            marginBottom: 3,
+            maxWidth: '500px',
+          }}
+        >
+          <ItemCard item={item} />
+        </Box>
+      ))}
+    </Container>
   );
 };
 

@@ -8,12 +8,19 @@ import Avatar from '@mui/material/Avatar';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 
+// import { ItemsContext } from '../ItemsContext';
+
+// const addToTradeJourney = () => {
+//   const { currentUserState } = useContext(ItemsContext);
+//   const [currentUser] = currentUserState;
+//   if(currentUser.tradeHistory) {
+//     current.tradeHistory.push((tradedItem));
+//   }
+// };
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-  },
-  divider: {
-    padding: 20,
   },
   userText: {
     display: 'flex',
@@ -31,23 +38,11 @@ const useStyles = makeStyles(() => ({
     boxShadow: 75,
     borderRadius: '15px',
   },
-  hover2: {
-    color: '#ffffff',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
   hover3: {
     color: '#6D5D59',
 
     '&:hover': {
       color: '#A10000',
-    },
-  },
-  hover1: {
-    color: '#161513',
-    '&:hover': {
-      color: '#f0CC71',
     },
   },
 }));
@@ -59,7 +54,7 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
   const handleClose = () => setOpen(false);
   return (
     <Grid container item xs={12} justifyContent="center">
-      <Button variant="contained" onClick={handleOpen}>
+      <Button variant="contained" color="success" onClick={handleOpen}>
         Close Deal
       </Button>
 
@@ -81,33 +76,47 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
               justifyContent="center"
               style={{ height: 100, borderRadius: 120, padding: 10 }}
             >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
                 Trade Comformation
               </Typography>
               <Typography sx={{ mt: 2 }}>
-                Congratulation! The following trade has been successfully made
-                and has added to your Trade Journey!
+                Congratulation on finding the item you like! By clicking the
+                CONFIRM below, we will mark this trade as complete and will move
+                it to your Trade Journey!
               </Typography>
             </Grid>
-            <Grid item xs={3}>
-              <Avatar
-                alt="trader1ItemPhoto"
-                src={trader1ItemPhoto}
-                sx={{ width: 56, height: 56 }}
-              />
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Button variant="contained" color="success" type="submit">
+                Confirm!
+              </Button>
             </Grid>
-            <Grid item xs={3}>
-              <CompareArrowsIcon
-                className={classes.hover3}
-                style={{ fontSize: 60 }}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <Avatar
-                alt="trader2ItemPhoto"
-                src={trader2ItemPhoto}
-                sx={{ width: 56, height: 56 }}
-              />
+
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Grid item xs={5} display="flex" justifyContent="center">
+                <Avatar
+                  alt="trader1ItemPhoto"
+                  src={trader1ItemPhoto}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </Grid>
+              <Grid item xs={2} display="flex" justifyContent="center">
+                <CompareArrowsIcon
+                  className={classes.hover3}
+                  style={{ fontSize: 100 }}
+                />
+              </Grid>
+              <Grid item xs={5} display="flex" justifyContent="center">
+                <Avatar
+                  alt="trader2ItemPhoto"
+                  src={trader2ItemPhoto}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Box>

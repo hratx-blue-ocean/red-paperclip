@@ -75,7 +75,7 @@ UI Owner/Software Engineer
 
 ## William Fink
 
-email here
+wwfink30@gmail.com
 
  <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="150">
 

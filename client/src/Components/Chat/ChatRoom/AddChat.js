@@ -64,7 +64,7 @@ export default function AddChat() {
     // on response will reset the chat text state
   }
   return (
-    <Paper elevation={6} style={{ height: 180, borderRadius: 30 }}>
+    <Paper elevation={6} style={{ height: 180, borderRadius: 20 }}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <form className="addChat" onSubmit={handleSubmit}>

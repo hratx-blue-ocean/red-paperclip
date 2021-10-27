@@ -12,9 +12,6 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
-  divider: {
-    padding: 20,
-  },
   userText: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -31,23 +28,11 @@ const useStyles = makeStyles(() => ({
     boxShadow: 75,
     borderRadius: '15px',
   },
-  hover2: {
-    color: '#ffffff',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
   hover3: {
     color: '#6D5D59',
 
     '&:hover': {
       color: '#A10000',
-    },
-  },
-  hover1: {
-    color: '#161513',
-    '&:hover': {
-      color: '#f0CC71',
     },
   },
 }));
@@ -59,7 +44,7 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
   const handleClose = () => setOpen(false);
   return (
     <Grid container item xs={12} justifyContent="center">
-      <Button variant="contained" onClick={handleOpen}>
+      <Button variant="contained" color="success" onClick={handleOpen}>
         Close Deal
       </Button>
 

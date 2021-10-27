@@ -5,9 +5,12 @@ import ChatListEntry from './ChatListEntry';
 import { ItemsContext } from '../../ItemsContext';
 
 export default function ChatList() {
-  const { allChatRoomsState } = useContext(ItemsContext);
+  const { allChatRoomsState, getChatRoom } = useContext(ItemsContext);
   const [allChatRooms, setAllChatRooms] = allChatRoomsState;
-
+  const handleClick = (chatId) => {
+    getChatRoom(chatId);
+    // get chat ID through
+  };
   return (
     <Paper elevation={3} style={{ borderRadius: 30 }}>
       <List
@@ -21,7 +24,7 @@ export default function ChatList() {
       >
         {allChatRooms.map((element, key) => (
           // eslint-disable-next-line react/no-array-index-key
-          <ChatListEntry entryObj={element} key={key} />
+          <ChatListEntry entryObj={element} key={key} clicked={handleClick} />
         ))}
       </List>
     </Paper>

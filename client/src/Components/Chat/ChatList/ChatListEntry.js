@@ -5,7 +5,7 @@ import timeago from 'epoch-timeago';
 import Divider from '@mui/material/Divider';
 import { ItemsContext } from '../../ItemsContext';
 
-export default function ChatListEntry({ entryObj }) {
+export default function ChatListEntry({ entryObj, clicked }) {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const {
@@ -17,6 +17,7 @@ export default function ChatListEntry({ entryObj }) {
     trader2ItemPhoto,
     timestamp,
     lastMessage,
+    chatId,
   } = entryObj;
 
   // onclick function
@@ -33,31 +34,30 @@ export default function ChatListEntry({ entryObj }) {
   return (
     <>
       {trader1 === currentUser.firstName ? (
+        // eslint-disable-next-line react/jsx-no-comment-textnodes
         <>
-          <div className="chat">
-            <div>
-              <Avatar className="chat_image" src={trader2Photo} />
-              <h3>{trader2}</h3>
-            </div>
+          <div className="chat" onClick={() => clicked(chatId)}>
+            <Avatar className="chat_image" src={trader2Photo} />
+            <h3>{trader2}</h3>
             <div className="chat_details">
               <p>{lastMessage}</p>
             </div>
             <p className="chat_timestamp">
-              {' '}
               <TimeAgo time={epochTimeStamp} />
             </p>
           </div>
           <Divider />
         </>
       ) : (
+        // eslint-disable-next-line react/jsx-no-comment-textnodes
         <>
-          <div className="chat">
+          <div className="chat" onClick={() => clicked(chatId)}>
             <Avatar className="chat_image" src={trader1Photo} />
             <h3>{trader1}</h3>
             <div className="chat_details">
               <p>{lastMessage}</p>
             </div>
-            <p className="chat_timestamp">{timestamp}</p>
+            <TimeAgo time={epochTimeStamp} />
           </div>
           <Divider />
         </>

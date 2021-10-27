@@ -17,7 +17,7 @@ const zipcodes = require('zipcodes');
 
 const mapContainerStyle = {
   width: '600px',
-  height: '890px',
+  height: '1082px',
 };
 
 const centers = [

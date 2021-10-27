@@ -33,10 +33,10 @@ const ProfileTabs = () => {
       </Box>
       <ProfileTabPanel value={value} index={0}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',
@@ -47,10 +47,10 @@ const ProfileTabs = () => {
       </ProfileTabPanel>
       <ProfileTabPanel value={value} index={1}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
           }}
@@ -60,10 +60,10 @@ const ProfileTabs = () => {
       </ProfileTabPanel>
       <ProfileTabPanel value={value} index={2}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',

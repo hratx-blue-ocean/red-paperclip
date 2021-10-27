@@ -29,7 +29,7 @@ const ProfileJournal = () => {
       {currentUser.tradeHistory &&
         currentUser.tradeHistory.map((item, index) => {
           return (
-            <Box key={index} maxWidth="400px" sx={{ marginBottom: 3 }}>
+            <Box key={index} maxWidth="500px" sx={{ marginBottom: 3 }}>
               <ProfileJournalEntry item={item} />
             </Box>
           );

@@ -25,7 +25,7 @@ const WatchedItems = (props) => {
           key={index}
           justifyContent="center"
           sx={{
-            transform: 'translate(5%, 5%)',
+            transform: 'translate(5%, 0%)',
             marginBottom: 3,
             maxWidth: '500px',
           }}

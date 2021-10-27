@@ -33,18 +33,18 @@ const EditProfileButton = () => {
       ...userDetails,
       [event.target.name]: event.target.value,
     });
-    console.log(userDetails);
+    // console.log(userDetails);
   };
 
   const handleSubmit = () => {
-    console.log('Submitting new user details: ', userDetails);
+    // console.log('Submitting new user details: ', userDetails);
     axios
       .post(`${apiUrl}/user/`, userDetails, {
         headers: { Authorization: `Bearer ${bearerToken}` },
       })
-      .then((postUserDetailsResponse) => {
-        console.log('Image posted successfully: ', postUserDetailsResponse);
-      })
+      // .then((postUserDetailsResponse) => {
+      //   console.log('Image posted successfully: ', postUserDetailsResponse);
+      // })
       .catch((error) => {
         console.log('Error posting user details: ', error);
       });
@@ -102,7 +102,7 @@ const EditProfileButton = () => {
           <Card
             sx={{
               width: 400,
-              height: 575,
+              height: 590,
               backgroundColor: '#494D53',
             }}
           >

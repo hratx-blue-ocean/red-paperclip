@@ -20,7 +20,6 @@ const ProfileJournal = () => {
   return (
     <Grid
       container
-      xs={12}
       display="flex"
       justifyContent="center"
       alignItems="center"

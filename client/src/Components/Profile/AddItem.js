@@ -127,10 +127,10 @@ const AddItem = (props) => {
           //   description: newItem.itemDescription,
           //   category: newItem.itemCategory,
           // })
-          .then((postResponse) => {
-            console.log('Received put response:');
-            console.log(postResponse);
-          })
+          // .then((postResponse) => {
+          //   console.log('Received put response:');
+          //   console.log(postResponse);
+          // })
           .catch((err) => {
             console.log('Error received from put request:');
             console.log(err);
@@ -148,10 +148,10 @@ const AddItem = (props) => {
             location: newItem.itemZIP,
             image: newItem.itemPhoto,
           })
-          .then((postResponse) => {
-            console.log('Received post response:');
-            console.log(postResponse);
-          })
+          // .then((postResponse) => {
+          //   console.log('Received post response:');
+          //   console.log(postResponse);
+          // })
           .catch((err) => {
             console.log('Error received from post request:');
             console.log(err);

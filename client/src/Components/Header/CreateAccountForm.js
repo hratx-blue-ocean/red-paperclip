@@ -95,7 +95,6 @@ export default function CreateAccountForm() {
   };
 
   const signUp = (signInData) => {
-
     console.log('sign up params', signInData);
     Axios.post(`${apiUrl}/signup`, signInData)
       .then((result) => {

@@ -136,7 +136,6 @@ export default function SignInForm() {
                 <Button
                   fullWidth
                   type="submit"
-
                   style={{
                     backgroundColor: '#2C2C2C',
                     color: '#F0CC71',

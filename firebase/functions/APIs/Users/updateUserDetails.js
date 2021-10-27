@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const updateUserDetails = (req, res) => {
   const document = db.collection('users').doc(`${req.user.email}`);

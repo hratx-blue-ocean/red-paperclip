@@ -20,6 +20,8 @@ export default function ChatListEntry({ entryObj, clicked }) {
     chatId,
   } = entryObj;
 
+  let shortStr = lastMessage;
+  shortStr = shortStr.slice(0, 7) + '...';
   // onclick function
   // once clicked
   // sets the global state of currentChatRoom
@@ -40,10 +42,10 @@ export default function ChatListEntry({ entryObj, clicked }) {
             <Avatar className="chat_image" src={trader2Photo} />
             <h3>{trader2}</h3>
             <div className="chat_details">
-              <p>{lastMessage}</p>
+              <p>{shortStr}</p>
             </div>
             <p className="chat_timestamp">
-              <TimeAgo time={epochTimeStamp} />
+              <TimeAgo time={epochTimeStamp} className="timestamp" />
             </p>
           </div>
           <Divider />
@@ -55,9 +57,9 @@ export default function ChatListEntry({ entryObj, clicked }) {
             <Avatar className="chat_image" src={trader1Photo} />
             <h3>{trader1}</h3>
             <div className="chat_details">
-              <p>{lastMessage}</p>
+              <p>{shortStr}</p>
             </div>
-            <TimeAgo time={epochTimeStamp} />
+            <TimeAgo time={epochTimeStamp} className="timestamp" />
           </div>
           <Divider />
         </>

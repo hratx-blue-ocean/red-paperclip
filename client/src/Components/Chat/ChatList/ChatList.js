@@ -16,7 +16,7 @@ export default function ChatList() {
       <List
         className="chats"
         style={{
-          height: 600,
+          height: 720,
           borderRadius: 30,
           padding: 30,
           overflow: 'auto',

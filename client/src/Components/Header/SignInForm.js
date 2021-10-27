@@ -30,8 +30,13 @@ const validateSchema = yup.object({
 });
 
 export default function SignInForm() {
-  const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
-    useContext(ItemsContext);
+  const {
+    isLoggedInState,
+    apiUrlState,
+    currentUserState,
+    showAuthModalState,
+    bearerTokenState,
+  } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
@@ -41,6 +46,7 @@ export default function SignInForm() {
     password: '',
     showPassword: false,
   });
+  const [bearerToken, setBearerToken] = bearerTokenState;
 
   // updates state for user data on form
   const handleInputChange = (prop) => (event) => {
@@ -63,6 +69,7 @@ export default function SignInForm() {
   const signIn = (signInData) => {
     Axios.post(`${apiUrl}/login`, signInData)
       .then((result) => {
+        setBearerToken(`${result.data.token}`);
         Axios.get(`${apiUrl}/user`, {
           headers: { Authorization: `Bearer ${result.data.token}` },
         }).then((userInfo) => {

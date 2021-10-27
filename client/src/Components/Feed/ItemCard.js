@@ -66,21 +66,18 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  const { currentUserState, isLoggedInState, apiUrlState } =
-    useContext(ItemsContext);
+  const {
+    getWatchedItemsList,
+    currentUserState,
+    isLoggedInState,
+    apiUrlState,
+  } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl] = apiUrlState;
   // star fill
   const [starFill, setStarFill] = useState(false);
-  useEffect(() => {
-    if (isLoggedIn) {
-      // this is not here!
-      if (currentUser.watchedItems[item.uid]) {
-        setStarFill(true);
-      }
-    }
-  }, []);
+
   const handleStarClick = () => {
     if (isLoggedIn) {
       // if currently on Watchlist
@@ -99,6 +96,9 @@ export default function ItemCard({ item }) {
               watchedItems,
             });
             setStarFill(false);
+          })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
           })
           .catch((err) => {
             console.log('FAILED to remove item from watchlist --> ', err);
@@ -120,12 +120,25 @@ export default function ItemCard({ item }) {
             });
             setStarFill(true);
           })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
+          })
           .catch((err) => {
             console.log('FAILED to add item to watchlist --> ', err);
           });
       }
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // this is not here!
+      if (currentUser.watchedItems[item.uid]) {
+        setStarFill(true);
+      }
+    }
+  }, []);
+
   // const handleStarClick = () => {
   //   setStarFill(false);
   //   axios

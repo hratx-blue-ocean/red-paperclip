@@ -94,6 +94,39 @@ export default function TradeModal({
             xs={5}
             container
             style={{
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              marginBottom: '40px',
+            }}
+          >
+            <Avatar
+              sx={{
+                border: '4px solid black',
+                borderRadius: '15px',
+                width: 100,
+                height: 100,
+              }}
+              src={item.itemPhoto}
+              variant="rounded"
+            />
+          </Grid>
+          <Grid
+            item
+            xs={2}
+            container
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '40px',
+            }}
+          >
+            <CompareArrowsIcon style={{ color: '#FFFFFF', fontSize: 100 }} />
+          </Grid>
+          <Grid
+            item
+            xs={5}
+            container
+            style={{
               justifyContent: 'flex-start',
               alignItems: 'center',
               marginBottom: '40px',
@@ -119,40 +152,6 @@ export default function TradeModal({
               </Typography>
             )}
           </Grid>
-          <Grid
-            item
-            xs={2}
-            container
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: '40px',
-            }}
-          >
-            <CompareArrowsIcon style={{ color: '#FFFFFF', fontSize: 100 }} />
-          </Grid>
-          <Grid
-            item
-            xs={5}
-            container
-            style={{
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-              marginBottom: '40px',
-            }}
-          >
-            <Avatar
-              sx={{
-                border: '4px solid black',
-                borderRadius: '15px',
-                width: 100,
-                height: 100,
-              }}
-              src={item.itemPhoto}
-              variant="rounded"
-            />
-          </Grid>
-
           <Grid
             container
             item

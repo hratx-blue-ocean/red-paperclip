@@ -66,33 +66,47 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
               justifyContent="center"
               style={{ height: 100, borderRadius: 120, padding: 10 }}
             >
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
                 Trade Comformation
               </Typography>
               <Typography sx={{ mt: 2 }}>
-                Congratulation! The following trade has been successfully made
-                and has added to your Trade Journey!
+                Congratulation on finding the item you like! By clicking the
+                CONFIRM below, we will mark this trade as complete and will move
+                it to your Trade Journey!
               </Typography>
             </Grid>
-            <Grid item xs={3}>
-              <Avatar
-                alt="trader1ItemPhoto"
-                src={trader1ItemPhoto}
-                sx={{ width: 56, height: 56 }}
-              />
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Button variant="contained" color="success" type="submit">
+                Confirm!
+              </Button>
             </Grid>
-            <Grid item xs={3}>
-              <CompareArrowsIcon
-                className={classes.hover3}
-                style={{ fontSize: 60 }}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <Avatar
-                alt="trader2ItemPhoto"
-                src={trader2ItemPhoto}
-                sx={{ width: 56, height: 56 }}
-              />
+
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Grid item xs={5} display="flex" justifyContent="center">
+                <Avatar
+                  alt="trader1ItemPhoto"
+                  src={trader1ItemPhoto}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </Grid>
+              <Grid item xs={2} display="flex" justifyContent="center">
+                <CompareArrowsIcon
+                  className={classes.hover3}
+                  style={{ fontSize: 100 }}
+                />
+              </Grid>
+              <Grid item xs={5} display="flex" justifyContent="center">
+                <Avatar
+                  alt="trader2ItemPhoto"
+                  src={trader2ItemPhoto}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Box>

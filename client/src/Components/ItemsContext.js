@@ -22,6 +22,7 @@ export const ItemsProvider = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [allChatRooms, setAllChatRooms] = useState([]);
   const [currentChatRoom, setCurrentChatRoom] = useState('');
+  const [bearerToken, setBearerToken] = useState('');
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -99,6 +100,7 @@ export const ItemsProvider = (props) => {
         currentChatRoomState: [currentChatRoom, setCurrentChatRoom],
         allChatRoomsState: [allChatRooms, setAllChatRooms],
         getChatRoom,
+        bearerTokenState: [bearerToken, setBearerToken],
       }}
     >
       {props.children}

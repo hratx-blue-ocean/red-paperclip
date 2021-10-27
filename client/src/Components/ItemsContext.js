@@ -30,7 +30,7 @@ export const ItemsProvider = (props) => {
   };
 
   const [apiUrl, setApiUrl] = useState(
-    'http://localhost:5001/red-paperclip-73a89/us-central1/api'
+    'https://us-central1-red-paperclip-73a89.cloudfunctions.net/api'
   );
 
   const getActiveItem = (itemString) => {

@@ -3,6 +3,6 @@
 client/dist/bundle.js
 client/dist/*.png
 firebase/dist/bundle.js
+firebase/dist/bundle.js.map
 firebase/dist/*.png
-
 .DS_Store

@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const getChatRoom = (req, res) => {
   db.doc(`chats/${req.query.uid}`)

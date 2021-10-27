@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const getItems = async (req, res) => {
   const items = [...req.query.items];

@@ -45,7 +45,6 @@ export default function SignInForm() {
   // updates state for user data on form
   const handleInputChange = (prop) => (event) => {
     setUserData({ ...userData, [prop]: event.target.value });
-    console.log('userData', userData);
   };
 
   // toggle password
@@ -62,8 +61,6 @@ export default function SignInForm() {
 
   // submits user data to server for auth
   const signIn = (signInData) => {
-    console.log('params', signInData);
-
     Axios.post(`${apiUrl}/login`, signInData)
       .then((result) => {
         Axios.get(`${apiUrl}/user`, {
@@ -80,8 +77,7 @@ export default function SignInForm() {
 
   // close modal and trigger sign in
   const handleSignIn = (signInData) => {
-    console.log('event in sign in', event);
-    setUserData(event);
+    setUserData(signInData);
     setShowAuthModal(false);
     signIn(signInData);
   };

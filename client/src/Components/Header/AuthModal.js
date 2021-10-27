@@ -24,49 +24,35 @@ const style = {
   },
 };
 
-export default function AuthModal({
-  setMenuOpen,
-  menuOpen = false,
-  setAnchorEl,
-  anchorEl,
-  isReturningUser,
-}) {
+export default function AuthModal({ setAnchorEl, anchorEl, isReturningUser }) {
   const { isLoggedInState, showAuthModalState } = useContext(ItemsContext);
   const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
 
   const handleClose = () => {
-    setMenuOpen(false);
+    setShowAuthModal(false);
   };
 
   const handleOpen = () => {
-    setMenuOpen(true);
+    setShowAuthModal(true);
   };
 
   return (
     <div>
       <Modal
-        open={menuOpen}
+        open={showAuthModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        {menuOpen &&
+        {showAuthModal &&
           (isReturningUser === true ? (
             <Box sx={style}>
-              <SignInForm
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                handleOpen={handleOpen}
-              />
+              <SignInForm handleOpen={handleOpen} />
             </Box>
           ) : (
             <Box sx={style}>
-              <CreateAccountForm
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                handleOpen={handleOpen}
-              />
+              <CreateAccountForm handleOpen={handleOpen} />
             </Box>
           ))}
       </Modal>

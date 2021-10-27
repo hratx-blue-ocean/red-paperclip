@@ -94,17 +94,10 @@ export default function CreateAccountForm() {
     event.preventDefault();
   };
 
-  const signUp = () => {
-    const params = {
-      firstName: acctData.firstName,
-      lastName: acctData.lastName,
-      email: acctData.email,
-      zip: acctData.zip,
-      password: acctData.password,
-      confirmPassword: acctData.confirmPassword,
-    };
-    console.log('sign up params', params);
-    Axios.post(`${apiUrl}/signup`, params)
+  const signUp = (signInData) => {
+
+    console.log('sign up params', signInData);
+    Axios.post(`${apiUrl}/signup`, signInData)
       .then((result) => {
         Axios.get(`${apiUrl}/user`, {
           headers: { Authorization: `Bearer ${result.data.token}` },
@@ -118,10 +111,9 @@ export default function CreateAccountForm() {
       });
   };
 
-  const handleCreateAcct = (event) => {
-    event.preventDefault();
+  const handleCreateAcct = (createAcctData) => {
     setShowAuthModal(false);
-    signUp();
+    signUp(createAcctData);
   };
 
   return (

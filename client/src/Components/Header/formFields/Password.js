@@ -24,18 +24,22 @@ const Password = ({
     error={Boolean(form.errors.password)}
     helperText={form.errors.password}
     onChange={(e) => form.setFieldValue('password', e.target.value)}
-    endadornment={
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visibility"
-          onClick={handleTogglePassword}
-          onMouseDown={handleMouseDownPassword}
-          edge="end"
-        >
-          {userData.showPassword ? <VisibilityOff /> : <Visibility />}
-        </IconButton>
-      </InputAdornment>
-    }
+    // endadornment={
+    //   <InputAdornment position="end">
+    //     <IconButton
+    //       aria-label="toggle password visibility"
+    //       onClick={handleTogglePassword}
+    //       onMouseDown={handleMouseDownPassword}
+    //       edge="end"
+    //     >
+    //       {userData.showPassword || initialValues ? (
+    //         <VisibilityOff />
+    //       ) : (
+    //         <Visibility />
+    //       )}
+    //     </IconButton>
+    //   </InputAdornment>
+    // }
   />
 );
 

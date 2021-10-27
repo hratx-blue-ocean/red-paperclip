@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+import Axios from 'axios';
+import { ItemsContext } from '../ItemsContext';
 import ItemCard from '../Feed/ItemCard';
 
 const useStyles = makeStyles(() => ({
@@ -13,13 +15,31 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ReportedItem = ({ item }) => {
+const ReportedItem = ({ item, index, removeReport }) => {
   const classes = useStyles();
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
   const handleDeleteItemClick = () => {
-    console.log('Clicked Delete Item');
+    Axios({
+      method: 'put',
+      url: `${apiUrl}/changeActiveStatus`,
+      params: { status: false },
+    })
+      .then(() => {
+        removeReport(index);
+      })
+      .catch((err) => {
+        console.log('failed to change status of item', err);
+      });
   };
   const handleDismissReportClick = () => {
-    console.log('Clicked Dismiss Report');
+    Axios.put(`${apiUrl}/dismissReport`, { uid: item.uid })
+      .then(() => {
+        removeReport(index);
+      })
+      .catch((err) => {
+        console.log('failed to dismiss report', err);
+      });
   };
   const handleBanUserClick = () => {
     console.log('Clicked Ban User');

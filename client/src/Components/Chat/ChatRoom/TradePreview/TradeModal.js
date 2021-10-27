@@ -8,6 +8,16 @@ import Avatar from '@mui/material/Avatar';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 
+// import { ItemsContext } from '../ItemsContext';
+
+// const addToTradeJourney = () => {
+//   const { currentUserState } = useContext(ItemsContext);
+//   const [currentUser] = currentUserState;
+//   if(currentUser.tradeHistory) {
+//     current.tradeHistory.push((tradedItem));
+//   }
+// };
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,

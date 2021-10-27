@@ -77,7 +77,7 @@ export const ItemsProvider = (props) => {
       getWatchedItemsList(Object.keys(currentUser.watchedItems));
       if (currentUser.chatRooms) {
         getAllChatRooms(currentUser.chatRooms);
-        // getChatRoom(currentUser.chatRooms[0]);
+        getChatRoom(currentUser.chatRooms[0]);
       }
     }
   }, [isLoggedIn]);

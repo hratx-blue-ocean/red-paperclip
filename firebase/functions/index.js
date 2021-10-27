@@ -33,6 +33,7 @@ app.get('/getItemReports', admin.getItemReports);
 // MESSAGES
 app.get('/getChatRoom', message.getChatRoom);
 app.get('/getAllChatRooms', message.getAllChatRooms);
+app.post('/addChatMessage', message.addChatMessage);
 
 const api = functions.https.onRequest(app);
 

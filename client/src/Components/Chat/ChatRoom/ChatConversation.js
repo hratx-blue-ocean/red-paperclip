@@ -91,7 +91,7 @@ export default function ChatConversation() {
           if (userName === currentUser.firstName) {
             return (
               // eslint-disable-next-line no-underscore-dangle
-              <ListItem key={messageObj.timestamp._seconds}>
+              <ListItem key={messageObj.timestamp}>
                 <ListItemText className={classes.userText} primary={message} />
                 <ListItemAvatar>
                   <Avatar alt={userName} src={userPhoto} />
@@ -101,7 +101,7 @@ export default function ChatConversation() {
           }
           return (
             // eslint-disable-next-line no-underscore-dangle
-            <ListItem key={messageObj.timestamp._seconds}>
+            <ListItem key={messageObj.timestamp}>
               <ListItemAvatar>
                 <Avatar alt={userName} src={userPhoto} />
               </ListItemAvatar>

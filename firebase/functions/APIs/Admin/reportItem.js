@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const reportItem = (req, res) => {
   db.doc(`admin/items`)
@@ -6,7 +6,7 @@ const reportItem = (req, res) => {
     .then(async (snap) => {
       const { reported } = snap.data();
       reported[req.query.uid] = req.query.uid;
-      console.log(reported)
+      console.log(reported);
       db.doc(`admin/items`)
         .update({ reported })
         .then(() => res.end())

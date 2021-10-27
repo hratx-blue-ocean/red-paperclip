@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const dismissReport = (req, res) => {
   db.doc(`admin/items`)

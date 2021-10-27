@@ -173,7 +173,7 @@ export default function ItemModal({
             >
               <Typography
                 variant="body2"
-                color="secondary"
+                color="white"
                 style={{
                   marginLeft: '10px',
                   marginRight: '10px',

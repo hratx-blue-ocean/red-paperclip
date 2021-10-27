@@ -10,7 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import HomeIcon from '@mui/icons-material/Home';
-
+import { makeStyles } from '@mui/styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ForumIcon from '@mui/icons-material/Forum';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -18,7 +18,37 @@ import Logout from '@mui/icons-material/Logout';
 import AuthModal from './AuthModal';
 import { ItemsContext } from '../ItemsContext';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  bold: {
+    fontWeight: 600,
+  },
+  hover1: {
+    color: '#161513',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
+  hover2: {
+    color: '#ffffff',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
+  menu: {
+    '& .MuiPaper-root': {
+      backgroundColor: '#2C2C2C',
+      color: '#FFFFFF',
+      border: '2px solid white',
+    },
+  },
+}));
+
 const Hamburger = () => {
+  const classes = useStyles();
+
   const {
     isLoggedInState,
     currentUserState,
@@ -133,6 +163,7 @@ const Hamburger = () => {
         <MenuIcon />
       </IconButton>
       <Menu
+        className={classes.menu}
         id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{
@@ -148,22 +179,22 @@ const Hamburger = () => {
         onClose={handleClose}
       >
         {isLoggedIn ? (
-          <Box>
+          <Box style={{ margin: '15px' }}>
             <MenuItem onClick={handleHomeClick}>
               <ListItemIcon>
-                <HomeIcon fontSize="small" />
+                <HomeIcon fontSize="small" color="secondary" />
               </ListItemIcon>
               Home
             </MenuItem>
             <MenuItem onClick={handleMyProfileClick}>
               <ListItemIcon>
-                <AccountCircleIcon fontSize="small" />
+                <AccountCircleIcon fontSize="small" color="secondary" />
               </ListItemIcon>
               My Profile
             </MenuItem>
             <MenuItem onClick={handleChatsClick}>
               <ListItemIcon>
-                <ForumIcon fontSize="small" />
+                <ForumIcon fontSize="small" color="secondary" />
               </ListItemIcon>
               My Chats
             </MenuItem>
@@ -171,29 +202,29 @@ const Hamburger = () => {
             {currentUser.permissions === 'admin' && (
               <MenuItem onClick={handleAdminClick}>
                 <ListItemIcon>
-                  <AdminPanelSettingsIcon fontSize="small" />
+                  <AdminPanelSettingsIcon fontSize="small" color="secondary" />
                 </ListItemIcon>
                 Admin
               </MenuItem>
             )}
             <MenuItem onClick={handleSignOut}>
               <ListItemIcon>
-                <Logout fontSize="small" />
+                <Logout fontSize="small" color="secondary" />
               </ListItemIcon>
               Logout
             </MenuItem>
           </Box>
         ) : (
-          <Box>
+          <Box style={{ margin: '15px' }}>
             <MenuItem onClick={handleSignInClick}>
               <ListItemIcon>
-                <LoginIcon fontSize="small" />
+                <LoginIcon fontSize="small" color="secondary" />
               </ListItemIcon>
               Sign In
             </MenuItem>
             <MenuItem onClick={handleCreateAcctClick}>
               <ListItemIcon>
-                <PersonAddIcon fontSize="small" />
+                <PersonAddIcon fontSize="small" color="secondary" />
               </ListItemIcon>
               Create Account
             </MenuItem>

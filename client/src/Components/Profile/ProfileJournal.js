@@ -21,15 +21,22 @@ const ProfileJournal = () => {
     <Grid
       container
       display="flex"
-      justifyContent="center"
+      justifycontent="center"
       alignItems="center"
       direction="column"
-      style={{ backgroundColor: '#34363b' }}
+      style={{ backgroundColor: '#34363b', marginTop: '25px' }}
     >
       {currentUser.tradeHistory &&
         currentUser.tradeHistory.map((item, index) => {
           return (
-            <Box key={index} maxWidth="400px" sx={{ marginBottom: 3 }}>
+            <Box
+              key={index}
+              sx={{
+                marginBottom: 3,
+                maxWidth: '325px',
+                justifyContent: 'center',
+              }}
+            >
               <ProfileJournalEntry item={item} />
             </Box>
           );

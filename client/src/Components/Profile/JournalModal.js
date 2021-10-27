@@ -73,7 +73,7 @@ export default function JournalModal({ handleJournalClose, journalText }) {
       <Grid
         container
         direction="row"
-        justifyContent="center"
+        justifyContent="flex-right"
         alignItems="center"
       >
         <IconButton onClick={handleJournalClose}>

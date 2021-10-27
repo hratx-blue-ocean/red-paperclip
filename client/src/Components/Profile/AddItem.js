@@ -132,12 +132,12 @@ const AddItem = (props) => {
             console.log(err);
           });
       } else {
-        // console.log('Adding an item: ', newItem);
+        console.log('Adding an item: ', newItem);
         axios
           .post(`${apiUrl}/addNewItem`, {
             user: `${currentUser.firstName} ${currentUser.lastName}`,
             ownerUID: currentUser.email,
-            profilePhoto: currentUser.imageUrl,
+            profilePhoto: currentUser.imageUrl || '',
             name: newItem.itemName,
             category: newItem.itemCategory,
             description: newItem.itemDescription,
@@ -155,13 +155,6 @@ const AddItem = (props) => {
       handleClose();
     }
   };
-
-  // Add item
-  // // {
-  //     user: '',
-  //     profilePhoto: '',
-  //     name: '',
-  // }
 
   return (
     <div className={classes.root}>

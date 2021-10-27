@@ -14,8 +14,11 @@ const EditProfileButton = () => {
   const [currentUser] = currentUserState;
   const { apiUrlState } = useContext(ItemsContext);
   const [apiUrl, setApiUrl] = apiUrlState;
+  const { bearerTokenState } = useContext(ItemsContext);
+  const [bearerToken] = bearerTokenState;
 
   const [formOpen, setFormOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [userDetails, setUserDetails] = useState({
     firstName: currentUser.firstName,
@@ -33,14 +36,16 @@ const EditProfileButton = () => {
   };
 
   const handleSubmit = () => {
-    console.log('Submitting new user data: ', userDetails);
+    console.log('Submitting new user details: ', userDetails);
     axios
-      .post(`${apiUrl}/user/`, userDetails)
-      .then((postUserImageResponse) => {
-        console.log('Image posted successfully: ', postUserImageResponse);
+      .post(`${apiUrl}/user/`, userDetails, {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      })
+      .then((postUserDetailsResponse) => {
+        console.log('Image posted successfully: ', postUserDetailsResponse);
       })
       .catch((error) => {
-        console.log('Error posting user image: ', error);
+        console.log('Error posting user details: ', error);
       });
   };
 
@@ -53,14 +58,22 @@ const EditProfileButton = () => {
   };
 
   const uploadUserPhoto = () => {
+    console.log('Attempting to post image: ', selectedFile);
     axios
-      .post(`${apiUrl}/user/image`, {})
+      .post(`${apiUrl}/user/image`, selectedFile, {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      })
       .then((postUserImageResponse) => {
         console.log('Image posted successfully: ', postUserImageResponse);
       })
       .catch((error) => {
         console.log('Error posting user image: ', error);
       });
+  };
+
+  const handleCapture = (event) => {
+    setSelectedFile(event.target.files[0]);
+    console.log('Captured image: ', event.target.files[0]);
   };
 
   return (
@@ -110,6 +123,25 @@ const EditProfileButton = () => {
                 alt="User photo"
               />
             </Card>
+            {/* <label htmlFor="uploadUserImage">
+              <input
+                accept="image/*"
+                id="uploadUserImage"
+                // multiple
+                type="file"
+                onChange={handleCapture}
+              />
+              <Button
+                fullWidth
+                color="sortButton"
+                variant="contained"
+                // className={classes.hover2}
+                component="span"
+                onClick={uploadUserPhoto}
+              >
+                Upload Image
+              </Button>
+            </label> */}
             <TextField
               onChange={handleChange}
               style={{

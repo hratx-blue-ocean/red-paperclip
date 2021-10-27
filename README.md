@@ -77,7 +77,7 @@ UI Owner/Software Engineer
 
 email here
 
- <img src="ReadmeImages/WilliamFink.jpeg" alt="William Fink Headshot" height="150">
+ <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="150">
 
 [![linkedin-shield]][william-linkedin]
 [![github-shield]][william-github]

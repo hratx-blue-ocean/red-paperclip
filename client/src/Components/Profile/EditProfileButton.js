@@ -25,6 +25,7 @@ const EditProfileButton = () => {
     lastName: currentUser.lastName,
     email: currentUser.email,
     zip: currentUser.zip,
+    imageUrl: currentUser.imageUrl,
   });
 
   const handleChange = (event) => {
@@ -57,24 +58,25 @@ const EditProfileButton = () => {
     setFormOpen(false);
   };
 
-  const uploadUserPhoto = () => {
-    console.log('Attempting to post image: ', selectedFile);
-    axios
-      .post(`${apiUrl}/user/image`, selectedFile, {
-        headers: { Authorization: `Bearer ${bearerToken}` },
-      })
-      .then((postUserImageResponse) => {
-        console.log('Image posted successfully: ', postUserImageResponse);
-      })
-      .catch((error) => {
-        console.log('Error posting user image: ', error);
-      });
-  };
+  // Old photo capture and upload functions:
+  // const uploadUserPhoto = () => {
+  //   console.log('Attempting to post image: ', selectedFile);
+  //   axios
+  //     .post(`${apiUrl}/user/image`, selectedFile, {
+  //       headers: { Authorization: `Bearer ${bearerToken}` },
+  //     })
+  //     .then((postUserImageResponse) => {
+  //       console.log('Image posted successfully: ', postUserImageResponse);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error posting user image: ', error);
+  //     });
+  // };
 
-  const handleCapture = (event) => {
-    setSelectedFile(event.target.files[0]);
-    console.log('Captured image: ', event.target.files[0]);
-  };
+  // const handleCapture = (event) => {
+  //   setSelectedFile(event.target.files[0]);
+  //   console.log('Captured image: ', event.target.files[0]);
+  // };
 
   return (
     <>
@@ -105,7 +107,7 @@ const EditProfileButton = () => {
             }}
           >
             <Card
-              onClick={uploadUserPhoto}
+              // onClick={uploadUserPhoto}
               sx={{
                 width: 200,
                 height: 200,
@@ -123,7 +125,21 @@ const EditProfileButton = () => {
                 alt="User photo"
               />
             </Card>
-            {/* <label htmlFor="uploadUserImage">
+            <TextField
+              onChange={handleChange}
+              style={{
+                margin: '0 auto',
+                display: 'flex',
+                width: 200,
+                marginTop: 20,
+              }}
+              id="editImageUrl"
+              label="Update Image"
+              variant="filled"
+              name="imageUrl"
+            />
+            {/* Old code for image uploads:
+            <label htmlFor="uploadUserImage">
               <input
                 accept="image/*"
                 id="uploadUserImage"

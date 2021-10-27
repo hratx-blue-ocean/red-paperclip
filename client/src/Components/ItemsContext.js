@@ -80,6 +80,8 @@ export const ItemsProvider = (props) => {
         getChatRoom(currentUser.chatRooms[0]);
       }
     }
+    console.log('currentUser', currentUser);
+    console.log('watched list', watchedItems);
   }, [isLoggedIn]);
 
   return (

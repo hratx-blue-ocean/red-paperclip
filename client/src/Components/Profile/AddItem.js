@@ -89,7 +89,6 @@ const AddItem = (props) => {
       ...newItem,
       [event.target.name]: event.target.value,
     });
-    // console.log(newItem);
   };
 
   const handleSubmit = () => {

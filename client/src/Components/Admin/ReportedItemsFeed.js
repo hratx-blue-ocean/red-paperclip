@@ -23,11 +23,20 @@ const ReportedItemsFeed = () => {
         console.log(err);
       });
   }, []);
+
+  const removeReport = (index) => {
+    setItems(items.splice(index, 1));
+  };
   return (
     <Grid container justifyContent="space-between" spacing={6}>
       {items.map((e, i) => (
         <Grid item xs={4}>
-          <ReportedItem item={e} key={e.uid} />
+          <ReportedItem
+            item={e}
+            key={e.uid}
+            index={i}
+            removeReport={removeReport}
+          />
         </Grid>
       ))}
     </Grid>

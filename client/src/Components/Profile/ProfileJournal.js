@@ -20,11 +20,9 @@ const ProfileJournal = () => {
   return (
     <Grid
       container
-      xs={12}
       display="flex"
       justifycontent="center"
       alignItems="center"
-      minHeight="100vh"
       direction="column"
       style={{ backgroundColor: '#34363b', marginTop: '25px' }}
     >

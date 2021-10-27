@@ -12,7 +12,7 @@ const editItem = (req, res) => {
     field.itemCategory = req.body.category;
   }
   if (req.body.image) {
-    field.itemPhotos = req.body.image;
+    field.itemPhoto = req.body.image;
   }
 
   db.doc(`items/${req.query.uid}`)

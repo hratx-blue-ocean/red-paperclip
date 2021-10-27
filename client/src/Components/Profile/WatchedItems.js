@@ -23,11 +23,12 @@ const WatchedItems = (props) => {
       {watchedItems.map((item, index) => (
         <Box
           key={index}
-          justifyContent="center"
-          sx={{
+          style={{
             transform: 'translate(5%, 5%)',
-            marginBottom: 3,
-            maxWidth: '500px',
+            marginBottom: '20px',
+            maxWidth: '325px',
+            justifyContent: 'center',
+            marginLeft: '95px',
           }}
         >
           <ItemCard item={item} />

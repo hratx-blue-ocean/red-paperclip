@@ -57,6 +57,9 @@ const useStyles = makeStyles(() => ({
       color: '#f0CC71',
     },
   },
+  input: {
+    color: 'white',
+  },
 }));
 
 export default function JournalModal({ handleJournalClose, journalText }) {
@@ -70,25 +73,17 @@ export default function JournalModal({ handleJournalClose, journalText }) {
 
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <IconButton onClick={handleJournalClose}>
-          <CloseIcon className={classes.hover3} style={{ fontSize: 45 }} />
-        </IconButton>
-      </Grid>
       <TextField
         name="itemDesc"
         onChange={handleChange}
         style={{
           margin: '0 auto',
           display: 'flex',
+          color: '#FFFFF',
           width: 400,
           marginTop: 20,
         }}
+        InputProps={{ className: classes.input }}
         id="editItemDescription"
         label="Journal entry for this item"
         variant="filled"

@@ -91,7 +91,7 @@ export default function SignInForm() {
 
   return (
     <Grid container justifyContent="center" alignItems="center">
-      <Grid item xs={12} align="center">
+      <Grid item xs={12} align="center" style={{ marginBottom: '16px' }}>
         <AttachFileIcon
           color="paperClip"
           style={{ cursor: 'pointer', transform: 'rotate(45deg)' }}
@@ -136,11 +136,10 @@ export default function SignInForm() {
                 <Button
                   fullWidth
                   type="submit"
-
                   style={{
                     backgroundColor: '#2C2C2C',
                     color: '#F0CC71',
-                    marginTop: '6px',
+                    marginTop: '-20px',
                     justifyContent: 'center',
                   }}
                 >

@@ -83,9 +83,9 @@ Project Manager/Software Engineer
 
 ## William Fink
 
-email here
+wwfink30@gmail.com
 
- <img src="ReadmeImages/WilliamFink.jpeg" alt="William Fink Headshot" width="210">
+ <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="150">
 
 [![linkedin-shield]][william-linkedin]
 [![github-shield]][william-github]

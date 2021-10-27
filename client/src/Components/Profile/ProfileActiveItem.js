@@ -97,12 +97,17 @@ export default function ItemCard(props) {
       });
   };
 
-  const { itemName, itemDescription, itemOwner, itemPhoto } = props.activeItem;
+  const { itemName, itemDescription, itemOwner, itemPhoto, itemPhotos } =
+    props.activeItem;
   const [itemBlurb, setItemBlurb] = useState('');
 
   useEffect(() => {
     if (itemDescription) {
-      setItemBlurb(itemDescription.slice(0, 60));
+      // eslint-disable-next-line prefer-template
+      setItemBlurb(itemDescription.slice(0, 60) + '...');
+      if (itemDescription.length < 60) {
+        setItemBlurb(itemDescription);
+      }
     }
   }, [props.activeItem]);
 
@@ -165,7 +170,7 @@ export default function ItemCard(props) {
               minHeight: '275px',
               maxHeight: '250px',
             }}
-            alt="Axe Set"
+            alt="Active item image"
             onClick={handleCardOpen}
           />
           <Grid container style={{ marginTop: '6px' }}>
@@ -213,7 +218,7 @@ export default function ItemCard(props) {
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >
-                {itemBlurb} ...
+                {itemBlurb}
                 <Link
                   className={classes.hover1}
                   component="button"

@@ -31,8 +31,8 @@ const Profile = () => {
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
   const [activeItem, setActiveItem] = activeItemState;
-  // console.log('Current user: ', currentUser);
-  // console.log('Available item: ', activeItem);
+  console.log('Current user: ', currentUser);
+  console.log('Available item: ', activeItem);
 
   return (
     <>

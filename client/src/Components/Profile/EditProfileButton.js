@@ -6,13 +6,49 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 import { ItemsContext } from '../ItemsContext';
 
 const EditProfileButton = () => {
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
+  const { bearerTokenState } = useContext(ItemsContext);
+  const [bearerToken] = bearerTokenState;
 
   const [formOpen, setFormOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const [userDetails, setUserDetails] = useState({
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    email: currentUser.email,
+    zip: currentUser.zip,
+    imageUrl: currentUser.imageUrl,
+  });
+
+  const handleChange = (event) => {
+    setUserDetails({
+      ...userDetails,
+      [event.target.name]: event.target.value,
+    });
+    console.log(userDetails);
+  };
+
+  const handleSubmit = () => {
+    console.log('Submitting new user details: ', userDetails);
+    axios
+      .post(`${apiUrl}/user/`, userDetails, {
+        headers: { Authorization: `Bearer ${bearerToken}` },
+      })
+      .then((postUserDetailsResponse) => {
+        console.log('Image posted successfully: ', postUserDetailsResponse);
+      })
+      .catch((error) => {
+        console.log('Error posting user details: ', error);
+      });
+  };
 
   const handleClick = () => {
     setFormOpen(true);
@@ -22,11 +58,31 @@ const EditProfileButton = () => {
     setFormOpen(false);
   };
 
+  // Old photo capture and upload functions:
+  // const uploadUserPhoto = () => {
+  //   console.log('Attempting to post image: ', selectedFile);
+  //   axios
+  //     .post(`${apiUrl}/user/image`, selectedFile, {
+  //       headers: { Authorization: `Bearer ${bearerToken}` },
+  //     })
+  //     .then((postUserImageResponse) => {
+  //       console.log('Image posted successfully: ', postUserImageResponse);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error posting user image: ', error);
+  //     });
+  // };
+
+  // const handleCapture = (event) => {
+  //   setSelectedFile(event.target.files[0]);
+  //   console.log('Captured image: ', event.target.files[0]);
+  // };
+
   return (
     <>
       <Button
         style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
-        variant="contained"
+        variant="outlined"
         onClick={handleClick}
       >
         Edit Profile
@@ -46,11 +102,12 @@ const EditProfileButton = () => {
           <Card
             sx={{
               width: 400,
-              height: 500,
+              height: 575,
               backgroundColor: '#494D53',
             }}
           >
             <Card
+              // onClick={uploadUserPhoto}
               sx={{
                 width: 200,
                 height: 200,
@@ -69,17 +126,66 @@ const EditProfileButton = () => {
               />
             </Card>
             <TextField
+              onChange={handleChange}
               style={{
                 margin: '0 auto',
                 display: 'flex',
                 width: 200,
                 marginTop: 20,
               }}
-              id="editName"
-              label="Name"
+              id="editImageUrl"
+              label="Update Image"
               variant="filled"
+              name="imageUrl"
+            />
+            {/* Old code for image uploads:
+            <label htmlFor="uploadUserImage">
+              <input
+                accept="image/*"
+                id="uploadUserImage"
+                // multiple
+                type="file"
+                onChange={handleCapture}
+              />
+              <Button
+                fullWidth
+                color="sortButton"
+                variant="contained"
+                // className={classes.hover2}
+                component="span"
+                onClick={uploadUserPhoto}
+              >
+                Upload Image
+              </Button>
+            </label> */}
+            <TextField
+              onChange={handleChange}
+              style={{
+                margin: '0 auto',
+                display: 'flex',
+                width: 200,
+                marginTop: 20,
+              }}
+              id="editFirstName"
+              label="First Name"
+              variant="filled"
+              name="firstName"
             />
             <TextField
+              onChange={handleChange}
+              style={{
+                margin: '0 auto',
+                display: 'flex',
+                width: 200,
+                marginTop: 20,
+              }}
+              id="editLasttName"
+              label="Last Name"
+              variant="filled"
+              name="lastName"
+            />
+            <TextField
+              onChange={handleChange}
               style={{
                 margin: '0 auto',
                 display: 'flex',
@@ -89,10 +195,12 @@ const EditProfileButton = () => {
               id="editName"
               label="ZIP Code"
               variant="filled"
+              name="zip"
             />
             <Button
               style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
               variant="contained"
+              onClick={handleSubmit}
             >
               Update Profile
             </Button>

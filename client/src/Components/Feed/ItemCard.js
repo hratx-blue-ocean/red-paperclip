@@ -66,25 +66,22 @@ const useStyles = makeStyles(() => ({
 
 export default function ItemCard({ item }) {
   const classes = useStyles();
-  const { currentUserState, isLoggedInState, apiUrlState } =
-    useContext(ItemsContext);
+  const {
+    getWatchedItemsList,
+    currentUserState,
+    isLoggedInState,
+    apiUrlState,
+  } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [isLoggedIn] = isLoggedInState;
   const [apiUrl] = apiUrlState;
   // star fill
   const [starFill, setStarFill] = useState(false);
-  useEffect(() => {
-    if (isLoggedIn) {
-      // this is not here!
-      if (currentUser.watchedItems[item.uid]) {
-        setStarFill(true);
-      }
-    }
-  }, []);
+
   const handleStarClick = () => {
     if (isLoggedIn) {
+      // if currently on Watchlist
       if (starFill) {
-        setStarFill(false);
         axios
           .put(`${apiUrl}/editWatchList`, {
             uid: item.uid,
@@ -93,17 +90,21 @@ export default function ItemCard({ item }) {
           })
           .then(() => {
             const { watchedItems } = currentUser;
-            delete watchedItems(item.uid);
+            delete watchedItems[item.uid];
             setCurrentUser({
               ...currentUser,
               watchedItems,
             });
+            setStarFill(false);
+          })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
           })
           .catch((err) => {
             console.log('FAILED to remove item from watchlist --> ', err);
           });
       } else {
-        setStarFill(true);
+        // if not on watchlist
         axios
           .put(`${apiUrl}/editWatchList`, {
             uid: item.uid,
@@ -117,6 +118,10 @@ export default function ItemCard({ item }) {
               ...currentUser,
               watchedItems,
             });
+            setStarFill(true);
+          })
+          .then(() => {
+            getWatchedItemsList(Object.keys(currentUser.watchedItems));
           })
           .catch((err) => {
             console.log('FAILED to add item to watchlist --> ', err);
@@ -124,6 +129,16 @@ export default function ItemCard({ item }) {
       }
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // this is not here!
+      if (currentUser.watchedItems[item.uid]) {
+        setStarFill(true);
+      }
+    }
+  }, []);
+
   // const handleStarClick = () => {
   //   setStarFill(false);
   //   axios
@@ -246,13 +261,14 @@ export default function ItemCard({ item }) {
           </IconButton>
         )}
       </Grid>
-      <Grid container>
+      <Grid container style={{ justifyContent: 'center' }}>
         <Card
           style={{
             backgroundColor: '#494D53',
             border: '1px solid',
             borderColor: '#FFF',
             borderRadius: '15px',
+            justifyContent: 'center',
           }}
         >
           <CardMedia
@@ -347,7 +363,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="secondary"
+                  color="white"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >

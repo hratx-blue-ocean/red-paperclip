@@ -26,7 +26,8 @@ const Feed = () => {
   const [items, setItems] = useState([]);
   const [originalItems, setOriginalItems] = useState([]);
 
-  const { apiUrlState } = useContext(ItemsContext);
+  const { apiUrlState, isLoggedInState } = useContext(ItemsContext);
+  const [isLoggedIn, setIsLoggedIn] = isLoggedInState;
   const [apiUrl, setApiUrl] = apiUrlState;
 
   const [itemsLength, setItemsLength] = useState(0);
@@ -64,7 +65,7 @@ const Feed = () => {
 
   useEffect(() => {
     getAllItems(showMore, selection);
-  }, [selection, showMore]);
+  }, [selection, showMore, isLoggedIn]);
 
   // creates a random index
   const getRandomIndex = (array) => {
@@ -111,23 +112,23 @@ const Feed = () => {
             <ItemCard item={item} />
           </Grid>
         ))}
-        {itemsLength < 6 && (
-          <Grid
-            item
-            xs={12}
-            container
-            style={{ justifyContent: 'center', marginBottom: '10px' }}
+        {/* {itemsLength < 6 && ( */}
+        <Grid
+          item
+          xs={12}
+          container
+          style={{ justifyContent: 'center', marginBottom: '10px' }}
+        >
+          <Button
+            variant="contained"
+            spacing={1}
+            color="textYellow"
+            onClick={handleMore}
           >
-            <Button
-              variant="contained"
-              spacing={1}
-              color="textYellow"
-              onClick={handleMore}
-            >
-              Show More
-            </Button>
-          </Grid>
-        )}
+            Show More
+          </Button>
+        </Grid>
+        {/* )} */}
       </Grid>
     </div>
   );

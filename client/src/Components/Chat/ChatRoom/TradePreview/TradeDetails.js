@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
+import { ItemsContext } from '../../../ItemsContext';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,6 +50,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const zipcodes = require('zipcodes');
+
+const getCurrentZip = () => {
+  const { currentUserState, currentChatRoomState } = useContext(ItemsContext);
+  const [currentUser, setCurrentUser] = currentUserState;
+  return currentUser.zip;
+};
+const getLocation = (zip) => {
+  const dataObj = zipcodes.lookup(zip);
+  let result = '';
+  const location = {
+    city: dataObj.city,
+    state: dataObj.state,
+  };
+
+  result = location.city + ', ' + location.state;
+  return result;
+};
 export default function TradeDetails({
   trader1,
   trader1Photo,
@@ -60,47 +79,72 @@ export default function TradeDetails({
   const classes = useStyles();
   return (
     <>
-      <Grid container item xs={4} justifyContent="center">
-        <Avatar alt="trader1Photo" src={trader1Photo} />
-        <ListItemText
-          style={{
-            padding: 2,
-          }}
-          primary={trader1}
-        />
-      </Grid>
-
-      <Grid item xs={1}>
+      <Grid container item xs={4} justifyContent="flex-start">
         <Avatar
-          alt="trader1ItemPhoto"
-          src={trader1ItemPhoto}
+          alt="trader2Photo"
+          src={trader2Photo}
           sx={{ width: 56, height: 56 }}
         />
-      </Grid>
-
-      <Grid item xs={1}>
-        <CompareArrowsIcon
-          className={classes.hover3}
-          style={{ fontSize: 60 }}
-        />
-      </Grid>
-
-      <Grid item xs={1}>
-        <Avatar
-          alt="trader2ItemPhoto"
-          src={trader2ItemPhoto}
-          sx={{ width: 56, height: 56 }}
-        />
-      </Grid>
-
-      <Grid container item xs={4} justifyContent="center">
-        <Avatar alt="trader2Photo" src={trader2Photo} />
         <ListItemText
-          style={{
-            padding: 2,
-          }}
           primary={trader2}
+          secondary={getLocation(getCurrentZip())}
         />
+      </Grid>
+      <Grid container item xs={4}>
+        <Grid item xs={4}>
+          <Avatar
+            alt="trader2ItemPhoto"
+            src={trader2ItemPhoto}
+            sx={{ width: 56, height: 56 }}
+          />
+        </Grid>
+
+        <Grid item xs={4}>
+          <CompareArrowsIcon
+            className={classes.hover3}
+            style={{ fontSize: 60 }}
+          />
+        </Grid>
+
+        <Grid item xs={4}>
+          <Avatar
+            alt="trader1ItemPhoto"
+            src={trader1ItemPhoto}
+            sx={{ width: 56, height: 56 }}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid
+        container
+        item
+        xs={4}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
+        <Grid
+          item={1}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <ListItemText
+            primary={trader1}
+            secondary={getLocation(getCurrentZip())}
+          />
+        </Grid>
+        <Grid item={3}>
+          <Avatar
+            alt="trader1Photo"
+            src={trader1Photo}
+            sx={{
+              width: 56,
+              height: 56,
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          />
+        </Grid>
       </Grid>
     </>
   );

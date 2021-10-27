@@ -1,5 +1,6 @@
 module.exports = {
   entry: './client/src/index.js',
+  devtool: 'source-map',
   output: {
     filename: 'bundle.js',
     path: `${__dirname}/firebase/dist`,

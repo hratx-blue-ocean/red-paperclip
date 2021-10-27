@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { makeStyles } from '@mui/styles';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 // import Button from '@mui/material/Button';
-// import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import ProfileTabs from './ProfileTabs';
@@ -12,7 +13,18 @@ import ProfileActiveItem from './ProfileActiveItem';
 import { ItemsContext } from '../ItemsContext';
 import AddItem from './AddItem';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  bold: {
+    fontWeight: 800,
+  },
+}));
+
 const Profile = () => {
+  const classes = useStyles();
+
   const { currentUserState, isLoggedInState, apiUrlState, activeItemState } =
     useContext(ItemsContext);
   const [currentUser] = currentUserState;
@@ -20,21 +32,27 @@ const Profile = () => {
   const [apiUrl, setApiUrl] = apiUrlState;
   const [activeItem, setActiveItem] = activeItemState;
   // console.log('Current user: ', currentUser);
+  // console.log('Available item: ', activeItem);
 
   return (
     <>
       {isLoggedIn ? (
-        <>
+        <div className={classes.root}>
           <Grid container spacing={5}>
             <Grid item xs={5}>
-              <Typography variant="h5" textAlign="center" sx={{ marginTop: 3 }}>
+              <Typography
+                variant="h4"
+                textAlign="center"
+                sx={{ marginTop: 3 }}
+                style={{ color: '#F0CC71' }}
+              >
                 Hello, {currentUser.firstName}!
               </Typography>
-              <Card
+              <Box
                 sx={{
                   width: 450,
                   height: 300,
-                  backgroundColor: '#494D53',
+                  // backgroundColor: '#494D53',
                   marginTop: 1,
                 }}
               >
@@ -46,6 +64,7 @@ const Profile = () => {
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     marginTop: 3,
+                    borderRadius: '150px',
                   }}
                 >
                   <CardMedia
@@ -57,28 +76,45 @@ const Profile = () => {
                   />
                 </Card>
                 <EditProfileButton />
-              </Card>
-              <Card
-                sx={{
-                  width: 450,
-                  height: 600,
-                  backgroundColor: '#494D53',
-                  marginTop: 5,
+              </Box>
+              <Box
+                style={{
+                  maxWidth: '325px',
+                  // height: 600,
+                  // backgroundColor: '#494D53',
+                  justifyContent: 'center',
                   marginBottom: 10,
+                  marginLeft: '60px',
                 }}
               >
                 <Typography
                   variant="h4"
                   textAlign="center"
-                  sx={{ marginTop: 1 }}
+                  style={{
+                    marginTop: 1,
+                    marginBottom: '25px',
+                    color: '#F0CC71',
+                  }}
                 >
                   Active Item
                 </Typography>
-                {currentUser.availableItem && (
-                  <ProfileActiveItem activeItem={activeItem} height="50%" />
+                {activeItem.active && (
+                  <ProfileActiveItem activeItem={activeItem} height="65%" />
                 )}
-                {!currentUser.availableItem && <AddItem />}
-              </Card>
+                {!activeItem.active && (
+                  <>
+                    <Typography
+                      variant="h5"
+                      textAlign="center"
+                      sx={{ marginTop: 1, marginBottom: 2 }}
+                      style={{ color: '#F0CC71' }}
+                    >
+                      Add an item to start trading!
+                    </Typography>
+                    <AddItem />
+                  </>
+                )}
+              </Box>
 
               {/* <Card
             sx={{
@@ -109,7 +145,7 @@ const Profile = () => {
               <ProfileTabs />
             </Grid>
           </Grid>
-        </>
+        </div>
       ) : (
         <>
           <Grid container item justifyContent="center">

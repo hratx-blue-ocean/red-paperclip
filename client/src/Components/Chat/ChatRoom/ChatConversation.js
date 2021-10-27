@@ -1,26 +1,24 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import React, { useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Modal from '@mui/material/Modal';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { makeStyles } from '@mui/styles';
 import { ItemsContext } from '../../ItemsContext';
 import TradePreview from './TradePreview/TradePreview';
 
-import Jason from '../img/Jason.jpg';
-import Pingping from '../img/Pingping.jpg';
-
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-  },
-  divider: {
-    padding: 20,
   },
   userText: {
     display: 'flex',
@@ -38,79 +36,66 @@ const useStyles = makeStyles(() => ({
     boxShadow: 75,
     borderRadius: '15px',
   },
-  hover2: {
-    color: '#ffffff',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
-  hover3: {
-    color: '#6D5D59',
-
-    '&:hover': {
-      color: '#A10000',
-    },
-  },
-  hover1: {
-    color: '#161513',
-    '&:hover': {
-      color: '#f0CC71',
-    },
-  },
 }));
 
-export default function ChatConversation({
-  chatsWithJesson,
-  setChatsWithJesson,
-}) {
+export default function ChatConversation() {
   const classes = useStyles();
-
   const { currentUserState, currentChatRoomState } = useContext(ItemsContext);
   const [currentUser, setCurrentUser] = currentUserState;
   const [currentChatRoom, setCurrentChatRoom] = currentChatRoomState;
-  const trader1 = currentUser.firstName;
-
-  useEffect(() => {}, [chatsWithJesson]);
+  const {
+    trader1,
+    trader1Photo,
+    trader1ItemPhoto,
+    trader2,
+    trader2Photo,
+    trader2ItemPhoto,
+    messages,
+  } = currentChatRoom;
 
   return (
-    <Paper
-      elevation={6}
-      style={{ height: 500, borderRadius: 30, padding: 30, overflow: 'auto' }}
-    >
-      <TradePreview />
-
-      <Grid item xs={12} className={classes.divider}>
-        <Divider />
-      </Grid>
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-        }}
+    <>
+      <Paper
+        elevation={6}
+        style={{ height: 95, borderRadius: 10, padding: 30 }}
       >
-        <DeleteIcon className={classes.hover1} />
-      </Box>
-      {chatsWithJesson.map((message) =>
-        message[0] === 1 ? (
-          <>
-            <ListItemAvatar>
-              <Avatar alt="Jesson W" src={Jason} />
-            </ListItemAvatar>
-            <ListItemText primary={message[2]} />
-          </>
+        <TradePreview />
+      </Paper>
+      <Paper
+        elevation={6}
+        style={{ height: 360, padding: 28, borderRadius: 10, overflow: 'auto' }}
+      >
+        {messages !== undefined ? (
+          messages.map((messageObj) => {
+            const { userName, userPhoto, message } = messageObj;
+            if (userName === currentUser.firstName) {
+              return (
+                // eslint-disable-next-line no-underscore-dangle
+                <ListItem key={messageObj.timestamp._seconds}>
+                  <ListItemText
+                    className={classes.userText}
+                    primary={message}
+                  />
+                  <ListItemAvatar>
+                    <Avatar alt={userName} src={userPhoto} />
+                  </ListItemAvatar>
+                </ListItem>
+              );
+            }
+            return (
+              // eslint-disable-next-line no-underscore-dangle
+              <ListItem key={messageObj.timestamp._seconds}>
+                <ListItemAvatar>
+                  <Avatar alt={userName} src={userPhoto} />
+                </ListItemAvatar>
+                <ListItemText primary={message} />
+              </ListItem>
+            );
+          })
         ) : (
-          <>
-            <p className={classes.userText} primary={message[2]} />
-            <ListItemAvatar>
-              <Avatar alt="Pingping X" src={Pingping} />
-            </ListItemAvatar>
-          </>
-        )
-      )}
-    </Paper>
+          <div />
+        )}
+      </Paper>
+    </>
   );
 }

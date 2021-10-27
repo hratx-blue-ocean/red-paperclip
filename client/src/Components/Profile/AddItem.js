@@ -1,3 +1,5 @@
+/* eslint-disable no-debugger */
+/* eslint-disable no-alert */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
@@ -41,31 +43,44 @@ const useStyles = makeStyles(() => ({
 
 const AddItem = (props) => {
   const classes = useStyles();
-  const { currentUserState } = useContext(ItemsContext);
+  const { currentUserState, activeItemState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
+  const [activeItem, setActiveItem] = activeItemState;
+  const { apiUrlState } = useContext(ItemsContext);
+  const [apiUrl, setApiUrl] = apiUrlState;
 
   const Input = styled('input')({
     display: 'none',
   });
 
+  const noItemPic =
+    'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png';
+
   const [newItem, setNewItem] = useState({
-    // itemCategory: 'Select Category' || currentUser.availableItem.itemCategory,
-    // itemName: '' || currentUser.availableItem.itemName,
-    // itemDesc: '' || currentUser.availableItem.itemDesc,
-    // itemZIP: '' || currentUser.availableItem.itemZIP,
+    active: activeItem.active || true,
+    itemCategory: activeItem.itemCategory || 'Select Category',
+    itemName: activeItem.itemName || '',
+    itemDescription: activeItem.itemDescription || '',
+    itemLocation: activeItem.itemLocation || '',
+    itemOwner:
+      activeItem.itemOwner ||
+      `${currentUser.firstName} ${currentUser.lastName}`,
+    itemOwnerPhoto: activeItem.itemOwnerPhoto || currentUser.imageUrl,
+    itemOwnerUID: activeItem.itemOwnerUID || currentUser.userId,
+    itemPhoto: activeItem.itemPhoto || noItemPic,
+    itemZIP: activeItem.itemZIP || '',
   });
 
   const [itemFormOpen, setItemFormOpen] = useState(false);
-
-  const noItemPic =
-    'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png';
 
   const handleClick = () => {
     setItemFormOpen(true);
   };
 
   const handleClose = () => {
-    props.handleEditItemClose();
+    if (props.handleEditItemClose) {
+      props.handleEditItemClose();
+    }
     setItemFormOpen(false);
   };
 
@@ -74,21 +89,76 @@ const AddItem = (props) => {
       ...newItem,
       [event.target.name]: event.target.value,
     });
-    console.log(newItem);
+    // console.log(newItem);
   };
 
   const handleSubmit = () => {
-    console.log('Sending new item data: ', newItem);
-    axios
-      .put(`/editItem`, newItem)
-      .then((postResponse) => {
-        console.log('Received post response:');
-        console.log(postResponse);
-      })
-      .catch((err) => {
-        console.log('Error received from post request:');
-        console.log(err);
-      });
+    // Validate inputs
+    if (newItem.itemCategory === 'Select Category') {
+      alert('Please select a category.');
+    } else if (!newItem.itemName) {
+      alert('Please enter a name for your item.');
+    } else if (!newItem.itemDescription) {
+      alert('Please describe your item.');
+    } else if (!newItem.itemZIP) {
+      alert('Please enter the ZIP code of your item.');
+    } else {
+      // Inputs are valid, send request
+      if (props.type === 'edit') {
+        // console.log('Sending edited item data: ', newItem);
+        const itemEdits = {};
+        if (newItem.itemName.length > 0) {
+          itemEdits.title = newItem.itemName;
+        }
+        if (newItem.itemDescription.length > 0) {
+          itemEdits.description = newItem.itemDescription;
+        }
+        if (newItem.itemCategory !== 'Select Category') {
+          itemEdits.category = newItem.category;
+        }
+        if (newItem.itemPhoto !== noItemPic) {
+          itemEdits.image = newItem.itemPhoto;
+        }
+        console.log('Sending item data: ', itemEdits);
+        axios
+          .put(`${apiUrl}/editItem?uid=${currentUser.availableItem}`, itemEdits)
+          // {
+          //   title: newItem.itemName,
+          //   description: newItem.itemDescription,
+          //   category: newItem.itemCategory,
+          // })
+          // .then((postResponse) => {
+          //   console.log('Received put response:');
+          //   console.log(postResponse);
+          // })
+          .catch((err) => {
+            console.log('Error received from put request:');
+            console.log(err);
+          });
+      } else {
+        console.log('Adding an item: ', newItem);
+        axios
+          .post(`${apiUrl}/addNewItem`, {
+            user: `${currentUser.firstName} ${currentUser.lastName}`,
+            ownerUID: currentUser.email,
+            profilePhoto: currentUser.imageUrl || noItemPic,
+            name: newItem.itemName,
+            category: newItem.itemCategory,
+            description: newItem.itemDescription,
+            location: newItem.itemZIP,
+            image: newItem.itemPhoto,
+          })
+          // .then((postResponse) => {
+          //   console.log('Received post response:');
+          //   console.log(postResponse);
+          // })
+          .catch((err) => {
+            console.log('Error received from post request:');
+            console.log(err);
+          });
+      }
+      handleClose();
+    }
   };
 
   return (
@@ -99,30 +169,51 @@ const AddItem = (props) => {
         padding={1}
         spacing={2}
       >
+        {/* {props.type === 'edit' && ( */}
         <Grid
           container
           item
           xs={9}
           style={{ justifyContent: 'center', marginBottom: '-15px' }}
         >
-          <label htmlFor="contained-button-file">
-            <Input
-              accept="image/*"
-              id="contained-button-file"
-              multiple
-              type="file"
-            />
-            <Button
-              fullWidth
-              color="sortButton"
-              variant="contained"
-              className={classes.hover2}
-              component="span"
-            >
-              Upload Image
-            </Button>
-          </label>
+          <TextField
+            InputProps={{
+              className: classes.input,
+            }}
+            InputLabelProps={{
+              className: classes.formLabel,
+            }}
+            style={{ width: '100%', backgroundColor: '#2C2C2C' }}
+            color="textYellow"
+            required
+            id="outlined-title"
+            label="Item photo"
+            type="text"
+            name="itemPhoto"
+            onChange={handleChange}
+          />
+          {/* Old code for image upload:
+
+            <label htmlFor="contained-button-file">
+              <Input
+                accept="image/*"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <Button
+                fullWidth
+                color="sortButton"
+                variant="contained"
+                className={classes.hover2}
+                component="span"
+                // onClick={uploadImage}
+              >
+                Upload Image
+              </Button>
+            </label> */}
         </Grid>
+        {/* )} */}
         <Grid container item xs={9} style={{ justifyContent: 'center' }}>
           <Select
             name="itemCategory"
@@ -131,15 +222,16 @@ const AddItem = (props) => {
             style={{
               margin: '0 auto',
               display: 'flex',
-              width: 200,
+              width: 325,
               marginTop: 20,
               backgroundColor: '#2C2C2C',
             }}
             className={(classes.menu, classes.hover2)}
             id="editItemCategory"
             label="Item category"
-            variant="filled"
+            variant="outlined"
             value={newItem.itemCategory}
+            defaultValue={newItem.itemCategory}
           >
             <MenuItem style={{ color: '#2C2C2C' }} value="Select Category">
               Select Category
@@ -230,7 +322,7 @@ const AddItem = (props) => {
             required
             id="outlined-description"
             label="Description"
-            name="itemDesc"
+            name="itemDescription"
             onChange={handleChange}
             type="text"
             multiline
@@ -263,6 +355,7 @@ const AddItem = (props) => {
               color="sortButton"
               variant="contained"
               className={classes.hover2}
+              onClick={handleSubmit}
             >
               Add Item
             </Button>

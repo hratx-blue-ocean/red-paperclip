@@ -4,6 +4,7 @@ import React, { useState, useContext } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import ProfileTabPanel from './ProfileTabPanel';
@@ -17,16 +18,30 @@ const ProfileJournal = () => {
   const [currentUser] = currentUserState;
 
   return (
-    <>
+    <Grid
+      container
+      display="flex"
+      justifycontent="center"
+      alignItems="center"
+      direction="column"
+      style={{ backgroundColor: '#34363b', marginTop: '25px' }}
+    >
       {currentUser.tradeHistory &&
         currentUser.tradeHistory.map((item, index) => {
           return (
-            <Box key={index}>
+            <Box
+              key={index}
+              sx={{
+                marginBottom: 3,
+                maxWidth: '325px',
+                justifyContent: 'center',
+              }}
+            >
               <ProfileJournalEntry item={item} />
             </Box>
           );
         })}
-    </>
+    </Grid>
   );
 };
 

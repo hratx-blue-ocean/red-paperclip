@@ -9,6 +9,7 @@ const addNewItem = (req, res) => {
     itemCategory: req.body.category,
     itemDescription: req.body.description,
     itemLocation: req.body.location,
+    itemPhoto: req.body.image,
     createdAt: new Date().toISOString(),
     reports: 0,
     active: true,
@@ -19,7 +20,15 @@ const addNewItem = (req, res) => {
   db.collection('items')
     .add(newDoc)
     .then((docRef) => {
-      res.send(docRef.id);
+      console.log(docRef.id);
+      db.doc(`users/${req.body.ownerUID}`)
+        .update({ availableItem: docRef.id })
+        .then(() => {
+          res.end();
+        })
+        .catch((err) => {
+          throw err;
+        });
     })
     .catch((err) => res.status(500).json({ error: err.code }));
 };

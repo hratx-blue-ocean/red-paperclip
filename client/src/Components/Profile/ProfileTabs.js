@@ -22,21 +22,21 @@ const ProfileTabs = () => {
         <Tabs
           value={value}
           onChange={handleChange}
-          // textColor="secondary"
+          textColor="secondary"
           // indicatorColor="secondary"
           aria-label="Trade History Tabs"
         >
-          <Tab value={0} label="Trade Journey Journal" />
+          <Tab value={0} label="Trade History" />
           <Tab value={1} label="Trade Journey Map" />
           <Tab value={2} label="Watched Items" />
         </Tabs>
       </Box>
       <ProfileTabPanel value={value} index={0}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',
@@ -47,10 +47,10 @@ const ProfileTabs = () => {
       </ProfileTabPanel>
       <ProfileTabPanel value={value} index={1}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
           }}
@@ -60,13 +60,14 @@ const ProfileTabs = () => {
       </ProfileTabPanel>
       <ProfileTabPanel value={value} index={2}>
         <Card
-          sx={{
+          style={{
             width: 600,
-            height: 890,
-            backgroundColor: '#494D53',
+            height: 1082,
+            backgroundColor: '#34363b',
             marginLeft: -3,
             marginTop: -2,
             overflow: 'auto',
+            justifyContent: 'center',
           }}
         >
           <WatchedItems />

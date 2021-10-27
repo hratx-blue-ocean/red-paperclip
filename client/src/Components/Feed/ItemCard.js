@@ -261,13 +261,14 @@ export default function ItemCard({ item }) {
           </IconButton>
         )}
       </Grid>
-      <Grid container>
+      <Grid container style={{ justifyContent: 'center' }}>
         <Card
           style={{
             backgroundColor: '#494D53',
             border: '1px solid',
             borderColor: '#FFF',
             borderRadius: '15px',
+            justifyContent: 'center',
           }}
         >
           <CardMedia
@@ -362,7 +363,7 @@ export default function ItemCard({ item }) {
               >
                 <Typography
                   variant="body2"
-                  color="secondary"
+                  color="white"
                   style={{ marginLeft: '10px' }}
                   display="inline"
                 >

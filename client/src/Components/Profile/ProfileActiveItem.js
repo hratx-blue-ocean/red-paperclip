@@ -127,7 +127,7 @@ export default function ItemCard(props) {
         </Box>
       </Modal>
 
-      <Grid container xs={12}>
+      {/* <Grid container xs={12} style={{ justifyContent: 'center' }}>
         <Grid container item xs={6} justifyContent="space-evenly">
           <Button
             color="inherit"
@@ -150,8 +150,8 @@ export default function ItemCard(props) {
             Delete Item
           </Button>
         </Grid>
-      </Grid>
-      <Grid container>
+      </Grid> */}
+      <Grid container style={{ justifyContent: 'center' }}>
         <Card
           style={{
             backgroundColor: '#494D53',
@@ -233,6 +233,30 @@ export default function ItemCard(props) {
             </Grid>
           </CardContent>
         </Card>
+      </Grid>
+      <Grid container xs={12} style={{ justifyContent: 'center' }}>
+        <Grid container item xs={6} justifyContent="space-evenly">
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleEditItemOpen}
+            sx={{ marginTop: 2 }}
+          >
+            Change Item
+          </Button>
+        </Grid>{' '}
+        <Grid container item xs={6} justifyContent="space-evenly">
+          <Button
+            color="inherit"
+            variant="outlined"
+            className={classes.hover2}
+            onClick={handleDeleteItem}
+            sx={{ marginTop: 2 }}
+          >
+            Delete Item
+          </Button>
+        </Grid>
       </Grid>
     </div>
   );

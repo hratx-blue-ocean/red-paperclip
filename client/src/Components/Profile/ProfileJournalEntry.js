@@ -177,7 +177,7 @@ export default function ProfileJournalEntry(props) {
             >
               <Typography
                 variant="body2"
-                color="white"
+                color="secondary"
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >

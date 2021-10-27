@@ -9,8 +9,10 @@ const ConfirmPassword = ({
   field,
   form,
   values,
+  initialValues,
   handleMouseDownPassword,
   handleClickShowPassword,
+  setValues,
 }) => (
   <TextField
     required
@@ -28,7 +30,7 @@ const ConfirmPassword = ({
           onMouseDown={handleMouseDownPassword}
           edge="end"
         >
-          {values.showPassword ? <VisibilityOff /> : <Visibility />}
+          {initialValues.showPassword ? <VisibilityOff /> : <Visibility />}
         </IconButton>
       </InputAdornment>
     }

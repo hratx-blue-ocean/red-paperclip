@@ -8,9 +8,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Password = ({
   field,
   form,
+  userData,
   values,
+  initialValues,
   handleMouseDownPassword,
   handleClickShowPassword,
+  handleTogglePassword,
+  setSignInValues,
 }) => (
   <TextField
     required
@@ -24,11 +28,11 @@ const Password = ({
       <InputAdornment position="end">
         <IconButton
           aria-label="toggle password visibility"
-          onClick={handleClickShowPassword}
+          onClick={handleTogglePassword}
           onMouseDown={handleMouseDownPassword}
           edge="end"
         >
-          {values.showPassword ? <VisibilityOff /> : <Visibility />}
+          {userData.showPassword ? <VisibilityOff /> : <Visibility />}
         </IconButton>
       </InputAdornment>
     }

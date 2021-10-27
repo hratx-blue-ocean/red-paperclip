@@ -28,7 +28,7 @@ import { ItemsContext } from '../ItemsContext';
 const validateSchema = yup.object({
   firstName: yup
     .string('Enter your first name')
-    .max(2, 'first name must be at least 2 characters')
+    .min(2, 'first name must be at least 2 characters')
     .max(15, 'first name cannot exceed 15 characters')
     .required('first name is required')
     .matches(/^[a-zA-Z]+$/, 'cannot contain numbers'),
@@ -56,8 +56,6 @@ const validateSchema = yup.object({
     .required('zip is required'),
 });
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
 export default function CreateAccountForm() {
   const { isLoggedInState, apiUrlState, currentUserState, showAuthModalState } =
     useContext(ItemsContext);
@@ -65,31 +63,30 @@ export default function CreateAccountForm() {
   const [currentUser, setCurrentUser] = currentUserState;
   const [showAuthModal, setShowAuthModal] = showAuthModalState;
   const [apiUrl, setApiUrl] = apiUrlState;
-  const [values, setValues] = useState({
+  const [initialValues, setInitialValues] = useState({
+    showPassword: false,
+    formSubmitted: false,
+    success: false,
+  });
+
+  const userAcctData = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
     zip: '',
-    showPassword: false,
-    formSubmitted: false,
-    success: false,
-  });
-
-  const onSubmit = async (fieldValues) => {
-    await sleep(500);
-    alert(JSON.stringify(fieldValues, null, 2));
   };
+  const [acctData, setAcctData] = useState(userAcctData);
 
-  const handleChange = (propName) => (event) => {
-    setValues({ ...values, [propName]: event.target.value });
+  const handleFormChange = (propName) => (event) => {
+    setAcctData({ ...acctData, [propName]: event.target.value });
   };
 
   const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+    setInitialValues({
+      ...initialValues,
+      showPassword: !initialValues.showPassword,
     });
   };
 
@@ -99,14 +96,14 @@ export default function CreateAccountForm() {
 
   const signUp = () => {
     const params = {
-      firstName: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-      zip: values.zip,
-      password: values.password,
-      confirmPassword: values.confirmPassword,
+      firstName: acctData.firstName,
+      lastName: acctData.lastName,
+      email: acctData.email,
+      zip: acctData.zip,
+      password: acctData.password,
+      confirmPassword: acctData.confirmPassword,
     };
-
+    console.log('sign up params', params);
     Axios.post(`${apiUrl}/signup`, params)
       .then((result) => {
         Axios.get(`${apiUrl}/user`, {
@@ -143,24 +140,46 @@ export default function CreateAccountForm() {
       <Grid item align="center">
         <Formik
           validateOnChange
-          initialValues={values}
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            zip: '',
+          }}
           validationSchema={validateSchema}
           onSubmit={(data) => {
-            handleSubmit(data);
+            handleCreateAcct(data);
           }}
         >
           {({ submitForm, touched, values, errors, isSubmitting }) => (
             <Form>
               <Grid item xs={12}>
-                <Field component={FirstName} type="text" name="firstName" />
+                <Field
+                  component={FirstName}
+                  type="text"
+                  name="firstName"
+                  handleFormChange={handleFormChange}
+                />
               </Grid>
               <br />
               <Grid item xs={12}>
-                <Field component={LastName} type="text" name="lastName" />
+                <Field
+                  component={LastName}
+                  type="text"
+                  name="lastName"
+                  handleFormChange={handleFormChange}
+                />
               </Grid>
               <br />
               <Grid item xs={12}>
-                <Field component={Email} type="email" name="email" />
+                <Field
+                  component={Email}
+                  type="email"
+                  name="email"
+                  handleFormChange={handleFormChange}
+                />
               </Grid>
               <br />
               <Grid item xs={12}>
@@ -170,7 +189,8 @@ export default function CreateAccountForm() {
                   name="password"
                   handleMouseDownPassword={handleMouseDownPassword}
                   handleClickShowPassword={handleClickShowPassword}
-                  values={values}
+                  initialValues={initialValues}
+                  handleFormChange={handleFormChange}
                 />
               </Grid>
               <br />
@@ -181,7 +201,8 @@ export default function CreateAccountForm() {
                   name="confirmPassword"
                   handleMouseDownPassword={handleMouseDownPassword}
                   handleClickShowPassword={handleClickShowPassword}
-                  values={values}
+                  initialValues={initialValues}
+                  handleFormChange={handleFormChange}
                 />
               </Grid>
               <br />
@@ -194,7 +215,7 @@ export default function CreateAccountForm() {
                 <Button
                   fullWidth
                   type="submit"
-                  onClick={handleCreateAcct}
+                  onClick={submitForm}
                   style={{
                     backgroundColor: '#2C2C2C',
                     color: '#F0CC71',

@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 const Email = ({ form, field }) => (
   <TextField
     required
+    color="formLabel"
     label="Email"
     name="email"
     error={Boolean(form.errors.email)}

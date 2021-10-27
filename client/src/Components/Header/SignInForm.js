@@ -76,7 +76,6 @@ export default function SignInForm() {
           setCurrentUser(userInfo.data);
           setIsLoggedIn(true);
         });
-        console.log('currentUser', currentUser);
       })
       .catch((err) => {
         console.error(err);

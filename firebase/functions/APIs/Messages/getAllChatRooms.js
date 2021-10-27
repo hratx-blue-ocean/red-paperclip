@@ -10,6 +10,7 @@ const getAllChatRooms = async (req, res) => {
       .get()
       .then((snap) => {
         const chatListData = {
+          chatId,
           trader1: snap.data().trader1,
           trader1Photo: snap.data().trader1Photo,
           trader2: snap.data().trader2,
@@ -18,10 +19,9 @@ const getAllChatRooms = async (req, res) => {
           trader2ItemPhoto: snap.data().trader2ItemPhoto,
           lastMessage:
             snap.data().messages[snap.data().messages.length - 1].message,
-          timestamp:
-            // eslint-disable-next-line no-underscore-dangle
+          timestamp: Date.parse(
             snap.data().messages[snap.data().messages.length - 1].timestamp
-              ._seconds,
+          ),
         };
         return chatListData;
       })

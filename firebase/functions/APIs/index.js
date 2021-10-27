@@ -23,6 +23,7 @@ const getItemReports = require('./Admin/getItemReports');
 // Messages
 const getChatRoom = require('./Messages/getChatRoom');
 const getAllChatRooms = require('./Messages/getAllChatRooms');
+const addChatMessage = require('./Messages/addChatMessage');
 
 const item = {
   getAllItems,
@@ -46,6 +47,7 @@ const user = {
 const message = {
   getChatRoom,
   getAllChatRooms,
+  addChatMessage,
 };
 
 const admin = {

@@ -77,11 +77,11 @@ export default function AddChat() {
                 borderRadius: 30,
               }}
             >
-              <Chip
+              {/* <Chip
                 className={classes.hover1}
                 icon={<MdPhone />}
                 label="Audio Chat"
-              />
+              /> */}
               <Button
                 className={classes.sendButton}
                 variant="contained"

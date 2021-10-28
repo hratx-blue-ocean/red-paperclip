@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const getItemsCategory = (req, res) => {
   const quantity = parseInt(req.query.quantity, 10);

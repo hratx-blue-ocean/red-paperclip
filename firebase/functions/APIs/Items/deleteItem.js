@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const deleteItem = (req, res) => {
   db.doc(`items/${req.query.uid}`)

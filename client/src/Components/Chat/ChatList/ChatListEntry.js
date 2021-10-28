@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useContext } from 'react';
 import '../Chats.css';
 import Avatar from '@mui/material/Avatar';
@@ -21,7 +23,7 @@ export default function ChatListEntry({ entryObj, clicked }) {
   } = entryObj;
 
   let shortStr = lastMessage;
-  shortStr = shortStr.slice(0, 7) + '...';
+  shortStr = `${shortStr.slice(0, 7)}...`;
   // onclick function
   // once clicked
   // sets the global state of currentChatRoom

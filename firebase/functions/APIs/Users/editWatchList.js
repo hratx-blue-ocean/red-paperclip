@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const editWatchList = (req, res) => {
   db.doc(`/users/${req.body.email}`)

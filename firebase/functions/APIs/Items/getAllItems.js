@@ -1,4 +1,4 @@
-const { db } = require('../../../util/admin');
+const { db } = require('../../util/admin');
 
 const getAllItems = (req, res) => {
   const quantity = parseInt(req.query.quantity, 10);

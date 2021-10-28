@@ -142,7 +142,7 @@ const Profile = () => {
           </Card> */}
             </Grid>
             <Grid item xs={7} sx={{ marginTop: 1 }}>
-              <ProfileTabs />
+              <ProfileTabs style={{ justifyContent: 'center' }} />
             </Grid>
           </Grid>
         </div>

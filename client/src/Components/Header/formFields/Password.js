@@ -20,7 +20,7 @@ const Password = ({
     required
     type="password"
     color="formLabel"
-    label="password"
+    label="Password"
     name="password"
     error={Boolean(form.errors.password)}
     helperText={form.errors.password}

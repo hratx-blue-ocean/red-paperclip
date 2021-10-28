@@ -17,7 +17,7 @@ const ConfirmPassword = ({
   <TextField
     required
     color="formLabel"
-    label="confirm password"
+    label="Confirm Password"
     name="confirm password"
     error={Boolean(form.errors.confirmPassword)}
     helperText={form.errors.confirmPassword}

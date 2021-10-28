@@ -5,7 +5,7 @@ const FirstName = ({ field, form }) => (
   <TextField
     required
     color="formLabel"
-    label="first name"
+    label="First Name"
     name="fname"
     error={Boolean(form.errors.firstName)}
     helperText={form.errors.firstName}

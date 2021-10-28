@@ -57,7 +57,7 @@ Red Paperclip was a collaborative Full-Stack project between the 7 collaborators
 
 ## Rebekah Cruz
 
-email here
+rebekah.cruz702@gmail.com
 
 UI Owner/Software Engineer
 
@@ -85,7 +85,7 @@ Project Manager/Software Engineer
 
 wwfink30@gmail.com
 
- <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="150">
+ <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="200">
 
 [![linkedin-shield]][william-linkedin]
 [![github-shield]][william-github]
@@ -94,7 +94,7 @@ wwfink30@gmail.com
 
 ## Blake Hughes
 
-email here
+blake.ed.hughes@gmail.com
 
 UI Owner/Software Engineer
 
@@ -120,11 +120,11 @@ UI Owner/Software Engineer
 
 ## Matthew Sewell
 
-email here
+sewell.matthewm@gmail.com
 
 Architecture Owner/Software Engineer
 
- <img src="ReadmeImages/MatthewSewell.jpeg" alt="Matthew Sewell Headshot" width="210">
+ <img src="ReadmeImages/MatthewSewell.png" alt="Matthew Sewell Headshot" width="210">
 
 [![linkedin-shield]][matthew-linkedin]
 [![github-shield]][matthew-github]
@@ -133,11 +133,11 @@ Architecture Owner/Software Engineer
 
 ## Pingping Xiao
 
-email here
+xiaopingping1994@gmail.com
 
 Architecture Owner/Software Engineer
 
- <img src="ReadmeImages/PingpingXiao.jpeg" alt="Pingping Xiao Headshot" width="210">
+ <img src="ReadmeImages/PingpingXiao.jpg" alt="Pingping Xiao Headshot" width="210">
 
 [![linkedin-shield]][pingping-linkedin]
 [![github-shield]][pingping-github]
@@ -145,7 +145,6 @@ Architecture Owner/Software Engineer
 <br>
 Team Member Expectations and Workflow:
 
-- Oversaw their own module while working in collaboration with teammates to ensure interactive functionality
 - Communicated their progress in daily standups
 - Created and completed their task tickets using Trello
 - Brainstormed and reflected the teams work in 2 day mini-sprints

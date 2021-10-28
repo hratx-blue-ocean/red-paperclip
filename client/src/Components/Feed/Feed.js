@@ -112,23 +112,23 @@ const Feed = () => {
             <ItemCard item={item} />
           </Grid>
         ))}
-        {/* {itemsLength < 6 && ( */}
-        <Grid
-          item
-          xs={12}
-          container
-          style={{ justifyContent: 'center', marginBottom: '10px' }}
-        >
-          <Button
-            variant="contained"
-            spacing={1}
-            color="textYellow"
-            onClick={handleMore}
+        {itemsLength < 6 && (
+          <Grid
+            item
+            xs={12}
+            container
+            style={{ justifyContent: 'center', marginBottom: '10px' }}
           >
-            Show More
-          </Button>
-        </Grid>
-        {/* )} */}
+            <Button
+              variant="contained"
+              spacing={1}
+              color="textYellow"
+              onClick={handleMore}
+            >
+              Show More
+            </Button>
+          </Grid>
+        )}
       </Grid>
     </div>
   );

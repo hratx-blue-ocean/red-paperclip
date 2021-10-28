@@ -90,6 +90,16 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
                 it to your Trade Journey!
               </Typography>
             </Grid>
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+                onClick={handleClose}
+              >
+                Confirm!
+              </Button>
+            </Grid>
             <Grid
               item
               xs={12}

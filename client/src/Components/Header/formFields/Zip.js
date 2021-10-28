@@ -5,7 +5,7 @@ const Zip = ({ field, form }) => (
   <TextField
     required
     color="formLabel"
-    label="zip"
+    label="Zip"
     name="zip"
     error={Boolean(form.errors.zip)}
     helperText={form.errors.zip}

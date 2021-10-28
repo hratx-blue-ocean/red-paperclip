@@ -4,12 +4,42 @@ import Modal from '@mui/material/Modal';
 // import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { makeStyles } from '@mui/styles';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { ItemsContext } from '../ItemsContext';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  bold: {
+    fontWeight: 600,
+  },
+  hover2: {
+    color: '#ffffff',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
+  hover3: {
+    color: '#A10000',
+    '&:hover': {
+      color: '#ffffff',
+    },
+  },
+  hover1: {
+    color: '#161513',
+    '&:hover': {
+      color: '#f0CC71',
+    },
+  },
+}));
+
 const EditProfileButton = () => {
+  const classes = useStyles();
+
   const { currentUserState } = useContext(ItemsContext);
   const [currentUser] = currentUserState;
   const { apiUrlState } = useContext(ItemsContext);
@@ -81,6 +111,7 @@ const EditProfileButton = () => {
   return (
     <>
       <Button
+        className={classes.hover2}
         style={{ margin: '0 auto', display: 'flex', marginTop: 20 }}
         variant="outlined"
         onClick={handleClick}

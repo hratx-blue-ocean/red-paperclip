@@ -25,6 +25,7 @@ const ProfileTabs = () => {
           textColor="secondary"
           // indicatorColor="secondary"
           aria-label="Trade History Tabs"
+          style={{ marginLeft: '62px' }}
         >
           <Tab value={0} label="Trade History" />
           <Tab value={1} label="Trade Journey Map" />

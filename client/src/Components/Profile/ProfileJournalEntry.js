@@ -177,7 +177,7 @@ export default function ProfileJournalEntry(props) {
             >
               <Typography
                 variant="body2"
-                color="secondary"
+                color="primary"
                 style={{ marginLeft: '10px' }}
                 display="inline"
               >
@@ -198,19 +198,19 @@ export default function ProfileJournalEntry(props) {
               {item.journalText.length <= 0 && (
                 <Grid container item xs={6} justifyContent="center">
                   <Button
-                    color="inherit"
+                    // color="primary"
                     variant="outlined"
                     className={classes.hover2}
                     onClick={handleJournalOpen}
                   >
-                    Add Journal Entry For Item
+                    Add Entry
                   </Button>
                 </Grid>
               )}
               {item.journalText.length > 0 && (
                 <Typography
                   variant="body2"
-                  color="white"
+                  color="secondary"
                   style={{ marginLeft: '10px', marginBottom: '10px' }}
                   display="inline"
                 >

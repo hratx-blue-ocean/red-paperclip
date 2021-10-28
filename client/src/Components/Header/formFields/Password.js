@@ -18,6 +18,7 @@ const Password = ({
 }) => (
   <TextField
     required
+    type="password"
     color="formLabel"
     label="password"
     name="password"

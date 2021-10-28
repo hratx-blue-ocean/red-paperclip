@@ -90,6 +90,20 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
                 it to your Trade Journey!
               </Typography>
             </Grid>
+<<<<<<< HEAD
+            <Grid item xs={12} display="flex" justifyContent="center">
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+                onClick={handleClose}
+              >
+                Confirm!
+              </Button>
+            </Grid>
+
+            <Grid item xs={12} display="flex" justifyContent="center">
+=======
             <Grid
               item
               xs={12}
@@ -97,6 +111,7 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
               justifyContent="center"
               style={{ marginTop: '20px' }}
             >
+>>>>>>> 423b42a5bacb7852d5918ff27cdedca5c2ca893f
               <Grid item xs={5} display="flex" justifyContent="center">
                 <Avatar
                   alt="trader2ItemPhoto"

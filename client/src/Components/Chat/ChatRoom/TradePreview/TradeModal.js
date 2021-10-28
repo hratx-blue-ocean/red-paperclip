@@ -100,8 +100,13 @@ export default function TradeModal({ trader1ItemPhoto, trader2ItemPhoto }) {
                 Confirm!
               </Button>
             </Grid>
-
-            <Grid item xs={12} display="flex" justifyContent="center">
+            <Grid
+              item
+              xs={12}
+              display="flex"
+              justifyContent="center"
+              style={{ marginTop: '20px' }}
+            >
               <Grid item xs={5} display="flex" justifyContent="center">
                 <Avatar
                   alt="trader2ItemPhoto"

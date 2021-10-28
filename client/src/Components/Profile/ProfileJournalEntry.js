@@ -157,6 +157,7 @@ export default function ProfileJournalEntry(props) {
               <Avatar
                 sx={{ bgcolor: red[500], marginLeft: '8px' }}
                 aria-label="user_name"
+                src={item.itemOwnerPhoto}
               />
             }
             title={itemOwner}

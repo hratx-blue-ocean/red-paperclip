@@ -4,7 +4,7 @@ const getItems = async (req, res) => {
   const items = [...req.query.items];
   let itemsArr;
 
-  const promises = await items.map(async (uid) =>
+  const promises = items.map(async (uid) =>
     db
       .doc(`items/${uid}`)
       .get()

@@ -187,21 +187,30 @@ To explore the project, follow the instructions below.
 
 ### Installation
 
-npm i
-npm i firebase-tools -g
+1. Navigate to the main red-paperclip folder and install the local dependencies:
+   npm i
 
-Need to have webpack running from the main directory:
-npm run watch
+2. Open a seperate terminal and navigate to the firebase/functions folder and install the local dependencies:
+   npm i
 
-To launch local or deploy
-cd firebase
-run: firebase login
-to launch locally : firebase serve
-to deploy : firebase deploy
+3. Install the firebase tools globally:
+   npm i -g firebase-tools
 
-```sh
-Instruction here
-```
+4. Login into firebase:
+   From the firebase/functions folder run:
+   firebase login
+
+5. Start webpack and have it listen for changes.
+   From the red-paperclip folder run:
+   npm run watch
+
+6. To launch locally
+   From the firebase/functions folder run:
+   firebase serve
+
+7. To deploy
+   From the firebase/functions folder run:
+   firebase deploy --only hosting
 
 <br><br>
 

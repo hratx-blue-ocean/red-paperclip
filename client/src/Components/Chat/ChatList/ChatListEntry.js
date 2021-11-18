@@ -46,9 +46,9 @@ export default function ChatListEntry({ entryObj, clicked }) {
             <div className="chat_details">
               <p>{shortStr}</p>
             </div>
-            {/* <p className="chat_timestamp">
+            <p className="chat_timestamp">
               <TimeAgo time={epochTimeStamp} className="timestamp" />
-            </p> */}
+            </p>
           </div>
           <Divider />
         </>
@@ -61,7 +61,7 @@ export default function ChatListEntry({ entryObj, clicked }) {
             <div className="chat_details">
               <p>{shortStr}</p>
             </div>
-            {/* <TimeAgo time={epochTimeStamp} className="timestamp" /> */}
+            <TimeAgo time={epochTimeStamp} className="timestamp" />
           </div>
           <Divider />
         </>

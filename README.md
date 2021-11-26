@@ -220,7 +220,7 @@ To explore the project, follow the instructions below.
 
 # Application Demo
 
-<br><br>
+<br>
 <img src="https://tinyimg.io/i/5FG8soG.gif" alt="application-demo1">
 <br>
 <img src="https://tinyimg.io/i/Qmcm9tQ.gif" alt="application-demo2">

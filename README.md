@@ -27,7 +27,7 @@
     <li>
       <a href="#about-the-project">Project Overview</a>
       <ul>
-        <li><a href="#application-demo">Module Break Down</a></li>
+        <li><a href="#application-demo">Application Demo</a></li>
         <li><a href="#tech-stack">Tech Stack</a></li>
       </ul>
     </li>
@@ -140,7 +140,7 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 
 > "I’d like to create an app that’s called "Red Paperclip", where users can post an item that they have to trade in exchange for an item that someone else has posted (ie. A user has a red paperclip, and hopefully someone else has something they're willing to trade for that red paperclip) Multiple users should be able to post their items, but each user should only have one item posted at a time. A feed should display all items and each user should have a personal page that tracks everything you’ve traded so far. The users should be able to chat about their items before confirming the trade. I would like an admin dashboard to moderate the page"
 
-<br><br>
+<br>
 <!-- USAGE EXAMPLES -->
 
 # Application Demo
@@ -239,4 +239,4 @@ To explore the project, follow the instructions below.
 [pingping-email]: mailto:xiaopingping1994@gmail.com
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
-[gmail-shield]: https://img.shields.io/badge/-Gmail-grey?style=for-the-badge&logo=gmail
+[gmail-shield]: https://img.shields.io/badge/-Gmail-grey?style=for-the-badge&logo=Gmail&logoColor=white

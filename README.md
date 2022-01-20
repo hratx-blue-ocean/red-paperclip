@@ -12,17 +12,6 @@
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#contributors">Contributors</a>
-      <ul>
-        <li><a href="#rebekah-cruz">Rebekah Cruz</a></li>
-        <li><a href="#cory-ellerbroek">Cory Ellerbroek</a></li>
-        <li><a href="#william-fink">William Fink</a></li>
-        <li><a href="#blake-hughes">Blake Hughes</a></li>
-        <li><a href="#travis-morse">Travis Morse</a></li>
-        <li><a href="#matthew-sewell">Matthew Sewell</a></li>
-        <li><a href="#pingping-xiao">Pingping Xiao</a></li>
-      </ul>
-    </li>
     <li>
       <a href="#project-overview">Project Overview</a>
       <ul>
@@ -37,6 +26,17 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#contributors">Contributors</a>
+      <ul>
+        <li><a href="#rebekah-cruz">Rebekah Cruz</a></li>
+        <li><a href="#cory-ellerbroek">Cory Ellerbroek</a></li>
+        <li><a href="#william-fink">William Fink</a></li>
+        <li><a href="#blake-hughes">Blake Hughes</a></li>
+        <li><a href="#travis-morse">Travis Morse</a></li>
+        <li><a href="#matthew-sewell">Matthew Sewell</a></li>
+        <li><a href="#pingping-xiao">Pingping Xiao</a></li>
+      </ul>
+    </li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -47,80 +47,6 @@
 # Introduction
 
 Red Paperclip was a collaborative Full-Stack project between the 7 collaborators. This was a brief 1-week sprint that simulated the real-world development of a Full-Stack web application to the demands provided by the client.
-
-<br>
-
-<!-- Contributors -->
-
-# Contributors
-
-## Rebekah Cruz
-
-UI Owner/Software Engineer
-
-<img src="ReadmeImages/RebekahCruz.jpg" alt="Rebekah Cruz headshot" width="100">
-
-[![gmail-shield]][rebekah-email]
-[![linkedin-shield]][rebekah-linkedin]
-[![github-shield]][rebekah-github]
-
-## Cory Ellerbroek
-
-Project Manager/Software Engineer
-
- <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" width="100">
-
-[![gmail-shield]][cory-email]
-[![linkedin-shield]][cory-linkedin]
-[![github-shield]][cory-github]
-
-## William Fink
-
- <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="100">
-
-[![gmail-shield]][william-email]
-[![linkedin-shield]][william-linkedin]
-[![github-shield]][william-github]
-
-## Blake Hughes
-
-UI Owner/Software Engineer
-
- <img src="ReadmeImages/BlakeHughes.png" alt="Blake Hughes Headshot" width="100">
-
-[![gmail-shield]][blake-email]
-[![linkedin-shield]][blake-linkedin]
-[![github-shield]][blake-github]
-
-### Travis Morse
-UI Owner/Software Engineer
-
-<img src="ReadmeImages/TravisMorse.jpg" alt="Travis Morse Headshot" width="100">
-
-[![gmail-shield]][travis-email]
-[![linkedin-shield]][travis-linkedin]
-[![github-shield]][travis-github]
-
-## Matthew Sewell
-
-Architecture Owner/Software Engineer
-
- <img src="ReadmeImages/MatthewSewell.png" alt="Matthew Sewell Headshot" width="100">
-
-[![gmail-shield]][matthew-email]
-[![linkedin-shield]][matthew-linkedin]
-[![github-shield]][matthew-github]
-
-## Pingping Xiao
-
-Architecture Owner/Software Engineer
-
- <img src="ReadmeImages/PingpingXiao.jpg" alt="Pingping Xiao Headshot" width="100">
- 
-[![gmail-shield]][pingping-email]
-[![linkedin-shield]][pingping-linkedin]
-[![github-shield]][pingping-github]
-
 
 <br>
 Team Member Expectations and Workflow:
@@ -202,6 +128,76 @@ To explore the project, follow the instructions below.
    firebase deploy --only hosting
 
 <br><br>
+<!-- Contributors -->
+
+# Contributors
+
+## Rebekah Cruz
+
+UI Owner/Software Engineer
+
+<img src="ReadmeImages/RebekahCruz.jpg" alt="Rebekah Cruz headshot" width="100">
+
+[![gmail-shield]][rebekah-email]
+[![linkedin-shield]][rebekah-linkedin]
+[![github-shield]][rebekah-github]
+
+## Cory Ellerbroek
+
+Project Manager/Software Engineer
+
+ <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" width="100">
+
+[![gmail-shield]][cory-email]
+[![linkedin-shield]][cory-linkedin]
+[![github-shield]][cory-github]
+
+## William Fink
+
+ <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="100">
+
+[![gmail-shield]][william-email]
+[![linkedin-shield]][william-linkedin]
+[![github-shield]][william-github]
+
+## Blake Hughes
+
+UI Owner/Software Engineer
+
+ <img src="ReadmeImages/BlakeHughes.png" alt="Blake Hughes Headshot" width="100">
+
+[![gmail-shield]][blake-email]
+[![linkedin-shield]][blake-linkedin]
+[![github-shield]][blake-github]
+
+### Travis Morse
+UI Owner/Software Engineer
+
+<img src="ReadmeImages/TravisMorse.jpg" alt="Travis Morse Headshot" width="100">
+
+[![gmail-shield]][travis-email]
+[![linkedin-shield]][travis-linkedin]
+[![github-shield]][travis-github]
+
+## Matthew Sewell
+
+Architecture Owner/Software Engineer
+
+ <img src="ReadmeImages/MatthewSewell.png" alt="Matthew Sewell Headshot" width="100">
+
+[![gmail-shield]][matthew-email]
+[![linkedin-shield]][matthew-linkedin]
+[![github-shield]][matthew-github]
+
+## Pingping Xiao
+
+Architecture Owner/Software Engineer
+
+ <img src="ReadmeImages/PingpingXiao.jpg" alt="Pingping Xiao Headshot" width="100">
+ 
+[![gmail-shield]][pingping-email]
+[![linkedin-shield]][pingping-linkedin]
+[![github-shield]][pingping-github]
 
 
 ## Acknowledgements

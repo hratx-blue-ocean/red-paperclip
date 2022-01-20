@@ -37,7 +37,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#module-break-down">Module Break Down</a></li>
+    <li><a href="#application-demo">Module Break Down</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -61,7 +61,7 @@ rebekah.cruz702@gmail.com
 
 UI Owner/Software Engineer
 
-<img src="ReadmeImages/RebekahCruz.jpg" alt="Rebekah Cruz headshot" width="210">
+<img src="ReadmeImages/RebekahCruz.jpg" alt="Rebekah Cruz headshot" width="100">
 
 [![linkedin-shield]][rebekah-linkedin]
 [![github-shield]][rebekah-github]
@@ -74,7 +74,7 @@ cory.ellerbroek@gmail.com
 
 Project Manager/Software Engineer
 
- <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" width="210">
+ <img src="ReadmeImages/CoryEllerbroek.jpeg" alt="Cory Ellerbroek Headshot" width="100">
 
 [![linkedin-shield]][cory-linkedin]
 [![github-shield]][cory-github]
@@ -85,7 +85,7 @@ Project Manager/Software Engineer
 
 wwfink30@gmail.com
 
- <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="200">
+ <img src="ReadmeImages/WilliamFink.jpg" alt="William Fink Headshot" height="100">
 
 [![linkedin-shield]][william-linkedin]
 [![github-shield]][william-github]
@@ -98,7 +98,7 @@ blake.ed.hughes@gmail.com
 
 UI Owner/Software Engineer
 
- <img src="ReadmeImages/BlakeHughes.png" alt="Blake Hughes Headshot" width="210">
+ <img src="ReadmeImages/BlakeHughes.png" alt="Blake Hughes Headshot" width="100">
 
 [![linkedin-shield]][blake-linkedin]
 [![github-shield]][blake-github]
@@ -111,7 +111,7 @@ travis503@gmail.com
 
 UI Owner/Software Engineer
 
-<img src="ReadmeImages/TravisMorse.jpg" alt="Travis Morse Headshot" width="210">
+<img src="ReadmeImages/TravisMorse.jpg" alt="Travis Morse Headshot" width="100">
 
 [![linkedin-shield]][travis-linkedin]
 [![github-shield]][travis-github]
@@ -124,7 +124,7 @@ sewell.matthewm@gmail.com
 
 Architecture Owner/Software Engineer
 
- <img src="ReadmeImages/MatthewSewell.png" alt="Matthew Sewell Headshot" width="210">
+ <img src="ReadmeImages/MatthewSewell.png" alt="Matthew Sewell Headshot" width="100">
 
 [![linkedin-shield]][matthew-linkedin]
 [![github-shield]][matthew-github]
@@ -137,7 +137,7 @@ xiaopingping1994@gmail.com
 
 Architecture Owner/Software Engineer
 
- <img src="ReadmeImages/PingpingXiao.jpg" alt="Pingping Xiao Headshot" width="210">
+ <img src="ReadmeImages/PingpingXiao.jpg" alt="Pingping Xiao Headshot" width="100">
 
 [![linkedin-shield]][pingping-linkedin]
 [![github-shield]][pingping-github]

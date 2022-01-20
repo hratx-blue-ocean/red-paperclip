@@ -2,7 +2,6 @@
 
 <br />
 
-<br>
 <div align="center">
 <img src="ReadmeImages/RedPaperclipLogo.png" alt="Red Paperclip Logo"/>
 </div><br>
@@ -143,7 +142,7 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 <br>
 <!-- USAGE EXAMPLES -->
 
-# Application Demo
+## Application Demo
 
 <br>
 <img src="https://tinyimg.io/i/5FG8soG.gif" alt="application-demo1">
